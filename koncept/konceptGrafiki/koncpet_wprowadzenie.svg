@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="170mm"
+   viewBox="0 0 210 170"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="koncpet_wprowadzenie.svg">
+  <defs
+     id="defs2">
+    <rect
+       x="75.973214"
+       y="130.40179"
+       width="106.02232"
+       height="6.4255952"
+       id="rect1337" />
+    <rect
+       x="177.46698"
+       y="157.23809"
+       width="31.757156"
+       height="5.4806547"
+       id="rect1237" />
+    <rect
+       x="84.855652"
+       y="97.139877"
+       width="25.618536"
+       height="13.377862"
+       id="rect2658" />
+    <rect
+       x="86.060791"
+       y="90.871635"
+       width="24.856066"
+       height="6.8153734"
+       id="rect2589" />
+    <rect
+       x="22.918362"
+       y="134.23611"
+       width="23.98744"
+       height="5.2785735"
+       id="rect1986" />
+    <rect
+       x="15.250002"
+       y="54.483963"
+       width="33.049603"
+       height="5.0935011"
+       id="rect1309" />
+    <rect
+       x="43.65625"
+       y="14.174107"
+       width="140.76041"
+       height="12.662203"
+       id="rect1045" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1039"
+       x="-0.0014933333"
+       width="1.0029867"
+       y="-0.002688"
+       height="1.005376">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.112"
+         id="feGaussianBlur1041" />
+    </filter>
+    <rect
+       x="43.65625"
+       y="14.174107"
+       width="152.43759"
+       height="13.731281"
+       id="rect1045-3" />
+    <rect
+       x="43.65625"
+       y="14.174107"
+       width="140.76041"
+       height="12.662203"
+       id="rect1058" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1131"
+       x="-108000"
+       width="216001"
+       y="-0.0021599999"
+       height="1.00432">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.090000001"
+         id="feGaussianBlur1133" />
+    </filter>
+    <rect
+       x="15.250002"
+       y="54.483963"
+       width="33.049603"
+       height="5.0935011"
+       id="rect1309-5" />
+    <rect
+       x="15.250002"
+       y="54.483963"
+       width="33.049603"
+       height="5.0935011"
+       id="rect1338" />
+    <rect
+       x="86.060791"
+       y="90.871635"
+       width="24.856066"
+       height="6.8153734"
+       id="rect2589-5" />
+    <rect
+       x="86.060791"
+       y="90.871635"
+       width="24.856066"
+       height="6.8153734"
+       id="rect2606" />
+    <rect
+       x="86.060791"
+       y="90.871635"
+       width="24.856066"
+       height="6.8153734"
+       id="rect2589-5-5" />
+    <rect
+       x="86.060791"
+       y="90.871635"
+       width="24.856066"
+       height="6.8153734"
+       id="rect2635" />
+    <rect
+       x="84.855652"
+       y="97.139877"
+       width="26.888065"
+       height="18.856888"
+       id="rect2658-2" />
+    <rect
+       x="84.855652"
+       y="97.139877"
+       width="25.618536"
+       height="13.377862"
+       id="rect2673" />
+    <rect
+       x="84.855652"
+       y="97.139877"
+       width="24.998184"
+       height="22.542156"
+       id="rect2658-2-5" />
+    <rect
+       x="84.855652"
+       y="97.139877"
+       width="26.888065"
+       height="18.856888"
+       id="rect2716" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1014-7"
+       x="-0.00028254255"
+       width="1.0005651"
+       y="-0.0015939381"
+       height="1.0031879">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.0025726574"
+         id="feGaussianBlur1016-6" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1014-5"
+       x="-0.00028254255"
+       width="1.0005651"
+       y="-0.0015939381"
+       height="1.0031879">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.0025726574"
+         id="feGaussianBlur1016-69" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1014-3-0-7-6"
+       x="-0.00028254255"
+       width="1.0005651"
+       y="-0.0015939381"
+       height="1.0031879">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.0025726574"
+         id="feGaussianBlur1016-68-5-6-4" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1014-0"
+       x="-0.00028254255"
+       width="1.0005651"
+       y="-0.0015939381"
+       height="1.0031879">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.0025726574"
+         id="feGaussianBlur1016-66" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1014-3"
+       x="-0.00028254255"
+       width="1.0005651"
+       y="-0.0015939381"
+       height="1.0031879">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.0025726574"
+         id="feGaussianBlur1016-68" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter1014-3-00"
+       x="-0.00028254255"
+       width="1.0005651"
+       y="-0.0015939381"
+       height="1.0031879">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="0.0025726574"
+         id="feGaussianBlur1016-68-7" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="463.38921"
+     inkscape:cy="302.29376"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-global="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       position="15.250006,83.709813"
+       orientation="1,0"
+       id="guide12" />
+    <sodipodi:guide
+       position="194.77274,115.98938"
+       orientation="1,0"
+       id="guide14" />
+    <sodipodi:guide
+       position="14.999999,255.23362"
+       orientation="0,-1"
+       id="guide1079" />
+    <sodipodi:guide
+       position="14.999999,155.23362"
+       orientation="0,-1"
+       id="guide1081" />
+    <sodipodi:guide
+       position="62.744056,255.23363"
+       orientation="1,0"
+       id="guide1139" />
+    <sodipodi:guide
+       position="62.46489,243.04521"
+       orientation="1,0"
+       id="guide1170" />
+    <sodipodi:guide
+       position="62.464888,243.04522"
+       orientation="0,-1"
+       id="guide2047" />
+    <sodipodi:guide
+       position="93.143428,193.70033"
+       orientation="0,-1"
+       id="guide2662" />
+    <sodipodi:guide
+       position="17.907058,38.837479"
+       orientation="1,0"
+       id="guide1282" />
+    <sodipodi:guide
+       position="15.25,28.434799"
+       orientation="0,-1"
+       id="guide1284" />
+    <sodipodi:guide
+       position="63.033434,109.3171"
+       orientation="1,0"
+       id="guide1254" />
+    <sodipodi:guide
+       position="62.464888,109.51603"
+       orientation="0,-1"
+       id="guide1256" />
+    <sodipodi:guide
+       position="62.464888,115.51603"
+       orientation="0,-1"
+       id="guide1258" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Main window"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#b3b9b3;fill-opacity:0.574297;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583;stroke-opacity:1;filter:url(#filter1039)"
+       id="rect10"
+       width="180"
+       height="100"
+       x="14.999999"
+       y="41.766388"
+       ry="3.7797618" />
+    <path
+       id="rect1137"
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none;stroke-width:0.264583;stroke-opacity:1"
+       d="M 16.44131,42.910692 C 17.763178,41.693318 19.40867,42 19.40867,42 h 43.056221 v 11.954795 l -47.21489,-10e-7 v -9.001867 c 0,0 -0.05211,-0.897107 1.191309,-2.042235 z"
+       sodipodi:nodetypes="scccccs" />
+    <rect
+       style="fill:#9cbdce;fill-opacity:1;stroke:none;stroke-width:0.32962;stroke-opacity:1"
+       id="rect1168"
+       width="47.21489"
+       height="6"
+       x="15.250002"
+       y="54.483963" />
+    <rect
+       style="fill:#b2ca86;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-0-0-0-7"
+       width="47.21489"
+       height="6"
+       x="15.250002"
+       y="106.7173"
+       inkscape:transform-center-x="-0.85044643"
+       inkscape:transform-center-y="-6.9834817" />
+    <rect
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-6-0-6"
+       width="47.21489"
+       height="6"
+       x="15.25"
+       y="113.24646"
+       inkscape:transform-center-x="-0.85044643"
+       inkscape:transform-center-y="-20.041816" />
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-0-1-7-4"
+       width="47.21489"
+       height="6"
+       x="15.25"
+       y="119.77563"
+       inkscape:transform-center-x="-0.85044643"
+       inkscape:transform-center-y="-13.512649" />
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-0-0-0-7-0"
+       width="47.21489"
+       height="6"
+       x="15.25"
+       y="126.30479"
+       inkscape:transform-center-x="-0.85044643"
+       inkscape:transform-center-y="-6.9834817" />
+    <path
+       id="rect2045"
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none;stroke-width:0.263781;stroke-opacity:1"
+       d="m 63.039453,42.055841 128.120367,-0.03341 c 0,0 1.57034,2.1e-4 2.59396,1.127544 0.95406,1.050715 1.01897,2.341685 1.01897,2.341685 v 8.518961 H 63.039453 Z"
+       sodipodi:nodetypes="ccscccc" />
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-3"
+       width="47.21489"
+       height="6"
+       x="15.249999"
+       y="67.542297" />
+    <g
+       id="g1423-9-4-4-5"
+       transform="translate(0.18005702,39.26734)"
+       style="opacity:0.999">
+      <g
+         aria-label="."
+         id="text1321-3-6-0-7"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583">
+        <path
+           d="m 38.714729,68.478274 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1414-9-16-3-2" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-1-5-3-82"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         transform="translate(0,-2.1166667)">
+        <path
+           d="m 38.737442,72.298976 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1411-1-8-6-9" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-5-2-45-9-0"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         inkscape:transform-center-x="-0.70870536"
+         inkscape:transform-center-y="-0.094494048"
+         transform="translate(0,-3.7041668)">
+        <path
+           d="m 38.734577,75.815684 v 0.639409 H 38.17785 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1408-3-3-7-5" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       id="text1235"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';white-space:pre;shape-inside:url(#rect1237);" />
+    <path
+       id="rect1279"
+       style="opacity:0.997;fill:#8db3b3;fill-opacity:1;stroke-width:0.256285;stroke-opacity:0.8"
+       d="m 15.25,132.73 h 47.214893 v 8.8352 H 18.49721 c 0,0 -1.095909,0 -2.19537,-0.95573 -0.748291,-0.65048 -1.05184,-1.5055 -1.05184,-1.94175 z"
+       sodipodi:nodetypes="ccccssc" />
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-9"
+       width="47.21489"
+       height="6"
+       x="15.250002"
+       y="61.01313" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';opacity:0.997;fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter1014-7)"
+       x="17.840239"
+       y="65.307167"
+       id="text972-7"><tspan
+         sodipodi:role="line"
+         id="tspan970-3"
+         x="17.840239"
+         y="65.307167"
+         style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none">Usuwanie węzła</tspan></text>
+    <rect
+       style="opacity:0.997;fill:#8db3b3;fill-opacity:1;stroke-width:0.259894;stroke-opacity:0.8"
+       id="rect1151"
+       width="47.214901"
+       height="6.5674968"
+       x="15.249994"
+       y="87.186317"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+       x="22.129103"
+       y="117.72465"
+       id="text1155-9"><tspan
+         sodipodi:role="line"
+         id="tspan1153-9"
+         x="22.129103"
+         y="117.72465"
+         style="stroke-width:0.264583">Dodatkowe źródła</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';opacity:0.997;fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter1014-3-0-7-6)"
+       x="17.742146"
+       y="124.11616"
+       id="text972-74-7-8-7"><tspan
+         sodipodi:role="line"
+         x="17.742146"
+         y="124.11616"
+         style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan1313-5">http://82.145.73.240/</tspan><tspan
+         sodipodi:role="line"
+         x="17.742146"
+         y="129.40782"
+         style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan1233-1-6" /></text>
+    <rect
+       style="opacity:0.997;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-opacity:1"
+       id="rect1333"
+       width="108.29018"
+       height="58.586308"
+       x="74.688087"
+       y="67.46875"
+       ry="3.2127976" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';white-space:pre;inline-size:109.577;stroke-width:0.264583"
+       x="85.195312"
+       y="79.697548"
+       id="text1298"
+       transform="translate(-8.5044643,1.5119048)"><tspan
+         x="85.195312"
+         y="79.697548"><tspan
+           style="fill:#800000;fill-opacity:1">Operacja wstawiania węzła do drzewa czerwono-czarnego </tspan></tspan><tspan
+         x="85.195312"
+         y="84.989214"><tspan
+           style="fill:#800000;fill-opacity:1">składa się z następujących etapów:</tspan><tspan
+           style="stroke-width:0.264583">
+</tspan></tspan><tspan
+         x="85.195312"
+         y="90.280879"><tspan
+           style="stroke-width:0.264583">
+</tspan></tspan><tspan
+         x="85.195312"
+         y="95.572543"><tspan
+           style="stroke-width:0.264583">
+</tspan></tspan><tspan
+         x="85.195312"
+         y="100.86421"><tspan
+           style="stroke-width:0.264583">Tworzymy nowy węzeł, inicjujemy go danymi, po czym </tspan></tspan><tspan
+         x="85.195312"
+         y="106.15587"><tspan
+           style="stroke-width:0.264583">wstawiamy do drzewa czerwono-czarnego za pomocą </tspan></tspan><tspan
+         x="85.195312"
+         y="111.44754"><tspan
+           style="stroke-width:0.264583">zwykłej procedury wstawiania...</tspan></tspan></text>
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.491659;stroke-opacity:1"
+       id="rect1168-0-0-0-7-0-2"
+       width="105.04524"
+       height="6"
+       x="76.15937"
+       y="129.95312"
+       inkscape:transform-center-x="-1.8920991"
+       inkscape:transform-center-y="-6.9834817" />
+    <text
+       xml:space="preserve"
+       id="text1335"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';white-space:pre;shape-inside:url(#rect1337);"
+       transform="translate(1.5875)"><tspan
+         x="75.972656"
+         y="134.22433"><tspan>Źródło: http://example.com/RBTree/Introductions</tspan></tspan></text>
+    <rect
+       style="fill:#b3b3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-0-0-0-7-6"
+       width="47.21489"
+       height="6"
+       x="15.249998"
+       y="100.7173"
+       inkscape:transform-center-x="-0.85044643"
+       inkscape:transform-center-y="-6.9834817" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+       x="22.937832"
+       y="104.70889"
+       id="text1155"><tspan
+         sodipodi:role="line"
+         id="tspan1153"
+         x="22.937832"
+         y="104.70889"
+         style="stroke-width:0.264583">Rady od studentów</tspan></text>
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-0-0-0-7-6-0"
+       width="47.21489"
+       height="6"
+       x="15.249998"
+       y="94.188133"
+       inkscape:transform-center-x="-0.85044643"
+       inkscape:transform-center-y="-6.9834817" />
+    <g
+       id="g1295-4"
+       transform="matrix(1.3944875,0,0,1.3547987,101.63659,10.647926)"
+       style="opacity:0.999;stroke:#007b00;stroke-opacity:0.8">
+      <path
+         id="path1291-7"
+         style="fill:none;stroke:#007b00;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.8"
+         d="m 54.799459,89.273249 0.874069,1.086684 -0.933127,1.133927 m -2.497004,-1.181177 3.310872,0.02363" />
+    </g>
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-3-8"
+       width="47.21489"
+       height="6"
+       x="15.249996"
+       y="74.071465" />
+    <rect
+       style="fill:#8db3b3;fill-opacity:1;stroke:none;stroke-width:0.329621;stroke-opacity:1"
+       id="rect1168-3-0"
+       width="47.21489"
+       height="6"
+       x="15.249998"
+       y="80.600632" />
+    <g
+       id="g1359"
+       transform="translate(12.189736,-4.9607441)">
+      <text
+         xml:space="preserve"
+         style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';opacity:0.997;fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter1014-3)"
+         x="5.755281"
+         y="76.595207"
+         id="text972-74"><tspan
+           sodipodi:role="line"
+           id="tspan970-0"
+           x="5.755281"
+           y="76.595207"
+           style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none">Rotacje</tspan><tspan
+           sodipodi:role="line"
+           x="5.755281"
+           y="81.886871"
+           style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none"
+           id="tspan1115" /></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';opacity:0.997;fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter1014-3-00)"
+       x="17.774496"
+       y="98.071678"
+       id="text972-74-4"><tspan
+         sodipodi:role="line"
+         x="17.774496"
+         y="98.071678"
+         style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan1147">Wyszukiwanie węzła</tspan><tspan
+         sodipodi:role="line"
+         x="17.774496"
+         y="103.36334"
+         style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none"
+         id="tspan1115-8" /></text>
+    <g
+       id="g1423-9-4-4-5-8"
+       transform="translate(-1.3115612,6.4925428)"
+       style="opacity:0.999">
+      <g
+         aria-label="."
+         id="text1321-3-6-0-7-5"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         transform="translate(1.4916182,6.4266903)">
+        <path
+           d="m 38.714729,68.478274 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1414-9-16-3-2-1" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-1-5-3-82-1"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         transform="translate(1.4916182,4.3100236)">
+        <path
+           d="m 38.737442,72.298976 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1411-1-8-6-9-6" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-5-2-45-9-0-7"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         inkscape:transform-center-x="-0.70870536"
+         inkscape:transform-center-y="-0.094494048"
+         transform="translate(1.4916182,2.7225235)">
+        <path
+           d="m 38.734577,75.815684 v 0.639409 H 38.17785 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1408-3-3-7-5-3" />
+      </g>
+      <g
+         id="g1423-9-4-4-5-84"
+         transform="translate(1.5114662,13.345178)"
+         style="opacity:0.999">
+        <g
+           aria-label="."
+           id="text1321-3-6-0-7-3"
+           style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583">
+          <path
+             d="m 38.714729,68.478274 v 0.639409 h -0.556727 v -0.639409 z"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+             id="path1414-9-16-3-2-0" />
+        </g>
+        <g
+           aria-label="."
+           id="text1321-5-1-5-3-82-2"
+           style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           transform="translate(0,-2.1166667)">
+          <path
+             d="m 38.737442,72.298976 v 0.639409 h -0.556727 v -0.639409 z"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+             id="path1411-1-8-6-9-9" />
+        </g>
+        <g
+           aria-label="."
+           id="text1321-5-5-2-45-9-0-41"
+           style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+           inkscape:transform-center-x="-0.70870536"
+           inkscape:transform-center-y="-0.094494048"
+           transform="translate(0,-3.7041668)">
+          <path
+             d="m 38.734577,75.815684 v 0.639409 H 38.17785 v -0.639409 z"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+             id="path1408-3-3-7-5-4" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="g1423-9-4-4-5-0"
+       transform="translate(0.16020902,6.5299141)"
+       style="opacity:0.999">
+      <g
+         aria-label="."
+         id="text1321-3-6-0-7-6"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583">
+        <path
+           d="m 38.714729,68.478274 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1414-9-16-3-2-3" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-1-5-3-82-9"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         transform="translate(0,-2.1166667)">
+        <path
+           d="m 38.737442,72.298976 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1411-1-8-6-9-5" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-5-2-45-9-0-4"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         inkscape:transform-center-x="-0.70870536"
+         inkscape:transform-center-y="-0.094494048"
+         transform="translate(0,-3.7041668)">
+        <path
+           d="m 38.734577,75.815684 v 0.639409 H 38.17785 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1408-3-3-7-5-5" />
+      </g>
+    </g>
+    <g
+       id="g1423-9-4-4-5-1"
+       transform="translate(0.19990502,58.885835)"
+       style="opacity:0.999">
+      <g
+         aria-label="."
+         id="text1321-3-6-0-7-1"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583">
+        <path
+           d="m 38.714729,68.478274 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1414-9-16-3-2-4" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-1-5-3-82-13"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         transform="translate(0,-2.1166667)">
+        <path
+           d="m 38.737442,72.298976 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1411-1-8-6-9-91" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-5-2-45-9-0-6"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         inkscape:transform-center-x="-0.70870536"
+         inkscape:transform-center-y="-0.094494048"
+         transform="translate(0,-3.7041668)">
+        <path
+           d="m 38.734577,75.815684 v 0.639409 H 38.17785 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1408-3-3-7-5-0" />
+      </g>
+    </g>
+    <g
+       id="g1423-9-4-4-5-9"
+       transform="translate(0.21975302,66.752414)"
+       style="opacity:0.999">
+      <g
+         aria-label="."
+         id="text1321-3-6-0-7-69"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583">
+        <path
+           d="m 38.714729,68.478274 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1414-9-16-3-2-6" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-1-5-3-82-3"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         transform="translate(0,-2.1166667)">
+        <path
+           d="m 38.737442,72.298976 v 0.639409 h -0.556727 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1411-1-8-6-9-4" />
+      </g>
+      <g
+         aria-label="."
+         id="text1321-5-5-2-45-9-0-8"
+         style="font-style:normal;font-weight:normal;font-size:7.05556px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+         inkscape:transform-center-x="-0.70870536"
+         inkscape:transform-center-y="-0.094494048"
+         transform="translate(0,-3.7041668)">
+        <path
+           d="m 38.734577,75.815684 v 0.639409 H 38.17785 v -0.639409 z"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+           id="path1408-3-3-7-5-2" />
+      </g>
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Texts"
+     style="opacity:0.999">
+    <text
+       xml:space="preserve"
+       id="text1043"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1045-3);fill:#000000;fill-opacity:1;stroke:none;"
+       transform="matrix(1.0185247,0,0,1,-16.288675,6.1397073)"><tspan
+         x="43.65625"
+         y="23.829293"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math'">Układ wprowadzenia (koncept)</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter1131)"
+       d="m 62.744057,41.766381 -2e-6,99.999999"
+       id="path1085"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';white-space:pre;inline-size:39.046;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="17.572971"
+       y="49.912579"
+       id="text1166"
+       transform="translate(3.9576234,0.13363476)"><tspan
+         x="17.572971"
+         y="49.912579"><tspan>Wprowadzenie</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       id="text1984"
+       style="font-style:normal;font-weight:normal;font-size:4.23333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect1986);fill:#000000;fill-opacity:1;stroke:none;" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.64444px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="78.876587"
+       y="49.746933"
+       id="text1166-4"
+       inkscape:transform-center-x="-5.7462948"
+       inkscape:transform-center-y="-0.66817382"><tspan
+         sodipodi:role="line"
+         x="78.876587"
+         y="49.746933"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444px;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
+         id="tspan1283">Wprowadzenie - Drzewo Czerwono-Czarne</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';opacity:0.997;fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter1014-5)"
+       x="18.015947"
+       y="58.820976"
+       id="text972-2"><tspan
+         sodipodi:role="line"
+         id="tspan970-8"
+         x="18.015947"
+         y="58.820976"
+         style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none">Dodawanie węzła</tspan></text>
+    <rect
+       style="opacity:0.997;fill:#9cbdce;fill-opacity:1;stroke-width:0.276844;stroke-opacity:0.8"
+       id="rect1252"
+       width="131.73932"
+       height="6.0000014"
+       x="63.033436"
+       y="54.483967"
+       ry="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';opacity:0.997;fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;filter:url(#filter1014-0)"
+       x="95.524109"
+       y="59.29105"
+       id="text972-75"><tspan
+         sodipodi:role="line"
+         id="tspan970-4"
+         x="95.524109"
+         y="59.29105"
+         style="fill:#000000;fill-opacity:0.8;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none">Wprowadzenie - Dodawanie węzła</tspan></text>
+  </g>
+</svg>
