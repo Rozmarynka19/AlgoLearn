@@ -13,8 +13,8 @@
    viewBox="0 0 160 80"
    version="1.1"
    id="svg8"
-   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
-   sodipodi:docname="koncept_progressbar.svg">
+   sodipodi:docname="koncept_progressbar.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
   <defs
      id="defs2">
     <linearGradient
@@ -209,9 +209,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="291.79874"
-     inkscape:cy="162.98485"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="338.29181"
+     inkscape:cy="293.82041"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -450,11 +450,6 @@
          style="opacity:1;fill:url(#linearGradient1717);fill-opacity:1;stroke-width:0.766791;stroke-linecap:square"
          d="m 37.037653,15.259266 0.108137,0 c 2.83841,0 5.1235,2.28508 5.1235,5.1235 0,2.838419 -2.28509,5.1235 -5.1235,5.1235 l -0.108137,0 c -2.838419,0 -5.1235,-2.285081 -5.1235,-5.1235 0,-2.83842 2.285081,-5.1235 5.1235,-5.1235 z"
          sodipodi:nodetypes="sssssss" />
-      <path
-         id="path1697"
-         style="opacity:0.33871;fill:#ffffff;fill-opacity:1;stroke-width:0.206667;stroke-linecap:square"
-         d="m 37.718983,16.972876 c -0.765013,0 -3.313731,1.900869 -3.313731,2.665881 0,0.765013 2.548718,-1.135614 3.313731,-1.135614 h 51.209255 0.015 l -52.483078,0 c -0.76501,0 3.31373,1.900627 3.31373,1.135614 0,-0.765012 -4.07874,-2.665881 -3.31373,-2.665881 l 52.483078,0 h -0.015 z"
-         sodipodi:nodetypes="sssccsssccs" />
       <path
          id="path1699"
          style="opacity:0.5;fill:#000000;fill-opacity:1;stroke-width:0.766765;stroke-linecap:square"
