@@ -252,8 +252,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994951"
-     inkscape:cx="-120.12245"
-     inkscape:cy="268.63213"
+     inkscape:cx="-120.13295"
+     inkscape:cy="268.32226"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -508,14 +508,14 @@
     <text
        xml:space="preserve"
        style="font-size:6.35px;line-height:1.25;font-family:'Cambria Math';-inkscape-font-specification:'Cambria Math';stroke-width:0.264583"
-       x="27.036293"
+       x="30.560108"
        y="81.292328"
        id="text1101"><tspan
          sodipodi:role="line"
          id="tspan1099"
-         x="27.036293"
+         x="30.560108"
          y="81.292328"
-         style="font-size:6.35px;fill:#ffffff;fill-opacity:1;stroke-width:0.264583">Drzewo AVL</tspan></text>
+         style="font-size:6.35px;fill:#ffffff;fill-opacity:1;stroke-width:0.264583">B-drzewo</tspan></text>
     <path
        id="path1105"
        style="opacity:1;fill:#000000;fill-opacity:0.83871;stroke-width:1.24479;stroke-linecap:square;filter:url(#filter1765)"
