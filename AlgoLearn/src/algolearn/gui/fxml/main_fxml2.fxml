@@ -6,29 +6,34 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="algolearn.gui.FXMLDocumentController" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
    <children>
       <HBox prefHeight="514.0" prefWidth="606.0">
          <children>
             <VBox prefHeight="487.0" prefWidth="245.0">
                <children>
-                  <ImageView fitHeight="71.0" fitWidth="279.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/algorythm_list.png" />
-                     </image>
-                  </ImageView>
-                  <Button text="Kopiec Binarny2" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" />
-                  <Button text="ALGORYTM" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" />
-                  <Button text="Drzewo AVL" id=".empty"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" />
-                  <Button text="ALGORYTM" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" />
-                  <Button text="B Drzewo" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" />
-                  <Button text="ALGORYTM" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" />
-                  <Button text="ALGORYTM" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" />
-                  <Button text="ALGORYTM" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" />
+                  <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
+                     <children>
+                        <Text fill="WHITE" layoutX="7.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algorytmy" textAlignment="CENTER" wrappingWidth="265.931640625">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="Kopiec Binarny2" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="ALGORYTM" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" text="Drzewo AVL" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" text="ALGORYTM" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="B Drzewo" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="ALGORYTM" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="ALGORYTM" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="ALGORYTM" />
                   <ImageView fitHeight="71.0" fitWidth="279.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/difficulty_levels.png" />
@@ -37,7 +42,7 @@
                </children></VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="20.0">
                <children>
-                  <ImageView fitHeight="517.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="518.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/separator.png" />
                      </image>
@@ -48,9 +53,15 @@
                <children>
                   <HBox prefHeight="71.0" prefWidth="824.0">
                      <children>
-                        <ImageView fitHeight="70.0" fitWidth="835.0" pickOnBounds="true" preserveRatio="true">
-
-                        </ImageView>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="825.0" styleClass="titlePlane">
+                           <children>
+                              <Text fill="WHITE" layoutX="-19.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Nauka algorytmów - Menu główne - Algolearn" textAlignment="CENTER" wrappingWidth="863.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
                      </children>
                   </HBox>
                   <HBox prefHeight="401.0" prefWidth="824.0">
@@ -107,11 +118,7 @@
                      </VBox.margin></HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="70.0" fitWidth="835.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../img/main_menu_tag.png" />
-                           </image>
-                        </ImageView>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="824.0" styleClass="titlePlane" />
                      </children></HBox>
                </children>
             </VBox>

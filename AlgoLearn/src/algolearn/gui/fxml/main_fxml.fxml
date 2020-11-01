@@ -6,7 +6,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
    <children>
@@ -14,11 +17,15 @@
          <children>
             <VBox prefHeight="560.0" prefWidth="461.0">
                <children>
-                  <ImageView fitHeight="71.0" fitWidth="279.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/algorythm_list.png" />
-                     </image>
-                  </ImageView>
+                  <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
+                     <children>
+                        <Text fill="WHITE" layoutX="7.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algorytmy" textAlignment="CENTER" wrappingWidth="265.931640625">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
                   <Button id=".empty" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="Kopiec Binarny" />
                   <Button id=".empty" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="ALGORYTM2" />
                   <Button id=".empty" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" text="Drzewo AVL2" />
@@ -37,7 +44,7 @@
 
          </children>
       </HBox>
-      <ImageView fitHeight="516.0" fitWidth="26.0" layoutX="279.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="524.0" fitWidth="20.0" layoutX="279.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/separator.png" />
          </image>
