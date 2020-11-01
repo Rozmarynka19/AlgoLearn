@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package algolearn.gui;
 
 import java.net.URL;
@@ -17,12 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-/**
- *
- * @author kj44387
- */
 public class FXMLDocumentController implements Initializable {
-    
+	private double [] scene_base = {300, 557}; 
+	private double [] scene_max = {300, 1140};
     @FXML
     private Button btn;
 
@@ -31,12 +23,20 @@ public class FXMLDocumentController implements Initializable {
         Stage stage;
         Parent root;
         stage = (Stage) btn.getScene().getWindow();
+        stage.setWidth(scene_base[0]);
+        stage.setHeight(scene_base[1]);
         root = FXMLLoader.load(getClass().getResource("fxml/main_fxml2.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        resize_window(stage, 0.01);
     }
-
+    /* Not finished */
+    private void resize_window(Stage stage, double speed) {
+    	for(double i = scene_base[1]; i<scene_max[1]; i = i + (1 * speed)) {
+    		stage.setWidth((int)i);
+    	}
+    }
 
     
     @Override
