@@ -1,9 +1,6 @@
 package algolearn.gui;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +8,7 @@ import javafx.stage.Stage;
  
 public class main_window extends Application {
 	
-	private int [] scene_base = {1123, 514}; 
+	private int [] scene_base = {300, 514}; 
 	
     public static void main(String[] args) {
         Application.launch(args);
@@ -23,6 +20,7 @@ public class main_window extends Application {
      
          stage.setTitle("Algolearn");
          Scene scene = new Scene(root, scene_base[0], scene_base[1]);
+         stage.setResizable(false);
          stage.setScene(scene);
          stage.show();
      }
