@@ -21,7 +21,7 @@
                         <Image url="@../img/algorythm_list.png" />
                      </image>
                   </ImageView>
-                  <Button text="Kopiec Binarny2" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" onAction="#handleButtonAction" />
+                  <Button text="Kopiec Binarny2" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" />
                   <Button text="ALGORYTM" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" />
                   <Button text="Drzewo AVL" id=".empty"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" />
                   <Button text="ALGORYTM" id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" />
