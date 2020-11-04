@@ -23,13 +23,15 @@
 	-fx-background-color: white;
 
 }
-.algMedium{
-	-fx-background-color: linear-gradient(#fc9300 0%, #bf621b 100%);
-	
-}
+
 .algEasy{
 	-fx-background-color: linear-gradient(#00c928 0%, #008019 100%);
 }
+
+.algMedium{
+	-fx-background-color: linear-gradient(#fc9300 0%, #bf621b 100%);
+}
+
 .algHard{
 	-fx-background-color: linear-gradient(#e30505 0%, #8c0404 100%);
 }
@@ -38,19 +40,35 @@
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
 	-fx-border-width: 3px;
-	-fx-border-color: black;
+	-fx-border-color: #101010;
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
 }
-.algEasy:hover, .algHard:hover, .algMedium:hover{
-	-fx-opacity: 0.80;
-}
-.algEasy:pressed, .algHard:pressed, .algMedium:pressed{
-	-fx-opacity: 0.60;
+.algEasy:hover{
+	-fx-background-color: linear-gradient(#00b324 0%, #006614 100%);
 }
 
+.algMedium:hover{
+	-fx-background-color: linear-gradient(#cc7700 0%, #b35c19 100%);
+}
+
+.algHard:hover{
+	-fx-background-color: linear-gradient(#af0404 0%, #7c0404 100%);
+}
+
+.algEasy:pressed{
+	-fx-background-color: linear-gradient(#00991f 0%, #004d0f 100%);
+}
+
+.algMedium:pressed{
+	-fx-background-color: linear-gradient(#b36800 0%, #9c5016 100%);
+}
+
+.algHard:pressed{
+	-fx-background-color: linear-gradient(#960303 0%, #630303 100%);
+}
 .titlePlane{
 	-fx-border-width: 3px;
-	-fx-border-color: black;
+	-fx-border-color: #101010;
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
 	-fx-background-color:    linear-gradient( #505050, #1a1a1a);
 }
@@ -67,7 +85,9 @@
 */
 }
 .empty:pressed{
--fx-opacity: 0.85;
+/*
+ -fx-opacity: 0.85;
+*/
 }
 .wizualizacja{
 -fx-background-color: transparent;

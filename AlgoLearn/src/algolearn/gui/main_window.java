@@ -1,17 +1,22 @@
 package algolearn.gui;
 
+import java.util.Timer;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
  
 public class main_window extends Application {
 	
 	private int [] scene_base = {300, 514}; 
+	public double [] scene_max = {300, 1105};
 	private double window_x_offset = 0, window_y_offset = 0;
 	
     public static void main(String[] args) {
@@ -20,7 +25,7 @@ public class main_window extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-         Parent root = FXMLLoader.load(getClass().getResource("fxml/main_fxml2.fxml"));
+         Parent root = FXMLLoader.load(getClass().getResource("fxml/main_fxml.fxml"));
 
          root.setOnMousePressed(new EventHandler<MouseEvent>() {
              @Override
@@ -38,10 +43,15 @@ public class main_window extends Application {
              }
          });
          
-         stage.setTitle("Algolearn");
+         Timer animTimer = new Timer();
+         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+         
          Scene scene = new Scene(root, scene_base[0], scene_base[1]);
          stage.setResizable(false);
          stage.initStyle(StageStyle.UNDECORATED);
+         stage.setX((screenBounds.getWidth() - scene_max[1]) / 2);
+         stage.setY(screenBounds.getHeight()/2 - scene_max[0]);
+         
          stage.setScene(scene);
          stage.show();
          
