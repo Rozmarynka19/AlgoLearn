@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -22,16 +23,26 @@ public class FXMLDocumentController implements Initializable {
 	private boolean resize_locker = false;
     @FXML
     private Button btn;
-
+    private String btn_id = "NULL";
+    @FXML
+    private Text txtMainTitle;
+    private String txtMainTitleString = "Algolearn - ";
     @FXML /* Expand window */
     private void handleButtonAction(ActionEvent event) throws Exception {
         Stage stage = (Stage) btn.getScene().getWindow();
-        if(stage.getWidth() < scene_max[1] && this.resize_locker == false) {
+        Button clicked_btn = (Button)event.getSource();
+        String btn_val = clicked_btn.getId();
+        if(this.btn_id == "NULL") this.btn_id = btn_val;
+        if(stage.getWidth() < scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id) {
         	resize(stage, scene_max[1], (double)15, 1, 3);
+        	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         }
-        else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false)  {
+        else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id)  {
         	resize(stage, scene_base[1], (double)-15, 1, 3);
+        }else if(clicked_btn.getId() != btn_id) {
+        	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         }
+        this.btn_id = clicked_btn.getId();
     }
     
     @FXML
