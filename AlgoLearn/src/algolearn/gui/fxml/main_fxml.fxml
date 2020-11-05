@@ -102,7 +102,12 @@
                      <children>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="824.0" styleClass="titlePlane">
                            <children>
-                              <ProgressBar fx:id="progressBar" layoutX="176.0" layoutY="20.0" prefHeight="30.0" prefWidth="472.0" progress="0.0" />
+                              <Text fx:id="txtProgress" fill="WHITE" layoutX="627.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="0/100" textAlignment="CENTER" wrappingWidth="151.0">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                              <ProgressBar fx:id="progressBar" layoutX="120.0" layoutY="20.0" prefHeight="30.0" prefWidth="472.0" progress="0.0" />
                            </children></Pane>
                      </children>
                   </HBox>

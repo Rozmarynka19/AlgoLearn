@@ -91,7 +91,11 @@
 }
 .wizualizacja{
 -fx-background-color: transparent;
--fx-background-image: url("../img/frame_wizu.png");
+-fx-background-image: url("../img/wizualizacja_not_done.png");
+}
+.wizualizacja2{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/wizualizacja_done.png");
 }
 .wizualizacja:hover{
 -fx-opacity: 0.85;
@@ -101,7 +105,11 @@
 }
 .wprowadzenie{
 -fx-background-color: transparent;
--fx-background-image: url("../img/frame_wprowadzenie.png");
+-fx-background-image: url("../img/wprowadzenie_not_done.png");
+}
+.wprowadzenie2{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/wprowadzenie_done.png");
 }
 .wprowadzenie:hover{
 -fx-opacity: 0.85;
@@ -111,7 +119,11 @@
 }
 .opis{
 -fx-background-color: transparent;
--fx-background-image: url("../img/frame_opis.png");
+-fx-background-image: url("../img/opis_not_done.png");
+}
+.opis2{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/opis_done.png");
 }
 .opis:hover{
 -fx-opacity: 0.85;
