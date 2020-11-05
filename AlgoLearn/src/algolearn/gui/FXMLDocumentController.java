@@ -24,6 +24,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button btn, wpr, opi, wiz;;
     private String btn_id = "NULL";
+    /* Dane dotyczace progressu - tymczasowo false - wymaga implemntacji zapisu i wczytywania danych z pliku*/
     private boolean[][] category_data =  {
     		{false, false, false},
     		{false, false, false},
@@ -62,6 +63,11 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    private void minimalizeWindow(ActionEvent event) {
+    	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
+    }
+    
+    @FXML
     private ProgressBar progressBar;
 
     @FXML
@@ -88,8 +94,7 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML /* Expand window */
     private void handleCloseWindowAction(ActionEvent event) throws Exception {
-    	Stage stage = (Stage) btn.getScene().getWindow();
-    	stage.close();
+    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     
     /* Resize window */

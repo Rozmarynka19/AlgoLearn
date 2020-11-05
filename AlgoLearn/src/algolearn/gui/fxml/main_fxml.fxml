@@ -46,16 +46,17 @@
                <children>
                   <HBox prefHeight="71.0" prefWidth="824.0">
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="749.0" styleClass="titlePlane">
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="673.0" styleClass="titlePlane">
                            <children>
-                              <Text fx:id="txtMainTitle" fill="WHITE" layoutX="-53.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algolearn - Menu główne" textAlignment="CENTER" wrappingWidth="863.931640625">
+                              <Text fx:id="txtMainTitle" fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algolearn - Menu główne" textAlignment="CENTER" wrappingWidth="674.931640625">
                                  <font>
                                     <Font name="Cambria" size="40.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="76.0" styleClass="algHard" text="X" />
+                        <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />
+                        <Button id=".empty" fx:id="btn11" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="76.0" styleClass="algHard" text="X" />
                      </children>
                   </HBox>
                   <HBox prefHeight="401.0" prefWidth="824.0">
