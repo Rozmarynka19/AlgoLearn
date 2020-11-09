@@ -90,6 +90,10 @@
 	-fx-border-color: #101010;
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
 	-fx-background-color:    linear-gradient( #505050, #1a1a1a);
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
 }
 .textPlane{
 	-fx-font-family: 'Cambria Math';
@@ -162,4 +166,56 @@
     -fx-background-color: linear-gradient(#00c928 0%, #008019 100%);
     -fx-background-insets: 0; 
 	-fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);
+}
+
+.inputFiled{
+	-fx-border-width: 3px;
+	-fx-text-box-border: #020b02;
+    -fx-background-insets: 0; 
+	-fx-effect: dropshadow(three-pass-box, #020d0d, 30, 0, 0, 0);
+}
+
+.pseudocode{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color: linear-gradient(#c91414 0%, #6e0303 100%);
+}
+.langBTN{
+
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color: linear-gradient(#0683c7 0%, #05537d 100%);
+}
+.langBTN:hover{
+	-fx-background-color: linear-gradient(#09689c 0%, #074b70 100%);
+}
+.langBTN:pressed{
+	-fx-background-color: linear-gradient(#09689c 0%, #053652 100%);
+}
+.colorInfo{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow(three-pass-box, grey, 3, 0, 0, 0);
+	-fx-background-color: linear-gradient(#0683c7 0%, #05537d 100%);
+}
+.pseudocode:hover{
+	-fx-background-color: linear-gradient(#a30d0d 0%, #a80808 100%);
+}
+.pseudocode:pressed{
+		-fx-background-color: linear-gradient(#8f0b0b 0%, #820707 100%);
+}
+.textNormal{
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
 }

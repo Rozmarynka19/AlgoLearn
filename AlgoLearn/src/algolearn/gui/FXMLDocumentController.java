@@ -1,28 +1,44 @@
 package algolearn.gui;
 
+import algolearn.gui.main_window;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class FXMLDocumentController implements Initializable {
 	private double [] scene_base = {300, 300}; 
-	public double [] scene_max = {300, 1105};
+	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
     @FXML
-    private Button btn, wpr, opi, wiz;;
+    private Stage stage, secStage;
+    @FXML
+    private Button btn, wpr, opi, wiz;
     private String btn_id = "NULL";
     /* Dane dotyczace progressu - tymczasowo false - wymaga implemntacji zapisu i wczytywania danych z pliku*/
     private boolean[][] category_data =  {
@@ -33,7 +49,8 @@ public class FXMLDocumentController implements Initializable {
     		{false, false, false},
     		{false, false, false},
     		{false, false, false},
-    		{false, false, false}
+    		{false, false, false}, 
+    		{false, false, false}, 
     };
     private int algo_id = 0;
     @FXML
@@ -42,6 +59,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML /* Expand window */
     private void handleButtonAction(ActionEvent event) throws Exception {
         Stage stage = (Stage) btn.getScene().getWindow();
+        this.stage = stage;
         Button clicked_btn = (Button)event.getSource();
         String btn_val = clicked_btn.getId();
         this.algo_id = Integer.parseInt(btn_val);
@@ -66,7 +84,10 @@ public class FXMLDocumentController implements Initializable {
     private void minimalizeWindow(ActionEvent event) {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
     }
-    
+    @FXML
+    private AnchorPane anchorRoot;
+    @FXML
+    private StackPane parentContainer;
     @FXML
     private ProgressBar progressBar;
 
@@ -90,6 +111,7 @@ public class FXMLDocumentController implements Initializable {
     		wiz.getStyleClass().add("wizualizacja");
     	else if(category_data[this.algo_id][2] == true)
     		wiz.getStyleClass().add("wizualizacja2");	
+    	
     }
     
     @FXML /* Expand window */
@@ -161,6 +183,50 @@ public class FXMLDocumentController implements Initializable {
     	timeline.getKeyFrames().add(keyFrame);
 
     	timeline.play();
+    }
+    
+    @FXML
+    public void pressButton(ActionEvent event) throws Exception {     
+    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
+    	Parent root1 = (Parent) fxmlLoader.load();
+    	Stage stage = new Stage();
+    	setMouse(root1, stage);
+    	setStyle(stage);
+    	stage.setScene(new Scene(root1));  
+    	stage.show();
+
+    }
+    
+    public void setMouse(Parent root, Stage stage) {
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+            	main_window.window_x_offset = event.getSceneX();
+            	main_window.window_y_offset = event.getSceneY();
+            }
+        });
+        
+       root.setOnMouseDragged((EventHandler<? super MouseEvent>) new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - main_window.window_x_offset);
+                stage.setY(event.getScreenY() - main_window.window_y_offset);
+            }
+        });
+    }
+    public void setStyle(Stage stage) {
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("img/app_ico.png")));
+        /* Start position of window */
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX((screenBounds.getWidth() - scene_max[1]) / 2);
+        stage.setY(screenBounds.getHeight()/2 - scene_max[0]);
+    }
+    
+    @FXML
+    public void BackToMainStage(ActionEvent event) {
+
     }
     
     @Override
