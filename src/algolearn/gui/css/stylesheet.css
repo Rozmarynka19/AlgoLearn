@@ -1,0 +1,221 @@
+@font-face {
+    font-family: Riffic;
+    src: url('../fonts/riffic.otf');
+}
+
+@font-face {
+    font-family: HighlandGothicLightFLF;
+    src: url('../fonts/HighlandGothicLightFLF.ttf');
+}
+
+.root{
+	-fx-background-color:
+    linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%)
+    linear-gradient(#3a3a3a, #020b02);
+}
+
+.empty{
+/*
+-fx-background-image: url("../img/empty_BTN.png");
+*/
+}
+.box{
+	-fx-background-color: white;
+
+}
+
+.algEasy{
+	-fx-background-color: linear-gradient(#00c928 0%, #008019 100%);
+}
+
+.algMedium{
+	-fx-background-color: linear-gradient(#fc9300 0%, #bf621b 100%);
+}
+
+.algHard{
+	-fx-background-color: linear-gradient(#e30505 0%, #8c0404 100%);
+}
+.algHard, .algEasy, .algMedium{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+}
+
+.minimalizeWindow {
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 40px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color: linear-gradient(#fc9300 0%, #bf621b 100%);
+}
+
+.minimalizeWindow:hover{
+	-fx-background-color: linear-gradient(#cc7700 0%, #b35c19 100%);
+}
+
+.minimalizeWindow:pressed{
+	-fx-background-color: linear-gradient(#b36800 0%, #9c5016 100%);
+}
+
+.algEasy:hover{
+	-fx-background-color: linear-gradient(#00b324 0%, #006614 100%);
+}
+
+.algMedium:hover{
+	-fx-background-color: linear-gradient(#cc7700 0%, #b35c19 100%);
+}
+
+.algHard:hover{
+	-fx-background-color: linear-gradient(#af0404 0%, #7c0404 100%);
+}
+
+.algEasy:pressed{
+	-fx-background-color: linear-gradient(#00991f 0%, #004d0f 100%);
+}
+
+.algMedium:pressed{
+	-fx-background-color: linear-gradient(#b36800 0%, #9c5016 100%);
+}
+
+.algHard:pressed{
+	-fx-background-color: linear-gradient(#960303 0%, #630303 100%);
+}
+.titlePlane{
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color:    linear-gradient( #505050, #1a1a1a);
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+}
+.textPlane{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 36px;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow(three-pass-box, grey, 20, 0, 0, 0);
+}
+
+.empty:hover{
+/*
+-fx-background-image: url("../img/empty_BTN_hover.png");
+*/
+}
+.empty:pressed{
+/*
+ -fx-opacity: 0.85;
+*/
+}
+.wizualizacja{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/wizualizacja_not_done.png");
+}
+.wizualizacja2{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/wizualizacja_done.png");
+}
+.wizualizacja:hover{
+-fx-opacity: 0.85;
+}
+.wizualizacja:pressed{
+-fx-opacity: 0.70;
+}
+.wprowadzenie{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/wprowadzenie_not_done.png");
+}
+.wprowadzenie2{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/wprowadzenie_done.png");
+}
+.wprowadzenie:hover{
+-fx-opacity: 0.85;
+}
+.wprowadzenie:pressed{
+-fx-opacity: 0.70;
+}
+.opis{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/opis_not_done.png");
+}
+.opis2{
+-fx-background-color: transparent;
+-fx-background-image: url("../img/opis_done.png");
+}
+.opis:hover{
+-fx-opacity: 0.85;
+}
+.opis:pressed{
+-fx-opacity: 0.70;
+}
+
+.progress-bar > .track {
+	-fx-text-box-border: #020b02;
+	-fx-background-color: linear-gradient(#e30505 0%, #7c0404 100%);
+    -fx-background-insets: 0; 
+	-fx-effect: dropshadow(three-pass-box, #020d0d, 30, 0, 0, 0);
+}
+
+.progress-bar .bar {
+    -fx-background-color: linear-gradient(#00c928 0%, #008019 100%);
+    -fx-background-insets: 0; 
+	-fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);
+}
+
+.inputFiled{
+	-fx-border-width: 3px;
+	-fx-text-box-border: #020b02;
+    -fx-background-insets: 0; 
+	-fx-effect: dropshadow(three-pass-box, #020d0d, 30, 0, 0, 0);
+}
+
+.pseudocode{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color: linear-gradient(#c91414 0%, #6e0303 100%);
+}
+.langBTN{
+
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color: linear-gradient(#0683c7 0%, #05537d 100%);
+}
+.langBTN:hover{
+	-fx-background-color: linear-gradient(#09689c 0%, #074b70 100%);
+}
+.langBTN:pressed{
+	-fx-background-color: linear-gradient(#09689c 0%, #053652 100%);
+}
+.colorInfo{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-effect: dropshadow(three-pass-box, grey, 3, 0, 0, 0);
+	-fx-background-color: linear-gradient(#0683c7 0%, #05537d 100%);
+}
+.pseudocode:hover{
+	-fx-background-color: linear-gradient(#a30d0d 0%, #a80808 100%);
+}
+.pseudocode:pressed{
+		-fx-background-color: linear-gradient(#8f0b0b 0%, #820707 100%);
+}
+.textNormal{
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+}
