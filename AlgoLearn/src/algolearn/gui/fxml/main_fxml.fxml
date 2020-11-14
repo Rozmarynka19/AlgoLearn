@@ -102,7 +102,7 @@
                         </VBox>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="243.0">
                            <children>
-                              <Button id="3" fx:id="wiz" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProgress" prefHeight="341.0" prefWidth="244.0" styleClass="wizualizacja">
+                              <Button id="3" fx:id="wiz" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButtonVisualization" prefHeight="341.0" prefWidth="244.0" styleClass="wizualizacja">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>

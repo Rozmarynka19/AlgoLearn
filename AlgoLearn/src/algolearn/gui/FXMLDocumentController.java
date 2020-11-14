@@ -208,6 +208,18 @@ public class FXMLDocumentController implements Initializable {
         stage.show();
 
     }
+
+    @FXML
+    public void pressButtonVisualization(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        setMouse(root1, stage);
+        setStyle(stage);
+        stage.setScene(new Scene(root1));
+        stage.show();
+
+    }
     
     public void setMouse(Parent root, Stage stage) {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
