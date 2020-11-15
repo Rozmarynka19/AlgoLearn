@@ -230,3 +230,11 @@
 .backBTN:pressed{
 	-fx-background-image: url("../img/back_BTN_pressed.png");
 }
+
+
+.hintPane{
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color:    linear-gradient( #3b9c7a, #247055);
+}
