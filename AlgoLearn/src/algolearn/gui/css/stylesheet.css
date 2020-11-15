@@ -219,3 +219,14 @@
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
 }
+
+.backBTN{
+	-fx-background-image: url("../img/back_BTN.png");
+	-fx-background-size: cover;
+}
+.backBTN:hover{
+	-fx-background-image: url("../img/back_BTN_hover.png");
+}
+.backBTN:pressed{
+	-fx-background-image: url("../img/back_BTN_pressed.png");
+}

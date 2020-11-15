@@ -19,11 +19,12 @@
                     <children>
                         <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
                             <children>
-                                <Text fill="WHITE" layoutX="7.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Wprowadzenie" textAlignment="CENTER" wrappingWidth="265.931640625">
+                                <Text fill="WHITE" layoutX="30.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Wprowadzenie" textAlignment="CENTER" wrappingWidth="265.931640625">
                                     <font>
                                         <Font name="Cambria" size="40.0" />
                                     </font>
                                 </Text>
+                        <Pane layoutX="-2.0" layoutY="-3.0" prefHeight="71.0" prefWidth="71.0" styleClass="backBTN" />
                             </children>
                         </Pane>
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Dodawanie Węzła" />
