@@ -186,7 +186,11 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+<<<<<<< HEAD
     public void pressButton(ActionEvent event) throws Exception {     
+=======
+    public void pressButtonDescription(ActionEvent event) throws Exception {
+>>>>>>> master
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
     	Parent root1 = (Parent) fxmlLoader.load();
     	Stage stage = new Stage();
@@ -196,6 +200,33 @@ public class FXMLDocumentController implements Initializable {
     	stage.show();
 
     }
+<<<<<<< HEAD
+=======
+
+    @FXML
+    public void pressButtonIntroduction(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        setMouse(root1, stage);
+        setStyle(stage);
+        stage.setScene(new Scene(root1));
+        stage.show();
+
+    }
+
+    @FXML
+    public void pressButtonVisualization(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        setMouse(root1, stage);
+        setStyle(stage);
+        stage.setScene(new Scene(root1));
+        stage.show();
+
+    }
+>>>>>>> master
     
     public void setMouse(Parent root, Stage stage) {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
