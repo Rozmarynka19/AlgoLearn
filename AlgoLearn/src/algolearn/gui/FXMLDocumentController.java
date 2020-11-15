@@ -31,10 +31,19 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+/**
+ * @author Algolearn Team
+ *
+ * JavaFX handler class that controls the buttons in main window and sub-windows.
+ * 
+ */
+
 public class FXMLDocumentController implements Initializable {
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
+    @FXML
+    private ProgressBar progressBar;
     @FXML
     private Stage stage, secStage;
     @FXML
@@ -56,7 +65,15 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Text txtMainTitle, txtProgress;
     private String txtMainTitleString = "Algolearn - ", txtProgressString = "/100";
-    @FXML /* Expand window */
+    
+    /**
+     * 
+     * @param event : Button handler.
+     * @throws Exception : Handle button error.
+     * 
+     *  Handle choosing algorithm from list in main window.
+     */
+    @FXML
     private void handleButtonAction(ActionEvent event) throws Exception {
         Stage stage = (Stage) btn.getScene().getWindow();
         this.stage = stage;
@@ -79,19 +96,22 @@ public class FXMLDocumentController implements Initializable {
         }
         this.btn_id = clicked_btn.getId();
     }
-    
+
+    /**
+     * @param event - Button handler
+     * @throws Exception - Error that occurred during minimalize window
+     * 
+     *  Minimalize application window
+     */
     @FXML
     private void minimalizeWindow(ActionEvent event) {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
     }
-    @FXML
-    private AnchorPane anchorRoot;
-    @FXML
-    private StackPane parentContainer;
-    @FXML
-    private ProgressBar progressBar;
 
-    @FXML
+    /**
+     * Swaping background categories based on category_data variable.
+     * For example when bool equals true tail with introdution changes color form red to green.
+     */
     private void categorySetBackground(){
     	wpr.getStyleClass().clear();
     	wiz.getStyleClass().clear();
@@ -113,13 +133,28 @@ public class FXMLDocumentController implements Initializable {
     		wiz.getStyleClass().add("wizualizacja2");	
     	
     }
-    
-    @FXML /* Expand window */
+
+    /**
+     * @param event - Button handler
+     * @throws Exception - Error that occurred during closing window
+     * 
+     *  Closing application window
+     */
+    @FXML 
     private void handleCloseWindowAction(ActionEvent event) throws Exception {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     
-    /* Resize window */
+    /**
+     * 
+     * @param stage: Main window stage
+     * @param width: Width to which window is resizing
+     * @param speed: Speed of resizing the window
+     * @param delay: Delay of start animation.
+     * @param wait: Waiting time
+     * 
+     *  Function of resizing window.
+     */
     private void resize(Stage stage, double width, double speed, int delay, int wait) {
     	this.resize_locker = true;
     	Timer animTimer = new Timer();
@@ -142,6 +177,12 @@ public class FXMLDocumentController implements Initializable {
     	this.resize_locker = false;
     }
 
+    /**
+     * 
+     * @param  Button handler.
+     * 
+     * 	Setup progress of the progressbar.
+     */
     public void handleProgress(ActionEvent event) {
     	Button clicked_btn = (Button)event.getSource();
     	String id = clicked_btn.getId();
@@ -159,6 +200,10 @@ public class FXMLDocumentController implements Initializable {
     	txtProgress.setText(Integer.toString(prog)+txtProgressString);
     }
     
+    /**
+     * Calculate progress of currennt algorithm
+     * @return progress value
+     */
     private double calculateProgress() {
     	int count_done = 0;
     	for(int i = 0 ; i < 3; i++)
@@ -175,7 +220,11 @@ public class FXMLDocumentController implements Initializable {
     			return 0;
     	}
     }
-    
+    /**
+     * @param progress : Progress of currennt alghoritm
+     * 
+     * Animated progressbar based on Timeline
+     */
     private void setProgress(double progress) {
     	Timeline timeline = new Timeline();
     	KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
@@ -185,6 +234,12 @@ public class FXMLDocumentController implements Initializable {
     	timeline.play();
     }
     
+    /**
+     * @param event Button responsible for creating the description window.
+     * @throws Exception : Error that occurred during creating the description window.
+     * 
+     * Creating decsrption window from description_fxml.fxml
+     */
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
@@ -197,6 +252,12 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    /**
+     * @param event Button responsible for creating the introduction  window.
+     * @throws Exception : Error that occurred during creating the introduction window.
+     * 
+     * Creating decsrption window from introduction_fxml.fxml
+     */
     @FXML
     public void pressButtonIntroduction(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
@@ -209,6 +270,12 @@ public class FXMLDocumentController implements Initializable {
 
     }
 
+    /**
+     * @param event Button responsible for creating the visualization window.
+     * @throws Exception : Error that occurred during creating the visualization window.
+     * 
+     * Creating decsrption window from visualisation_fxml.fxml
+     */
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
@@ -221,6 +288,12 @@ public class FXMLDocumentController implements Initializable {
 
     }
     
+    /**
+     * @param root Handle of Parent
+     * @param stage Handle of Stage
+     * 
+     * Setup draging of window without border.
+     */
     public void setMouse(Parent root, Stage stage) {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -238,6 +311,13 @@ public class FXMLDocumentController implements Initializable {
             }
         });
     }
+    
+    /**
+     * @param stage Handle of Stage
+     * 
+     * Seting up basic style of window. Window will be undecorated, unresizable and Centerd.
+     * Also application icon will be attached.
+     */
     public void setStyle(Stage stage) {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
