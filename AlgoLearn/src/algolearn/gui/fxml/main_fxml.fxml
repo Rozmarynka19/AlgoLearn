@@ -3,10 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ProgressBar?>
-<<<<<<< HEAD
-=======
 <?import javafx.scene.control.ScrollPane?>
->>>>>>> master
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,11 +17,7 @@
    <children>
       <HBox prefHeight="514.0" prefWidth="245.0">
          <children>
-<<<<<<< HEAD
-            <VBox prefHeight="560.0" prefWidth="461.0">
-=======
             <VBox prefHeight="560.0" prefWidth="263.0">
->>>>>>> master
                <children>
                   <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
                      <children>
@@ -35,17 +28,6 @@
                         </Text>
                      </children>
                   </Pane>
-<<<<<<< HEAD
-                  <Button id="1" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="Kopiec Binarny" />
-                  <Button id="2" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="ALGORYTM" />
-                  <Button id="3" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" text="Drzewo AVL" />
-                  <Button id="4" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algMedium" text="ALGORYTM" />
-                  <Button id="5" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="B Drzewo" />
-                  <Button id="6" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="ALGORYTM" />
-                  <Button id="7" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="ALGORYTM" />
-                  <Button id="8" fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="ALGORYTM" />
-=======
-
                   <ScrollPane prefHeight="378.0" prefWidth="254.0" style="-fx-background-color: Black;" vvalue="1.0">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="264.0" style="-fx-background-color: Black;">
@@ -68,8 +50,6 @@
                         </AnchorPane>
                     </content>
                   </ScrollPane>
->>>>>>> jk
->>>>>>> master
                   <ImageView fitHeight="71.0" fitWidth="279.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/difficulty_levels.png" />
@@ -78,11 +58,7 @@
                </children></VBox>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="20.0">
                <children>
-<<<<<<< HEAD
-                  <Pane prefHeight="518.0" prefWidth="20.0" styleClass="titlePlane" />
-=======
                   <Pane prefHeight="525.0" prefWidth="20.0" styleClass="titlePlane" />
->>>>>>> master
                </children></VBox>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
@@ -98,22 +74,14 @@
                            </children>
                         </Pane>
                         <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />
-<<<<<<< HEAD
-                        <Button id=".empty" fx:id="btn11" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="76.0" styleClass="algHard" text="X" />
-=======
                         <Button id=".empty" fx:id="btn11" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="75.0" styleClass="algHard" text="X" />
->>>>>>> master
                      </children>
                   </HBox>
                   <HBox prefHeight="401.0" prefWidth="824.0">
                      <children>
                         <VBox prefHeight="200.0" prefWidth="243.0">
                            <children>
-<<<<<<< HEAD
-                              <Button id="1" fx:id="wpr" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProgress" prefHeight="341.0" prefWidth="244.0" styleClass="wprowadzenie">
-=======
                               <Button id="1" fx:id="wpr" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButtonIntroduction" prefHeight="341.0" prefWidth="244.0" styleClass="wprowadzenie">
->>>>>>> master
                                  <VBox.margin>
                                     <Insets left="11.0" top="15.0" />
                                  </VBox.margin>
@@ -122,11 +90,7 @@
                         </VBox>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="243.0">
                            <children>
-<<<<<<< HEAD
-                              <Button id="2" fx:id="opi" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButton" prefHeight="341.0" prefWidth="244.0" styleClass="opis">
-=======
                               <Button id="2" fx:id="opi" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButtonDescription" prefHeight="341.0" prefWidth="244.0" styleClass="opis">
->>>>>>> master
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
@@ -138,11 +102,7 @@
                         </VBox>
                         <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="243.0">
                            <children>
-<<<<<<< HEAD
-                              <Button id="3" fx:id="wiz" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProgress" prefHeight="341.0" prefWidth="244.0" styleClass="wizualizacja">
-=======
                               <Button id="3" fx:id="wiz" alignment="TOP_LEFT" blendMode="ADD" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButtonVisualization" prefHeight="341.0" prefWidth="244.0" styleClass="wizualizacja">
->>>>>>> master
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
@@ -159,11 +119,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-<<<<<<< HEAD
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="824.0" styleClass="titlePlane">
-=======
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="824.0" styleClass="titlePlane">
->>>>>>> master
                            <children>
                               <Text fx:id="txtProgress" fill="WHITE" layoutX="627.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="0/100" textAlignment="CENTER" wrappingWidth="151.0">
                                  <font>
