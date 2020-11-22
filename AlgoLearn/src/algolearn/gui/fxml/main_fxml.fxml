@@ -72,6 +72,7 @@
                                     <Font name="Cambria" size="40.0" />
                                  </font>
                               </Text>
+                              <Button fx:id="question" layoutX="616.0" layoutY="7.0" mnemonicParsing="false" onAction="#CreateQuestionmark" prefHeight="43.0" prefWidth="54.0" styleClass="questionmark" text="?" />
                            </children>
                         </Pane>
                         <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />

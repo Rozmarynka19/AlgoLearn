@@ -22,6 +22,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -41,6 +43,8 @@ public class FXMLDocumentController {
     private Stage stage, secStage;
     @FXML
     private Button btn, wpr, opi, wiz;
+    @FXML
+    private TextArea infoTextField;
     private String btn_id = "NULL";
     /* Dane dotyczace progressu - tymczasowo false - wymaga implemntacji zapisu i wczytywania danych z pliku*/
     private boolean[][] category_data =  {
@@ -124,6 +128,29 @@ public class FXMLDocumentController {
     @FXML /* Expand window */
     private void handleCloseWindowAction(ActionEvent event) throws Exception {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+    }
+    
+    @FXML
+    private void Creators(ActionEvent event){
+    	infoTextField.setText(
+    			"Twórcy aplikacji:\n"
+    			+ "	Monika Rozmarynowska\n"
+    			+ "	Jakub Kucharski\n"
+    			+ "	Olaf Maliszewski\n"
+    			+ "	Piotr Wojdalski\n"
+    			+ "	Krzysztof Bieniek\n"
+    			+ "	Krzysztof Kubiś"
+    	);
+    }
+    
+    @FXML
+    private void Requirements(ActionEvent event){
+    	infoTextField.setText(
+    			"Wymagania systemowe: \n"
+    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
+    			+ "Wymagania systemowe (minimalne): \n"
+    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
+    	);
     }
     
     /* Resize window */
@@ -258,6 +285,25 @@ public class FXMLDocumentController {
 		anchorPaneRoot.getChildren().clear();
 		anchorPaneRoot.getChildren().add(anchorPane);
 	}
+	
+	@FXML
+    public void CreateQuestionmark(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/questionmark.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
+	
 	
 	@FXML
     public void BackToMainStage(ActionEvent event) {

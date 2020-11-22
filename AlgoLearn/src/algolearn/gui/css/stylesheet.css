@@ -211,11 +211,25 @@
 	-fx-background-color: linear-gradient(#a30d0d 0%, #a80808 100%);
 }
 .pseudocode:pressed{
-		-fx-background-color: linear-gradient(#8f0b0b 0%, #820707 100%);
+	-fx-background-color: linear-gradient(#8f0b0b 0%, #820707 100%);
 }
 .textNormal{
 	
 	-fx-font-family: 'Cambria Math';
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
+}
+
+.questionmark{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-font-size: 2em; /* 12 */
+    -fx-text-fill: #e6e6e6;
+	-fx-effect: dropshadow(three-pass-box, grey, 3, 0, 0, 0);
+}
+
+.questionmark:pressed {
+    -fx-text-fill: white;
 }
