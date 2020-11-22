@@ -29,7 +29,7 @@
                      </children>
                   </Pane>
 
-                  <ScrollPane prefHeight="378.0" prefWidth="254.0" style="-fx-background-color: Black;" vvalue="1.0">
+                  <ScrollPane prefHeight="378.0" prefWidth="254.0" style="-fx-background-color: Black;">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="264.0" style="-fx-background-color: Black;">
                            <children>
