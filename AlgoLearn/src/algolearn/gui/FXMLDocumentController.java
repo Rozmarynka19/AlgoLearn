@@ -1,6 +1,7 @@
 package algolearn.gui;
 
 import algolearn.gui.main_window;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +25,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -31,7 +33,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-public class FXMLDocumentController implements Initializable {
+public class FXMLDocumentController {
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
@@ -56,6 +58,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Text txtMainTitle, txtProgress;
     private String txtMainTitleString = "Algolearn - ", txtProgressString = "/100";
+    
+    
     @FXML /* Expand window */
     private void handleButtonAction(ActionEvent event) throws Exception {
         Stage stage = (Stage) btn.getScene().getWindow();
@@ -84,8 +88,11 @@ public class FXMLDocumentController implements Initializable {
     private void minimalizeWindow(ActionEvent event) {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
     }
+    
     @FXML
-    private AnchorPane anchorRoot;
+    //id for each top AnchorPane element in every window-fxmlFile
+    //necessary for switching between windows
+    private AnchorPane anchorPaneRoot; 
     @FXML
     private StackPane parentContainer;
     @FXML
@@ -176,6 +183,7 @@ public class FXMLDocumentController implements Initializable {
     	}
     }
     
+    
     private void setProgress(double progress) {
     	Timeline timeline = new Timeline();
     	KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
@@ -187,38 +195,23 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
-    	Parent root1 = (Parent) fxmlLoader.load();
-    	Stage stage = new Stage();
-    	setMouse(root1, stage);
-    	setStyle(stage);
-    	stage.setScene(new Scene(root1));  
-    	stage.show();
-
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
+    	AnchorPane anchorPane = loader.load();
+    	setScreen(anchorPane);
     }
 
     @FXML
     public void pressButtonIntroduction(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        setMouse(root1, stage);
-        setStyle(stage);
-        stage.setScene(new Scene(root1));
-        stage.show();
-
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
+    	AnchorPane anchorPane = loader.load();
+    	setScreen(anchorPane);
     }
 
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        setMouse(root1, stage);
-        setStyle(stage);
-        stage.setScene(new Scene(root1));
-        stage.show();
-
+      	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
+    	AnchorPane anchorPane = loader.load();
+    	setScreen(anchorPane);
     }
     
     public void setMouse(Parent root, Stage stage) {
@@ -238,6 +231,7 @@ public class FXMLDocumentController implements Initializable {
             }
         });
     }
+    
     public void setStyle(Stage stage) {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
@@ -248,14 +242,25 @@ public class FXMLDocumentController implements Initializable {
         stage.setY(screenBounds.getHeight()/2 - scene_max[0]);
     }
     
-    @FXML
-    public void BackToMainStage(ActionEvent event) {
-
+    public void loadMenu()
+    {
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml/main_fxml.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		setScreen(anchorPane);
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+	public void setScreen(AnchorPane anchorPane) {
+		anchorPaneRoot.getChildren().clear();
+		anchorPaneRoot.getChildren().add(anchorPane);
+	}
+	
+	@FXML
+    public void BackToMainStage(ActionEvent event) {
+    	loadMenu();
+    }
 }
