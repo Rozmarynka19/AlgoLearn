@@ -303,9 +303,6 @@ public class FXMLDocumentController {
         }
     }
 	
-	
-	
-	
 	@FXML
     public void BackToMainStage(ActionEvent event) {
     	loadMenu();
