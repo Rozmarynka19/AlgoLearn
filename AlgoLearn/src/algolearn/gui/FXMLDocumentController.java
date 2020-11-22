@@ -1,6 +1,7 @@
 package algolearn.gui;
 
 import algolearn.gui.main_window;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,9 +22,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -31,23 +36,16 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-/**
- * @author Algolearn Team
- *
- * JavaFX handler class that controls the buttons in main window and sub-windows.
- * 
- */
-
-public class FXMLDocumentController implements Initializable {
+public class FXMLDocumentController {
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
     @FXML
-    private ProgressBar progressBar;
-    @FXML
     private Stage stage, secStage;
     @FXML
     private Button btn, wpr, opi, wiz;
+    @FXML
+    private TextArea infoTextField;
     private String btn_id = "NULL";
     /* Dane dotyczace progressu - tymczasowo false - wymaga implemntacji zapisu i wczytywania danych z pliku*/
     private boolean[][] category_data =  {
@@ -66,14 +64,8 @@ public class FXMLDocumentController implements Initializable {
     private Text txtMainTitle, txtProgress;
     private String txtMainTitleString = "Algolearn - ", txtProgressString = "/100";
     
-    /**
-     * 
-     * @param event : Button handler.
-     * @throws Exception : Handle button error.
-     * 
-     *  Handle choosing algorithm from list in main window.
-     */
-    @FXML
+    
+    @FXML /* Expand window */
     private void handleButtonAction(ActionEvent event) throws Exception {
         Stage stage = (Stage) btn.getScene().getWindow();
         this.stage = stage;
@@ -96,22 +88,22 @@ public class FXMLDocumentController implements Initializable {
         }
         this.btn_id = clicked_btn.getId();
     }
-
-    /**
-     * @param event - Button handler
-     * @throws Exception - Error that occurred during minimalize window
-     * 
-     *  Minimalize application window
-     */
+    
     @FXML
     private void minimalizeWindow(ActionEvent event) {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
     }
+    
+    @FXML
+    //id for each top AnchorPane element in every window-fxmlFile
+    //necessary for switching between windows
+    private AnchorPane anchorPaneRoot; 
+    @FXML
+    private StackPane parentContainer;
+    @FXML
+    private ProgressBar progressBar;
 
-    /**
-     * Swaping background categories based on category_data variable.
-     * For example when bool equals true tail with introdution changes color form red to green.
-     */
+    @FXML
     private void categorySetBackground(){
     	wpr.getStyleClass().clear();
     	wiz.getStyleClass().clear();
@@ -133,28 +125,36 @@ public class FXMLDocumentController implements Initializable {
     		wiz.getStyleClass().add("wizualizacja2");	
     	
     }
-
-    /**
-     * @param event - Button handler
-     * @throws Exception - Error that occurred during closing window
-     * 
-     *  Closing application window
-     */
-    @FXML 
+    
+    @FXML /* Expand window */
     private void handleCloseWindowAction(ActionEvent event) throws Exception {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     
-    /**
-     * 
-     * @param stage: Main window stage
-     * @param width: Width to which window is resizing
-     * @param speed: Speed of resizing the window
-     * @param delay: Delay of start animation.
-     * @param wait: Waiting time
-     * 
-     *  Function of resizing window.
-     */
+    @FXML
+    private void Creators(ActionEvent event){
+    	infoTextField.setText(
+    			"Twórcy aplikacji:\n"
+    			+ "	Monika Rozmarynowska\n"
+    			+ "	Jakub Kucharski\n"
+    			+ "	Olaf Maliszewski\n"
+    			+ "	Piotr Wojdalski\n"
+    			+ "	Krzysztof Bieniek\n"
+    			+ "	Krzysztof Kubiś"
+    	);
+    }
+    
+    @FXML
+    private void Requirements(ActionEvent event){
+    	infoTextField.setText(
+    			"Wymagania systemowe: \n"
+    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
+    			+ "Wymagania systemowe (minimalne): \n"
+    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
+    	);
+    }
+    
+    /* Resize window */
     private void resize(Stage stage, double width, double speed, int delay, int wait) {
     	this.resize_locker = true;
     	Timer animTimer = new Timer();
@@ -177,12 +177,6 @@ public class FXMLDocumentController implements Initializable {
     	this.resize_locker = false;
     }
 
-    /**
-     * 
-     * @param  Button handler.
-     * 
-     * 	Setup progress of the progressbar.
-     */
     public void handleProgress(ActionEvent event) {
     	Button clicked_btn = (Button)event.getSource();
     	String id = clicked_btn.getId();
@@ -200,10 +194,6 @@ public class FXMLDocumentController implements Initializable {
     	txtProgress.setText(Integer.toString(prog)+txtProgressString);
     }
     
-    /**
-     * Calculate progress of currennt algorithm
-     * @return progress value
-     */
     private double calculateProgress() {
     	int count_done = 0;
     	for(int i = 0 ; i < 3; i++)
@@ -220,11 +210,8 @@ public class FXMLDocumentController implements Initializable {
     			return 0;
     	}
     }
-    /**
-     * @param progress : Progress of currennt alghoritm
-     * 
-     * Animated progressbar based on Timeline
-     */
+    
+    
     private void setProgress(double progress) {
     	Timeline timeline = new Timeline();
     	KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
@@ -234,66 +221,27 @@ public class FXMLDocumentController implements Initializable {
     	timeline.play();
     }
     
-    /**
-     * @param event Button responsible for creating the description window.
-     * @throws Exception : Error that occurred during creating the description window.
-     * 
-     * Creating decsrption window from description_fxml.fxml
-     */
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
-    	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
-    	Parent root1 = (Parent) fxmlLoader.load();
-    	Stage stage = new Stage();
-    	setMouse(root1, stage);
-    	setStyle(stage);
-    	stage.setScene(new Scene(root1));  
-    	stage.show();
-
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
+    	AnchorPane anchorPane = loader.load();
+    	setScreen(anchorPane);
     }
 
-    /**
-     * @param event Button responsible for creating the introduction  window.
-     * @throws Exception : Error that occurred during creating the introduction window.
-     * 
-     * Creating decsrption window from introduction_fxml.fxml
-     */
     @FXML
     public void pressButtonIntroduction(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        setMouse(root1, stage);
-        setStyle(stage);
-        stage.setScene(new Scene(root1));
-        stage.show();
-
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
+    	AnchorPane anchorPane = loader.load();
+    	setScreen(anchorPane);
     }
 
-    /**
-     * @param event Button responsible for creating the visualization window.
-     * @throws Exception : Error that occurred during creating the visualization window.
-     * 
-     * Creating decsrption window from visualisation_fxml.fxml
-     */
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        setMouse(root1, stage);
-        setStyle(stage);
-        stage.setScene(new Scene(root1));
-        stage.show();
-
+      	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
+    	AnchorPane anchorPane = loader.load();
+    	setScreen(anchorPane);
     }
     
-    /**
-     * @param root Handle of Parent
-     * @param stage Handle of Stage
-     * 
-     * Setup draging of window without border.
-     */
     public void setMouse(Parent root, Stage stage) {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -312,12 +260,6 @@ public class FXMLDocumentController implements Initializable {
         });
     }
     
-    /**
-     * @param stage Handle of Stage
-     * 
-     * Seting up basic style of window. Window will be undecorated, unresizable and Centerd.
-     * Also application icon will be attached.
-     */
     public void setStyle(Stage stage) {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
@@ -328,14 +270,44 @@ public class FXMLDocumentController implements Initializable {
         stage.setY(screenBounds.getHeight()/2 - scene_max[0]);
     }
     
-    @FXML
-    public void BackToMainStage(ActionEvent event) {
-
+    public void loadMenu()
+    {
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml/main_fxml.fxml"));
+		AnchorPane anchorPane = null;
+		try {
+			anchorPane = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		setScreen(anchorPane);
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+	public void setScreen(AnchorPane anchorPane) {
+		anchorPaneRoot.getChildren().clear();
+		anchorPaneRoot.getChildren().add(anchorPane);
+	}
+	
+	@FXML
+    public void CreateQuestionmark(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/questionmark.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	
+	
+	
+	@FXML
+    public void BackToMainStage(ActionEvent event) {
+    	loadMenu();
+    }
 }

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
    <children>
       <HBox prefHeight="514.0" prefWidth="245.0">
          <children>
@@ -28,7 +28,8 @@
                         </Text>
                      </children>
                   </Pane>
-                  <ScrollPane prefHeight="378.0" prefWidth="254.0" style="-fx-background-color: Black;" vvalue="1.0">
+
+                  <ScrollPane prefHeight="378.0" prefWidth="254.0" style="-fx-background-color: Black;">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="657.0" prefWidth="264.0" style="-fx-background-color: Black;">
                            <children>
@@ -71,6 +72,7 @@
                                     <Font name="Cambria" size="40.0" />
                                  </font>
                               </Text>
+                              <Button fx:id="question" layoutX="616.0" layoutY="7.0" mnemonicParsing="false" onAction="#CreateQuestionmark" prefHeight="43.0" prefWidth="54.0" styleClass="questionmark" text="?" />
                            </children>
                         </Pane>
                         <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />

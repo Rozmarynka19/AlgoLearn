@@ -211,7 +211,7 @@
 	-fx-background-color: linear-gradient(#a30d0d 0%, #a80808 100%);
 }
 .pseudocode:pressed{
-		-fx-background-color: linear-gradient(#8f0b0b 0%, #820707 100%);
+	-fx-background-color: linear-gradient(#8f0b0b 0%, #820707 100%);
 }
 .textNormal{
 	
@@ -220,21 +220,16 @@
 	-fx-text-fill: white;
 }
 
-.backBTN{
-	-fx-background-image: url("../img/back_BTN.png");
-	-fx-background-size: cover;
-}
-.backBTN:hover{
-	-fx-background-image: url("../img/back_BTN_hover.png");
-}
-.backBTN:pressed{
-	-fx-background-image: url("../img/back_BTN_pressed.png");
+.questionmark{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-font-size: 2em; /* 12 */
+    -fx-text-fill: #e6e6e6;
+	-fx-effect: dropshadow(three-pass-box, grey, 3, 0, 0, 0);
 }
 
-
-.hintPane{
-	-fx-border-width: 3px;
-	-fx-border-color: #101010;
-	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
-	-fx-background-color:    linear-gradient( #3b9c7a, #247055);
+.questionmark:pressed {
+    -fx-text-fill: white;
 }
