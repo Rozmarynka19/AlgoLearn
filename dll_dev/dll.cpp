@@ -16,8 +16,10 @@ void pushFront(int insertData) {
     newNode->next = head;  
     newNode->prev = nullptr; 
   
-    if (head!= nullptr && lSize!=0)  
-        head->prev = newNode; 
+    if (head!= nullptr && lSize!=0) {
+        head->prev = newNode;
+	}	
+ 
 
     if(tail == nullptr) {
         tail = newNode;
@@ -109,6 +111,16 @@ void printList() {
     std::cout<<std::endl;
 }  
 
+
+void deleteAll() {
+	while (head != nullptr) {
+		Node* next = head->next;
+		delete head;
+		l_size--;
+		head = next;
+	}
+}
+
 int main() {   
     pushFront(6);
     printList(); 
@@ -119,6 +131,7 @@ int main() {
     popBack();    
     printList(); 
     popFront();
-    printList();  
+    printList();
+	deleteAll();	
     return 0;  
 }
