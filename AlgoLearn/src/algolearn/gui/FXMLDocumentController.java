@@ -8,7 +8,6 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -16,19 +15,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Screen;
@@ -36,6 +31,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+/**
+ * @author Algolearn Team
+ *
+ * JavaFX handler class that controls the buttons in main window and sub-windows.
+ * 
+ */
 public class FXMLDocumentController {
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
@@ -64,7 +65,13 @@ public class FXMLDocumentController {
     private Text txtMainTitle, txtProgress;
     private String txtMainTitleString = "Algolearn - ", txtProgressString = "/100";
     
-    
+    /**
+     * 
+     * @param event : Button handler.
+     * @throws Exception : Handle button error.
+     * 
+     *  Handle choosing algorithm from list in main window.
+     */
     @FXML /* Expand window */
     private void handleButtonAction(ActionEvent event) throws Exception {
         Stage stage = (Stage) btn.getScene().getWindow();
@@ -89,6 +96,12 @@ public class FXMLDocumentController {
         this.btn_id = clicked_btn.getId();
     }
     
+    /**
+     * @param event - Button handler
+     * @throws Exception - Error that occurred during minimalize window
+     * 
+     *  Minimalize application window
+     */
     @FXML
     private void minimalizeWindow(ActionEvent event) {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
@@ -103,7 +116,12 @@ public class FXMLDocumentController {
     @FXML
     private ProgressBar progressBar;
 
-    @FXML
+    
+    /**
+     * Swaping background categories based on category_data variable.
+     * For example when bool equals true tail with introdution changes color form red to green.
+     * It happends becouse of changing style class in the background
+     */
     private void categorySetBackground(){
     	wpr.getStyleClass().clear();
     	wiz.getStyleClass().clear();
@@ -126,11 +144,21 @@ public class FXMLDocumentController {
     	
     }
     
+    /**
+     * @param event - Button handler
+     * @throws Exception - Error that occurred during closing window
+     * 
+     *  Closing application window
+     */
     @FXML /* Expand window */
     private void handleCloseWindowAction(ActionEvent event) throws Exception {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     
+    /**
+     * @param event - Q&A - Authors section
+     * Modify the content of infoTextField variable by passing into data about authors of the application.
+     */
     @FXML
     private void Creators(ActionEvent event){
     	infoTextField.setText(
@@ -144,6 +172,10 @@ public class FXMLDocumentController {
     	);
     }
     
+    /**
+     * @param event - Q&A - Requirements section
+     * Modify the content of infoTextField variable by passing into data about requirements of the application.
+     */
     @FXML
     private void Requirements(ActionEvent event){
     	infoTextField.setText(
@@ -154,7 +186,16 @@ public class FXMLDocumentController {
     	);
     }
     
-    /* Resize window */
+    /**
+     * 
+     * @param stage: Main window stage
+     * @param width: Width to which window is resizing
+     * @param speed: Speed of resizing the window
+     * @param delay: Delay of start animation.
+     * @param wait: Waiting time
+     * 
+     *  Function of resizing window.
+     */
     private void resize(Stage stage, double width, double speed, int delay, int wait) {
     	this.resize_locker = true;
     	Timer animTimer = new Timer();
@@ -177,6 +218,12 @@ public class FXMLDocumentController {
     	this.resize_locker = false;
     }
 
+    /**
+     * 
+     * @param  Button handler.
+     * 
+     * 	Setup progress of the progressbar.
+     */
     public void handleProgress(ActionEvent event) {
     	Button clicked_btn = (Button)event.getSource();
     	String id = clicked_btn.getId();
@@ -194,6 +241,10 @@ public class FXMLDocumentController {
     	txtProgress.setText(Integer.toString(prog)+txtProgressString);
     }
     
+    /**
+     * Calculate progress of currennt algorithm
+     * @return progress value
+     */
     private double calculateProgress() {
     	int count_done = 0;
     	for(int i = 0 ; i < 3; i++)
@@ -211,7 +262,11 @@ public class FXMLDocumentController {
     	}
     }
     
-    
+    /**
+     * @param progress : Progress of currennt alghoritm
+     * 
+     * Animated progressbar based on Timeline
+     */
     private void setProgress(double progress) {
     	Timeline timeline = new Timeline();
     	KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
@@ -221,6 +276,12 @@ public class FXMLDocumentController {
     	timeline.play();
     }
     
+    /**
+     * @param event Button responsible for creating the description window.
+     * @throws Exception : Error that occurred during swap into description window.
+     * 
+     * Swaping into descrption window from description_fxml.fxml
+     */
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
@@ -228,20 +289,38 @@ public class FXMLDocumentController {
     	setScreen(anchorPane);
     }
 
+    /**
+     * @param event Button responsible for creating the introduction window.
+     * @throws Exception : Error that occurred during swap into introduction window.
+     * 
+     * Swaping into introduction window from introduction_fxml.fxml
+     */
     @FXML
     public void pressButtonIntroduction(ActionEvent event) throws Exception {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
-
+    
+    /**
+     * @param event Button responsible for creating the visualization window.
+     * @throws Exception : Error that occurred during swap into visualization window.
+     * 
+     * Swaping into visualization window from visualisation_fxml.fxml
+     */
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
       	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
-    
+
+    /**
+     * @param root Handle of Parent
+     * @param stage Handle of Stage
+     * 
+     * Setup draging of window without border.
+     */
     public void setMouse(Parent root, Stage stage) {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -260,6 +339,12 @@ public class FXMLDocumentController {
         });
     }
     
+    /**
+     * @param stage Handle of Stage
+     * 
+     * Seting up basic style of window. Window will be undecorated, unresizable and Centerd.
+     * Also application icon will be attached.
+     */
     public void setStyle(Stage stage) {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
@@ -269,7 +354,10 @@ public class FXMLDocumentController {
         stage.setX((screenBounds.getWidth() - scene_max[1]) / 2);
         stage.setY(screenBounds.getHeight()/2 - scene_max[0]);
     }
-    
+
+    /**
+     * Swaping into menu window from main_fxml.fxml by remove and add anchorPane
+     */
     public void loadMenu()
     {
 		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml/main_fxml.fxml"));
@@ -282,11 +370,23 @@ public class FXMLDocumentController {
 		setScreen(anchorPane);
     }
     
+    /**
+     * @param anchorPane - AnchorPane to add into root anchorPane
+     * 
+     * Remove and add specific anchorPane to the sceen
+     */
 	public void setScreen(AnchorPane anchorPane) {
 		anchorPaneRoot.getChildren().clear();
 		anchorPaneRoot.getChildren().add(anchorPane);
 	}
 	
+	/**
+	 * @param event - Questionmark handler in main_menu
+	 * 
+	 *  Create new window with informations about project
+	 *  
+	 *  -- Still need to keep track of opened windows ( possible multiple windows to open )
+	 */
 	@FXML
     public void CreateQuestionmark(ActionEvent event) {
         try {
@@ -302,9 +402,6 @@ public class FXMLDocumentController {
             e.printStackTrace();
         }
     }
-	
-	
-	
 	
 	@FXML
     public void BackToMainStage(ActionEvent event) {
