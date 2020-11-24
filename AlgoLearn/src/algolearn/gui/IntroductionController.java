@@ -38,7 +38,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-public class FXMLDocumentController implements Initializable {
+public class IntroductionController implements Initializable {
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
@@ -314,7 +314,8 @@ public class FXMLDocumentController implements Initializable {
 //		if(introText == null)
 //			System.out.println("no null!!!");
 //		else
-//			engine = introText.getEngine();
+//		engine = introText.getEngine();
+//		engine.load("file:///D:/semestr5/IPZ1/repo/lista-jednokierunkowa.html");
 	}
 	
 	
@@ -324,32 +325,32 @@ public class FXMLDocumentController implements Initializable {
     }
 	
     public void loadText(ActionEvent actionEvent) throws IOException {
-//      OutputStream out = new BufferedOutputStream(System.out);
+//        OutputStream out = new BufferedOutputStream(System.out);
 //
-//      File file = new File("lista-jednokierunkowa.docx");
-//      File file2 = new File("lista-jednokierunkowa.html");
-//      FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+//        File file = new File("lista-jednokierunkowa.docx");
+//        File file2 = new File("lista-jednokierunkowa.html");
+//        FileInputStream fis = new FileInputStream(file.getAbsolutePath());
 //
-//      XWPFDocument document = new XWPFDocument(fis);
+//        XWPFDocument document = new XWPFDocument(fis);
 //
-//      List<XWPFParagraph> paragraphs = document.getParagraphs();
+//        List<XWPFParagraph> paragraphs = document.getParagraphs();
 
-      String s="<html><body>";
-//      for (XWPFParagraph para : paragraphs) {
-//          System.out.println(para.getText());
-//          s+=para.getText()+"\n";
-//      }
+        String s="<html><body>";
+//        for (XWPFParagraph para : paragraphs) {
+//            System.out.println(para.getText());
+//            s+=para.getText()+"\n";
+//        }
 
-      s+="</body></html>";
-      engine = introText.getEngine();
-//      engine.load( "file:///D:/studia/projekt_inzynierski/d/AlgoLearn/AlgoLearn/lista-jednokierunkowa.html");
-      engine.load("file:///D:/semestr5/IPZ1/repo/lista-jednokierunkowa.html");
+        s+="</body></html>";
+        engine = introText.getEngine();
+//        engine.load( "file:///D:/studia/projekt_inzynierski/d/AlgoLearn/AlgoLearn/lista-jednokierunkowa.html");
+        engine.load("file:///D:/semestr5/IPZ1/repo/lista-jednokierunkowa.html");
 
 
 
 
 //
-//      fis.close();
-//      out.flush();
-  }
+//        fis.close();
+//        out.flush();
+    }
 }
