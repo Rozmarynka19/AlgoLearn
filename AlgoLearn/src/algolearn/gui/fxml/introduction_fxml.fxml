@@ -2,14 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
     <children>
@@ -26,7 +25,7 @@
                                 </Text>
                             </children>
                         </Pane>
-                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Dodawanie Węzła" />
+                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Dodawanie Węzła" />
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Usuwanie Węzła" />
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Wyszukiwanie Węzła" />
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Rotacje" />
@@ -68,17 +67,7 @@
                                         <Insets left="12.0" />
                                     </HBox.margin>
                            <children>
-                              <TextArea editable="false" prefHeight="346.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet,&#10;                                      consectetur adipiscing elit. &#10;Integer nec odio. Praesent &#10;libero.                                       Sed cursus ante dap&#10;ibus diam. Sed nisi. Nul&#10;la quis sem at nibh                                       elem&#10;entum imperdiet. Duis s&#10;agittis ipsum. Praesent&#10; mauris.                                        Fusce nec tell&#10;us sed augue semper &#10;porta. Mauris massa.                                        V&#10;estibulum lacinia arcu &#10;eget nulla. Class apten&#10;t                                        taciti sociosqu ad lito&#10;ra torquent per conubi&#10;a nostra,                                         per inceptos &#10;himenaeos. Curabitur s&#10;odales ligula in libero.                                         &#10;Sed dignissim lacinia n&#10;unc. Curabitur tortor. P&#10;ellentesque nibh.                                          Aene&#10;an quam. In scelerisqu&#10;e sem at dolor. Maece&#10;nas mattis.                                           Sed convall&#10;is tristique sem. Proin &#10;ut ligula vel nunc eges&#10;                                           tas porttitor. Morbi lec&#10;tus risus, iaculis vel, su&#10;scipit quis,                                            luctus non, &#10;massa. Fusce ac turpis q&#10;uis ligula lacinia ali&#10;quet.                                            Mauris ipsum&#10;. Nulla metus metu&#10;s, ullamcorper vel, t&#10;incidunt sed,                                             euism&#10;od in, nibh. Quisqu&#10;e volutpat condime&#10;ntum velit.                                             Class ap&#10;tent taciti sociosqu &#10;ad litora torquent p&#10;er conubia nostra,                                         &#10;per inceptos himen&#10;aeos. Nam nec ante&#10;. Sed lacinia, urna n&#10;on tincidunt mattis&#10;, tortor neque adip&#10;iscing diam,                                          a cursu&#10;s ipsum ante quis t&#10;urpis. Nulla facilisi. &#10;Ut fringilla. Suspen&#10;disse potenti. Nunc&#10; feugiat mi a tellus                                         &#10;consequat imperdi&#10;et. Vestibulum sapi&#10;en. Proin quam. Eti&#10;am ultrices. Suspen&#10;disse in justo eu m&#10;agna luctus                                         suscip&#10;it. Sed lectus. Inte&#10;ger euismod lacus&#10; luctus magna.                                          Qu&#10;isque cursus, metu&#10;s vitae pharetra au&#10;ctor,                                           sem massa m&#10;attis sem, at interd&#10;um magna augue &#10;eget diam.                                           Vestibu&#10;lum ante ipsum pr&#10;imis in faucibus or&#10;ci luctus et                                           ultrices&#10; posuere cubilia C&#10;urae; Morbi lacinia &#10;molestie dui.                                            Praes&#10;ent blandit dolor. S&#10;ed non quam. In ve&#10;l mi sit amet                                            augue&#10; congue elementu&#10;m. Morbi in ipsum &#10;sit amet pede facili&#10;sis                                             laoreet. Donec l&#10;acus nunc, v&#10;&#10;iverra nec." wrapText="true">
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <effect>
-                                    <InnerShadow />
-                                 </effect>
-                                 <VBox.margin>
-                                    <Insets top="15.0" />
-                                 </VBox.margin>
-                              </TextArea>
+                              <WebView fx:id="introText" prefHeight="375.0" prefWidth="775.0" />
                            </children>
                                 </VBox>
                             </children>
