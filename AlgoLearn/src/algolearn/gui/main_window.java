@@ -33,12 +33,8 @@ public class main_window extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-    	
     	FXMLDocumentController fxmlDocumentController= new FXMLDocumentController();
-//    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/main_fxml.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("fxml/main_fxml.fxml"));
-//    	AnchorPane root = loader.load();
-//        fxmlDocumentController.setStage(stage);
         fxmlDocumentController.setMouse(root, stage);
         Scene scene = new Scene(root, scene_base[0], scene_base[1]);
         fxmlDocumentController.setStyle(stage);
