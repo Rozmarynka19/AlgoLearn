@@ -318,7 +318,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
-      	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
+      	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml2.fxml"));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }

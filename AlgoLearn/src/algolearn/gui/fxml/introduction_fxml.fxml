@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.IntroductionController">
     <children>
         <HBox prefHeight="514.0" prefWidth="245.0">
             <children>
@@ -26,9 +26,9 @@
                             </children>
                         </Pane>
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Dodawanie Węzła" />
-                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Usuwanie Węzła" />
-                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Wyszukiwanie Węzła" />
-                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Rotacje" />
+                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Usuwanie Węzła" />
+                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Wyszukiwanie Węzła" />
+                        <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Rotacje" />
                   <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Rady od Studentów" />
                   <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="292.0" styleClass="langBTN" text="Button" />
                   <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Dodatkowe Źródła" />

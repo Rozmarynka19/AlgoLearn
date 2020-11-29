@@ -1,0 +1,68 @@
+<html><head>
+  <meta charset="UTF-8">
+</head><body>
+<h1 align="center">LISTA Jednokierunkowa<h1>
+
+<h3 align="center">TEORIA</h3>
+<p>Lista jednokierunkowa to struktura danych. Jej przedstawienie graficznie wygląda tak:</p>
+
+<img style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;" src="AlgoLearn\src\algolearn\gui\textimg\lista1.png"><br>
+
+<p>Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
+Kwadraty z liczbami to jedno koło ratunkowe. W nim znajduje się topielec który przechowuje dane w danym elemencie.(np. int, tablica, string, char itp.)
+Strzałka pokazuje gdzie jest w pamięci kolejne koło ratunkowe, lina łącząco koła ratunkowe.
+Kwadrat z kropką to miejsce w pamięci gdzie pamiętamy gdzie jest następne koło, miejsce gdzie lina jest doczepiona kolejnego koła ratunkowego.
+Kwadrat z przeciętymi liniami oznacza że nasz ciąg kół się skończył.(lina nie jest doczepiona do żadnego kolejnego koła)
+Zanim zaczniemy trzeba przygotować strukturę która będzie odpowiadała obiektowi w liście.
+Tym obiektem będzie koło ratunkowe przechowujące dwie zmienne: „topielca” i linkę łączącą do następnego koła. 
+Dodawanie elementów do listy jednokierunkowej.
+1. Tworzymy nowe koło ratunkowe. (np. KołoRatunkowe koło13)
+2. Wrzucamy do niego topielca (np. koło13.dane = jakaśDana)
+3. Dołączamy do łańcucha. 
+Rozpatrzmy dwa przypadki:
+Chcemy żeby nowo powstałe koło ratunkowe było na końcu naszego łańcuszka.
+Nie ma problemu, ostatnie koło ratunkowe łączy się z nim swoją liną.(Wskaźnik pokazuje nowo powstałe koło ratunkowe).
+…->koło3->koło4->koło13
+
+<p>Chcemy żeby nowo powstałe koło ratunkowe znalazło się między kołami 3 a 4.
+W takim wypadku koło13 rzuca swoją linę kołu4(ustawia swój wskaźnik na koło4). A koło 3 rzuca swoją linę do koła4 (koło3 ustawia swój wskaźnik na koło 13.)
+….->koło3->koło13->koło4->…
+Usuwanie elementów z listy jednokierunkowej.
+Wybieramy które koło ratunkowe chcemy usunąć np. 4 koło.(nie w nazwie, chodzi o kolejność iteracyjną! -> czyli będziemy usuwać koło3 )
+koło0->koło1->koło2->koło3->koło4->koło5->…..
+Szukamy koła ratunkowego które chcemy usunąć z łańcuszka (iterujemy po całym łańcuszku). 
+Jeśli się udało to koło2 odczepia swoją linę doczepioną do koła4 i doczepia ją do koła5 (wskaźnik w kole2 trzeba nadpisać wskaźnikiem do koła5)
+Usuwamy koło3 z pamięci jeśli było alokowane na stercie. Jeśli nie to nic nie robimy.</p>
+
+<h3 align="center">Wskazówki</h3>
+<p>Pamiętaj lista jednokierunkowa jest w jednym kierunku, idzie tylko do przodu.
+Jeśli chcesz usunąć jakąś daną o konkretnej danej szukaj jakie dane przechowują „topielcy”. Upewnij się że kasujesz to co chcesz, może jest dwóch takich samych topielców?
+Pamiętaj o zwalnianiu pamięci.
+Często wyświetlaj program, patrz jak działa i czy działa tak jak się spodziewasz.
+Nazywaj zmienne żebyś wiedział co reprezentują, nazwy typu k, cos, a1 mało mówią i łatwo się pogubić.
+…
+</p>
+
+<label for="w3review">Review of W3Schools:</label>
+
+<textarea id="w3review" name="w3review" rows="4" cols="50">
+At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+</textarea>
+
+<h3 align="center">Cechy:</h3>
+- nie możemy odnieść się do konkretnych elementów jak w tablicy, trzeba przejść przez całą listę.
+- tworząc listę nie musimy wiedzieć ile będzie mieć elementów
+- 
+wizualizacja można zrobić coś takiego :<br>
+
+<img style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;" src="AlgoLearn\src\algolearn\gui\textimg\lista2.png"><br>
+
+<a href="https://binarnie.pl/lista-jednokierunkowa/" target="_blank">binarnie.pl - lista jednokierunkowa</a><br>
+<a href="https://en.wikipedia.org/wiki/Linked_list#Singly_linked_list" align="center" target="_blank">wikipedia.org</a>
+</html></body>
