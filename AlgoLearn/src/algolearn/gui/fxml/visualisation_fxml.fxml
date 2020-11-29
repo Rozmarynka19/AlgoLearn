@@ -28,29 +28,49 @@
                             </children>
                         </Pane>
                         <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Dodaj węzeł" />
-                  <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                        <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Usuń węzeł" />
-                  <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                        <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Wyszukaj węzeł" />
-                  <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                        <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
-                        <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
+                  <Pane prefHeight="48.0" prefWidth="279.0">
+                     <children>
+                        <TextField fx:id="addField" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
                         </TextField>
+                        <Button fx:id="addBTN" layoutX="223.0" layoutY="-1.0" mnemonicParsing="false" onAction="#addValue" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Usuń węzeł" />
+                  <Pane prefHeight="48.0" prefWidth="324.0">
+                     <children>
+                        <TextField prefHeight="39.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="addBTN1" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Wyszukaj węzeł" />
+                  <Pane prefHeight="48.0" prefWidth="279.0">
+                     <children>
+                        <TextField prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="addBTN2" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
+                  <Pane prefHeight="48.0" prefWidth="200.0">
+                     <children>
+                              <TextField prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                                  <font>
+                                      <Font size="18.0" />
+                                  </font>
+                              </TextField>
+                        <Button fx:id="addBTN3" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
                         <Pane prefHeight="50.0" prefWidth="279.0" styleClass="titlePlane">
                             <children>
                                 <Text fill="WHITE" layoutX="-58.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Step-by-step" textAlignment="CENTER" wrappingWidth="266.5982971191406">

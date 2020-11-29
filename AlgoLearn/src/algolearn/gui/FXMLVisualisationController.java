@@ -29,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -494,6 +495,16 @@ public class FXMLVisualisationController implements Initializable {
 			insert(rootBST, rand.nextInt(89) + 10);
 		else
 			insert(rootBST, 50);
+	}
+	
+	@FXML TextField addField;
+	
+	@FXML private void addValue(ActionEvent event) {
+		String getValue = addField.getText();
+		
+		int value = Integer.parseInt(getValue);
+		insert(rootBST, value);
+		System.out.println(value);
 	}
 	
 	private void draw(double x, double y, String nodeValue) {
