@@ -2,19 +2,28 @@ package algolearn.gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.sun.javafx.fxml.FXMLLoaderHelper.FXMLLoaderAccessor;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,7 +33,15 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.LineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextBoundsType;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Screen;
@@ -32,14 +49,13 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-
 /**
  * @author Algolearn Team
  *
  * JavaFX handler class that controls the buttons in main window and sub-windows.
  * 
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLVisualisationController implements Initializable {
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
@@ -442,12 +458,172 @@ public class FXMLDocumentController implements Initializable {
       engine = introText.getEngine();
 //      engine.load( "file:///D:/studia/projekt_inzynierski/d/AlgoLearn/AlgoLearn/lista-jednokierunkowa.html");
       engine.load("file:///D:/semestr5/IPZ1/repo/lista-jednokierunkowa.html");
-
-
-
-
 //
 //      fis.close();
 //      out.flush();
   }
+    
+    // =================================	VISUALISATION	=====================================//
+	@FXML private AnchorPane Visualisation_anchorPane;
+	@FXML private Button testDrawing;
+	//private Map<Circle,Text> arrayCircles = new HashMap<Circle,Text>();
+
+	private ArrayList<Circle> arrayCircles = new ArrayList<Circle>();
+	private ArrayList<Text> arrayTexts = new ArrayList<Text>();
+	private ArrayList<Line[]> arrayLines = new ArrayList<Line[]>();
+	
+	static int left_offset = 30, rigth_offset = 30, down_offset = 60;
+	
+	static int board_width = 800;
+	static int radius = 20;
+	
+	static double [] def_pos = {board_width/2, 50};
+	private double x = def_pos[0], y = def_pos[1];
+	
+	private Color randomColor() {
+		Random rand = new Random();
+	    double red = rand.nextDouble();
+	    double green = rand.nextDouble();
+	    double blue = rand.nextDouble();
+		return new Color(red, green, blue, 1);
+	}
+	
+	@FXML private void drawCircle(ActionEvent event) {
+		Random rand = new Random();
+		if(rootBST != null)
+			insert(rootBST, rand.nextInt(89) + 10);
+		else
+			insert(rootBST, 50);
+	}
+	
+	private void draw(double x, double y, String nodeValue) {
+		Circle circle = new Circle(x,y,radius, randomColor());
+		
+		Text text = new Text(nodeValue);
+		text.setBoundsType(TextBoundsType.VISUAL);
+		text.setX(circle.getCenterX() - radius/2 - 2);
+		text.setY(circle.getCenterY() + radius/2 - 2);
+		
+    	circle.getStyleClass().add("circle");
+    	text.getStyleClass().add("textBST");
+		
+		arrayCircles.add(circle);
+		arrayTexts.add(text);
+		
+		
+		Visualisation_anchorPane.getChildren().addAll(circle, text);
+	}
+	/*
+	private void drawWithTransition(double x, double y, String nodeValue) {
+		Circle circle = new Circle(def_pos[0],def_pos[1],radius, randomColor());
+		
+		Text text = new Text(nodeValue);
+		text.setBoundsType(TextBoundsType.VISUAL);
+		text.setFont(new Font(22));
+		text.setFill(Color.BLACK);
+		text.setX(circle.getCenterX() - radius/2 - 2);
+		text.setY(circle.getCenterY() + radius/2 - 2);
+		
+
+    	circle.getStyleClass().add("circle");
+    	text.getStyleClass().add("textBST");
+		
+		arrayCircles.add(circle);
+		arrayTexts.add(text);
+	}
+	*/
+	
+	private void drawArrow(double x_start, double y_start, double x_end, double y_end, boolean left) {
+		Line [] line = new Line[3];
+
+		line[0] = new Line(x_start, y_start, x_end, y_end);
+		if(left) {
+			line[1] = new Line(x_end,  y_end - 10, x_end, y_end);
+			line[2] = new Line(x_end + 10, y_end + 3, x_end, y_end);
+		}else {
+			line[1] = new Line(x_end,  y_end - 10, x_end, y_end);
+			line[2] = new Line(x_end - 10, y_end + 3, x_end, y_end);
+		}
+		
+		for(Line l : line)
+			l.getStyleClass().add("line");
+		
+		arrayLines.add(line);
+		Visualisation_anchorPane.getChildren().addAll(line);
+	}
+	
+	private Circle findCirclePos(int value) {
+		for(int pos = 0; pos<arrayTexts.size() -1; pos++) {
+			if(arrayTexts.get(pos).getText() == String.valueOf(value)) {
+				return arrayCircles.get(pos);
+			}
+		}
+		return arrayCircles.get(0);
+	}
+    
+
+    // =================================	Binnary search tree =================================//
+    class BSTNode extends FXMLVisualisationController{
+    	int key;
+    	BSTNode left, right;
+    }
+    
+    BSTNode newNodeBST(int data) { 
+    	BSTNode temp = new BSTNode(); 
+        temp.key = data; 
+        temp.left = null; 
+        temp.right = null; 
+        return temp; 
+    }
+    
+    BSTNode insert(BSTNode root, int key) { 
+    	BSTNode newnode = newNodeBST(key); 
+    	BSTNode x = root; 
+    	BSTNode y = null; 
+    	
+    	double xx = def_pos[0], yy = def_pos[1];
+    	double xx_prev = 0;
+    	double xx_add = def_pos[0];
+    	
+        while (x != null) {
+        	yy += down_offset;
+        	xx_prev = xx;
+        	xx_add /= 2;
+            y = x;
+            if (key < x.key) {
+                x = x.left;
+                xx -= xx_add;
+            }
+            else {
+                x = x.right; 
+                xx += xx_add;
+            }
+        }
+       
+        if (y == null) {
+        	rootBST = newnode;
+            draw(xx, yy, String.valueOf(key));
+        }
+        else if (key < y.key) {
+            y.left = newnode;
+            draw(xx, yy, String.valueOf(key));
+            
+            //Circle prevCircle = findCircle(y.key);
+            //double [] prev = {prevCircle.getCenterX(), prevCircle.getCenterY()};
+            
+            drawArrow(xx_prev - radius, ( yy - down_offset + radius/2), xx + 10, yy - radius, true);
+        }
+        else {
+            y.right = newnode;
+            draw(xx, yy, String.valueOf(key));
+            
+            //Circle prevCircle = findCircle(y.key);
+            //double [] prev = {prevCircle.getCenterX(), prevCircle.getCenterY()};
+
+            drawArrow(xx_prev + radius, ( yy - down_offset + radius/2 ), xx -10, yy - radius, false);
+        }
+        return y; 
+    } 
+    
+    BSTNode rootBST = null;
 }

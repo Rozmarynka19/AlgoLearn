@@ -233,3 +233,14 @@
 .questionmark:pressed {
     -fx-text-fill: white;
 }
+
+.circle, .textBST, .line{
+	-fx-effect: dropshadow(three-pass-box, grey, 7, 0, 0, 0);
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+}
+
+.circle:hover{
+	-fx-opacity: 0.65;
+}
