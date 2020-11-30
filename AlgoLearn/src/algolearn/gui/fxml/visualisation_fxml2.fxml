@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.VisualisationController">
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.VisualisationController">
     <children>
         <HBox prefHeight="514.0" prefWidth="245.0">
             <children>
@@ -38,27 +43,7 @@
                                 <Font size="18.0" />
                             </font>
                         </TextField>
-                        <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
-                        <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </TextField>
-                        <Pane prefHeight="50.0" prefWidth="279.0" styleClass="titlePlane">
-                            <children>
-                                <Text fill="WHITE" layoutX="-58.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Step-by-step" textAlignment="CENTER" wrappingWidth="266.5982971191406">
-                                    <font>
-                                        <Font name="Cambria" size="30.0" />
-                                    </font>
-                                </Text>
-                                <CheckBox layoutX="234.0" layoutY="6.0" mnemonicParsing="false" selected="true" />
-                            </children>
-                        </Pane>
-                        <HBox prefHeight="48.0" prefWidth="279.0">
-                            <children>
-                                <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Ukryte liczby: [?,?]" />
-                            </children>
-                        </HBox>
+                  <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="169.0" prefWidth="279.0" styleClass="titlePlane" />
                     </children></VBox>
                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="20.0">
                     <children>
@@ -86,8 +71,14 @@
                                 <Insets left="25.0" />
                             </VBox.margin>
                             <children>
-                                <HBox fx:id="MainVBox" prefHeight="297.0" prefWidth="800.0">
+                        <VBox prefHeight="335.0" prefWidth="34.0">
+                           <children>
+                              <HBox  alignment="CENTER" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="116.0" prefWidth="798.0" />
+                              <HBox fx:id="MainVBox"   alignment="CENTER" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="125.0" prefWidth="798.0" />
+                                      <HBox  alignment="CENTER" cache="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="128.0" prefWidth="798.0">
                                 </HBox>
+                           </children>
+                        </VBox>
                             </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">

@@ -100,7 +100,8 @@ public class VisualisationController extends FXMLDocumentController  implements 
     @FXML TextField DeleteNodeText;
     @FXML TextField FindNodeText;
 
-    List<Button> childrenList = new ArrayList<>();;
+    List<Button> childrenButtonList = new ArrayList<>();
+    List<Arrow> childrenArrowList = new ArrayList<>();;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -108,14 +109,28 @@ public class VisualisationController extends FXMLDocumentController  implements 
     }
 
     private Button previousSerchedChild;
+    private Button previousButton;
+
     @FXML
     public void generateButtonHandler(ActionEvent event){
+
         if(previousSerchedChild!=null){
-            previousSerchedChild.setStyle("-fx-background-color: #ffffff");
+            previousSerchedChild.setStyle(
+                    " -fx-background-color: " +
+                            "linear-gradient(#ff0000, #990000 100%)" +
+                            "linear-gradient(#3a3a3a, #020b02); " +
+                            "-fx-background-radius: 5em; " +
+                            "-fx-min-width: 30px; " +
+                            "-fx-min-height: 30px; " +
+                            "-fx-max-width: 30px; " +
+                            "-fx-max-height: 30px; "
+            );
         }
+
         Alert a = new Alert(Alert.AlertType.NONE);
-        if(!DeleteNodeText.getText().equals("Wprowadź wartość:") && !DeleteNodeText.getText().equals("")){
-            if(Integer.parseInt(DeleteNodeText.getText())>=childrenList.size() || Integer.parseInt(DeleteNodeText.getText())<=0) {
+
+        if(!DeleteNodeText.getText().equals("")){
+            if(Integer.parseInt(DeleteNodeText.getText())>childrenButtonList.size() || Integer.parseInt(DeleteNodeText.getText())<=0) {
                 a.setAlertType(Alert.AlertType.ERROR);
                 a.setContentText("Błędna wartość, upewnij się że nie przekraczasz przedziału wartości do jakich możesz się odnieść");
                 a.show();
@@ -126,15 +141,42 @@ public class VisualisationController extends FXMLDocumentController  implements 
                 DeleteNodeText.setText("");
             }
         }
-        if(!AddNodeText.getText().equals("Wprowadź wartość:") && !AddNodeText.getText().equals("")) {
-            Button btnNumber = new Button();
-            btnNumber.setText(getTextFromAddBox());
-            childrenList.add(btnNumber);
-            MainVBox.getChildren().add(btnNumber);
-            AddNodeText.setText("");
+
+        if(!AddNodeText.getText().equals("")) {
+            if(childrenButtonList.size()<11) {
+                Button btnNumber = new Button();
+                previousButton = btnNumber;
+                btnNumber.setText(getTextFromAddBox());
+                btnNumber.setStyle(
+                        " -fx-background-color: " +
+                                "linear-gradient(#ff0000, #990000 100%)" +
+                                "linear-gradient(#3a3a3a, #020b02); " +
+                                "-fx-background-radius: 5em; " +
+                                "-fx-min-width: 30px; " +
+                                "-fx-min-height: 30px; " +
+                                "-fx-max-width: 30px; " +
+                                "-fx-max-height: 30px; "
+                );
+                if (childrenButtonList.size() >= 1) {
+                    Arrow arrow = new Arrow();
+                    MainVBox.getChildren().add(arrow);
+                    arrow.setEndX(previousButton.getLayoutX() + 40);
+                    arrow.setEndY(previousButton.getLayoutY());
+                    childrenArrowList.add(arrow);
+                }
+                childrenButtonList.add(btnNumber);
+                MainVBox.getChildren().add(btnNumber);
+                AddNodeText.setText("");
+            }
+            else {
+                a.setAlertType(Alert.AlertType.INFORMATION);
+                a.setContentText("Maksymalna ilość elementów to 11.");
+                a.show();
+            }
         }
-        if(!FindNodeText.getText().equals("Wprowadź wartość:") && !FindNodeText.getText().equals("")){
-            if(Integer.parseInt(FindNodeText.getText())>=childrenList.size() || Integer.parseInt(FindNodeText.getText())<=0) {
+
+        if(!FindNodeText.getText().equals("")){
+            if(Integer.parseInt(FindNodeText.getText())>childrenButtonList.size() || Integer.parseInt(FindNodeText.getText())<=0) {
                 a.setAlertType(Alert.AlertType.ERROR);
                 a.setContentText("Błędna wartość, upewnij się że nie przekraczasz przedziału wartości do jakich możesz się odnieść");
                 a.show();
@@ -153,20 +195,44 @@ public class VisualisationController extends FXMLDocumentController  implements 
     }
 
     public void restartWindow(ActionEvent actionEvent) {
-        for(int i=0;i<childrenList.size();i++){
-            MainVBox.getChildren().remove(childrenList.get(i));
+        int size1, size2;
+        size1=childrenButtonList.size();
+        size2=
+        for(int i=0;i<childrenButtonList.size();i++){
+            MainVBox.getChildren().remove(childrenButtonList.get(i));
+            childrenButtonList.remove(i);
+        }
+        for(int i=0;i<childrenArrowList.size();i++){
+            MainVBox.getChildren().remove(childrenArrowList.get(i));
         }
 
     }
 
     private void deleteNode(){
-        MainVBox.getChildren().remove(childrenList.get(Integer.parseInt(DeleteNodeText.getText())-1));
-        childrenList.remove(Integer.parseInt(DeleteNodeText.getText())-1);
+        MainVBox.getChildren().remove(childrenButtonList.get(Integer.parseInt(DeleteNodeText.getText())-1));
+        childrenButtonList.remove(Integer.parseInt(DeleteNodeText.getText())-1);
+        if(childrenArrowList.size()>1) {
+            MainVBox.getChildren().remove(Integer.parseInt(DeleteNodeText.getText()));
+            childrenArrowList.remove(Integer.parseInt(DeleteNodeText.getText()) - 2);
+        }
+        if(childrenButtonList.size()==1){
+            MainVBox.getChildren().remove(1);
+            childrenArrowList.remove(0);
+        }
     }
 
     private void findNode() {
-        Button tmp = childrenList.get(Integer.parseInt(FindNodeText.getText())-1);
-        tmp.setStyle("-fx-background-color: #00c928");
+        Button tmp = childrenButtonList.get(Integer.parseInt(FindNodeText.getText())-1);
+        tmp.setStyle(
+                " -fx-background-color: " +
+                        "linear-gradient(#3BFF72, #05B336 100%)" +
+                        "linear-gradient(#3a3a3a, #020b02); " +
+                        "-fx-background-radius: 5em; " +
+                        "-fx-min-width: 30px; " +
+                        "-fx-min-height: 30px; " +
+                        "-fx-max-width: 30px; " +
+                        "-fx-max-height: 30px; "
+        );
         previousSerchedChild = tmp;
 
     }
