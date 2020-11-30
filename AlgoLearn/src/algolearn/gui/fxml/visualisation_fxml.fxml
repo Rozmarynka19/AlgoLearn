@@ -41,23 +41,23 @@
                         <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Usuń węzeł" />
                   <Pane prefHeight="48.0" prefWidth="324.0">
                      <children>
-                        <TextField prefHeight="39.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                        <TextField fx:id="deleteField" prefHeight="39.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="addBTN1" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                        <Button fx:id="deleteBTN" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" onAction="#deleteValue" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
                      </children>
                   </Pane>
                         <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Wyszukaj węzeł" />
                   <Pane prefHeight="48.0" prefWidth="279.0">
                      <children>
-                        <TextField prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                        <TextField fx:id="searchField" onAction="#deleteValue" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="addBTN2" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                        <Button fx:id="searchBTN" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" onAction="#searchValue" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
                      </children>
                   </Pane>
                         <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
@@ -127,10 +127,10 @@
                             <children>
                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="825.0" styleClass="titlePlane">
                                     <children>
-                              <Button id="1" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Restartuj" />
-                              <Button id="1" fx:id="testDrawing" layoutX="373.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#drawCircle" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Dalej" />
+                              <Button id="1" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#restartVisualisation" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Restartuj" />
+                              <Button id="1" layoutX="373.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Dalej" />
                               <Button id="1" layoutX="532.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Pomiń" />
-                              <Button id="1" layoutX="170.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Generuj" />
+                              <Button id="1" layoutX="170.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#randomNode" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Generuj" />
                               <Button id=".empty" layoutX="715.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
                                     </children></Pane>
                             </children>

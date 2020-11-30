@@ -466,12 +466,13 @@ public class FXMLVisualisationController implements Initializable {
     
     // =================================	VISUALISATION	=====================================//
 	@FXML private AnchorPane Visualisation_anchorPane;
-	@FXML private Button testDrawing;
 	//private Map<Circle,Text> arrayCircles = new HashMap<Circle,Text>();
 
 	private ArrayList<Circle> arrayCircles = new ArrayList<Circle>();
 	private ArrayList<Text> arrayTexts = new ArrayList<Text>();
 	private ArrayList<Line[]> arrayLines = new ArrayList<Line[]>();
+	private Circle hintCricle = null;
+	private String [] selectedObjectData = new String[2];
 	
 	static int left_offset = 30, rigth_offset = 30, down_offset = 60;
 	
@@ -489,7 +490,40 @@ public class FXMLVisualisationController implements Initializable {
 		return new Color(red, green, blue, 1);
 	}
 	
-	@FXML private void drawCircle(ActionEvent event) {
+	@FXML private void restartVisualisation(ActionEvent event) {
+		for(Circle arr : arrayCircles)
+			Visualisation_anchorPane.getChildren().remove(arr);
+		
+		for(Text arr : arrayTexts)
+			Visualisation_anchorPane.getChildren().remove(arr);
+		
+		for(Line[] arr : arrayLines)
+			for(Line line : arr)
+				Visualisation_anchorPane.getChildren().remove(line);
+		
+		if(hintCricle != null) {
+			Visualisation_anchorPane.getChildren().remove(hintCricle);
+			hintCricle = null;
+		}
+		
+		rootBST = null;
+	}
+	
+	private void test() {
+		hintCricle = new Circle(def_pos[0],def_pos[1],radius+5, new Color(0, 0, 0, 0));
+		hintCricle.setStroke(Color.GREEN);
+		hintCricle.setStrokeWidth(3.0);
+		Visualisation_anchorPane.getChildren().add(hintCricle);
+	}
+	
+	@FXML private void searchValue(ActionEvent event) {
+		String getValue = searchField.getText();
+		int value = Integer.parseInt(getValue);
+		ArrayList<double[]> arr = bstFindPath(rootBST, value);
+		animateThroughPath(arr);
+	}
+	
+	@FXML private void randomNode(ActionEvent event) {
 		Random rand = new Random();
 		if(rootBST != null)
 			insert(rootBST, rand.nextInt(89) + 10);
@@ -497,14 +531,80 @@ public class FXMLVisualisationController implements Initializable {
 			insert(rootBST, 50);
 	}
 	
-	@FXML TextField addField;
+	private int getCircleID(String value) {
+		for(int i = 0; i<arrayTexts.size(); i++) {
+			if(arrayTexts.get(i).getText().equals(value)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	private void removeCircleByID(int id) {
+		// Remove shapes
+		Visualisation_anchorPane.getChildren().remove(arrayTexts.get(id));
+		Visualisation_anchorPane.getChildren().remove(arrayCircles.get(id));
+		arrayTexts.remove(id);
+		arrayCircles.remove(id);
+		
+		// Remove lines
+		if( id > 0) {
+			Line [] line = arrayLines.get(id - 1);
+			for(int i = 0; i < 3; i++)
+				Visualisation_anchorPane.getChildren().remove(line[i]);
+			arrayLines.remove(id-1);
+		}
+
+		// Remove hintCircle
+		if(hintCricle != null) {
+			Visualisation_anchorPane.getChildren().remove(hintCricle);
+			hintCricle = null;
+			if(arrayTexts.size() > 0)
+				test();
+		}
+	}
+	
+	
+	@FXML TextField addField, deleteField, searchField;
 	
 	@FXML private void addValue(ActionEvent event) {
 		String getValue = addField.getText();
 		
 		int value = Integer.parseInt(getValue);
 		insert(rootBST, value);
-		System.out.println(value);
+	}
+	
+	@FXML private void deleteValue(ActionEvent event) {
+		String getValue = deleteField.getText();
+		int arr_pos = getCircleID(getValue);
+		
+		if(arr_pos != -1) {
+			removeCircleByID(arr_pos);
+		}
+		
+		
+	}
+	
+	private Path createMovePath() {
+		Path path = new Path();
+		path.getElements().add(new MoveTo(def_pos[0], def_pos[1]));
+		return path;
+	}
+	
+	private void animateThroughPath(ArrayList<double[]> cPath) {
+		if(hintCricle == null) return;
+		Path path = createMovePath();
+		for(double[] c : cPath)
+			path.getElements().add(new LineTo(c[0], c[1]));
+		
+		PathTransition pathT = new PathTransition();
+		pathT.setDuration(Duration.millis(600 * cPath.size()));
+		pathT.setPath(path);
+		pathT.setNode(hintCricle);
+		pathT.setCycleCount(1);
+		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathT.setAutoReverse(false);
+		pathT.play();
 	}
 	
 	private void draw(double x, double y, String nodeValue) {
@@ -516,33 +616,61 @@ public class FXMLVisualisationController implements Initializable {
 		text.setY(circle.getCenterY() + radius/2 - 2);
 		
     	circle.getStyleClass().add("circle");
+    	circle.setId(nodeValue);
+    	circle.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
+    		int id = Integer.parseInt(circle.getId());
+    		ArrayList<double[]> arr = bstFindPath(rootBST, id);
+    		animateThroughPath(arr);
+    		selectedObjectData[0] = circle.getId();
+    		selectedObjectData[1] = text.getText();
+    	});
+    	
     	text.getStyleClass().add("textBST");
-		
+    	text.setId(nodeValue);
+    	text.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, e->{
+    		String id = text.getId();
+    		for(Circle c : arrayCircles)
+    			if(c.getId() == id) {
+    				c.setOpacity(0.65);
+    			}
+    	});
+    	text.addEventHandler(MouseEvent.MOUSE_EXITED_TARGET, e->{
+    		String id = text.getId();
+    		for(Circle c : arrayCircles)
+    			if(c.getId() == id) {
+    				c.setOpacity(1);
+    			}
+    	});
+
+    	text.addEventHandler(MouseEvent.MOUSE_PRESSED, e->{
+    		String id = text.getId();
+    		for(Circle c : arrayCircles)
+    			if(c.getId() == id) {
+    				c.setOpacity(0.45);
+    			}
+    	});
+    	
+    	text.addEventHandler(MouseEvent.MOUSE_RELEASED, e->{
+    		String id = text.getId();
+    		for(Circle c : arrayCircles)
+    			if(c.getId() == id) {
+    				c.setOpacity(1);
+    			}
+    	});
+    	
+    	text.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
+    		int id = Integer.parseInt(text.getId());
+    		ArrayList<double[]> arr = bstFindPath(rootBST, id);
+    		animateThroughPath(arr);
+    		selectedObjectData[0] = text.getId();
+    		selectedObjectData[1] = text.getText();
+    	});
+    	
 		arrayCircles.add(circle);
 		arrayTexts.add(text);
-		
 		
 		Visualisation_anchorPane.getChildren().addAll(circle, text);
 	}
-	/*
-	private void drawWithTransition(double x, double y, String nodeValue) {
-		Circle circle = new Circle(def_pos[0],def_pos[1],radius, randomColor());
-		
-		Text text = new Text(nodeValue);
-		text.setBoundsType(TextBoundsType.VISUAL);
-		text.setFont(new Font(22));
-		text.setFill(Color.BLACK);
-		text.setX(circle.getCenterX() - radius/2 - 2);
-		text.setY(circle.getCenterY() + radius/2 - 2);
-		
-
-    	circle.getStyleClass().add("circle");
-    	text.getStyleClass().add("textBST");
-		
-		arrayCircles.add(circle);
-		arrayTexts.add(text);
-	}
-	*/
 	
 	private void drawArrow(double x_start, double y_start, double x_end, double y_end, boolean left) {
 		Line [] line = new Line[3];
@@ -562,16 +690,6 @@ public class FXMLVisualisationController implements Initializable {
 		arrayLines.add(line);
 		Visualisation_anchorPane.getChildren().addAll(line);
 	}
-	
-	private Circle findCirclePos(int value) {
-		for(int pos = 0; pos<arrayTexts.size() -1; pos++) {
-			if(arrayTexts.get(pos).getText() == String.valueOf(value)) {
-				return arrayCircles.get(pos);
-			}
-		}
-		return arrayCircles.get(0);
-	}
-    
 
     // =================================	Binnary search tree =================================//
     class BSTNode extends FXMLVisualisationController{
@@ -595,7 +713,7 @@ public class FXMLVisualisationController implements Initializable {
     	double xx = def_pos[0], yy = def_pos[1];
     	double xx_prev = 0;
     	double xx_add = def_pos[0];
-    	
+    	ArrayList<double[]> cPath = new ArrayList<double[]>();
         while (x != null) {
         	yy += down_offset;
         	xx_prev = xx;
@@ -609,32 +727,60 @@ public class FXMLVisualisationController implements Initializable {
                 x = x.right; 
                 xx += xx_add;
             }
+            double [] arr = {xx, yy};
+            cPath.add(arr);
         }
        
         if (y == null) {
         	rootBST = newnode;
             draw(xx, yy, String.valueOf(key));
+            test();
         }
         else if (key < y.key) {
             y.left = newnode;
             draw(xx, yy, String.valueOf(key));
-            
-            //Circle prevCircle = findCircle(y.key);
-            //double [] prev = {prevCircle.getCenterX(), prevCircle.getCenterY()};
-            
+            animateThroughPath(cPath);
             drawArrow(xx_prev - radius, ( yy - down_offset + radius/2), xx + 10, yy - radius, true);
         }
-        else {
+        else if (key > y.key) {
             y.right = newnode;
             draw(xx, yy, String.valueOf(key));
-            
-            //Circle prevCircle = findCircle(y.key);
-            //double [] prev = {prevCircle.getCenterX(), prevCircle.getCenterY()};
-
+            animateThroughPath(cPath);
             drawArrow(xx_prev + radius, ( yy - down_offset + radius/2 ), xx -10, yy - radius, false);
         }
         return y; 
     } 
+    
+    private ArrayList<double[]> bstFindPath(BSTNode root, int key) {
+    	ArrayList<double[]> path = new ArrayList<double[]>();
+    	double xx = def_pos[0], yy = def_pos[1];
+    	double xx_add = def_pos[0];
+    	BSTNode x = root;
+    	
+    	if( root.key == key) {
+    		double [] arr = {def_pos[0]+1, def_pos[1]};
+    		path.add(arr);
+    	}
+    	
+    	while(x != null) {
+    		yy += down_offset;
+    		xx_add /= 2;
+    		if(key < x.key) {
+    			x = x.left;
+    			xx -= xx_add;
+    			double[] arr = {xx, yy};
+    			path.add(arr);
+    		}else if(key > x.key) {
+    			x = x.right;
+    			xx += xx_add;
+    			double[] arr = {xx, yy};
+    			path.add(arr);
+    		}else
+    			return path;
+    	}
+    	
+    	return path;
+    }
     
     BSTNode rootBST = null;
 }
