@@ -507,6 +507,10 @@ public class FXMLVisualisationController implements Initializable {
 			hintCricle = null;
 		}
 		
+		arrayCircles = new ArrayList<Circle>();
+		arrayTexts = new ArrayList<Text>();
+		arrayLines = new ArrayList<Line[]>();
+		
 		rootBST = null;
 	}
 	
@@ -519,6 +523,7 @@ public class FXMLVisualisationController implements Initializable {
 	
 	@FXML private void searchValue(ActionEvent event) {
 		String getValue = searchField.getText();
+		if(getValue == "") return;
 		int value = Integer.parseInt(getValue);
 		ArrayList<double[]> arr = bstFindPath(rootBST, value);
 		animateThroughPath(arr);
@@ -570,15 +575,16 @@ public class FXMLVisualisationController implements Initializable {
 	
 	@FXML private void addValue(ActionEvent event) {
 		String getValue = addField.getText();
-		
+		if(getValue == "") return;
 		int value = Integer.parseInt(getValue);
 		insert(rootBST, value);
 	}
 	
 	@FXML private void deleteValue(ActionEvent event) {
 		String getValue = deleteField.getText();
+		if(getValue == "") return;
 		int arr_pos = getCircleID(getValue);
-		
+		rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
 		if(arr_pos != -1) {
 			removeCircleByID(arr_pos);
 		}
@@ -797,6 +803,40 @@ public class FXMLVisualisationController implements Initializable {
     	double [] arr = {def_pos[0]+1, def_pos[1]};
     	pathEmpty.add(arr);
     	return pathEmpty;
+    }
+    
+    BSTNode deleteRec(BSTNode root, int key)
+    {	
+        if (root == null)
+            return root;
+ 
+        if (key < root.key)
+            root.left = deleteRec(root.left, key);
+        else if (key > root.key)
+            root.right = deleteRec(root.right, key);
+ 
+        else {
+            if (root.left == null)
+                return root.right;
+            else if (root.right == null)
+                return root.left;
+            
+            root.key = minValue(root.right);
+            root.right = deleteRec(root.right, root.key);
+        }
+ 
+        return root;
+    }
+    
+    int minValue(BSTNode root)
+    {
+        int minv = root.key;
+        while (root.left != null) 
+        {
+            minv = root.left.key;
+            root = root.left;
+        }
+        return minv;
     }
     
     BSTNode rootBST = null;
