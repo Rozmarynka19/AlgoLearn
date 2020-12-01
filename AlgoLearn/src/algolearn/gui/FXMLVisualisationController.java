@@ -666,7 +666,6 @@ public class FXMLVisualisationController implements Initializable {
     	});
 
     	int val = Integer.parseInt(nodeValue);
-    	BSTNode xNode = bstFindNode(rootBST, val);
     	
     	String sTooltip = new String();
     	if(rootBST != null)
