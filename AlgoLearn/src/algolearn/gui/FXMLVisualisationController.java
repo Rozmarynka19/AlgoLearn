@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -581,8 +582,6 @@ public class FXMLVisualisationController implements Initializable {
 		if(arr_pos != -1) {
 			removeCircleByID(arr_pos);
 		}
-		
-		
 	}
 	
 	private Path createMovePath() {
@@ -665,13 +664,28 @@ public class FXMLVisualisationController implements Initializable {
     		selectedObjectData[0] = text.getId();
     		selectedObjectData[1] = text.getText();
     	});
+
+    	int val = Integer.parseInt(nodeValue);
+    	BSTNode xNode = bstFindNode(rootBST, val);
     	
+    	String sTooltip = new String();
+    	if(rootBST != null)
+    		if(rootBST.key == val)
+    			sTooltip = "Korzeń BST \n Klucz: "+nodeValue;
+    		else
+    			sTooltip = "Węzeł BST \n Klucz: "+nodeValue;
+    	
+    	Tooltip tt = new Tooltip();
+    	tt.setText(sTooltip);
+    	tt.setStyle("-fx-font-size: 16px;");
+    	tt.setShowDelay(Duration.millis(500));
+    	Tooltip.install(circle, tt);
+    	Tooltip.install(text, tt);
 		arrayCircles.add(circle);
 		arrayTexts.add(text);
 		
 		Visualisation_anchorPane.getChildren().addAll(circle, text);
 	}
-	
 	private void drawArrow(double x_start, double y_start, double x_end, double y_end, boolean left) {
 		Line [] line = new Line[3];
 
@@ -760,6 +774,7 @@ public class FXMLVisualisationController implements Initializable {
     	if( root.key == key) {
     		double [] arr = {def_pos[0]+1, def_pos[1]};
     		path.add(arr);
+    		return path;
     	}
     	
     	while(x != null) {
@@ -776,10 +791,13 @@ public class FXMLVisualisationController implements Initializable {
     			double[] arr = {xx, yy};
     			path.add(arr);
     		}else
-    			return path;
+        		return path;
     	}
     	
-    	return path;
+    	ArrayList<double[]> pathEmpty = new ArrayList<double []>();
+    	double [] arr = {def_pos[0]+1, def_pos[1]};
+    	pathEmpty.add(arr);
+    	return pathEmpty;
     }
     
     BSTNode rootBST = null;
