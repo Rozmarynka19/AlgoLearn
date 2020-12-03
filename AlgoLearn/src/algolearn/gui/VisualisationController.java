@@ -113,7 +113,6 @@ public class VisualisationController extends FXMLDocumentController  implements 
 
     @FXML
     public void generateButtonHandler(ActionEvent event){
-
         if(previousSerchedChild!=null){
             previousSerchedChild.setStyle(
                     " -fx-background-color: " +
@@ -126,9 +125,19 @@ public class VisualisationController extends FXMLDocumentController  implements 
                             "-fx-max-height: 30px; "
             );
         }
-
+        if(previousButton!=null){
+            previousButton.setStyle(
+                    " -fx-background-color: " +
+                            "linear-gradient(#ff0000, #990000 100%)" +
+                            "linear-gradient(#3a3a3a, #020b02); " +
+                            "-fx-background-radius: 5em; " +
+                            "-fx-min-width: 30px; " +
+                            "-fx-min-height: 30px; " +
+                            "-fx-max-width: 30px; " +
+                            "-fx-max-height: 30px; "
+            );
+        }
         Alert a = new Alert(Alert.AlertType.NONE);
-
         if(!DeleteNodeText.getText().equals("")){
             if(Integer.parseInt(DeleteNodeText.getText())>childrenButtonList.size() || Integer.parseInt(DeleteNodeText.getText())<=0) {
                 a.setAlertType(Alert.AlertType.ERROR);
@@ -144,29 +153,7 @@ public class VisualisationController extends FXMLDocumentController  implements 
 
         if(!AddNodeText.getText().equals("")) {
             if(childrenButtonList.size()<11) {
-                Button btnNumber = new Button();
-                previousButton = btnNumber;
-                btnNumber.setText(getTextFromAddBox());
-                btnNumber.setStyle(
-                        " -fx-background-color: " +
-                                "linear-gradient(#ff0000, #990000 100%)" +
-                                "linear-gradient(#3a3a3a, #020b02); " +
-                                "-fx-background-radius: 5em; " +
-                                "-fx-min-width: 30px; " +
-                                "-fx-min-height: 30px; " +
-                                "-fx-max-width: 30px; " +
-                                "-fx-max-height: 30px; "
-                );
-                if (childrenButtonList.size() >= 1) {
-                    Arrow arrow = new Arrow();
-                    MainVBox.getChildren().add(arrow);
-                    arrow.setEndX(previousButton.getLayoutX() + 40);
-                    arrow.setEndY(previousButton.getLayoutY());
-                    childrenArrowList.add(arrow);
-                }
-                childrenButtonList.add(btnNumber);
-                MainVBox.getChildren().add(btnNumber);
-                AddNodeText.setText("");
+                addNewNode();
             }
             else {
                 a.setAlertType(Alert.AlertType.INFORMATION);
@@ -195,29 +182,18 @@ public class VisualisationController extends FXMLDocumentController  implements 
     }
 
     public void restartWindow(ActionEvent actionEvent) {
-        int size1, size2;
-        size1=childrenButtonList.size();
-        size2=
-        for(int i=0;i<childrenButtonList.size();i++){
-            MainVBox.getChildren().remove(childrenButtonList.get(i));
-            childrenButtonList.remove(i);
-        }
-        for(int i=0;i<childrenArrowList.size();i++){
-            MainVBox.getChildren().remove(childrenArrowList.get(i));
-        }
-
+        MainVBox.getChildren().clear();
+        childrenButtonList.clear();
+        childrenArrowList.clear();
     }
 
     private void deleteNode(){
-        MainVBox.getChildren().remove(childrenButtonList.get(Integer.parseInt(DeleteNodeText.getText())-1));
-        childrenButtonList.remove(Integer.parseInt(DeleteNodeText.getText())-1);
-        if(childrenArrowList.size()>1) {
-            MainVBox.getChildren().remove(Integer.parseInt(DeleteNodeText.getText()));
-            childrenArrowList.remove(Integer.parseInt(DeleteNodeText.getText()) - 2);
-        }
-        if(childrenButtonList.size()==1){
-            MainVBox.getChildren().remove(1);
-            childrenArrowList.remove(0);
+        MainVBox.getChildren().remove(childrenButtonList.get(Integer.parseInt(DeleteNodeText.getText()) - 1));
+        MainVBox.getChildren().remove(childrenArrowList.get(Integer.parseInt(DeleteNodeText.getText()) -1));
+        childrenButtonList.remove(Integer.parseInt(DeleteNodeText.getText()) - 1); //ok
+        childrenArrowList.remove(Integer.parseInt(DeleteNodeText.getText()) - 1);
+        if (childrenButtonList.size() >= 1) {
+            childrenArrowList.get(childrenArrowList.size()-1).setVisible(false);
         }
     }
 
@@ -234,7 +210,34 @@ public class VisualisationController extends FXMLDocumentController  implements 
                         "-fx-max-height: 30px; "
         );
         previousSerchedChild = tmp;
+    }
 
+    private void addNewNode(){
+        if (childrenButtonList.size() >= 1) {
+            childrenArrowList.get(childrenArrowList.size()-1).setVisible(true);
+        }
+        Button btnNumber = new Button();
+        previousButton = btnNumber;
+        btnNumber.setText(getTextFromAddBox());
+        btnNumber.setStyle(
+                " -fx-background-color: " +
+                        "linear-gradient(#00ff00, #009900 100%)" +
+                        "linear-gradient(#3a3a3a, #020b02); " +
+                        "-fx-background-radius: 5em; " +
+                        "-fx-min-width: 30px; " +
+                        "-fx-min-height: 30px; " +
+                        "-fx-max-width: 30px; " +
+                        "-fx-max-height: 30px; "
+        );
+        childrenButtonList.add(btnNumber);
+        MainVBox.getChildren().add(btnNumber);
+        Arrow arrow = new Arrow();
+        arrow.setEndX(previousButton.getLayoutX() + 40);
+        arrow.setEndY(previousButton.getLayoutY());
+        arrow.setVisible(false);
+        MainVBox.getChildren().add(arrow);
+        childrenArrowList.add(arrow);
+        AddNodeText.setText("");
     }
 
 }
