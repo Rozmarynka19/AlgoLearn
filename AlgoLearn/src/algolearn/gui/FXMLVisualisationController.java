@@ -477,8 +477,11 @@ public class FXMLVisualisationController implements Initializable {
 	
 	static int left_offset = 30, rigth_offset = 30, down_offset = 60;
 	
+	private int bst_height = 0;
+	
 	static int board_width = 800;
 	static int radius = 20;
+	static int max_height = 4;
 	
 	static double [] def_pos = {board_width/2, 50};
 	private double x = def_pos[0], y = def_pos[1];
@@ -531,10 +534,18 @@ public class FXMLVisualisationController implements Initializable {
 	
 	@FXML private void randomNode(ActionEvent event) {
 		Random rand = new Random();
-		if(rootBST != null)
-			insert(rootBST, rand.nextInt(89) + 10);
-		else
-			insert(rootBST, 50);
+		
+		if(arrayCircles.size() != 0) {
+			restartVisualisation(event);	
+		}
+		insert(rootBST, rand.nextInt(20)+50, false);
+		for(int i = 1; i<10;) {
+			int rnd_value = rand.nextInt(89) + 10;
+			if(insert(rootBST, rnd_value, false)) {
+				i++;
+			}
+		}
+		
 	}
 	
 	private int getCircleID(String value) {
@@ -577,7 +588,7 @@ public class FXMLVisualisationController implements Initializable {
 		String getValue = addField.getText();
 		if(getValue == "") return;
 		int value = Integer.parseInt(getValue);
-		insert(rootBST, value);
+		insert(rootBST, value, true);
 	}
 	
 	@FXML private void deleteValue(ActionEvent event) {
@@ -724,16 +735,19 @@ public class FXMLVisualisationController implements Initializable {
         return temp; 
     }
     
-    BSTNode insert(BSTNode root, int key) { 
+    private boolean insert(BSTNode root, int key, boolean animate) { 
     	BSTNode newnode = newNodeBST(key); 
     	BSTNode x = root; 
     	BSTNode y = null; 
-    	
+    	bst_height = 1;
     	double xx = def_pos[0], yy = def_pos[1];
     	double xx_prev = 0;
     	double xx_add = def_pos[0];
     	ArrayList<double[]> cPath = new ArrayList<double[]>();
         while (x != null) {
+        	if(bst_height >= max_height) {
+        		return false;
+        	}
         	yy += down_offset;
         	xx_prev = xx;
         	xx_add /= 2;
@@ -748,26 +762,32 @@ public class FXMLVisualisationController implements Initializable {
             }
             double [] arr = {xx, yy};
             cPath.add(arr);
+            bst_height++;
         }
        
         if (y == null) {
         	rootBST = newnode;
             draw(xx, yy, String.valueOf(key));
             test();
+            return true;
         }
         else if (key < y.key) {
             y.left = newnode;
             draw(xx, yy, String.valueOf(key));
-            animateThroughPath(cPath);
+            if(animate)
+            	animateThroughPath(cPath);
             drawArrow(xx_prev - radius, ( yy - down_offset + radius/2), xx + 10, yy - radius, true);
+            return true;
         }
         else if (key > y.key) {
             y.right = newnode;
             draw(xx, yy, String.valueOf(key));
-            animateThroughPath(cPath);
+            if(animate)
+            	animateThroughPath(cPath);
             drawArrow(xx_prev + radius, ( yy - down_offset + radius/2 ), xx -10, yy - radius, false);
+            return true;
         }
-        return y; 
+        return false; 
     } 
     
     private ArrayList<double[]> bstFindPath(BSTNode root, int key) {
