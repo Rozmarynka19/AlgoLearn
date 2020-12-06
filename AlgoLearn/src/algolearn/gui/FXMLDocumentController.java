@@ -62,7 +62,11 @@ public class FXMLDocumentController implements Initializable{
     		{false, false, false},
     		{false, false, false},
     		{false, false, false}, 
-    		{false, false, false}, 
+    		{false, false, false},
+            {false, false, false},
+            {false, false, false},
+            {false, false, false},
+            {false, false, false},
     };
     private int algo_id = 0;
     @FXML
@@ -98,15 +102,15 @@ public class FXMLDocumentController implements Initializable{
         if(stage.getWidth() < scene_max[1] && this.resize_locker == false) {
         	resize(stage, scene_max[1], (double)15, 1, 3);
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
-        	//categorySetBackground();
-        	//setProgress(calculateProgress());
+        	categorySetBackground();
+        	setProgress(calculateProgress());
         }
         else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id)  {
         	resize(stage, scene_base[1], (double)-15, 1, 3);
         }else if(clicked_btn.getId() != btn_id) {
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
-        	//categorySetBackground();
-        	//setProgress(calculateProgress());
+        	categorySetBackground();
+        	setProgress(calculateProgress());
         }
         this.btn_id = clicked_btn.getId();
     }

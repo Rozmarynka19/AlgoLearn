@@ -1,6 +1,80 @@
-<html><head>
-  <meta charset="UTF-8">
-</head><body>
+<html><header>
+ <meta charset="UTF-8">
+ <script language="javascript">
+ var textnode;
+ var loc;
+ function renev()
+ {
+   //window.scrollBy(0,20); 
+   var p_list = document.getElementsByTagName("p");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className === "test"){
+            texnode=p.parentNode;
+        }
+    }
+   alert('test');
+
+ }
+  function test1()
+ {
+   //window.scrollBy(0,20); 
+   var p_list = document.getElementsByTagName("p");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className === "test"){
+			texnode=p.parentNode;
+            p.parentNode.removeChild(p);
+        }
+    }
+   alert('test');
+
+ }
+ function test2()
+ {
+   //window.scrollBy(0,20); 
+   var p_list = document.getElementsByTagName("p");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className === "test2"){
+			texnode=p.parentNode;
+            p.parentNode.removeChild(p);
+        }
+    }
+   alert('test');
+
+ }
+ function test3()
+ {
+   //window.scrollBy(0,20); 
+   var p_list = document.getElementsByTagName("p");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className === "test3"){
+			texnode=p.parentNode;
+            p.parentNode.removeChild(p);
+        }
+    }
+   alert('test');
+
+ }
+ function test4()
+ {
+   //window.scrollBy(0,20); 
+   var p_list = document.getElementsByTagName("p");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className === "test4"){
+            p.parentNode.removeChild(p);
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+</header><body>
+<a href='#' onclick="test2();">fire for test</a>
+ 
 <h1 align="center">LISTA Jednokierunkowa<h1>
 
 <h3 align="center">TEORIA</h3>
@@ -11,7 +85,7 @@
   margin-right: auto;
   width: 50%;" src="../textimg/lista1.png"><br>
 
-<p>Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
+<p class="test">Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
 Kwadraty z liczbami to jedno koło ratunkowe. W nim znajduje się topielec który przechowuje dane w danym elemencie.(np. int, tablica, string, char itp.)
 Strzałka pokazuje gdzie jest w pamięci kolejne koło ratunkowe, lina łącząco koła ratunkowe.
 Kwadrat z kropką to miejsce w pamięci gdzie pamiętamy gdzie jest następne koło, miejsce gdzie lina jest doczepiona kolejnego koła ratunkowego.
@@ -26,8 +100,9 @@ Rozpatrzmy dwa przypadki:
 Chcemy żeby nowo powstałe koło ratunkowe było na końcu naszego łańcuszka.
 Nie ma problemu, ostatnie koło ratunkowe łączy się z nim swoją liną.(Wskaźnik pokazuje nowo powstałe koło ratunkowe).
 …->koło3->koło4->koło13
+</p>
 
-<p>Chcemy żeby nowo powstałe koło ratunkowe znalazło się między kołami 3 a 4.
+<p class="test2">Chcemy żeby nowo powstałe koło ratunkowe znalazło się między kołami 3 a 4.
 W takim wypadku koło13 rzuca swoją linę kołu4(ustawia swój wskaźnik na koło4). A koło 3 rzuca swoją linę do koła4 (koło3 ustawia swój wskaźnik na koło 13.)
 ….->koło3->koło13->koło4->…
 Usuwanie elementów z listy jednokierunkowej.
@@ -38,7 +113,7 @@ Jeśli się udało to koło2 odczepia swoją linę doczepioną do koła4 i docze
 Usuwamy koło3 z pamięci jeśli było alokowane na stercie. Jeśli nie to nic nie robimy.</p>
 
 <h3 align="center">Wskazówki</h3>
-<p>Pamiętaj lista jednokierunkowa jest w jednym kierunku, idzie tylko do przodu.
+<p class="test3">Pamiętaj lista jednokierunkowa jest w jednym kierunku, idzie tylko do przodu.
 Jeśli chcesz usunąć jakąś daną o konkretnej danej szukaj jakie dane przechowują „topielcy”. Upewnij się że kasujesz to co chcesz, może jest dwóch takich samych topielców?
 Pamiętaj o zwalnianiu pamięci.
 Często wyświetlaj program, patrz jak działa i czy działa tak jak się spodziewasz.

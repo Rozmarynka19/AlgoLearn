@@ -3,6 +3,7 @@ package algolearn.gui;
 import algolearn.gui.main_window;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,6 +15,9 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -39,6 +43,10 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import org.jsoup.Jsoup;
+import org.w3c.dom.Document;
+
+import javax.lang.model.element.Element;
 
 public class IntroductionController implements Initializable {
 
@@ -96,19 +104,45 @@ public class IntroductionController implements Initializable {
         String btn_val = clicked_btn.getId();
         System.out.println(clicked_btn.getText());
         Path path;
+        final String script;
         if(clicked_btn.getText().equals("Dodawanie Węzła")){
             path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
+            script="test1()";
         }
         else if(clicked_btn.getText().equals("Usuwanie Węzła")){
             path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
+            script="test2()";
         }
         else if(clicked_btn.getText().equals("Wyszukiwanie Węzła")){
             path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
+            script="test3()";
         }
-        else
-            path=Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
-
+        else {
+            path = Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
+            script = "test4()";
+        }
+        System.out.println(script);
         engine = introText.getEngine();
+        engine.setJavaScriptEnabled(true);
         engine.load( "file:///"+path.toAbsolutePath());
+        engine.getLoadWorker().stateProperty().addListener(
+                new ChangeListener() {
+                    @Override
+                    public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                        System.out.println("oldValue: " + oldValue);
+                        System.out.println("newValue: " + newValue);
+
+                        if (newValue != Worker.State.SUCCEEDED) {
+                            return;
+                        }
+                        System.out.println("Succeeded!");
+                        String hello = (String) engine.executeScript(script);
+                        //String hello2 = (String) engine.executeScript("renev()");
+                        System.out.println("hello: " + hello);
+                    }
+                }
+        );
+
+
     }
 }
