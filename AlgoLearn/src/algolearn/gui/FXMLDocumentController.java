@@ -89,6 +89,7 @@ public class FXMLDocumentController implements Initializable{
         Button clicked_btn = (Button)event.getSource();
         String btn_val = clicked_btn.getId();
         realId=Integer.parseInt(clicked_btn.getId());
+        System.out.println(realId);
         this.algo_id = Integer.parseInt(btn_val);
         if(this.btn_id == "NULL") this.btn_id = btn_val;
         if(stage.getWidth() < scene_max[1] && this.resize_locker == false) {
@@ -286,7 +287,33 @@ public class FXMLDocumentController implements Initializable{
 
     	timeline.play();
     }
-    
+
+    /**
+     * @param event Button responsible for creating the visualization window.
+     * @throws Exception : Error that occurred during swap into visualization window.
+     *
+     * Swaping into visualization window from visualisation_fxml.fxml
+     */
+    @FXML
+    public void pressButtonVisualization(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(2)));
+        AnchorPane anchorPane = loader.load();
+        setScreen(anchorPane);
+    }
+
+    /**
+     * @param event Button responsible for creating the introduction window.
+     * @throws Exception : Error that occurred during swap into introduction window.
+     *
+     * Swaping into introduction window from introduction_fxml.fxml
+     */
+    @FXML
+    public void pressButtonIntroduction(ActionEvent event) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(0)));
+        AnchorPane anchorPane = loader.load();
+        setScreen(anchorPane);
+    }
+
     /**
      * @param event Button responsible for creating the description window.
      * @throws Exception : Error that occurred during swap into description window.
@@ -296,35 +323,6 @@ public class FXMLDocumentController implements Initializable{
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(1)));
-    	AnchorPane anchorPane = loader.load();
-    	setScreen(anchorPane);
-    }
-
-    /**
-     * @param event Button responsible for creating the introduction window.
-     * @throws Exception : Error that occurred during swap into introduction window.
-     * 
-     * Swaping into introduction window from introduction_fxml.fxml
-     */
-    @FXML
-    public void pressButtonIntroduction(ActionEvent event) throws Exception {
-        for (List<String> item : fileNames.paths) {
-            System.out.println(item);
-        }
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(0)));
-    	AnchorPane anchorPane = loader.load();
-    	setScreen(anchorPane);
-    }
-    
-    /**
-     * @param event Button responsible for creating the visualization window.
-     * @throws Exception : Error that occurred during swap into visualization window.
-     * 
-     * Swaping into visualization window from visualisation_fxml.fxml
-     */
-    @FXML
-    public void pressButtonVisualization(ActionEvent event) throws Exception {
-      	FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(2)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -434,9 +432,10 @@ class FileNames{
     //1.Nadaj plikom nazwy unikalne dla algorytmu (struktury danych czy co tam to jest)
     //2.dodaj same nazwy plików do poniższych list w wiersz zgodny z oznaczeniem
     //3.Niczym się nie przejmuj
+    //Uwaga, z pewnych powodów nazwy tak długie jak linked_list_description_fxml.fxml powodują błąd więc sugeruję krótsze
     public List<List<String>> paths = addToList(
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // kopiec binarny
-            asList("linked_list_introduction_fxml.fxml","linked_list_description_fxml.fxml","linked_list_visualisation_fxml.fxml"), //lista jednokierunkowa
+            asList("linked_list_introduction.fxml","linked_list_description.fxml","linked_list_visualization.fxml"), //lista jednokierunkowa
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // lista dwukierunkowa
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // sortowanie kubełkowe
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez zliczanie
