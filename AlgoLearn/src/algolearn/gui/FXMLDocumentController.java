@@ -39,7 +39,7 @@ import javafx.util.Duration;
  * JavaFX handler class that controls the buttons in main window and sub-windows.
  * 
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLDocumentController implements Initializable{
     FileNames fileNames = FileNames.getInstance();
 
 	private double [] scene_base = {300, 300}; 
@@ -88,7 +88,7 @@ public class FXMLDocumentController implements Initializable {
         this.stage = stage;
         Button clicked_btn = (Button)event.getSource();
         String btn_val = clicked_btn.getId();
-        realId=Integer.parseInt(clicked_btn.getId()); // get id for menu handling
+        realId=Integer.parseInt(clicked_btn.getId());
         this.algo_id = Integer.parseInt(btn_val);
         if(this.btn_id == "NULL") this.btn_id = btn_val;
         if(stage.getWidth() < scene_max[1] && this.resize_locker == false) {
@@ -295,7 +295,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource((String)fileNames.paths.get(realId).get(1)));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(1)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -308,7 +308,10 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     public void pressButtonIntroduction(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource((String)fileNames.paths.get(realId).get(0)));
+        for (List<String> item : fileNames.paths) {
+            System.out.println(item);
+        }
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(0)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -321,7 +324,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
-      	FXMLLoader loader = new FXMLLoader(getClass().getResource((String)fileNames.paths.get(realId).get(2)));
+      	FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(2)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -413,67 +416,39 @@ public class FXMLDocumentController implements Initializable {
             e.printStackTrace();
         }
     }
-	
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-//		if(introText == null)
-//			System.out.println("no null!!!");
-//		else
-//			engine = introText.getEngine();
-	}
 
 	@FXML
     public void BackToMainStage(ActionEvent event) {
     	loadMenu();
     }
-	
-    public void loadText(ActionEvent actionEvent) throws IOException {
-//      OutputStream out = new BufferedOutputStream(System.out);
-//
-//      File file = new File("lista-jednokierunkowa.docx");
-//      File file2 = new File("lista-jednokierunkowa.html");
-//      FileInputStream fis = new FileInputStream(file.getAbsolutePath());
-//
-//      XWPFDocument document = new XWPFDocument(fis);
-//
-//      List<XWPFParagraph> paragraphs = document.getParagraphs();
 
-      String s="<html><body>";
-//      for (XWPFParagraph para : paragraphs) {
-//          System.out.println(para.getText());
-//          s+=para.getText()+"\n";
-//      }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-      s+="</body></html>";
-      engine = introText.getEngine();
-//      engine.load( "file:///D:/studia/projekt_inzynierski/d/AlgoLearn/AlgoLearn/lista-jednokierunkowa.html");
-      engine.load("file:///D:/semestr5/IPZ1/repo/lista-jednokierunkowa.html");
-
-
-
-
-//
-//      fis.close();
-//      out.flush();
-  }
+    }
 }
 
 class FileNames{
     private static FileNames instance;
+    //instrukcja podpięcia własnych plików:
+    //1.Nadaj plikom nazwy unikalne dla algorytmu (struktury danych czy co tam to jest)
+    //2.dodaj same nazwy plików do poniższych list w wiersz zgodny z oznaczeniem
+    //3.Niczym się nie przejmuj
     public List<List<String>> paths = addToList(
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml")
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // kopiec binarny
+            asList("linked_list_introduction_fxml.fxml","linked_list_description_fxml.fxml","linked_list_visualisation_fxml.fxml"), //lista jednokierunkowa
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // lista dwukierunkowa
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // sortowanie kubełkowe
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez zliczanie
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez kopcowanie
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // fft
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // lista z przeskokami
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // bst
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // tablica haszująca o xd xd mieszająca
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // floyd warshall
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Union Find
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // algorytm grahama
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml") //  red-black tree
     );
 
     private static <String> List<String> asList(String ... items) {
