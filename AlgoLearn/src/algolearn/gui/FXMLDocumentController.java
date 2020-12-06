@@ -4,9 +4,7 @@ import algolearn.gui.main_window;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -42,6 +40,8 @@ import javafx.util.Duration;
  * 
  */
 public class FXMLDocumentController implements Initializable {
+    FileNames fileNames = FileNames.getInstance();
+
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
@@ -73,6 +73,8 @@ public class FXMLDocumentController implements Initializable {
     WebView introText;
     private WebEngine engine;
 
+    private int realId;
+
     /**
      * 
      * @param event : Button handler.
@@ -86,20 +88,21 @@ public class FXMLDocumentController implements Initializable {
         this.stage = stage;
         Button clicked_btn = (Button)event.getSource();
         String btn_val = clicked_btn.getId();
+        realId=Integer.parseInt(clicked_btn.getId()); // get id for menu handling
         this.algo_id = Integer.parseInt(btn_val);
         if(this.btn_id == "NULL") this.btn_id = btn_val;
         if(stage.getWidth() < scene_max[1] && this.resize_locker == false) {
         	resize(stage, scene_max[1], (double)15, 1, 3);
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
-        	categorySetBackground();
-        	setProgress(calculateProgress());
+        	//categorySetBackground();
+        	//setProgress(calculateProgress());
         }
         else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id)  {
         	resize(stage, scene_base[1], (double)-15, 1, 3);
         }else if(clicked_btn.getId() != btn_id) {
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
-        	categorySetBackground();
-        	setProgress(calculateProgress());
+        	//categorySetBackground();
+        	//setProgress(calculateProgress());
         }
         this.btn_id = clicked_btn.getId();
     }
@@ -292,7 +295,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource((String)fileNames.paths.get(realId).get(1)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -305,7 +308,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     public void pressButtonIntroduction(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource((String)fileNames.paths.get(realId).get(0)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -318,7 +321,7 @@ public class FXMLDocumentController implements Initializable {
      */
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
-      	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml2.fxml"));
+      	FXMLLoader loader = new FXMLLoader(getClass().getResource((String)fileNames.paths.get(realId).get(2)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -453,4 +456,45 @@ public class FXMLDocumentController implements Initializable {
 //      fis.close();
 //      out.flush();
   }
+}
+
+class FileNames{
+    private static FileNames instance;
+    public List<List<String>> paths = addToList(
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml2.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"),
+            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml")
+    );
+
+    private static <String> List<String> asList(String ... items) {
+        List<String> list = new ArrayList();
+        for (String item : items) {
+            list.add((String) ("fxml/"+item));
+        }
+        return list;
+    }
+    private static <String> List<String> addToList(String ... items) {
+        List<String> list = new ArrayList();
+        for (String item : items) {
+            list.add(item);
+        }
+        return list;
+    }
+
+    public static FileNames getInstance() {
+        if (instance == null) {
+            instance = new FileNames();
+        }
+        return instance;
+    }
 }
