@@ -84,7 +84,10 @@ public class FXMLDocumentController implements Initializable{
      */
     @FXML /* Expand window */
     private void handleButtonAction(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btn.getScene().getWindow();
+        Button tmp = (Button)event.getSource(); // dwie liniee zamienne
+        Stage stage = (Stage) tmp.getScene().getWindow();
+        //Stage stage = (Stage) btn.getScene().getWindow(); Dla Olafa - wywaliłem to stwierdzając że lepiej będzie się uniezależnić od konkretnego
+                                                            // fx:id gdy z tej funkcji korzysta ok 13-16 przycisków
         this.stage = stage;
         Button clicked_btn = (Button)event.getSource();
         String btn_val = clicked_btn.getId();
