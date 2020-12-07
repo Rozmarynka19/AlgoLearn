@@ -3,20 +3,17 @@ package algolearn.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.sun.javafx.fxml.FXMLLoaderHelper.FXMLLoaderAccessor;
 
+import algolearn.gui.info.errors;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -28,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -41,11 +39,11 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextBoundsType;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -138,6 +136,7 @@ public class FXMLVisualisationController implements Initializable {
     private StackPane parentContainer;
     @FXML
     private ProgressBar progressBar;
+    @FXML private ProgressBar generateBar;
 
     
     /**
@@ -467,6 +466,8 @@ public class FXMLVisualisationController implements Initializable {
     
     // =================================	VISUALISATION	=====================================//
 	@FXML private AnchorPane Visualisation_anchorPane;
+	@FXML private TextArea errorTextArea;
+	@FXML private Button hiddenValues;
 	//private Map<Circle,Text> arrayCircles = new HashMap<Circle,Text>();
 
 	private ArrayList<Circle> arrayCircles = new ArrayList<Circle>();
@@ -474,6 +475,17 @@ public class FXMLVisualisationController implements Initializable {
 	private ArrayList<Line[]> arrayLines = new ArrayList<Line[]>();
 	private Circle hintCricle = null;
 	private String [] selectedObjectData = new String[2];
+	private errors errorMSG = new errors();
+	private boolean pathTransitionDone = true;
+	private boolean generateDone = true;
+	private String selectedCircle = null;
+	private int selectedCircleID = 0;
+	
+	private boolean randomized = false;
+	private String [] randomizedIDs = new String[2];
+	
+	@FXML Button addBTN, deleteBTN, searchBTN, unknownBTN, restartBTN, backBTN;
+	@FXML Slider timeSlider;
 	
 	static int left_offset = 30, rigth_offset = 30, down_offset = 60;
 	
@@ -514,6 +526,19 @@ public class FXMLVisualisationController implements Initializable {
 		arrayTexts = new ArrayList<Text>();
 		arrayLines = new ArrayList<Line[]>();
 		
+		setHiddenValues("?", "?");
+		selectedCircleID = 0;
+		
+		randomizedIDs[0] = null;
+		randomizedIDs[1] = null;
+		
+		if(randomized) {
+        	deleteBTN.setDisable(false);
+        	searchBTN.setDisable(false);
+		}
+		
+		randomized = false;
+		selectedCircle = null;
 		rootBST = null;
 	}
 	
@@ -525,18 +550,32 @@ public class FXMLVisualisationController implements Initializable {
 	}
 	
 	@FXML private void searchValue(ActionEvent event) {
+		if(!pathTransitionDone) {
+			CreateError(errorMSG.pathTNotDone);
+			return;
+		}
+		
 		String getValue = searchField.getText();
-		if(getValue == "") return;
+		
+		searchField.setText("");
+		
+		if(!analizeInput(getValue)) {
+			return;
+		}
 		int value = Integer.parseInt(getValue);
 		ArrayList<double[]> arr = bstFindPath(rootBST, value);
 		animateThroughPath(arr);
 	}
 	
-	@FXML private void randomNode(ActionEvent event) {
+	private void setHiddenValues(String a, String b) {
+		hiddenValues.setText("Ukryte liczby: [ " + a + ", "+b+" ]");
+	}
+	
+	private void randomNode() {
 		Random rand = new Random();
 		
 		if(arrayCircles.size() != 0) {
-			restartVisualisation(event);	
+			restartVisualisation(null);	
 		}
 		insert(rootBST, rand.nextInt(20)+50, false);
 		for(int i = 1; i<10;) {
@@ -545,6 +584,31 @@ public class FXMLVisualisationController implements Initializable {
 				i++;
 			}
 		}
+		
+		int [] ids = new int[2];
+		ids[0] = rand.nextInt(9) + 1;
+		
+		do {
+			ids[1] = rand.nextInt(9) + 1;
+		}while(ids[1] == ids[0]);
+		
+		for(int i = 0; i<2; i++) {
+			updateCirlceToolip(arrayCircles.get(ids[i]), "?");
+			updateTextToolip(arrayTexts.get(ids[i]), "?");
+		}
+		
+		randomized = true;
+		randomizedIDs[0] = arrayTexts.get(ids[0]).getText();
+		randomizedIDs[1] = arrayTexts.get(ids[1]).getText();
+		
+		setHiddenValues(arrayTexts.get(ids[0]).getText(), arrayTexts.get(ids[1]).getText());
+		
+		arrayTexts.get(ids[0]).setText("  ?");
+		arrayTexts.get(ids[1]).setText("  ?");
+		
+
+    	deleteBTN.setDisable(true);
+    	searchBTN.setDisable(true);
 		
 	}
 	
@@ -582,22 +646,75 @@ public class FXMLVisualisationController implements Initializable {
 	}
 	
 	
-	@FXML TextField addField, deleteField, searchField;
+	@FXML TextField addField, deleteField, searchField, unknownField;
 	
 	@FXML private void addValue(ActionEvent event) {
+		if(!pathTransitionDone) {
+			CreateError(errorMSG.pathTNotDone);
+			return;
+		}
 		String getValue = addField.getText();
-		if(getValue == "") return;
+		addField.setText("");
+		if(!analizeInput(getValue)) {
+			return;
+		}
+		
 		int value = Integer.parseInt(getValue);
 		insert(rootBST, value, true);
 	}
 	
 	@FXML private void deleteValue(ActionEvent event) {
+		if(!pathTransitionDone) {
+			CreateError(errorMSG.pathTNotDone);
+			return;
+		}
+		
 		String getValue = deleteField.getText();
-		if(getValue == "") return;
+		deleteField.setText("");
+		if(!analizeInput(getValue)) {
+			return;
+		}
 		int arr_pos = getCircleID(getValue);
 		rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
 		if(arr_pos != -1) {
 			removeCircleByID(arr_pos);
+		}
+	}
+	
+	@FXML private void unknownValue(ActionEvent event) {
+		if(!pathTransitionDone) {
+			CreateError(errorMSG.pathTNotDone);
+			return;
+		}
+		String getValue = unknownField.getText();
+		unknownField.setText("");
+		if(!analizeInput(getValue))
+			return;
+		
+		if(selectedCircle == null) {
+			CreateError(errorMSG.nodeNotSelected);
+			return;
+		}
+		
+		if(arrayTexts.get(selectedCircleID).getText().equalsIgnoreCase("  ?")) {
+			if(arrayTexts.get(selectedCircleID).getId().equalsIgnoreCase(getValue)) {
+				arrayTexts.get(selectedCircleID).setText(getValue);
+				hintCricle.setStroke(Color.GREEN);
+				if(randomizedIDs[0].equalsIgnoreCase(getValue))
+					randomizedIDs[0] = "?";
+				
+				else if(randomizedIDs[1].equalsIgnoreCase(getValue)) 
+					randomizedIDs[1] = "?";
+				
+				if(randomizedIDs[0] == "?" && randomizedIDs[1] == "?") {
+		        	deleteBTN.setDisable(false);
+		        	searchBTN.setDisable(false);
+				}
+
+				updateCirlceToolip(arrayCircles.get(selectedCircleID), getValue);
+				updateTextToolip(arrayTexts.get(selectedCircleID), getValue);
+				setHiddenValues(randomizedIDs[0], randomizedIDs[1]);
+			}
 		}
 	}
 	
@@ -609,20 +726,34 @@ public class FXMLVisualisationController implements Initializable {
 	
 	private void animateThroughPath(ArrayList<double[]> cPath) {
 		if(hintCricle == null) return;
+		if(!pathTransitionDone) return;
+		hintCricle.setStroke(Color.GREEN);
+		pathTransitionDone = false;
 		Path path = createMovePath();
 		for(double[] c : cPath)
 			path.getElements().add(new LineTo(c[0], c[1]));
 		
 		PathTransition pathT = new PathTransition();
-		pathT.setDuration(Duration.millis(600 * cPath.size()));
+		pathT.setDuration(Duration.millis(timeSlider.getValue() * cPath.size()));
 		pathT.setPath(path);
 		pathT.setNode(hintCricle);
 		pathT.setCycleCount(1);
 		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 		pathT.setAutoReverse(false);
+		pathT.setOnFinished(event ->{
+			pathTransitionDone = true;
+			hintCricle.setStroke(Color.RED);
+		});
 		pathT.play();
 	}
-	
+	private int findSelected(String node) {
+		for(int i = 0; i<arrayCircles.size(); i++) {
+			if(arrayCircles.get(i).getId() == node) {
+				return i;
+			}
+		}
+		return 0;
+	}
 	private void draw(double x, double y, String nodeValue) {
 		Circle circle = new Circle(x,y,radius, randomColor());
 		
@@ -634,9 +765,15 @@ public class FXMLVisualisationController implements Initializable {
     	circle.getStyleClass().add("circle");
     	circle.setId(nodeValue);
     	circle.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
+    		if(!pathTransitionDone) {
+    			CreateError(errorMSG.pathTNotDone);
+    			return;
+    		}
     		int id = Integer.parseInt(circle.getId());
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
     		animateThroughPath(arr);
+    		selectedCircle = nodeValue;
+    		selectedCircleID = findSelected(nodeValue);
     		selectedObjectData[0] = circle.getId();
     		selectedObjectData[1] = text.getText();
     	});
@@ -675,7 +812,13 @@ public class FXMLVisualisationController implements Initializable {
     	});
     	
     	text.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
+    		if(!pathTransitionDone) {
+    			CreateError(errorMSG.pathTNotDone);
+    			return;
+    		}
     		int id = Integer.parseInt(text.getId());
+    		selectedCircle = nodeValue;
+    		selectedCircleID = findSelected(nodeValue);
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
     		animateThroughPath(arr);
     		selectedObjectData[0] = text.getId();
@@ -697,11 +840,37 @@ public class FXMLVisualisationController implements Initializable {
     	tt.setShowDelay(Duration.millis(500));
     	Tooltip.install(circle, tt);
     	Tooltip.install(text, tt);
+    	
 		arrayCircles.add(circle);
 		arrayTexts.add(text);
 		
 		Visualisation_anchorPane.getChildren().addAll(circle, text);
 	}
+	
+	private void updateCirlceToolip(Circle circle, String s) {
+		String sTooltip = new String();
+    	if(rootBST != null)
+    		sTooltip = "Węzeł BST \n Klucz: "+s;
+    	
+    	Tooltip tt = new Tooltip();
+    	tt.setText(sTooltip);
+    	tt.setStyle("-fx-font-size: 16px;");
+    	tt.setShowDelay(Duration.millis(500));
+    	Tooltip.install(circle, tt);
+	}
+	
+	private void updateTextToolip(Text text, String s) {
+		String sTooltip = new String();
+    	if(rootBST != null)
+    		sTooltip = "Węzeł BST \n Klucz: "+s;
+    	
+    	Tooltip tt = new Tooltip();
+    	tt.setText(sTooltip);
+    	tt.setStyle("-fx-font-size: 16px;");
+    	tt.setShowDelay(Duration.millis(500));
+    	Tooltip.install(text, tt);
+	}
+	
 	private void drawArrow(double x_start, double y_start, double x_end, double y_end, boolean left) {
 		Line [] line = new Line[3];
 
@@ -720,7 +889,78 @@ public class FXMLVisualisationController implements Initializable {
 		arrayLines.add(line);
 		Visualisation_anchorPane.getChildren().addAll(line);
 	}
+	
+	private boolean isCharNum(char x) {
+		if(x == '0' || x == '1'|| x == '2'|| x == '3'|| x == '4'|| x == '5'|| x == '6'|| x == '7'|| x == '8'|| x == '9')
+			return true;
+		return false;
+	}
+	
+	private boolean analizeInput(String in) {
+		int len = in.length();
+		if( len > 0 && len <= 2) {
+			for(int i = 0; i<len; i++) {
+				if(!isCharNum(in.charAt(i))) {
+					CreateError(errorMSG.OnlyNumeric);
+					return false;
+				}
+			}
+			return true;
+		}
+		CreateError(errorMSG.WrongInput);
+		return false;
+	}
+	
+	
+    public void CreateError(String msg) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/error_fxml.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            FXMLVisualisationController controller = (FXMLVisualisationController)fxmlLoader.getController();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1));  
+            stage.show();
+            controller.errorTextArea.setText(msg);
+            controller.errorTextArea.setStyle("-fx-text-fill: RED;-fx-font-weight:bold;");
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    @FXML public void pressRandomBar() {
+    	if(generateDone == false)
+    		return;
 
+    	generateBar.setProgress(0);
+    	addBTN.setDisable(true);
+    	deleteBTN.setDisable(true);
+    	searchBTN.setDisable(true);
+    	unknownBTN.setDisable(true);
+    	restartBTN.setDisable(true);
+    	backBTN.setDisable(true);
+    	generateDone = false;
+    	Timeline timeline = new Timeline();
+    	KeyValue keyValue = new KeyValue(generateBar.progressProperty(), 1);
+    	KeyFrame keyFrame = new KeyFrame(new Duration(1500), keyValue);
+    	timeline.getKeyFrames().add(keyFrame);
+    	timeline.setOnFinished(event->{
+        	addBTN.setDisable(false);
+        	unknownBTN.setDisable(false);
+        	restartBTN.setDisable(false);
+        	backBTN.setDisable(false);
+    		randomNode();
+        	generateDone = true;
+    	});
+    	timeline.play();
+    }
+	
     // =================================	Binnary search tree =================================//
     class BSTNode extends FXMLVisualisationController{
     	int key;
@@ -756,9 +996,12 @@ public class FXMLVisualisationController implements Initializable {
                 x = x.left;
                 xx -= xx_add;
             }
-            else {
+            else if (key > x.key){
                 x = x.right; 
                 xx += xx_add;
+            }
+            else {
+            	return false;
             }
             double [] arr = {xx, yy};
             cPath.add(arr);
