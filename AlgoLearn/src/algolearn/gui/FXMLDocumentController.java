@@ -1,7 +1,5 @@
 package algolearn.gui;
 
-import algolearn.gui.main_window;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -121,8 +119,7 @@ public class FXMLDocumentController implements Initializable{
      * 
      *  Minimalize application window
      */
-    @FXML
-    private void minimalizeWindow(ActionEvent event) {
+    @FXML private void minimalizeWindow(ActionEvent event) {
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
     }
     

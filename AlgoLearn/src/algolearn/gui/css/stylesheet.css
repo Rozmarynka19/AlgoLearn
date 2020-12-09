@@ -166,6 +166,30 @@
     -fx-background-color: linear-gradient(#00c928 0%, #008019 100%);
     -fx-background-insets: 0; 
 	-fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+}
+
+.generate-bar > .track {
+	-fx-text-box-border: #020b02;
+	-fx-background-color: linear-gradient(#e30505 0%, #7c0404 100%);
+    -fx-background-insets: 0; 
+	-fx-effect: dropshadow(three-pass-box, #020d0d, 10, 0, 0, 0);
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+}
+
+.generate-bar .bar {
+    -fx-background-color: linear-gradient(#00c928 0%, #008019 100%);
+    -fx-background-insets: 0; 
+}
+
+.generate-bar .bar:hover {
+    -fx-background-color: linear-gradient(#00b324 0%, #008019 100%);
+}
+
+.generate-bar .bar:pressed {
+    -fx-background-color: linear-gradient(#00991f 0%, #008019 100%);
 }
 
 .inputFiled{
@@ -232,4 +256,19 @@
 
 .questionmark:pressed {
     -fx-text-fill: white;
+}
+
+.circle, .textBST, .line{
+	-fx-effect: dropshadow(three-pass-box, grey, 7, 0, 0, 0);
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+}
+
+.circle:hover{
+	-fx-opacity: 0.65;
+}
+
+.circle:pressed{
+	-fx-opacity: 0.45;
 }

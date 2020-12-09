@@ -14,7 +14,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
- 
+
+/**
+ * @author Algolearn Team
+ * 
+ *  Main window class to initialization main application window
+ */
 public class main_window extends Application {
 	
 	private int [] scene_base = {300, 515};
