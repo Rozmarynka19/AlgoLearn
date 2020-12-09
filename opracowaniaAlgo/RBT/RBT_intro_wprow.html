@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+    <h1>Drzewo <span class="red">czerwono</span>-czarne</h1>
+    <h4>(ang. <span class="red">red</span>-black tree)</h4>
+    
+    <div class="intro">
+        <h3><u>Wprowadzenie - ogólne zasady</u></h3>
+        <p>
+            Drzewo czerwono-czarne jest samorównoważącym się binarnym drzewem poszukiwań <i>(ang. self-balancing binary
+                search tree)</i>.
+            Zachowuje podstawowe własnosci drzew BST:
+        <ul>
+            <li>klucz lewego dziecka &lt klucz rodzica &lt klucz prawego dziecka</li>
+            <li>klucze w drzewie są posortowane (konsekwencja powyższego)</li>
+            <li>klucze po lewej stronie węzła są mniejsze od tego węzła (konsekwencja pierwszego punktu)</li>
+            <li>klucze po prawej stronie węzła są większe od tego węzła (konsekwencja pierwszego punktu)</li>
+            <li>każde węzeł może mieć 2 poddrzewa</li>
+
+        </ul>
+        </p>
+
+        <i class="red">
+            Uwaga: jeśli nie wiesz, czym są drzewa BST lub nie pamiętasz ich właściwości - wróć proszę do materiału o
+            BST.
+            Ta wiedza jest niezbędna, aby zrozumieć działanie drzew RBT!
+        </i>
+        <br/>
+        <br/>
+
+        <div class="parallel">
+            Jednak na ten typ drzew zostały nałożone dodatkowe obostrzenia:
+            <ul>
+                <li>każdy węzeł może być koloru albo czerwonego, albo czarnego</li>
+                <li>jeśli węzeł jest czerwony, to jego dzieci MUSZĄ być czarne</li>
+                <li>korzeń oraz liście drzewa są czarne</li>
+                <li>każda ścieżka z dowolnego węzła do liścia ma taką samą ilość czarnych węzłów</li>
+            </ul>
+        </div>
+        <img class="imgIntro" src="img/intro/rbt_intro.png" />
+        <i class="red">
+            Uwaga: Nasza wizualizacja drzewa RBT, którą zobaczysz później nie pokazuje liści. Pamiętaj, że domyślnie one
+            tam są!
+        </i>
+        <br/>
+        <br/>
+
+        <p>
+            Jakie operacje możemy wykonać na naszym drzewku? Standardowe operacje, tj.:
+            <ul>
+                <li>Wyszukać węzeł po kluczu</li>
+                <li>Dodać węzeł</li>
+                <li>Usunąć węzeł</li>
+            </ul>
+            Co ważne, dwie ostatnie operacje mogą wymagać rotacji, aby naprawić "drzewko" - czyli zachować wszystkie jego
+            właściwości
+            Jeśli o to zadbamy, drzewko "odwdzięczy się" nam w postaci złożoności obliczeniowej na poziomie O(logN) dla
+            wszystkich operacji.
+            A co z zajętością przestrzeni? Tu nie ma rady - musimy trzymać wszystkie węzły, zatem wynosi ona O(N).
+        </p>
+    </div>
+
+</body>
+
+</html>

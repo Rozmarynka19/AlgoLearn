@@ -12,6 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+
+
  
 public class main_window extends Application {
 	
@@ -20,13 +24,24 @@ public class main_window extends Application {
 	public static double window_x_offset = 0;
 	public static double window_y_offset = 0;
 	
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+//    	System.setProperty("org.graphstream.ui", "javafx");
+//    	Graph graph = new DefaultGraph("Tutorial 1");
+//    	graph.addNode("A" );
+//    	graph.addNode("B" );
+//    	graph.addNode("C" );
+//    	graph.addEdge("AB", "A", "B");
+//    	graph.addEdge("BC", "B", "C");
+//    	graph.addEdge("CA", "C", "A");
+//    	graph.display();
+//    	Thread.sleep(3000);
+//    	graph.removeNode("A");
+
         Application.launch(args);
     }
     
     @Override
     public void start(Stage stage) throws Exception {
-    	
     	FXMLDocumentController fxmlDocumentController= new FXMLDocumentController();
 //    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/main_fxml.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("fxml/main_fxml.fxml"));

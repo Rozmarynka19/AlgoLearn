@@ -263,4 +263,10 @@ public class FXMLDocumentController {
     public void BackToMainStage(ActionEvent event) {
     	loadMenu();
     }
+	
+	@FXML
+	public void generate()
+	{
+		
+	}
 }
