@@ -43,7 +43,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
-import org.jsoup.Jsoup;
+//import org.jsoup.Jsoup;
 import org.w3c.dom.Document;
 
 import javax.lang.model.element.Element;
@@ -105,20 +105,17 @@ public class IntroductionController implements Initializable {
         System.out.println(clicked_btn.getText());
         Path path;
         final String script;
+        path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
         if(clicked_btn.getText().equals("Dodawanie Węzła")){
-            path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
             script="test1()";
         }
         else if(clicked_btn.getText().equals("Usuwanie Węzła")){
-            path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
             script="test2()";
         }
         else if(clicked_btn.getText().equals("Wyszukiwanie Węzła")){
-            path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
             script="test3()";
         }
         else {
-            path = Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
             script = "test4()";
         }
         System.out.println(script);

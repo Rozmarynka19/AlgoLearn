@@ -65,6 +65,7 @@ public class FXMLDocumentController implements Initializable{
             {false, false, false},
             {false, false, false},
             {false, false, false},
+            {false, false, false},
     };
     private int algo_id = 0;
     @FXML
@@ -446,12 +447,12 @@ class FileNames{
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez kopcowanie
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // fft
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // lista z przeskokami
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // bst
+            asList("introduction_fxml.fxml","description_fxml.fxml","bst_visualisation.fxml"), // bst
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // tablica haszująca o xd xd mieszająca
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // floyd warshall
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Union Find
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // algorytm grahama
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml") //  red-black tree
+            asList("introduction_fxml.fxml","description_fxml.fxml","rbt_visualisation.fxml") //  red-black tree
     );
 
     private static <String> List<String> asList(String ... items) {

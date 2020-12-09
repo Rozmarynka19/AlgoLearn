@@ -7,8 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
-	<classpathentry kind="lib" path="D:/semestr5/IPZ1/repo/AlgoLearn/GraphStreamJars/gs-algo-2.0.jar"/>
-	<classpathentry kind="lib" path="D:/semestr5/IPZ1/repo/AlgoLearn/GraphStreamJars/gs-core-2.0.jar"/>
-	<classpathentry kind="lib" path="D:/semestr5/IPZ1/repo/AlgoLearn/GraphStreamJars/gs-ui-javafx-2.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFX"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
