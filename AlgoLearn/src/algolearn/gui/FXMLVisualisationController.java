@@ -24,6 +24,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
@@ -507,6 +508,11 @@ public class FXMLVisualisationController implements Initializable {
 	}
 	
 	@FXML private void restartVisualisation(ActionEvent event) {
+		if(pathTransitionDone == false) {
+			bstTEXT.setText(errorMSG.setupInformation(errorMSG.finishAnimation));
+			return;
+		}
+		
 		for(Circle arr : arrayCircles)
 			Visualisation_anchorPane.getChildren().remove(arr);
 		
@@ -532,19 +538,27 @@ public class FXMLVisualisationController implements Initializable {
 		randomizedIDs[0] = null;
 		randomizedIDs[1] = null;
 		
+		if(pathInit == true) {
+			StepByStepCheckBox.setDisable(false);
+			pPath = new Path();
+			dPath = new ArrayList<double[]>();
+			pathInit = false;
+		}
+		
 		if(randomized) {
         	deleteBTN.setDisable(false);
         	searchBTN.setDisable(false);
+        	randomized = false;
 		}
 		
-		randomized = false;
 		selectedCircle = null;
 		rootBST = null;
+		bstTEXT.setText(errorMSG.setupInformation(""));
 	}
 	
 	private void test() {
 		hintCricle = new Circle(def_pos[0],def_pos[1],radius+5, new Color(0, 0, 0, 0));
-		hintCricle.setStroke(Color.GREEN);
+		hintCricle.setStroke(Color.RED);
 		hintCricle.setStrokeWidth(3.0);
 		Visualisation_anchorPane.getChildren().add(hintCricle);
 	}
@@ -564,7 +578,7 @@ public class FXMLVisualisationController implements Initializable {
 		}
 		int value = Integer.parseInt(getValue);
 		ArrayList<double[]> arr = bstFindPath(rootBST, value);
-		animateThroughPath(arr);
+		initializePath(arr);
 	}
 	
 	private void setHiddenValues(String a, String b) {
@@ -606,7 +620,7 @@ public class FXMLVisualisationController implements Initializable {
 		arrayTexts.get(ids[0]).setText("  ?");
 		arrayTexts.get(ids[1]).setText("  ?");
 		
-
+		bstTEXT.setText(errorMSG.setupInformation(errorMSG.generateTree));
     	deleteBTN.setDisable(true);
     	searchBTN.setDisable(true);
 		
@@ -661,6 +675,7 @@ public class FXMLVisualisationController implements Initializable {
 		
 		int value = Integer.parseInt(getValue);
 		insert(rootBST, value, true);
+		bstTEXT.setText(errorMSG.setupOperationInfo(errorMSG.addNode, getValue));
 	}
 	
 	@FXML private void deleteValue(ActionEvent event) {
@@ -718,34 +733,6 @@ public class FXMLVisualisationController implements Initializable {
 		}
 	}
 	
-	private Path createMovePath() {
-		Path path = new Path();
-		path.getElements().add(new MoveTo(def_pos[0], def_pos[1]));
-		return path;
-	}
-	
-	private void animateThroughPath(ArrayList<double[]> cPath) {
-		if(hintCricle == null) return;
-		if(!pathTransitionDone) return;
-		hintCricle.setStroke(Color.GREEN);
-		pathTransitionDone = false;
-		Path path = createMovePath();
-		for(double[] c : cPath)
-			path.getElements().add(new LineTo(c[0], c[1]));
-		
-		PathTransition pathT = new PathTransition();
-		pathT.setDuration(Duration.millis(timeSlider.getValue() * cPath.size()));
-		pathT.setPath(path);
-		pathT.setNode(hintCricle);
-		pathT.setCycleCount(1);
-		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-		pathT.setAutoReverse(false);
-		pathT.setOnFinished(event ->{
-			pathTransitionDone = true;
-			hintCricle.setStroke(Color.RED);
-		});
-		pathT.play();
-	}
 	private int findSelected(String node) {
 		for(int i = 0; i<arrayCircles.size(); i++) {
 			if(arrayCircles.get(i).getId() == node) {
@@ -766,12 +753,12 @@ public class FXMLVisualisationController implements Initializable {
     	circle.setId(nodeValue);
     	circle.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
     		if(!pathTransitionDone) {
-    			CreateError(errorMSG.pathTNotDone);
+    			bstTEXT.setText(errorMSG.setupInformation(errorMSG.finishAnimation));
     			return;
     		}
     		int id = Integer.parseInt(circle.getId());
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
-    		animateThroughPath(arr);
+    		initializePath(arr);
     		selectedCircle = nodeValue;
     		selectedCircleID = findSelected(nodeValue);
     		selectedObjectData[0] = circle.getId();
@@ -813,14 +800,14 @@ public class FXMLVisualisationController implements Initializable {
     	
     	text.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
     		if(!pathTransitionDone) {
-    			CreateError(errorMSG.pathTNotDone);
+    			bstTEXT.setText(errorMSG.setupInformation(errorMSG.finishAnimation));
     			return;
     		}
     		int id = Integer.parseInt(text.getId());
     		selectedCircle = nodeValue;
     		selectedCircleID = findSelected(nodeValue);
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
-    		animateThroughPath(arr);
+    		initializePath(arr);
     		selectedObjectData[0] = text.getId();
     		selectedObjectData[1] = text.getText();
     	});
@@ -961,6 +948,105 @@ public class FXMLVisualisationController implements Initializable {
     	timeline.play();
     }
 	
+    @FXML private Text bstTEXT;
+    @FXML private CheckBox StepByStepCheckBox;
+    private boolean pathInit = false;
+    private Path pPath = new Path();
+    private ArrayList<double[]> dPath = new ArrayList<double[]>();
+    
+    
+	private void multipleAnimations(Path path) {
+		if(hintCricle == null) return;
+		hintCricle.setStroke(Color.GREEN);
+		pathTransitionDone = false;
+		PathTransition pathT = new PathTransition();
+		pathT.setDuration(Duration.millis(timeSlider.getValue() * dPath.size()));
+		pathT.setPath(path);
+		pathT.setNode(hintCricle);
+		pathT.setCycleCount(1);
+		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathT.setAutoReverse(false);
+		pathT.setOnFinished(event ->{
+			hintCricle.setStroke(Color.RED);
+			StepByStepCheckBox.setDisable(false);
+			pPath = new Path();
+			dPath = new ArrayList<double[]>();
+			pathInit = false;
+			pathTransitionDone = true;
+		});
+		pathT.play();
+	}
+	private void singleAnimations(Path path) {
+		if(hintCricle == null) return;
+		hintCricle.setStroke(Color.GREEN);
+		pathTransitionDone = false;
+		PathTransition pathT = new PathTransition();
+		pathT.setDuration(Duration.millis(timeSlider.getValue() * 2));
+		pathT.setPath(path);
+		pathT.setNode(hintCricle);
+		pathT.setCycleCount(1);
+		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathT.setAutoReverse(false);
+		pathT.setOnFinished(event ->{
+			hintCricle.setStroke(Color.RED);
+			if(dPath.size() <= 1) {
+				pPath = new Path();
+				dPath = new ArrayList<double[]>();
+				pathInit = false;
+			}
+			StepByStepCheckBox.setDisable(false);
+			pathTransitionDone = true;
+		});
+		pathT.play();
+	}
+    
+    private void initializePath(ArrayList<double[]> path) {
+    	if(path.size() < 2) return;
+    	if(pathInit == false) {
+	    	if(dPath.size() == 0) {
+	    		pPath.getElements().add(new MoveTo(def_pos[0], def_pos[1]));
+	    		for(double[] c : path) {
+	    			pPath.getElements().add(new LineTo(c[0], c[1]));
+	    			dPath.add(c);
+	    		}
+	    		pathInit = true;
+	    	}
+    	}
+    	StepByStepCheckBox.setDisable(true);
+    	handleAnimation(!StepByStepCheckBox.isSelected());
+    }
+    
+    private void handleAnimation(boolean state) {
+    	if(dPath.size() == 0) return;
+    	if(pathTransitionDone == false) return;
+    	if(pathInit == false) return;
+    	
+    	if(state) {
+    		Path path = new Path();
+    		path.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
+    		for(int i = 1; i<dPath.size(); i++) {
+    			path.getElements().add(new LineTo(dPath.get(i)[0], dPath.get(i)[1]));
+    		}
+    		multipleAnimations(path);
+    	}else {
+    		//if(dPath.size() > 1) {
+	    		Path stepPath = new Path();
+	    		stepPath.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
+	    		stepPath.getElements().add(new LineTo(dPath.get(1)[0], dPath.get(1)[1]));
+	    		dPath.remove(0);
+	    		singleAnimations(stepPath);
+    		//}
+    	}
+    	
+    }
+    
+    @FXML private void next(ActionEvent event) {
+    	handleAnimation(!StepByStepCheckBox.isSelected());
+    }
+    
+    @FXML private void skip(ActionEvent event) {
+    	handleAnimation(StepByStepCheckBox.isSelected());
+    }
     // =================================	Binnary search tree =================================//
     class BSTNode extends FXMLVisualisationController{
     	int key;
@@ -984,6 +1070,8 @@ public class FXMLVisualisationController implements Initializable {
     	double xx_prev = 0;
     	double xx_add = def_pos[0];
     	ArrayList<double[]> cPath = new ArrayList<double[]>();
+    	double [] arr_base = {xx, yy};
+    	cPath.add(arr_base);
         while (x != null) {
         	if(bst_height >= max_height) {
         		return false;
@@ -1017,17 +1105,17 @@ public class FXMLVisualisationController implements Initializable {
         else if (key < y.key) {
             y.left = newnode;
             draw(xx, yy, String.valueOf(key));
-            if(animate)
-            	animateThroughPath(cPath);
             drawArrow(xx_prev - radius, ( yy - down_offset + radius/2), xx + 10, yy - radius, true);
+            if(animate)
+            	initializePath(cPath);
             return true;
         }
         else if (key > y.key) {
             y.right = newnode;
             draw(xx, yy, String.valueOf(key));
-            if(animate)
-            	animateThroughPath(cPath);
             drawArrow(xx_prev + radius, ( yy - down_offset + radius/2 ), xx -10, yy - radius, false);
+            if(animate)
+            	initializePath(cPath);
             return true;
         }
         return false; 
@@ -1038,11 +1126,14 @@ public class FXMLVisualisationController implements Initializable {
     	double xx = def_pos[0], yy = def_pos[1];
     	double xx_add = def_pos[0];
     	BSTNode x = root;
+    	double [] arr_base = {xx, yy};
     	
     	if( root.key == key) {
-    		double [] arr = {def_pos[0]+1, def_pos[1]};
-    		path.add(arr);
+    		Visualisation_anchorPane.getChildren().remove(hintCricle);
+    		test();
     		return path;
+    	}else {
+    		path.add(arr_base);
     	}
     	
     	while(x != null) {

@@ -23,4 +23,18 @@ public class errors {
 			   + "Podczas odgadywania wartości usuwanie oraz wyszukiwanie wartości jest zablokowane!"
 			   + "\n\n"
 			   + "Pamiętaj, że możesz dodać nowy węzeł jako pomoc do odgadnięcia wartości!";
+	
+	public String infoDef = "Informacja: ";
+	public String finishAnimation = "Dokończ przejście animacji aby kontynuować dalej!";
+	
+	public String addNode = "Dodano węzeł do drzewa";
+	public String searchNode = "Wyszukano węzeł o danej wartości";
+	public String generateTree = "Wygenerowano losowe drzewo";
+	
+	public String setupInformation(String info) {
+		return (infoDef+info);
+	}
+	public String setupOperationInfo(String info, String value) {
+		return (infoDef+info+" [ "+value+" ]");
+	}
 }
