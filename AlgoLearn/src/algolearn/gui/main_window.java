@@ -20,12 +20,14 @@ import javafx.stage.StageStyle;
  * 
  *  Main window class to initialization main application window
  */
+
 public class main_window extends Application {
 	
 	private int [] scene_base = {300, 515};
 	public static double window_x_offset = 0;
 	public static double window_y_offset = 0;
     public static void main(String[] args) {
+
         Application.launch(args);
     }
     

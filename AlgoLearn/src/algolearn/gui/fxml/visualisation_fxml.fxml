@@ -21,19 +21,19 @@
                             </children>
                         </Pane>
                         <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Dodaj węzeł" />
-                  <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                  <TextField fx:id="insertTextField" onKeyPressed="#insert" prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
                         <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Usuń węzeł" />
-                  <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                  <TextField fx:id="deleteTextField" onKeyPressed="#delete" prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
                         <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Wyszukaj węzeł" />
-                  <TextField prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                  <TextField fx:id="searchTextField" onKeyPressed="#search" prefHeight="45.0" prefWidth="269.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -86,8 +86,7 @@
                                 <Insets left="25.0" />
                             </VBox.margin>
                             <children>
-                                <VBox id="TEE" fx:id="MainVBox" prefHeight="343.0" prefWidth="780.0">
-                           </VBox>
+
                             </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">

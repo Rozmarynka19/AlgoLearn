@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body id="up">
+    <h1>Drzewo <span class="red">czerwono</span>-czarne</h1>
+    <h4>(ang. <span class="red">red</span>-black tree)</h4>
+
+    <div class="intro">
+        <h3><u>Rotacje</u></h3>
+        <p>
+            Rotacje są ważnym elementem drzew czerwono-czarnych. Polegają one na zmianie struktury drzewka poprzez
+            zmianę poddrzew.
+            Głównym celem rotacji jest zmniejszenie wysokości drzewa, balansujemy wysokością poddrzew - te wyższe
+            zmniejszamy, niższe wydłużamy.
+            
+            Co ważne - rotacje nie zmieniają w żaden sposób kolejności elementów (relacja pomiędzy węzłami/sortowanie jest
+            zachowane).
+            <br/>
+            <br/>
+            Spis treści (kliknij, by nie scrollować ;]):
+            <ul>
+                <li><a href="#Lrotation">Rotacja w lewo</a></li>
+                <li><a href="#Rrotation">Rotacja w prawo</a></li>
+                <li><a href="#resume">Podsumowanie</a></li>
+            </ul>
+            <br/>
+        </p>
+
+
+        <section id="Lrotation">
+            <p>
+                <h4>Rotacja w lewo</h4>
+                Załóżmy, że mamy poniższą sytuację
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationL1.png" />
+                <br/>
+                Specjalnie użyliśmy tutaj innego kolorwania (oczywiście, niezgodnego z konwencją RBT), aby same czynności,
+                które wykonujemy w ramach rotacji były czytelniejsze.
+                <br/>
+                Chcemy dokonać rotacji w lewo na węźle o kluczu "30". Węzeł ten zejdzie do swojego byłego lewego podrzewa.
+                Dodatkowo "pociągnie" ze sobą swoje prawo podrzewo (które pójdzie do góry - zgodnie z linią drzewa),
+                zatem teraz węzeł o kluczu "30" będzie lewym dzieckiem węzła o kluczu "40".
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationL2.png" />
+                <br/>
+                No dobrze, ale co się stanie z pozostałymi węzłami?
+                <br/>
+                Zacznijmy od węzła o kluczu "35". Przed operacją rotacji w lewo ten węzeł był lewym dzieckiem węzła o kluczu
+                "40".
+                Czy nadal może nim być? Nie, ponieważ ma już swoje lewe dziecko - węzeł o kluczu "30".
+                <br/>
+                Czy może być zatem prawym dzieckiem węzła o kluczu "40"? Nie, ponieważ zaburzylibyśmy regułę drzewa BST.
+                <br/>
+                <i class="red">
+                    Pamiętasz tę regułę? klucz lewego dziecka &lt klucz rodzica &lt klucz prawego dziecka
+                </i>
+                <br/>
+                To co powinniśmy zrobić? Odpowiedź jest dosyć prosta - dołączmy węzeł o kluczu "35" jako prawe dziecko węzła
+                o kluczu "30".
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationL3.png" />
+                <br/>
+                Co z pozostałymi węzłami? Dołączamy je bez zmian.
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationL4.png" />
+                <br/>
+                Sprawdź, czy zostały zachowane właściwości BST (tak, BST - do drzewa czerwono-czarnego wrócimy w operacjach
+                na tym drzewku).
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationL.gif" />
+            </p>
+        </section>
+
+
+
+
+        <section id="Rrotation">
+            <p>
+                <h4>Rotacja w prawo</h4>
+                <br/>
+                Rotacja w prawo jest symetrycznym odpowiednikiem rotacji w lewo. Skorzystamy z powyższego przykładu po
+                rotacji w prawo -
+                czyli po operacji rotacji w prawo wrócimy do punktu wyjściowego.
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationR1.png" />
+                <br/>
+                Chcemy dokonać rotacji w lewo na węźle o kluczu "40". Węzeł ten zejdzie do swojego byłego prawego podrzewa.
+                Dodatkowo "pociągnie" ze sobą swoje lewe podrzewo (które pójdzie do góry - zgodnie z linią drzewa),
+                zatem teraz węzeł o kluczu "40" będzie prawym dzieckiem węzła o kluczu "30".
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationR2.png" />
+                <br/>
+                Jak już się pewnie domyślasz, węzeł o kluczu "35" będzie lewym dzieckiem węzła o kluczu "40".
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationR3.png" />
+                <br/>
+                A resztę węzłów podpinamy bez zmian.
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationR4.png" />
+                <br/>
+                Tak samo - sprawdź, czy zostały zachowane właściwości BST.
+                <br/>
+                <img class="imgRotations" src="img/rotations/rotationR.gif" />
+            </p>
+        </section>
+
+        <section id="resume">
+            <p>
+                <h4>Podsumowanie</h4>
+                Widzisz podobieństwa? Jakieś analogie? Podpowiemy Ci:
+                <ul>
+                    <li>Kiedy rotujesz węzeł w lewo, jego lewego wnuka podpinasz z prawej strony</li>
+                    <li>Kiedy rotujesz węzeł w prawo, jego prawego wnuka podpinasz z lewej strony</li>
+                </ul>
+                W obu przykładach wnukiem był węzeł o kluczu "35".
+                <br/>
+                Boli Cię głowa od tych rotacji? Zrób sobie kawę, kilka przysiadów, weź 10 głębokich wdechów i lećmy dalej! Insertions - we're coming!
+            </p>
+        </section>
+
+        <a href="#up">Powrót do góry</a>
+    </div>
+
+</body>
+
+</html>
