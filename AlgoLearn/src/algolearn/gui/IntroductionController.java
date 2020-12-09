@@ -136,8 +136,9 @@ public class IntroductionController implements Initializable {
                             return;
                         }
                         System.out.println("Succeeded!");
+                        String hello2 = (String) engine.executeScript("renev()");
                         String hello = (String) engine.executeScript(script);
-                        //String hello2 = (String) engine.executeScript("renev()");
+
                         System.out.println("hello: " + hello);
                     }
                 }

@@ -6,11 +6,11 @@
  function renev()
  {
    //window.scrollBy(0,20); 
-   var p_list = document.getElementsByTagName("p");
+   var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
-        if(p.className === "test"){
-            texnode=p.parentNode;
+        if(p.className == "test1" || p.className == "test2" || p.className == "test3" || p.className == "test4"){
+			p.hidden = true;
         }
     }
    alert('test');
@@ -19,12 +19,11 @@
   function test1()
  {
    //window.scrollBy(0,20); 
-   var p_list = document.getElementsByTagName("p");
+   var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
-        if(p.className === "test"){
-			texnode=p.parentNode;
-            p.parentNode.removeChild(p);
+        if(p.className == "test1"){
+			p.hidden = false;
         }
     }
    alert('test');
@@ -33,12 +32,11 @@
  function test2()
  {
    //window.scrollBy(0,20); 
-   var p_list = document.getElementsByTagName("p");
+   var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
-        if(p.className === "test2"){
-			texnode=p.parentNode;
-            p.parentNode.removeChild(p);
+        if(p.className == "test2"){
+			p.hidden = false;
         }
     }
    alert('test');
@@ -47,12 +45,11 @@
  function test3()
  {
    //window.scrollBy(0,20); 
-   var p_list = document.getElementsByTagName("p");
+   var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
-        if(p.className === "test3"){
-			texnode=p.parentNode;
-            p.parentNode.removeChild(p);
+        if(p.className == "test3"){
+			p.hidden = false;
         }
     }
    alert('test');
@@ -64,28 +61,27 @@
    var p_list = document.getElementsByTagName("p");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
-        if(p.className === "test4"){
-            p.parentNode.removeChild(p);
-        }
+		if(p.className == "test4"){
+        p.hidden = false;
+		}
     }
    alert('test');
 
  }
  </script>
 </header><body>
-<a href='#' onclick="test2();">fire for test</a>
  
 <h1 align="center">LISTA Jednokierunkowa<h1>
 
 <h3 align="center">TEORIA</h3>
-<p>Lista jednokierunkowa to struktura danych. Jej przedstawienie graficznie wygląda tak:</p>
+Lista jednokierunkowa to struktura danych. Jej przedstawienie graficznie wygląda tak:
 
 <img style="display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;" src="../textimg/lista1.png"><br>
 
-<p class="test">Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
+<div class="test1">Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
 Kwadraty z liczbami to jedno koło ratunkowe. W nim znajduje się topielec który przechowuje dane w danym elemencie.(np. int, tablica, string, char itp.)
 Strzałka pokazuje gdzie jest w pamięci kolejne koło ratunkowe, lina łącząco koła ratunkowe.
 Kwadrat z kropką to miejsce w pamięci gdzie pamiętamy gdzie jest następne koło, miejsce gdzie lina jest doczepiona kolejnego koła ratunkowego.
@@ -100,9 +96,9 @@ Rozpatrzmy dwa przypadki:
 Chcemy żeby nowo powstałe koło ratunkowe było na końcu naszego łańcuszka.
 Nie ma problemu, ostatnie koło ratunkowe łączy się z nim swoją liną.(Wskaźnik pokazuje nowo powstałe koło ratunkowe).
 …->koło3->koło4->koło13
-</p>
+</div>
 
-<p class="test2">Chcemy żeby nowo powstałe koło ratunkowe znalazło się między kołami 3 a 4.
+<div class="test2">Chcemy żeby nowo powstałe koło ratunkowe znalazło się między kołami 3 a 4.
 W takim wypadku koło13 rzuca swoją linę kołu4(ustawia swój wskaźnik na koło4). A koło 3 rzuca swoją linę do koła4 (koło3 ustawia swój wskaźnik na koło 13.)
 ….->koło3->koło13->koło4->…
 Usuwanie elementów z listy jednokierunkowej.
@@ -110,18 +106,19 @@ Wybieramy które koło ratunkowe chcemy usunąć np. 4 koło.(nie w nazwie, chod
 koło0->koło1->koło2->koło3->koło4->koło5->…..
 Szukamy koła ratunkowego które chcemy usunąć z łańcuszka (iterujemy po całym łańcuszku). 
 Jeśli się udało to koło2 odczepia swoją linę doczepioną do koła4 i doczepia ją do koła5 (wskaźnik w kole2 trzeba nadpisać wskaźnikiem do koła5)
-Usuwamy koło3 z pamięci jeśli było alokowane na stercie. Jeśli nie to nic nie robimy.</p>
-
+Usuwamy koło3 z pamięci jeśli było alokowane na stercie. Jeśli nie to nic nie robimy.
+</div>
+<div class="test3">
 <h3 align="center">Wskazówki</h3>
-<p class="test3">Pamiętaj lista jednokierunkowa jest w jednym kierunku, idzie tylko do przodu.
+Pamiętaj lista jednokierunkowa jest w jednym kierunku, idzie tylko do przodu.
 Jeśli chcesz usunąć jakąś daną o konkretnej danej szukaj jakie dane przechowują „topielcy”. Upewnij się że kasujesz to co chcesz, może jest dwóch takich samych topielców?
 Pamiętaj o zwalnianiu pamięci.
 Często wyświetlaj program, patrz jak działa i czy działa tak jak się spodziewasz.
 Nazywaj zmienne żebyś wiedział co reprezentują, nazwy typu k, cos, a1 mało mówią i łatwo się pogubić.
 …
-</p>
+</div>
 
-
+<div class="test4">
 <h3 align="center">Cechy:</h3>
 - nie możemy odnieść się do konkretnych elementów jak w tablicy, trzeba przejść przez całą listę.
 - tworząc listę nie musimy wiedzieć ile będzie mieć elementów
@@ -132,7 +129,7 @@ wizualizacja można zrobić coś takiego :<br>
   margin-left: auto;
   margin-right: auto;
   width: 50%;" src="../textimg/lista2.png"><br>
-
+</div><br>
 <a href="https://binarnie.pl/lista-jednokierunkowa/" target="_blank">binarnie.pl - lista jednokierunkowa</a><br>
 <a href="https://en.wikipedia.org/wiki/Linked_list#Singly_linked_list" align="center" target="_blank">wikipedia.org</a>
 </html></body>
