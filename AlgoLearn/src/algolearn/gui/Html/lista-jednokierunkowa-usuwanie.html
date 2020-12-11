@@ -1,0 +1,22 @@
+﻿<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h3 align="center">Usuwanie węzła</h3>
+    <span style="font-size: 18px">
+			<br>Tworzymy dwa wskaźniki, jeden przypisujemy do adresu pierwszego węzła.
+			<br>W przypadku zaimplenetowanej listy w wizualizacji, szukamy węzła posiadający dany klucz. Po znalezieniu go zachowujemy jego adres.
+			<br>To jest nasz drugi wskaźnik.
+			<br>Następnie elementowi poprzedzającemu element usuwany przekazujemy wskaznik na kolejny. Przykładowo:
+			<br>...-> wezel1 -> wezel2 -> wezel3 -> ...
+			<br>okazuje się że wezel2 posiada klucz po którym identyfikujemy że jest to węzeł który chcieliśmy usunąć.
+			<br>Powyższa operacja usuwania węzła musi doprowadzic do takiego stanu.
+			<br>...->wezel1->wezel3->...
+			<br>Jest również przypadek kiedy usuwany jest pierwszy element. Wtedy trzeba zapewnić żeby dotychczasowy drugi element stał się pierwszym.
+			<br>wezel2->wezel3->wezel4->.....  
+			<br>usuwamy wezel2
+			<br>wezel3->wezel4->....
+    </span>
+</body>
+</html>
