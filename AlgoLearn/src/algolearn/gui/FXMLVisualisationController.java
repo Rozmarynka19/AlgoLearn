@@ -659,7 +659,6 @@ public class FXMLVisualisationController implements Initializable {
 		}
 	}
 	
-	
 	@FXML TextField addField, deleteField, searchField, unknownField;
 	
 	@FXML private void addValue(ActionEvent event) {
@@ -954,7 +953,24 @@ public class FXMLVisualisationController implements Initializable {
     private Path pPath = new Path();
     private ArrayList<double[]> dPath = new ArrayList<double[]>();
     
+    private int value = 0;
+    private double [] node_cords = new double[2];
+    private double [] arrow_cords = new double[4];
     
+    private void handleFinishOperation(int opt) {
+    	switch(opt) {
+    		case 0: return;
+	    	case 1: // add root
+	    		
+	    		break;
+	    	case 2: // add node
+	    		
+	    		break;
+	    	case 3: // add error - value already exists
+	    		
+	    		break;
+    	}
+    }
 	private void multipleAnimations(Path path) {
 		if(hintCricle == null) return;
 		hintCricle.setStroke(Color.GREEN);
@@ -1029,13 +1045,13 @@ public class FXMLVisualisationController implements Initializable {
     		}
     		multipleAnimations(path);
     	}else {
-    		//if(dPath.size() > 1) {
+    		if(dPath.size() > 1) {
 	    		Path stepPath = new Path();
 	    		stepPath.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
 	    		stepPath.getElements().add(new LineTo(dPath.get(1)[0], dPath.get(1)[1]));
 	    		dPath.remove(0);
 	    		singleAnimations(stepPath);
-    		//}
+    		}
     	}
     	
     }
