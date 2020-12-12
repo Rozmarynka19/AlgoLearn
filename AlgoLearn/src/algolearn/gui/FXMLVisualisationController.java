@@ -556,7 +556,7 @@ public class FXMLVisualisationController implements Initializable {
 		bstTEXT.setText(errorMSG.setupInformation(""));
 	}
 	
-	private void test() {
+	private void drawHintCircle() {
 		hintCricle = new Circle(def_pos[0],def_pos[1],radius+5, new Color(0, 0, 0, 0));
 		hintCricle.setStroke(Color.RED);
 		hintCricle.setStrokeWidth(3.0);
@@ -570,7 +570,10 @@ public class FXMLVisualisationController implements Initializable {
 		}
 		
 		String getValue = searchField.getText();
-		
+		if(getValue.equals(randomizedIDs[0]) || getValue.equals(randomizedIDs[1])) {
+			handleFinishOperation(14);
+			return;
+		}
 		searchField.setText("");
 		
 		if(!analizeInput(getValue)) {
@@ -578,7 +581,6 @@ public class FXMLVisualisationController implements Initializable {
 		}
 		int value = Integer.parseInt(getValue);
 		ArrayList<double[]> arr = bstFindPath(rootBST, value);
-		initializePath(arr, 0);
 	}
 	
 	private void setHiddenValues(String a, String b) {
@@ -622,7 +624,6 @@ public class FXMLVisualisationController implements Initializable {
 		
 		bstTEXT.setText(errorMSG.setupInformation(errorMSG.generateTree));
     	deleteBTN.setDisable(true);
-    	searchBTN.setDisable(true);
 		
 	}
 	
@@ -655,7 +656,7 @@ public class FXMLVisualisationController implements Initializable {
 			Visualisation_anchorPane.getChildren().remove(hintCricle);
 			hintCricle = null;
 			if(arrayTexts.size() > 0)
-				test();
+				drawHintCircle();
 		}
 	}
 	
@@ -721,7 +722,6 @@ public class FXMLVisualisationController implements Initializable {
 				
 				if(randomizedIDs[0] == "?" && randomizedIDs[1] == "?") {
 		        	deleteBTN.setDisable(false);
-		        	searchBTN.setDisable(false);
 				}
 
 				updateCirlceToolip(arrayCircles.get(selectedCircleID), getValue);
@@ -756,7 +756,6 @@ public class FXMLVisualisationController implements Initializable {
     		}
     		int id = Integer.parseInt(circle.getId());
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
-    		initializePath(arr, 0);
     		selectedCircle = nodeValue;
     		selectedCircleID = findSelected(nodeValue);
     		selectedObjectData[0] = circle.getId();
@@ -805,7 +804,6 @@ public class FXMLVisualisationController implements Initializable {
     		selectedCircle = nodeValue;
     		selectedCircleID = findSelected(nodeValue);
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
-    		initializePath(arr, 0);
     		selectedObjectData[0] = text.getId();
     		selectedObjectData[1] = text.getText();
     	});
@@ -926,10 +924,10 @@ public class FXMLVisualisationController implements Initializable {
     	generateBar.setProgress(0);
     	addBTN.setDisable(true);
     	deleteBTN.setDisable(true);
-    	searchBTN.setDisable(true);
     	unknownBTN.setDisable(true);
     	restartBTN.setDisable(true);
     	backBTN.setDisable(true);
+    	searchBTN.setDisable(true);
     	generateDone = false;
     	Timeline timeline = new Timeline();
     	KeyValue keyValue = new KeyValue(generateBar.progressProperty(), 1);
@@ -940,6 +938,7 @@ public class FXMLVisualisationController implements Initializable {
         	unknownBTN.setDisable(false);
         	restartBTN.setDisable(false);
         	backBTN.setDisable(false);
+        	searchBTN.setDisable(false);
     		randomNode();
         	generateDone = true;
     	});
@@ -961,15 +960,42 @@ public class FXMLVisualisationController implements Initializable {
     	switch(opt) {
     		case 0: return;
 	    	case 1: // add root
-	            test();
+	            drawHintCircle();
 	    		draw(node_cords[0], node_cords[1], String.valueOf(node_value));
 	    		break;
 	    	case 2: // add node
 	    		draw(node_cords[0], node_cords[1], String.valueOf(node_value));
 	    		drawArrow(arrow_cords[0], arrow_cords[1], arrow_cords[2], arrow_cords[3], arrow_type);
+	    		
 	    		break;
 	    	case 3: // add error - value already exists
+	    		msg(errorMSG.nodeAlredyExists);
+	    		break;
+	    	case 4: // add error - height max
+	    		msg(errorMSG.maxHeightBST);
+	    		break;
+	    	case 5: //  add node - success msg
+	    		optMsg(errorMSG.addNode, String.valueOf(node_value));
+	    		break;
 	    		
+	    		
+	    	case 11: // find root
+	    		Visualisation_anchorPane.getChildren().remove(hintCricle);
+	    		drawHintCircle();
+	    		optMsg(errorMSG.searchRoot, String.valueOf(node_value));
+	    		break;
+	    	case 12: // find node
+	    		if(String.valueOf(node_value).equals(randomizedIDs[0]) || String.valueOf(node_value).equals(randomizedIDs[1]))
+		    		optMsg(errorMSG.searchNode, "??");
+	    		else
+		    		optMsg(errorMSG.searchNode, String.valueOf(node_value));
+	    		break;
+	    	case 13: // find node don't exists
+	    		optMsg(errorMSG.searchNotFound, String.valueOf(node_value));
+	    		System.out.println(randomizedIDs[0] + " " + randomizedIDs[1]);
+	    		break;
+	    	case 14: // find node is hidden
+	    		msg(errorMSG.searchHidden);
 	    		break;
     	}
     }
@@ -1060,6 +1086,14 @@ public class FXMLVisualisationController implements Initializable {
     	
     }
     
+    private void msg(String errorMSG) {
+    	bstTEXT.setText(this.errorMSG.setupInformation(errorMSG));
+    }
+    
+    private void optMsg(String errorMSG, String value) {
+    	bstTEXT.setText(this.errorMSG.setupOperationInfo(errorMSG, value));
+    }
+    
     @FXML private void next(ActionEvent event) {
     	handleAnimation(!StepByStepCheckBox.isSelected(), 0);
     }
@@ -1080,9 +1114,6 @@ public class FXMLVisualisationController implements Initializable {
         temp.right = null; 
         return temp; 
     }
-    private void errorInfo(String errorMSG) {
-    	bstTEXT.setText(this.errorMSG.setupInformation(errorMSG));
-    }
     private boolean insert(BSTNode root, int key, boolean animate) { 
     	BSTNode newnode = newNodeBST(key); 
     	BSTNode x = root; 
@@ -1097,7 +1128,7 @@ public class FXMLVisualisationController implements Initializable {
         while (x != null) {
         	if(bst_height >= max_height) {
         		if(animate)
-        			errorInfo(errorMSG.maxHeightBST);
+        			handleFinishOperation(4);
         		return false;
         	}
         	yy += down_offset;
@@ -1113,6 +1144,7 @@ public class FXMLVisualisationController implements Initializable {
                 xx += xx_add;
             }
             else {
+            	handleFinishOperation(3);
             	return false;
             }
             double [] arr = {xx, yy};
@@ -1139,9 +1171,10 @@ public class FXMLVisualisationController implements Initializable {
             arrow_cords[0] = xx_prev - radius;
             arrow_cords[2] = xx + 10;
             arrow_type = true;
-            if(animate)
+            if(animate) {
             	initializePath(cPath, 2);
-            else 
+            	handleFinishOperation(5);
+            }else 
             	handleFinishOperation(2);
             return true;
         }
@@ -1150,9 +1183,10 @@ public class FXMLVisualisationController implements Initializable {
             arrow_cords[0] = xx_prev + radius;
             arrow_cords[2] = xx - 10;
             arrow_type = false;
-            if(animate)
+            if(animate) {
             	initializePath(cPath, 2);
-            else
+            	handleFinishOperation(5);
+            }else
             	handleFinishOperation(2);
             return true;
         }
@@ -1166,9 +1200,10 @@ public class FXMLVisualisationController implements Initializable {
     	BSTNode x = root;
     	double [] arr_base = {xx, yy};
     	
+    	node_value = key;
+    	
     	if( root.key == key) {
-    		Visualisation_anchorPane.getChildren().remove(hintCricle);
-    		test();
+    		handleFinishOperation(11);
     		return path;
     	}else {
     		path.add(arr_base);
@@ -1187,14 +1222,18 @@ public class FXMLVisualisationController implements Initializable {
     			xx += xx_add;
     			double[] arr = {xx, yy};
     			path.add(arr);
-    		}else
+    		}else {
+        		initializePath(path, 12);
         		return path;
+    		}
     	}
-    	
-    	ArrayList<double[]> pathEmpty = new ArrayList<double []>();
-    	double [] arr = {def_pos[0]+1, def_pos[1]};
-    	pathEmpty.add(arr);
-    	return pathEmpty;
+    	path.remove(path.size()-1);
+    	if(path.size() == 1) {
+    		double [] arr = {def_pos[0]+1, def_pos[1]};
+    		path.add(arr);
+    	}
+		initializePath(path, 13);
+    	return path;
     }
     
     BSTNode deleteRec(BSTNode root, int key)

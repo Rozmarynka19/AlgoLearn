@@ -29,7 +29,11 @@ public class errors {
 	
 	public String addNode = "Dodano węzeł do drzewa";
 	public String searchNode = "Wyszukano węzeł o danej wartości";
+	public String searchRoot = "Wyszukano korzeń o danej wartości";
+	public String searchNotFound = "Wyszukiwany węzeł nie istnieje";
+	public String searchHidden = "Wyszukiwany węzeł jest ukryty";
 	public String generateTree = "Wygenerowano losowe drzewo";
+	
 	
 	public String setupInformation(String info) {
 		return (infoDef+info);
