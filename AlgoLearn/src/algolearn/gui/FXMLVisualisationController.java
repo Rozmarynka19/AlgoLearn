@@ -578,7 +578,7 @@ public class FXMLVisualisationController implements Initializable {
 		}
 		int value = Integer.parseInt(getValue);
 		ArrayList<double[]> arr = bstFindPath(rootBST, value);
-		initializePath(arr);
+		initializePath(arr, 0);
 	}
 	
 	private void setHiddenValues(String a, String b) {
@@ -674,7 +674,6 @@ public class FXMLVisualisationController implements Initializable {
 		
 		int value = Integer.parseInt(getValue);
 		insert(rootBST, value, true);
-		bstTEXT.setText(errorMSG.setupOperationInfo(errorMSG.addNode, getValue));
 	}
 	
 	@FXML private void deleteValue(ActionEvent event) {
@@ -757,7 +756,7 @@ public class FXMLVisualisationController implements Initializable {
     		}
     		int id = Integer.parseInt(circle.getId());
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
-    		initializePath(arr);
+    		initializePath(arr, 0);
     		selectedCircle = nodeValue;
     		selectedCircleID = findSelected(nodeValue);
     		selectedObjectData[0] = circle.getId();
@@ -806,7 +805,7 @@ public class FXMLVisualisationController implements Initializable {
     		selectedCircle = nodeValue;
     		selectedCircleID = findSelected(nodeValue);
     		ArrayList<double[]> arr = bstFindPath(rootBST, id);
-    		initializePath(arr);
+    		initializePath(arr, 0);
     		selectedObjectData[0] = text.getId();
     		selectedObjectData[1] = text.getText();
     	});
@@ -953,25 +952,28 @@ public class FXMLVisualisationController implements Initializable {
     private Path pPath = new Path();
     private ArrayList<double[]> dPath = new ArrayList<double[]>();
     
-    private int value = 0;
+    private int node_value = 0;
     private double [] node_cords = new double[2];
     private double [] arrow_cords = new double[4];
+    private boolean arrow_type;
     
     private void handleFinishOperation(int opt) {
     	switch(opt) {
     		case 0: return;
 	    	case 1: // add root
-	    		
+	            test();
+	    		draw(node_cords[0], node_cords[1], String.valueOf(node_value));
 	    		break;
 	    	case 2: // add node
-	    		
+	    		draw(node_cords[0], node_cords[1], String.valueOf(node_value));
+	    		drawArrow(arrow_cords[0], arrow_cords[1], arrow_cords[2], arrow_cords[3], arrow_type);
 	    		break;
 	    	case 3: // add error - value already exists
 	    		
 	    		break;
     	}
     }
-	private void multipleAnimations(Path path) {
+	private void multipleAnimations(Path path, int opt) {
 		if(hintCricle == null) return;
 		hintCricle.setStroke(Color.GREEN);
 		pathTransitionDone = false;
@@ -989,10 +991,11 @@ public class FXMLVisualisationController implements Initializable {
 			dPath = new ArrayList<double[]>();
 			pathInit = false;
 			pathTransitionDone = true;
+			handleFinishOperation(opt);
 		});
 		pathT.play();
 	}
-	private void singleAnimations(Path path) {
+	private void singleAnimations(Path path, int opt) {
 		if(hintCricle == null) return;
 		hintCricle.setStroke(Color.GREEN);
 		pathTransitionDone = false;
@@ -1011,12 +1014,13 @@ public class FXMLVisualisationController implements Initializable {
 				pathInit = false;
 			}
 			StepByStepCheckBox.setDisable(false);
+			handleFinishOperation(opt);
 			pathTransitionDone = true;
 		});
 		pathT.play();
 	}
     
-    private void initializePath(ArrayList<double[]> path) {
+    private void initializePath(ArrayList<double[]> path, int opt) {
     	if(path.size() < 2) return;
     	if(pathInit == false) {
 	    	if(dPath.size() == 0) {
@@ -1029,10 +1033,10 @@ public class FXMLVisualisationController implements Initializable {
 	    	}
     	}
     	StepByStepCheckBox.setDisable(true);
-    	handleAnimation(!StepByStepCheckBox.isSelected());
+    	handleAnimation(!StepByStepCheckBox.isSelected(), opt);
     }
     
-    private void handleAnimation(boolean state) {
+    private void handleAnimation(boolean state, int opt) {
     	if(dPath.size() == 0) return;
     	if(pathTransitionDone == false) return;
     	if(pathInit == false) return;
@@ -1043,25 +1047,25 @@ public class FXMLVisualisationController implements Initializable {
     		for(int i = 1; i<dPath.size(); i++) {
     			path.getElements().add(new LineTo(dPath.get(i)[0], dPath.get(i)[1]));
     		}
-    		multipleAnimations(path);
+    		multipleAnimations(path, opt);
     	}else {
     		if(dPath.size() > 1) {
 	    		Path stepPath = new Path();
 	    		stepPath.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
 	    		stepPath.getElements().add(new LineTo(dPath.get(1)[0], dPath.get(1)[1]));
 	    		dPath.remove(0);
-	    		singleAnimations(stepPath);
+	    		singleAnimations(stepPath, opt);
     		}
     	}
     	
     }
     
     @FXML private void next(ActionEvent event) {
-    	handleAnimation(!StepByStepCheckBox.isSelected());
+    	handleAnimation(!StepByStepCheckBox.isSelected(), 0);
     }
     
     @FXML private void skip(ActionEvent event) {
-    	handleAnimation(StepByStepCheckBox.isSelected());
+    	handleAnimation(StepByStepCheckBox.isSelected(), 0);
     }
     // =================================	Binnary search tree =================================//
     class BSTNode extends FXMLVisualisationController{
@@ -1076,7 +1080,9 @@ public class FXMLVisualisationController implements Initializable {
         temp.right = null; 
         return temp; 
     }
-    
+    private void errorInfo(String errorMSG) {
+    	bstTEXT.setText(this.errorMSG.setupInformation(errorMSG));
+    }
     private boolean insert(BSTNode root, int key, boolean animate) { 
     	BSTNode newnode = newNodeBST(key); 
     	BSTNode x = root; 
@@ -1090,6 +1096,8 @@ public class FXMLVisualisationController implements Initializable {
     	cPath.add(arr_base);
         while (x != null) {
         	if(bst_height >= max_height) {
+        		if(animate)
+        			errorInfo(errorMSG.maxHeightBST);
         		return false;
         	}
         	yy += down_offset;
@@ -1111,27 +1119,41 @@ public class FXMLVisualisationController implements Initializable {
             cPath.add(arr);
             bst_height++;
         }
-       
+        
+        node_value = key;
+        node_cords[0] = xx;
+        node_cords[1] = yy;
+
+        arrow_cords[1] = yy - down_offset + radius/2;
+        arrow_cords[3] = yy - radius;
+        
+        
+        
         if (y == null) {
         	rootBST = newnode;
-            draw(xx, yy, String.valueOf(key));
-            test();
+        	handleFinishOperation(1);
             return true;
         }
         else if (key < y.key) {
             y.left = newnode;
-            draw(xx, yy, String.valueOf(key));
-            drawArrow(xx_prev - radius, ( yy - down_offset + radius/2), xx + 10, yy - radius, true);
+            arrow_cords[0] = xx_prev - radius;
+            arrow_cords[2] = xx + 10;
+            arrow_type = true;
             if(animate)
-            	initializePath(cPath);
+            	initializePath(cPath, 2);
+            else 
+            	handleFinishOperation(2);
             return true;
         }
         else if (key > y.key) {
             y.right = newnode;
-            draw(xx, yy, String.valueOf(key));
-            drawArrow(xx_prev + radius, ( yy - down_offset + radius/2 ), xx -10, yy - radius, false);
+            arrow_cords[0] = xx_prev + radius;
+            arrow_cords[2] = xx - 10;
+            arrow_type = false;
             if(animate)
-            	initializePath(cPath);
+            	initializePath(cPath, 2);
+            else
+            	handleFinishOperation(2);
             return true;
         }
         return false; 

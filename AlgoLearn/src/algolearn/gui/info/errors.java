@@ -37,4 +37,7 @@ public class errors {
 	public String setupOperationInfo(String info, String value) {
 		return (infoDef+info+" [ "+value+" ]");
 	}
+	
+	public String maxHeightBST = "Osiągnięto maksymalną wysokość drzewa - Ograniczenia aplikacji!";
+	
 }
