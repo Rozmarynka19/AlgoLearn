@@ -1,0 +1,168 @@
+class wezelBST:
+	def __init__(self):
+		kluczWezla = wezelBST()
+		dana = '0'
+		lewy = wezelBST()
+		prawy = wezelBST()
+class BST:
+	licz=0;
+	korzen = wezelBST()
+	korzen = None
+	def wstaw(self,klucz, znak):
+		iterator = wezelBST()
+		iterator = self.korzen;
+		po = wezelBST()
+		pow = 0
+		kierunek = 'b'
+		po = None
+		while iterator != None:
+			if iterator.kluczWezla == klucz:
+				print("Element o takim kluczu juz istnieje")
+				pow = 1;
+				break;
+			elif iterator.kluczWezla > klucz:
+				po = iterator;
+				iterator = iterator.lewy;
+				kierunek = 'l';
+			else:
+				po = iterator;
+				iterator = iterator.prawy;
+				kierunek = 'p';
+		if pow == 0:
+			n = wezelBST();
+			n.kluczWezla = klucz;
+			n.dana = znak;
+			n.lewy = None;
+			n.prawy = None;
+			if po == None:
+				self.korzen = n;
+			elif kierunek == 'l':
+				po.lewy = n
+			else:
+				po.prawy = n
+	def szukaj(self,klucz):
+		iterator = wezelBST()
+		iterator = self.korzen
+		while iterator != None:
+			if iterator.kluczWezla == klucz:
+				print("Element istnieje\n")
+				return
+			elif iterator.kluczWezla > klucz:
+				iterator = iterator.lewy
+			else:
+				iterator = iterator.prawy
+		print("Element nie istnieje lub drzewo puste\n")
+	def usun(self, korzen, klucz):
+		iterator = self.korzen;
+		pomocniczy= wezelBST()
+		ist = 0
+		kierunek = 'b'
+		pomocniczy = None
+		while iterator != None:
+			if iterator.kluczWezla == klucz:
+				ist = 1;
+				break;
+			elif iterator.kluczWezla > klucz:
+				pomocniczy = iterator;
+				iterator = iterator.lewy;
+				kierunek = 'l';
+			else:
+				pomocniczy = iterator;
+				iterator = iterator.prawy;
+				kierunek = 'p';
+
+		if ist == 0:
+			print("Element nie istnieje lub drzewo puste\n")
+			return;
+		if iterator.lewy == None and iterator.prawy == None:
+			if iterator == self.korzen:
+				self.korzen = None
+			elif kierunek == 'l':
+				pomocniczy.lewy = None
+			else:
+				pomocniczy.prawy = None
+			return
+		if iterator.lewy == None and iterator.prawy != None:
+			if iterator == self.korzen:
+				self.korzen = iterator.prawy
+			elif kierunek == 'l':
+				pomocniczy.lewy = iterator.prawy;
+			else:
+				pomocniczy.prawy = iterator.prawy;
+			free(iterator);
+			return;
+		if iterator.lewy != None and iterator.prawy == None:
+			if iterator == self.korzen:
+				self.korzen = iterator.lewy;
+			elif kierunek == 'l':
+				pomocniczy.lewy = iterator.lewy;
+			else:
+				pomocniczy.prawy = iterator.lewy;
+			return
+		if iterator.lewy != None and iterator.prawy != None:
+			s = wezelBST()
+			pop = wezelBST()
+			pop = iterator
+			s = iterator.prawy
+			while s.lewy != None:
+				pop = s
+				s = s.lewy
+			if s.prawy != None and pop != iterator:
+				pop.lewy = s.prawy
+			elif s.prawy == None and pop != iterator:
+				pop.lewy = None
+			if iterator == self.korzen:
+				self.korzen = s
+			elif kierunek == 'l':
+				pomocniczy.lewy = s;
+			else:
+				pomocniczy.prawy = s
+			s.lewy = iterator.lewy
+			if s != iterator.prawy:
+				s.prawy = iterator.prawy;
+			return;
+	def preOrder(self, korzen):
+		if self.korzen != None:
+			print(str(self.korzen.kluczWezla) + " " + str(self.korzen.dana) + "\n")
+			self.korzen.lewy.preOrder()
+			self.korzen.prawy.preOrder()
+			licz+=1
+		return licz;
+	def wyswietl_preOrder(self):
+		licz = 0;
+		print("Liczba odwiedzonych wezlow: " +  str(preOrder(self.korzen)) + "\n") 
+	def inOrder(self,korzen):
+		if self.korzen != None:
+			inOrder(korzenlewy)
+			print(str(self.korzen.kluczWezla) + " " + str(self.korzen.dana) + "\n")
+			inOrder(self.korzen.prawy)
+			licz=+1
+		return licz;
+	def wyswietl_inOrder(self):
+		licz = 0;
+		print("Liczba odwiedzonych wezlow: " + str(inOrder(self.korzen)) + "\n")
+	def postOrder(self,korzen):
+		if (self.korzen != None):
+			postOrder(self.korzen.lewy)
+			postOrder(self.korzen.prawy)
+			print(str(self.korzen.kluczWezla) + " " + str(self.korzen.dana) + "\n")
+			licz+=1
+		return licz;
+	def wyswietl_postOrder():
+		licz = 0;
+		print("Liczba odwiedzonych wezlow: " + str(postOrder(self.korzen)) + "/")
+if __name__ == '__main__':
+	drzewko = BST()
+	drzewko.wstaw(1, 'd');
+	drzewko.wstaw(2, 'r');
+	drzewko.wstaw(3, 'z');
+	drzewko.wstaw(4, 'e');
+	drzewko.wstaw(5, 'w');
+	drzewko.wstaw(6, 'o');
+	drzewko.wstaw(7, ' ');
+	drzewko.wstaw(8, 'B');
+	drzewko.wstaw(9, 'S');
+	drzewko.wstaw(10, 'T');
+	drzewko.wyswietl_inOrder();
+	drzewko.wyswietl_preOrder();
+	drzewko.wyswietl_postOrder();
