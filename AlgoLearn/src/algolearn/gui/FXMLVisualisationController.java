@@ -3,11 +3,11 @@ package algolearn.gui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 import algolearn.gui.info.errors;
 import javafx.animation.KeyFrame;
@@ -688,11 +688,74 @@ public class FXMLVisualisationController implements Initializable {
 		if(!analizeInput(getValue)) {
 			return;
 		}
-		int arr_pos = getCircleID(getValue);
-		rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
-		if(arr_pos != -1) {
-			removeCircleByID(arr_pos);
+		// Get node to remove
+		BSTNode newRoot = findValueToDelete(rootBST, Integer.parseInt(getValue));
+		
+		
+		// No childrens - just delate it
+		if(newRoot.left == null && newRoot.right == null) {
+			System.out.println("NULL");
+			
 		}
+		
+		// Get keys from subtree
+		ArrayList<Integer> keys = new ArrayList<Integer>();
+		getKeys(newRoot, keys);
+		keys.remove((Object)Integer.parseInt(getValue));
+		
+		// One or two childrens - rebuild tree
+		if((newRoot.left != null && newRoot.right == null) || (newRoot.left == null && newRoot.right != null)) {
+			HashMap<String, double[]> before_remove = getPositions(keys);
+			
+			rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
+			
+			HashMap<String, double[]> after_remove = getPositions(keys);
+			
+			for (String i : before_remove.keySet()) {
+				double [] arr = {before_remove.get(i)[0], before_remove.get(i)[1]};
+			    System.out.println("key: " + i + " value: " + arr[0] + ", " +arr[1]);
+			}
+			
+			for (String i : after_remove.keySet()) {
+				double [] arr = {after_remove.get(i)[0], after_remove.get(i)[1]};
+			    System.out.println("key: " + i + " value: " + arr[0] + ", " +arr[1]);
+			}
+		}
+		
+		// Two childrens - rebuid find a node and rebuid tree
+		if(newRoot.left != null && newRoot.right != null){
+			
+		}
+		
+		//deleteRec(rootBST, Integer.parseInt(getValue));
+		System.out.println(keys);
+	}
+	
+	private void animate() {
+
+		Path path = new Path();
+		path.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
+		for(int i = 1; i<dPath.size(); i++) {
+			path.getElements().add(new LineTo(dPath.get(i)[0], dPath.get(i)[1]));
+		}
+	}
+	
+	private Circle getCircle(String key) {
+		for(Circle c : arrayCircles) {
+			if(c.getId().equals(key)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
+	private Text getText(String key) {
+		for(Text t : arrayTexts) {
+			if(t.getId().equals(key)) {
+				return t;
+			}
+		}
+		return null;
 	}
 	
 	@FXML private void unknownValue(ActionEvent event) {
@@ -1192,6 +1255,57 @@ public class FXMLVisualisationController implements Initializable {
         }
         return false; 
     } 
+    private BSTNode findValueToDelete(BSTNode root, int key) {
+    	BSTNode x = root;
+    	
+    	while(x != null) {
+    		if(key < x.key)
+    			x = x.left;
+    		else if(key > x.key)
+    			x = x.right;
+    		else
+    			return x;
+    	}
+    	
+    	return x;
+    }
+    
+    private void getKeys(BSTNode root, ArrayList<Integer> keys){
+    	if(root == null) return;
+    	
+    	getKeys(root.left, keys);
+    	getKeys(root.right, keys);
+    	keys.add(root.key);
+    }
+    
+    private HashMap<String, double[]> getPositions(ArrayList<Integer> keys){
+    	HashMap<String, double[]> pos = new HashMap<String, double[]>();
+    	
+    	for(int i = 0; i<keys.size(); i++) {
+    		Integer key = keys.get(i);
+    		double [] cords = new double [2];
+    		double xx_add = def_pos[0];
+    		cords[0] = def_pos[0];
+    		cords[1] = def_pos[1];
+    		BSTNode x = rootBST;
+    		
+    		while(x != null) {
+        		xx_add /= 2;
+        		cords[1] += down_offset;
+        		if(key < x.key) {
+        			x = x.left;
+        			cords[0] -= xx_add;
+        		}else if(key > x.key) {
+        			x = x.right;
+        			cords[0] += xx_add;
+        		}else {
+        			pos.put(Integer.toString(key), cords);
+        			break;
+        		}
+    		}
+    	}
+    	return pos;
+    }
     
     private ArrayList<double[]> bstFindPath(BSTNode root, int key) {
     	ArrayList<double[]> path = new ArrayList<double[]>();
