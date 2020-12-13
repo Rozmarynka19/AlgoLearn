@@ -677,6 +677,8 @@ public class FXMLVisualisationController implements Initializable {
 		insert(rootBST, value, true);
 	}
 	
+	int removeTracker = 0;
+	
 	@FXML private void deleteValue(ActionEvent event) {
 		if(!pathTransitionDone) {
 			CreateError(errorMSG.pathTNotDone);
@@ -711,33 +713,81 @@ public class FXMLVisualisationController implements Initializable {
 			
 			HashMap<String, double[]> after_remove = getPositions(keys);
 			
-			for (String i : before_remove.keySet()) {
-				double [] arr = {before_remove.get(i)[0], before_remove.get(i)[1]};
-			    System.out.println("key: " + i + " value: " + arr[0] + ", " +arr[1]);
+			
+			for(Integer k : keys) {
+				Path path = new Path();
+				path.getElements().add(new MoveTo(before_remove.get(Integer.toString(k))[0], before_remove.get(Integer.toString(k))[1]));
+				path.getElements().add(new LineTo(after_remove.get(Integer.toString(k))[0], after_remove.get(Integer.toString(k))[1]));
+				Circle circle = getCircle(Integer.toString(k));
+				Text text = getText(Integer.toString(k));
+				removeTransition(path, circle, null);
+				removeTransition(path, null, text);
+				
 			}
 			
-			for (String i : after_remove.keySet()) {
-				double [] arr = {after_remove.get(i)[0], after_remove.get(i)[1]};
-			    System.out.println("key: " + i + " value: " + arr[0] + ", " +arr[1]);
+			int circleID = getID(getValue, true, false, false);
+			int textID = getID(getValue, false, true, false);
+			
+
+			Path path = new Path();
+			path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
+			path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
+			removeTransition(path, hintCricle, null);
+
+			Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
+			Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
+			arrayTexts.remove(textID);
+			arrayCircles.remove(circleID);
+			if(Integer.parseInt(getValue) == rootBST.key)
+				keys.add(Integer.parseInt(getValue));
+			
+			ArrayList<Line[]> lines = linesToRemove(keys);
+			for(Line[] l : lines) {
+				for(int index = 0; index <3; index++) {
+					Visualisation_anchorPane.getChildren().remove(l[index]);
+				}
+				arrayLines.remove(l);
+				System.out.println("Lines count: " + arrayLines.size());
 			}
+			
+			// Lines to draw
+
+			if(Integer.parseInt(getValue) == rootBST.key)
+				keys.remove(Integer.parseInt(getValue));
+			ArrayList<double[]> line = linesPositions(rootBST, keys);
+			System.out.println("Line size: "+line.size());
+			for(double[] l : line) {
+				boolean left = ((int)l[4] == 1)? true:false;
+				drawArrow(l[0], l[1], l[2], l[3], true, "test");
+				for(int i = 0; i<6; i++)
+					System.out.print("\t"+l[i]);
+				System.out.println();
+			}			
 		}
-		
 		// Two childrens - rebuid find a node and rebuid tree
 		if(newRoot.left != null && newRoot.right != null){
 			
 		}
-		
-		//deleteRec(rootBST, Integer.parseInt(getValue));
-		System.out.println(keys);
 	}
 	
-	private void animate() {
-
-		Path path = new Path();
-		path.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
-		for(int i = 1; i<dPath.size(); i++) {
-			path.getElements().add(new LineTo(dPath.get(i)[0], dPath.get(i)[1]));
-		}
+	private void removeTransition(Path path, Circle circle, Text text) {
+		//pathTransitionDone = false;
+		PathTransition pathT = new PathTransition();
+		pathT.setDuration(Duration.millis(timeSlider.getValue() * 2));
+		pathT.setPath(path);
+		if(circle != null)
+			pathT.setNode(circle);
+		else if(text != null)
+			pathT.setNode(text);
+		pathT.setCycleCount(1);
+		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathT.setAutoReverse(false);
+		pathT.setOnFinished(event ->{
+			
+			removeTracker++;
+			System.out.println(removeTracker);
+		});
+		pathT.play();
 	}
 	
 	private Circle getCircle(String key) {
@@ -756,6 +806,37 @@ public class FXMLVisualisationController implements Initializable {
 			}
 		}
 		return null;
+	}
+	
+	private ArrayList<Line[]> linesToRemove(ArrayList<Integer> keys){
+		ArrayList<Line[]> line = new ArrayList<Line[]>();
+		for(Integer k : keys) {
+			for(Line[] l : arrayLines) {
+				if(l[0].getId().equals(Integer.toString(k))) {
+					line.add(l);
+				}
+			}
+		}
+		return line;
+	}
+	private int getID(String key, boolean circle, boolean text, boolean line) {
+		if(line) {
+			for(int i = 0; i<arrayLines.size();i++){
+				Line[] arr = arrayLines.get(i);
+				if(arr[0].getId().equals(key))
+					return i;
+			}
+		}else if(text) {
+			for(int i = 0; i<arrayTexts.size();i++)
+				if(arrayTexts.get(i).getId().equals(key))
+					return i;
+		}else if(circle) {
+			for(int i = 0; i<arrayCircles.size();i++)
+				if(arrayCircles.get(i).getId().equals(key))
+					return i;
+		}
+			
+		return -1;
 	}
 	
 	@FXML private void unknownValue(ActionEvent event) {
@@ -917,7 +998,7 @@ public class FXMLVisualisationController implements Initializable {
     	Tooltip.install(text, tt);
 	}
 	
-	private void drawArrow(double x_start, double y_start, double x_end, double y_end, boolean left) {
+	private void drawArrow(double x_start, double y_start, double x_end, double y_end, boolean left, String value) {
 		Line [] line = new Line[3];
 
 		line[0] = new Line(x_start, y_start, x_end, y_end);
@@ -929,8 +1010,11 @@ public class FXMLVisualisationController implements Initializable {
 			line[2] = new Line(x_end - 10, y_end + 3, x_end, y_end);
 		}
 		
-		for(Line l : line)
+		for(Line l : line) {
 			l.getStyleClass().add("line");
+			l.setId(value);
+		}
+		
 		
 		arrayLines.add(line);
 		Visualisation_anchorPane.getChildren().addAll(line);
@@ -1028,7 +1112,7 @@ public class FXMLVisualisationController implements Initializable {
 	    		break;
 	    	case 2: // add node
 	    		draw(node_cords[0], node_cords[1], String.valueOf(node_value));
-	    		drawArrow(arrow_cords[0], arrow_cords[1], arrow_cords[2], arrow_cords[3], arrow_type);
+	    		drawArrow(arrow_cords[0], arrow_cords[1], arrow_cords[2], arrow_cords[3], arrow_type, String.valueOf(node_value));
 	    		
 	    		break;
 	    	case 3: // add error - value already exists
@@ -1291,7 +1375,6 @@ public class FXMLVisualisationController implements Initializable {
     		
     		while(x != null) {
         		xx_add /= 2;
-        		cords[1] += down_offset;
         		if(key < x.key) {
         			x = x.left;
         			cords[0] -= xx_add;
@@ -1302,10 +1385,49 @@ public class FXMLVisualisationController implements Initializable {
         			pos.put(Integer.toString(key), cords);
         			break;
         		}
+        		cords[1] += down_offset;
     		}
     	}
     	return pos;
     }
+    
+    private ArrayList<double[]> linesPositions(BSTNode root, ArrayList<Integer> keys) { 
+    	ArrayList<double[]> lines = new ArrayList<double[]>();
+    	for(Integer key : keys) {
+        	BSTNode x = root; 
+        	BSTNode y = null; 
+        	
+        	double xx = def_pos[0], yy = def_pos[1];
+        	double xx_prev = 0;
+        	double xx_add = def_pos[0];
+	        while (x != null) {
+	        	yy += down_offset;
+	        	xx_prev = xx;
+	        	xx_add /= 2;
+	            y = x;
+	            if (key < x.key) {
+	                x = x.left;
+	                xx -= xx_add;
+	            }
+	            else if (key > x.key){
+	                x = x.right; 
+	                xx += xx_add;
+	            }
+	            else {
+	            	break;
+	            }
+	        }
+		        double x1 = (key < y.key) ?  xx_prev - radius : xx_prev + radius;
+		        double x2 = yy - down_offset + radius/2;
+		        double x3 = (key < y.key) ? xx + 10 : xx - 10;
+		        double x4 = yy - radius;
+		        double x5 = (key < y.key) ? 1 : 0;
+		        double keySet = (double)key;
+	        	double [] arr = {x1, x2, x3, x4, x5, keySet};
+	            lines.add(arr);
+    	}
+        return lines;
+    } 
     
     private ArrayList<double[]> bstFindPath(BSTNode root, int key) {
     	ArrayList<double[]> path = new ArrayList<double[]>();
