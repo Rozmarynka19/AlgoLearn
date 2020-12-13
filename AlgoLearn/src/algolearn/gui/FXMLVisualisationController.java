@@ -627,39 +627,6 @@ public class FXMLVisualisationController implements Initializable {
 		
 	}
 	
-	private int getCircleID(String value) {
-		for(int i = 0; i<arrayTexts.size(); i++) {
-			if(arrayTexts.get(i).getText().equals(value)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	
-	private void removeCircleByID(int id) {
-		// Remove shapes
-		Visualisation_anchorPane.getChildren().remove(arrayTexts.get(id));
-		Visualisation_anchorPane.getChildren().remove(arrayCircles.get(id));
-		arrayTexts.remove(id);
-		arrayCircles.remove(id);
-		
-		// Remove lines
-		if( id > 0) {
-			Line [] line = arrayLines.get(id - 1);
-			for(int i = 0; i < 3; i++)
-				Visualisation_anchorPane.getChildren().remove(line[i]);
-			arrayLines.remove(id-1);
-		}
-
-		// Remove hintCircle
-		if(hintCricle != null) {
-			Visualisation_anchorPane.getChildren().remove(hintCricle);
-			hintCricle = null;
-			if(arrayTexts.size() > 0)
-				drawHintCircle();
-		}
-	}
-	
 	@FXML TextField addField, deleteField, searchField, unknownField;
 	
 	@FXML private void addValue(ActionEvent event) {
@@ -696,23 +663,53 @@ public class FXMLVisualisationController implements Initializable {
 		
 		// No childrens - just delate it
 		if(newRoot.left == null && newRoot.right == null) {
-			System.out.println("NULL");
-			
+			if(rootBST.key == Integer.parseInt(getValue)) {
+				rootBST = null;
+				for(Circle c : arrayCircles)
+					Visualisation_anchorPane.getChildren().remove(c);
+				for(Text t : arrayTexts)
+					Visualisation_anchorPane.getChildren().remove(t);
+				
+				arrayCircles = new ArrayList<Circle>();
+				arrayTexts = new ArrayList<Text>();
+				arrayLines = new ArrayList<Line[]>();
+				if(hintCricle != null) {
+					Visualisation_anchorPane.getChildren().remove(hintCricle);
+					hintCricle = null;
+				}
+				
+			}else {
+				int circleID = getID(getValue, true, false, false);
+				int textID = getID(getValue, false, true, false);
+				int linesID = getID(getValue, false, false, true);
+				
+				Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
+				Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
+				for(int index =0; index<3; index++) {
+					Visualisation_anchorPane.getChildren().remove(arrayLines.get(linesID)[index]);
+	
+				}
+				arrayLines.remove(linesID);
+				arrayTexts.remove(textID);
+				arrayCircles.remove(circleID);
+				rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
+				Path path = new Path();
+				path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
+				path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
+				removeTransition(path, hintCricle, null);
+			}
+			return;
 		}
-		
-		// Get keys from subtree
-		ArrayList<Integer> keys = new ArrayList<Integer>();
-		getKeys(newRoot, keys);
-		keys.remove((Object)Integer.parseInt(getValue));
 		
 		// One or two childrens - rebuild tree
 		if((newRoot.left != null && newRoot.right == null) || (newRoot.left == null && newRoot.right != null)) {
+			ArrayList<Integer> keys = new ArrayList<Integer>();
+			getKeys(newRoot, keys);
+			keys.remove((Object)Integer.parseInt(getValue));
+			
 			HashMap<String, double[]> before_remove = getPositions(keys);
-			
 			rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
-			
 			HashMap<String, double[]> after_remove = getPositions(keys);
-			
 			
 			for(Integer k : keys) {
 				Path path = new Path();
@@ -738,31 +735,31 @@ public class FXMLVisualisationController implements Initializable {
 			Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
 			arrayTexts.remove(textID);
 			arrayCircles.remove(circleID);
-			if(Integer.parseInt(getValue) == rootBST.key)
-				keys.add(Integer.parseInt(getValue));
 			
-			ArrayList<Line[]> lines = linesToRemove(keys);
-			for(Line[] l : lines) {
-				for(int index = 0; index <3; index++) {
+			
+			for(Line[] l : arrayLines) {
+				for(int index = 0; index < 3; index++) {
 					Visualisation_anchorPane.getChildren().remove(l[index]);
 				}
-				arrayLines.remove(l);
-				System.out.println("Lines count: " + arrayLines.size());
 			}
-			
-			// Lines to draw
+			arrayLines = new ArrayList<Line[]>();
 
-			if(Integer.parseInt(getValue) == rootBST.key)
-				keys.remove(Integer.parseInt(getValue));
 			ArrayList<double[]> line = linesPositions(rootBST, keys);
 			System.out.println("Line size: "+line.size());
 			for(double[] l : line) {
 				boolean left = ((int)l[4] == 1)? true:false;
-				drawArrow(l[0], l[1], l[2], l[3], true, "test");
+				drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
+				//debug
 				for(int i = 0; i<6; i++)
 					System.out.print("\t"+l[i]);
 				System.out.println();
-			}			
+			}
+
+			if(hintCricle != null) {
+				Visualisation_anchorPane.getChildren().remove(hintCricle);
+				hintCricle = null;
+				drawHintCircle();
+			}
 		}
 		// Two childrens - rebuid find a node and rebuid tree
 		if(newRoot.left != null && newRoot.right != null){
@@ -804,6 +801,16 @@ public class FXMLVisualisationController implements Initializable {
 			if(t.getId().equals(key)) {
 				return t;
 			}
+		}
+		return null;
+	}
+	
+	private Line[] getLine(String key) {
+		for(Line[] l : arrayLines) {
+			if(l[0].getId().equals(key)) {
+				return l;
+			}
+			
 		}
 		return null;
 	}
@@ -1197,7 +1204,7 @@ public class FXMLVisualisationController implements Initializable {
     	if(path.size() < 2) return;
     	if(pathInit == false) {
 	    	if(dPath.size() == 0) {
-	    		pPath.getElements().add(new MoveTo(def_pos[0], def_pos[1]));
+	    		pPath.getElements().add(new MoveTo(def_pos[0]+1, def_pos[1]-1));
 	    		for(double[] c : path) {
 	    			pPath.getElements().add(new LineTo(c[0], c[1]));
 	    			dPath.add(c);
@@ -1393,38 +1400,57 @@ public class FXMLVisualisationController implements Initializable {
     
     private ArrayList<double[]> linesPositions(BSTNode root, ArrayList<Integer> keys) { 
     	ArrayList<double[]> lines = new ArrayList<double[]>();
-    	for(Integer key : keys) {
+    	
+    	key_loop:for(Integer key : keys) {
         	BSTNode x = root; 
         	BSTNode y = null; 
-        	
+        	int k = (int)key;
         	double xx = def_pos[0], yy = def_pos[1];
         	double xx_prev = 0;
         	double xx_add = def_pos[0];
-	        while (x != null) {
-	        	yy += down_offset;
-	        	xx_prev = xx;
-	        	xx_add /= 2;
-	            y = x;
-	            if (key < x.key) {
+        	
+	        key_while:while (x != null) {
+	            if (k < x.key) {
+		            y = x;
+		        	xx_prev = xx;
+		        	xx_add /= 2;
 	                x = x.left;
 	                xx -= xx_add;
+		        	yy += down_offset;
 	            }
-	            else if (key > x.key){
+	            else if (k > x.key){
+		            y = x;
+		        	xx_prev = xx;
+		        	xx_add /= 2;
 	                x = x.right; 
 	                xx += xx_add;
+		        	yy += down_offset;
 	            }
 	            else {
-	            	break;
+	            	//if(rootBST.key == k)
+	            		//continue key_loop;
+	            	break key_while;
 	            }
 	        }
-		        double x1 = (key < y.key) ?  xx_prev - radius : xx_prev + radius;
-		        double x2 = yy - down_offset + radius/2;
-		        double x3 = (key < y.key) ? xx + 10 : xx - 10;
-		        double x4 = yy - radius;
-		        double x5 = (key < y.key) ? 1 : 0;
-		        double keySet = (double)key;
-	        	double [] arr = {x1, x2, x3, x4, x5, keySet};
-	            lines.add(arr);
+        	double x1 =400, x2 = yy - down_offset + radius/2, x3=400, x4 = yy - radius, x5=400, x6 = (double)k;
+        	if(y==null) {
+        		System.out.println("y==null");
+        		continue key_loop;
+        	}else if(k < y.key) {
+        		System.out.println("k < y.key");
+        		x1 = xx_prev - radius;
+        		x3 = xx +10;
+        		x5 = (double)1;
+        	}else if(k > y.key) {
+        		System.out.println("k > y.key");
+        		x1 = xx_prev + radius;
+        		x3 = xx -10;
+        		x5 = (double)0;
+        	}
+        	
+     
+        	double [] arr = {x1, x2, x3, x4, x5, x6};
+        	lines.add(arr);
     	}
         return lines;
     } 
@@ -1465,7 +1491,7 @@ public class FXMLVisualisationController implements Initializable {
     	}
     	path.remove(path.size()-1);
     	if(path.size() == 1) {
-    		double [] arr = {def_pos[0]+1, def_pos[1]};
+    		double [] arr = {def_pos[0], def_pos[1]};
     		path.add(arr);
     	}
 		initializePath(path, 13);
