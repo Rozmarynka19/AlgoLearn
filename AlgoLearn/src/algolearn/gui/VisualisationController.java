@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -60,6 +61,7 @@ public class VisualisationController extends FXMLDocumentController  implements 
     @FXML /* Expand window */
     private void handleCloseWindowAction(ActionEvent event) throws Exception {
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        System.exit(0);
     }
 
 
@@ -101,7 +103,7 @@ public class VisualisationController extends FXMLDocumentController  implements 
     @FXML TextField FindNodeText;
 
     List<Button> childrenButtonList = new ArrayList<>();
-    List<Arrow> childrenArrowList = new ArrayList<>();;
+    List<Arrow> childrenArrowList = new ArrayList<>();
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -141,7 +143,7 @@ public class VisualisationController extends FXMLDocumentController  implements 
         if(!DeleteNodeText.getText().equals("")){
             if(Integer.parseInt(DeleteNodeText.getText())>childrenButtonList.size() || Integer.parseInt(DeleteNodeText.getText())<=0) {
                 a.setAlertType(Alert.AlertType.ERROR);
-                a.setContentText("Błędna wartość, upewnij się że nie przekraczasz przedziału wartości do jakich możesz się odnieść");
+                a.setContentText("Błędna wartość, upewnij się że nie przekraczasz przedziału wartości do jakich możesz się odnieść!");
                 a.show();
                 DeleteNodeText.setText("");
             }
@@ -239,5 +241,179 @@ public class VisualisationController extends FXMLDocumentController  implements 
         childrenArrowList.add(arrow);
         AddNodeText.setText("");
     }
+    
+    //bucket sort
+    @FXML TextField AddNodeTextBS;
+    @FXML private Button previousSearchedChildBS;
+    @FXML HBox BucketHBox;
+    @FXML HBox MainHBox;
+    @FXML AnchorPane anchorPane, anchorPane2, anchorPane3, anchorPane4; 
+    private List<String> numbersToSortString = new ArrayList<>();
+    private List<Integer> numbersSortedString = new ArrayList<>();
+    private int i=0;
+    
+    public void restartWindowBS(ActionEvent actionEvent) {
+    	MainHBox.getChildren().clear();
+        childrenButtonList.clear();
+        numbersToSortString.clear();
+    }
 
+    public void generateButtonHandlerBS(ActionEvent event){
+        Alert a = new Alert(Alert.AlertType.NONE);
+        if(!AddNodeText.getText().equals("")) {
+            if(childrenButtonList.size()<11) {
+            	addNewNodeBS();
+            }
+            else {
+                a.setAlertType(Alert.AlertType.INFORMATION);
+                a.setContentText("Maksymalna ilość elementów to 11.");
+                a.show();
+            }
+        }
+    }
+    
+    private void AddToBucket(AnchorPane anchorPane) {
+    	for (Node nodeAnchor : anchorPane.getChildren()) {
+    		if(nodeAnchor instanceof TextField) {
+    			if(!((TextField) nodeAnchor).getText().equals("")) {
+    				continue;
+    			}
+    			else {
+    				for(int i=0; i < numbersToSortString.size();i++) {
+    					if(anchorPane.getId().equals("1")) {
+    						if(Integer.parseInt(numbersToSortString.get(i)) <= 4 && nodeAnchor.getId() != null) {
+    							((TextField)nodeAnchor).setText(numbersToSortString.get(i));
+    							numbersToSortString.remove(i);
+    						}
+    					}
+    					else if(anchorPane.getId().equals("2")) {
+    						if(Integer.parseInt(numbersToSortString.get(i)) > 4 && Integer.parseInt(numbersToSortString.get(i)) <= 8 && nodeAnchor.getId() != null) {
+    							((TextField)nodeAnchor).setText(numbersToSortString.get(i));
+    							numbersToSortString.remove(i);
+    						}
+    					}
+    					else if(anchorPane.getId().equals("3")) {
+    						if(Integer.parseInt(numbersToSortString.get(i)) > 8 && Integer.parseInt(numbersToSortString.get(i)) <= 12 && nodeAnchor.getId() != null) {
+    							((TextField)nodeAnchor).setText(numbersToSortString.get(i));
+    							numbersToSortString.remove(i);
+    						}
+    					}
+    					else if(anchorPane.getId().equals("4")) {
+    						if(Integer.parseInt(numbersToSortString.get(i)) > 12 && Integer.parseInt(numbersToSortString.get(i)) <= 16 && nodeAnchor.getId() != null) {
+    							((TextField)nodeAnchor).setText(numbersToSortString.get(i));
+    							numbersToSortString.remove(i);
+    						}
+    					}
+    				}
+    				break;
+    			}
+    		}
+    	}
+    }
+    
+    private void SortInBucket(AnchorPane anchorPane) {
+    	int flag = 0;
+    	for (Node nodeAnchor : anchorPane.getChildren()) {
+    		if(nodeAnchor instanceof TextField) {
+    					if(anchorPane.getId().equals("1")) {
+    						if(numbersSortedString.get(i) <= 4 && nodeAnchor.getId() != null) {
+    							((TextField)nodeAnchor).setText(numbersSortedString.get(i).toString());
+    							flag = 1;
+    						}
+    					}
+    					else if(anchorPane.getId().equals("2")) {
+    						if(numbersSortedString.get(i) > 4 && numbersSortedString.get(i) <= 8 && !nodeAnchor.getId().equals("0")) {
+    							((TextField)nodeAnchor).setText(numbersSortedString.get(i).toString());
+    							flag = 1;
+    						}
+    					}
+    					else if(anchorPane.getId().equals("3")) {
+    						if(numbersSortedString.get(i) > 8 && numbersSortedString.get(i) <= 12 && !nodeAnchor.getId().equals("0")) {
+    							((TextField)nodeAnchor).setText(numbersSortedString.get(i).toString());
+    							flag = 1;
+    						}
+    					}
+    					else if(anchorPane.getId().equals("4")) {
+    						if(numbersSortedString.get(i) > 12 && numbersSortedString.get(i) <= 16 && !nodeAnchor.getId().equals("0")) {
+    							((TextField)nodeAnchor).setText(numbersSortedString.get(i).toString());
+    							flag = 1;
+    						}
+    					}
+    					if(i < numbersSortedString.size()-1 && flag == 1) {
+    						i=i+1;
+    						flag = 0;
+    					}
+    					else {
+    						break;
+    					}
+    				}
+		}
+	}
+    
+    private void addNewNodeBS() {
+        String numberToSort = getTextFromAddBox();
+    	if(Integer.parseInt(numberToSort) > 16 || Integer.parseInt(numberToSort) <= 0) {
+    		Alert a = new Alert(Alert.AlertType.NONE);
+            a.setAlertType(Alert.AlertType.INFORMATION);
+            a.setContentText("Zakres wartości od 1-16");
+            a.show();
+    	}
+    	else {
+            Button btnNumber = new Button();
+            numbersToSortString.add(numberToSort);
+            numbersSortedString.add(Integer.parseInt(numberToSort));
+            btnNumber.setText(numberToSort);
+            btnNumber.setStyle(
+                    "-fx-min-width: 30px; " +
+                    "-fx-min-height: 30px; " +
+                    "-fx-max-width: 30px; " +
+                    "-fx-max-height: 30px; " +
+                    "-fx-border-width: 20px; "
+
+            );
+            childrenButtonList.add(btnNumber);
+            MainHBox.getChildren().add(btnNumber);
+            AddNodeText.setText("");
+            for (Node node : BucketHBox.getChildren()) {
+                if(node instanceof AnchorPane) {
+                	if(node.getId().equals("1")) {
+                    	AddToBucket(anchorPane);
+                    	continue;
+                	}
+                	if(node.getId().equals("2")) {
+                    	AddToBucket(anchorPane2);
+                    	continue;
+                	}
+                	if(node.getId().equals("3")) {
+                    	AddToBucket(anchorPane3);
+                    	continue;
+                	}
+                	if(node.getId().equals("4")) {
+                    	AddToBucket(anchorPane4);
+                    	continue;
+                	}
+                }
+            }
+    	}        
+    }
+    
+    public void sortBS() {
+    	Collections.sort(numbersSortedString);
+        for (Node node : BucketHBox.getChildren()) {
+            if(node instanceof AnchorPane) {
+            	if(node.getId().equals("1")) {
+            		SortInBucket(anchorPane);
+            	}
+            	else if(node.getId().equals("2")) {
+            		SortInBucket(anchorPane2);
+            	}
+            	else if(node.getId().equals("3")) {
+                	SortInBucket(anchorPane3);
+            	}
+            	else if(node.getId().equals("4")) {
+            		SortInBucket(anchorPane4);
+            	}
+            }
+        }
+    }
 }
