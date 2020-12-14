@@ -44,4 +44,5 @@ public class errors {
 	
 	public String maxHeightBST = "Osiągnięto maksymalną wysokość drzewa - Ograniczenia aplikacji!";
 	
+	public String delInProgress = "Zaczekaj aż usuwanie zakończy działanie!";
 }
