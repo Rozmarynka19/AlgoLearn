@@ -664,34 +664,135 @@ public class FXMLVisualisationController implements Initializable {
 		// Get node to remove
 		delValue = getValue;
 		newRoot = findValueToDelete(rootBST, Integer.parseInt(getValue));
-		bstFindPath(rootBST, Integer.parseInt(getValue), 20, null);
+		if((newRoot.left != null && newRoot.right == null)
+				|| (newRoot.left == null && newRoot.right != null)
+				|| (newRoot.left == null && newRoot.right == null))
+			bstFindPath(rootBST, Integer.parseInt(getValue), 20, null);
+		else
+			bstFindPath(rootBST, Integer.parseInt(getValue), 21, null);
 	}
+	
+	
 	
 	private void FindMin() {
 		// Two childrens - find min
 		if(newRoot.left != null && newRoot.right != null){
 			delMin = minValue(newRoot.right);
-			double [] pos = getNodePositions(rootBST, Integer.parseInt(delValue));
-			bstFindPath(newRoot.right, delMin, 21, pos);
-			System.out.println(pos[0] + " " + pos[1]);
-			//deleteRec(rootBST, Integer.parseInt(delValue));
+			
+			ArrayList<Integer> path = minValues(newRoot);
+			ArrayList<double[]> cords = new ArrayList<double[]>();
+			
+			for(Integer p : path) {
+				cords.add(getNodePositions(rootBST, p));
+				System.out.println(p);
+			}
+			
+			initSwapPath(cords, 21);
 		}
 	}
 	
+
+    private void initSwapPath(ArrayList<double[]> path, int opt) {
+	    if(dPath.size() == 0) {
+	    	pPath.getElements().add(new MoveTo(path.get(0)[0], path.get(0)[1]));
+	    	dPath.add(path.get(0));
+	    	for(int i = 1; i<path.size();i++) {
+	    		pPath.getElements().add(new LineTo(path.get(i)[0], path.get(i)[1]));
+	    		dPath.add(path.get(i));
+	    	}
+	    	pathInit = true;
+	    }
+    	selectedOption = opt;
+    	StepByStepCheckBox.setDisable(true);
+    	handleSwap(!StepByStepCheckBox.isSelected(), selectedOption);
+    }
+	
+    private void handleSwap(boolean state, int opt) {
+    	try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			System.err.println("Thread.sleep error!");
+		}
+    	if(state) {
+    		Path path = new Path();
+    		path.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
+    		for(int i = 1; i<dPath.size(); i++) {
+    			path.getElements().add(new LineTo(dPath.get(i)[0], dPath.get(i)[1]));
+    		}
+    		multipleAnimations(path, 22);
+    	}else {
+    		if(dPath.size() > 1) {
+	    		Path stepPath = new Path();
+	    		stepPath.getElements().add(new MoveTo(dPath.get(0)[0], dPath.get(0)[1]));
+	    		stepPath.getElements().add(new LineTo(dPath.get(1)[0], dPath.get(1)[1]));
+	    		dPath.remove(0);
+	    		singleAnimations(stepPath, 22);
+    		}
+    	}
+    	
+    }
+    
+    
+    ArrayList<Integer> minValues(BSTNode root){
+    	ArrayList<Integer> mins = new ArrayList<Integer>();
+    	
+    	int minv = root.key;
+    	mins.add(minv);
+    	
+    	root = root.right;
+    	int right_key = root.key;
+    	mins.add(right_key);
+    	
+    	while(root.left != null) {
+    		int min = root.left.key;
+    		root = root.left;
+    		mins.add(min);
+    	}
+    	return mins;
+    }
+    
+    HashMap<String, double[]> before_multiple;
+    HashMap<String, double[]> after_multiple;
+    ArrayList<Integer> keys_multiple;
+    
 	private void Swap() {
-//		int deleteNodeValue = Integer.parseInt(delValue);
-//		int swapNodeValue = minValue(newRoot);
-//		BSTNode swapNode = findValueToDelete(rootBST, swapNodeValue);
-//		
-//		double [] deleteNodePos = getNodePositions(rootBST, deleteNodeValue);
-//		double [] swapNodePos = getNodePositions(rootBST, swapNodeValue);
-//
-//		swapNodes(deleteNodePos, swapNodePos, deleteNodeValue);
-//		swapNodes(swapNodePos, deleteNodePos, swapNodeValue);
+		try {
+			Thread.sleep(600);
+		} catch (InterruptedException e) {
+			System.out.println("Thread.sleep error");
+		}
+		System.out.println("Swap executed!");
+		int deleteNodeValue = Integer.parseInt(delValue);
+		
+		double [] deleteNodePos = getNodePositions(rootBST, deleteNodeValue);
+		double [] swapNodePos = getNodePositions(rootBST, delMin);
+
+		String swapValue = Integer.toString(delMin);
+		BSTNode swap = findValueToDelete(rootBST, delMin);
+
+		keys_multiple = new ArrayList<Integer>();
+		getKeys(swap, keys_multiple);
+		keys_multiple.remove((Object)Integer.parseInt(delValue));
+		
+		before_multiple = getPositions(keys_multiple);
+		
+		BSTNode newdel = findValueToDelete(rootBST, delMin);
+		rootBST = swap(deleteNodeValue, delMin, rootBST);
+		
+		after_multiple = getPositions(keys_multiple);
+		
+		swapNodes(deleteNodePos, swapNodePos, deleteNodeValue);
+		swapNodes(swapNodePos, deleteNodePos, delMin);
+		
+		try {
+			Delete(newdel, delValue, 1000, 1, swapValue);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
-	private void Delete(BSTNode newRoot, String getValue, int deleteTime) throws InterruptedException {
+	private void Delete(BSTNode newRoot, String getValue, int deleteTime, int multiChilds, String bonus) throws InterruptedException {
 		Thread.sleep(deleteTime);
 		// No childrens - just delate it
 		if(newRoot.left == null && newRoot.right == null) {
@@ -714,85 +815,177 @@ public class FXMLVisualisationController implements Initializable {
 				int circleID = getID(getValue, true, false, false);
 				int textID = getID(getValue, false, true, false);
 				int linesID = getID(getValue, false, false, true);
-				
-				Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
-				Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
-				for(int index =0; index<3; index++) {
-					Visualisation_anchorPane.getChildren().remove(arrayLines.get(linesID)[index]);
-	
+				if(multiChilds == 0) {
+					Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
+					Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
+					for(int index =0; index<3; index++) {
+						Visualisation_anchorPane.getChildren().remove(arrayLines.get(linesID)[index]);
+		
+					}
+					arrayLines.remove(linesID);
+					arrayTexts.remove(textID);
+					arrayCircles.remove(circleID);
+					rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
+					Path path = new Path();
+					path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
+					path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
+					removeTransition(path, hintCricle, null);
+				}else {
+					Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
+					Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
+					arrayTexts.remove(textID);
+					arrayCircles.remove(circleID);
+					
+					for(Line[] l : arrayLines) {
+						for(int index = 0; index < 3; index++) {
+							Visualisation_anchorPane.getChildren().remove(l[index]);
+						}
+					}
+					arrayLines = new ArrayList<Line[]>();
+
+					ArrayList<Integer> keys = new ArrayList<Integer>();
+					keys = new ArrayList<Integer>();
+					
+					getKeys(rootBST, keys);
+					
+					ArrayList<double[]> line = linesPositions(rootBST, keys);
+					
+					for(double[] l : line) {
+						boolean left = ((int)l[4] == 1)? true:false;
+						drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
+						//debug
+						for(int i = 0; i<6; i++)
+							System.out.print("\t"+l[i]);
+						System.out.println();
+					}
+					
+					rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
+					
+					Path path = new Path();
+					path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
+					path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
+					removeTransition(path, hintCricle, null);
 				}
-				arrayLines.remove(linesID);
-				arrayTexts.remove(textID);
-				arrayCircles.remove(circleID);
-				rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
-				Path path = new Path();
-				path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
-				path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
-				removeTransition(path, hintCricle, null);
 			}
 			return;
 		}
 		
 		// One or two childrens - rebuild tree
 		if((newRoot.left != null && newRoot.right == null) || (newRoot.left == null && newRoot.right != null)) {
-			ArrayList<Integer> keys = new ArrayList<Integer>();
-			getKeys(newRoot, keys);
-			keys.remove((Object)Integer.parseInt(getValue));
-			
-			HashMap<String, double[]> before_remove = getPositions(keys);
-			rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
-			HashMap<String, double[]> after_remove = getPositions(keys);
-			
-			for(Integer k : keys) {
-				Path path = new Path();
-				path.getElements().add(new MoveTo(before_remove.get(Integer.toString(k))[0], before_remove.get(Integer.toString(k))[1]));
-				path.getElements().add(new LineTo(after_remove.get(Integer.toString(k))[0], after_remove.get(Integer.toString(k))[1]));
-				Circle circle = getCircle(Integer.toString(k));
-				Text text = getText(Integer.toString(k));
-				removeTransition(path, circle, null);
-				removeTransition(path, null, text);
+			if(multiChilds ==0) {
+				ArrayList<Integer> keys = new ArrayList<Integer>();
+				getKeys(newRoot, keys);
+				keys.remove((Object)Integer.parseInt(getValue));
 				
-			}
-			
-			int circleID = getID(getValue, true, false, false);
-			int textID = getID(getValue, false, true, false);
-			
-
-			Path path = new Path();
-			path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
-			path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
-			removeTransition(path, hintCricle, null);
-
-			Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
-			Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
-			arrayTexts.remove(textID);
-			arrayCircles.remove(circleID);
-			
-			
-			for(Line[] l : arrayLines) {
-				for(int index = 0; index < 3; index++) {
-					Visualisation_anchorPane.getChildren().remove(l[index]);
+				HashMap<String, double[]> before_remove = getPositions(keys);
+				rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
+				HashMap<String, double[]> after_remove = getPositions(keys);
+				
+				for(Integer k : keys) {
+					Path path = new Path();
+					path.getElements().add(new MoveTo(before_remove.get(Integer.toString(k))[0], before_remove.get(Integer.toString(k))[1]));
+					path.getElements().add(new LineTo(after_remove.get(Integer.toString(k))[0], after_remove.get(Integer.toString(k))[1]));
+					Circle circle = getCircle(Integer.toString(k));
+					Text text = getText(Integer.toString(k));
+					removeTransition(path, circle, null);
+					removeTransition(path, null, text);
+					
+				}
+				
+				int circleID = getID(getValue, true, false, false);
+				int textID = getID(getValue, false, true, false);
+				
+	
+				Path path = new Path();
+				path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
+				path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
+				removeTransition(path, hintCricle, null);
+	
+				Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
+				Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
+				arrayTexts.remove(textID);
+				arrayCircles.remove(circleID);
+				
+				
+				for(Line[] l : arrayLines) {
+					for(int index = 0; index < 3; index++) {
+						Visualisation_anchorPane.getChildren().remove(l[index]);
+					}
+				}
+				arrayLines = new ArrayList<Line[]>();
+	
+				keys = new ArrayList<Integer>();
+				getKeys(rootBST, keys);
+				ArrayList<double[]> line = linesPositions(rootBST, keys);
+				System.out.println("Line size: "+line.size());
+				for(double[] l : line) {
+					boolean left = ((int)l[4] == 1)? true:false;
+					drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
+					//debug
+					for(int i = 0; i<6; i++)
+						System.out.print("\t"+l[i]);
+					System.out.println();
+				}
+	
+				if(hintCricle != null) {
+					Visualisation_anchorPane.getChildren().remove(hintCricle);
+					hintCricle = null;
+					drawHintCircle();
 				}
 			}
-			arrayLines = new ArrayList<Line[]>();
-
-			keys = new ArrayList<Integer>();
-			getKeys(rootBST, keys);
-			ArrayList<double[]> line = linesPositions(rootBST, keys);
-			System.out.println("Line size: "+line.size());
-			for(double[] l : line) {
-				boolean left = ((int)l[4] == 1)? true:false;
-				drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
-				//debug
-				for(int i = 0; i<6; i++)
-					System.out.print("\t"+l[i]);
-				System.out.println();
-			}
-
-			if(hintCricle != null) {
-				Visualisation_anchorPane.getChildren().remove(hintCricle);
-				hintCricle = null;
-				drawHintCircle();
+			else {
+				
+				int circleID = getID(getValue, true, false, false);
+				int textID = getID(getValue, false, true, false);
+				
+				for(Integer k : keys_multiple) {
+					Path path = new Path();
+					path.getElements().add(new MoveTo(before_multiple.get(Integer.toString(k))[0], before_multiple.get(Integer.toString(k))[1]));
+					path.getElements().add(new LineTo(after_multiple.get(Integer.toString(k))[0], after_multiple.get(Integer.toString(k))[1]));
+					Circle circle = getCircle(Integer.toString(k));
+					Text text = getText(Integer.toString(k));
+					removeTransition(path, circle, null);
+					removeTransition(path, null, text);
+					
+				}
+				
+				
+				Path path = new Path();
+				path.getElements().add(new MoveTo(def_pos[0]-1, def_pos[1]+1));
+				path.getElements().add(new LineTo(def_pos[0], def_pos[1]));
+				removeTransition(path, hintCricle, null);
+	
+				Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
+				Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
+				arrayTexts.remove(textID);
+				arrayCircles.remove(circleID);
+				
+				
+				for(Line[] l : arrayLines) {
+					for(int index = 0; index < 3; index++) {
+						Visualisation_anchorPane.getChildren().remove(l[index]);
+					}
+				}
+				arrayLines = new ArrayList<Line[]>();
+	
+				keys_multiple = new ArrayList<Integer>();
+				getKeys(rootBST, keys_multiple);
+				ArrayList<double[]> line = linesPositions(rootBST, keys_multiple);
+				System.out.println("Line size: "+line.size());
+				for(double[] l : line) {
+					boolean left = ((int)l[4] == 1)? true:false;
+					drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
+					//debug
+					for(int i = 0; i<6; i++)
+						System.out.print("\t"+l[i]);
+					System.out.println();
+				}
+	
+				if(hintCricle != null) {
+					Visualisation_anchorPane.getChildren().remove(hintCricle);
+					hintCricle = null;
+					drawHintCircle();
+				}
 			}
 		}
 	}
@@ -841,6 +1034,14 @@ public class FXMLVisualisationController implements Initializable {
 			if(t.getId().equals(key)) {
 				return t;
 			}
+		}
+		return null;
+	}
+	
+	private Line[] getLines(String key) {
+		for(Line[] l : arrayLines) {
+			if(l[0].getId().equals(key))
+				return l;
 		}
 		return null;
 	}
@@ -1172,12 +1373,31 @@ public class FXMLVisualisationController implements Initializable {
 	    		Visualisation_anchorPane.getChildren().remove(hintCricle);
 	    		drawHintCircle();
 				try {
-					Delete(rootBST, delValue, 1000);
+					Delete(rootBST, delValue, 1000, 0, null);
 				} catch (InterruptedException e) {
 					System.out.println("Thread.sleep error!");
 				}
 	    		break;
+	    	case 20:
+	    		System.out.println("Root remove executed!");
+	    		FindMin();
+	    		break;
 	    		
+//	    		if(opt == 20) {
+//					if((newRoot.left != null && newRoot.right == null)
+//					|| (newRoot.left == null && newRoot.right != null)
+//					|| (newRoot.left == null && newRoot.right == null))
+//					try {
+//						Delete(newRoot, delValue, 1000);
+//					} catch (InterruptedException e) {
+//						System.out.println("Thread sleep error!");
+//					}
+//					else {
+//						FindMin();
+//					}
+//				}else if(opt == 21) {
+//					Swap();
+//				}
     	}
     }
 	private void multipleAnimations(Path path, int opt) {
@@ -1204,15 +1424,15 @@ public class FXMLVisualisationController implements Initializable {
 				|| (newRoot.left == null && newRoot.right != null)
 				|| (newRoot.left == null && newRoot.right == null))
 				try {
-					Delete(newRoot, delValue, 1000);
+					Delete(newRoot, delValue, 1000, 0 , null);
 				} catch (InterruptedException e) {
 					System.out.println("Thread sleep error!");
 				}
-				else {
-					FindMin();
-				}
 			}else if(opt == 21) {
-				//Swap();
+
+				FindMin();
+			}else if(opt == 22) {
+				Swap();
 			}
 		});
 		pathT.play();
@@ -1242,15 +1462,15 @@ public class FXMLVisualisationController implements Initializable {
 							|| (newRoot.left == null && newRoot.right != null)
 							|| (newRoot.left == null && newRoot.right == null))
 							try {
-								Delete(newRoot, delValue, 1000);
+								Delete(newRoot, delValue, 1000, 0, null);
 							} catch (InterruptedException e) {
 								System.out.println("Thread sleep error!");
 							}
 							else {
 								FindMin();
 							}
-				}else if(opt == 21) {
-					//Swap();
+				}else if(opt == 22) {
+					Swap();
 				}
 			}
 			StepByStepCheckBox.setDisable(false);
@@ -1596,8 +1816,10 @@ public class FXMLVisualisationController implements Initializable {
     	
     	if( root.key == key) {
 
-			if(opt >= 20)
+			if(opt == 20)
 				handleFinishOperation(19);
+			else if(opt == 21)
+				handleFinishOperation(20);
 			else
     			handleFinishOperation(11);
     		return path;
@@ -1658,6 +1880,60 @@ public class FXMLVisualisationController implements Initializable {
         return root;
     }
     
+
+	BSTNode swap(int d, int s, BSTNode root) {
+		BSTNode x = root;
+		while(x!=null) {
+			if(d < x.key)
+				x = x.left;
+			else if (d > x.key)
+				x = x.right;
+			else {
+				x.key = s;
+				break;
+			}
+		}
+		
+		if(x.right != null && x.right.key == s)
+			if(x.right.left != null)
+				x.right = x.right.left;
+			else if(x.right.right != null)
+				x.right = x.right.right;
+			else
+				x.left = null;
+		
+		x = x.right;
+		
+		while(x!=null) {
+			if(s < x.key) {
+				if(x.left != null && x.left.key == s) {
+					if(x.left.left != null)
+						x.left = x.left.left;
+					else if(x.left.right != null)
+						x.left = x.left.right;
+					else
+						x.left = null;
+				}
+				x = x.left;
+			}
+			else if (s > x.key) {
+				if(x.right != null && x.right.key == s)
+					if(x.right.left != null)
+						x.right = x.right.left;
+					else if(x.right.right != null)
+						x.right = x.right.right;
+					else
+						x.left = null;
+				x = x.right;
+			}else {
+				x.key = d;
+				break;
+			}
+		}
+		
+		return root;
+	}
+    
     int minValue(BSTNode root)
     {
         int minv = root.key;
@@ -1669,16 +1945,6 @@ public class FXMLVisualisationController implements Initializable {
         return minv;
     }
     
-    ArrayList<Integer> minValues(BSTNode root){
-    	ArrayList<Integer> mins = new ArrayList<Integer>();
-    	int minv = root.key;
-    	while(root.left != null) {
-    		minv = root.left.key;
-    		root = root.left;
-    		mins.add(minv);
-    	}
-    	return mins;
-    }
     
     BSTNode rootBST = null;
 }
