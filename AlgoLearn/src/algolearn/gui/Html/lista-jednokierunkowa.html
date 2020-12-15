@@ -1,11 +1,8 @@
-<html><header>
- <meta charset="UTF-8">
- <script language="javascript">
- var textnode;
- var loc;
+<html>
+<head>
+<script language="javascript">
  function renev()
  {
-   //window.scrollBy(0,20); 
    var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
@@ -18,7 +15,6 @@
  }
   function test1()
  {
-   //window.scrollBy(0,20); 
    var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
@@ -31,7 +27,6 @@
  }
  function test2()
  {
-   //window.scrollBy(0,20); 
    var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
@@ -44,7 +39,6 @@
  }
  function test3()
  {
-   //window.scrollBy(0,20); 
    var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
@@ -57,79 +51,97 @@
  }
  function test4()
  {
-   //window.scrollBy(0,20); 
-   var p_list = document.getElementsByTagName("p");
+   var p_list = document.getElementsByTagName("div");
     for(var i=p_list.length-1; i>=0; i--){
         var p = p_list[i];
 		if(p.className == "test4"){
-        p.hidden = false;
+			p.hidden = false;
 		}
     }
    alert('test');
 
  }
  </script>
-</header><body>
- 
-<h1 align="center">LISTA Jednokierunkowa<h1>
-
-<h3 align="center">TEORIA</h3>
-Lista jednokierunkowa to struktura danych. Jej przedstawienie graficznie wygląda tak:
-
-<img style="display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;" src="../textimg/lista1.png"><br>
-
-<div class="test1">Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
-Kwadraty z liczbami to jedno koło ratunkowe. W nim znajduje się topielec który przechowuje dane w danym elemencie.(np. int, tablica, string, char itp.)
-Strzałka pokazuje gdzie jest w pamięci kolejne koło ratunkowe, lina łącząco koła ratunkowe.
-Kwadrat z kropką to miejsce w pamięci gdzie pamiętamy gdzie jest następne koło, miejsce gdzie lina jest doczepiona kolejnego koła ratunkowego.
-Kwadrat z przeciętymi liniami oznacza że nasz ciąg kół się skończył.(lina nie jest doczepiona do żadnego kolejnego koła)
-Zanim zaczniemy trzeba przygotować strukturę która będzie odpowiadała obiektowi w liście.
-Tym obiektem będzie koło ratunkowe przechowujące dwie zmienne: „topielca” i linkę łączącą do następnego koła. 
-Dodawanie elementów do listy jednokierunkowej.
-1. Tworzymy nowe koło ratunkowe. (np. KołoRatunkowe koło13)
-2. Wrzucamy do niego topielca (np. koło13.dane = jakaśDana)
-3. Dołączamy do łańcucha. 
-Rozpatrzmy dwa przypadki:
-Chcemy żeby nowo powstałe koło ratunkowe było na końcu naszego łańcuszka.
-Nie ma problemu, ostatnie koło ratunkowe łączy się z nim swoją liną.(Wskaźnik pokazuje nowo powstałe koło ratunkowe).
-…->koło3->koło4->koło13
-</div>
-
-<div class="test2">Chcemy żeby nowo powstałe koło ratunkowe znalazło się między kołami 3 a 4.
-W takim wypadku koło13 rzuca swoją linę kołu4(ustawia swój wskaźnik na koło4). A koło 3 rzuca swoją linę do koła4 (koło3 ustawia swój wskaźnik na koło 13.)
-….->koło3->koło13->koło4->…
-Usuwanie elementów z listy jednokierunkowej.
-Wybieramy które koło ratunkowe chcemy usunąć np. 4 koło.(nie w nazwie, chodzi o kolejność iteracyjną! -> czyli będziemy usuwać koło3 )
-koło0->koło1->koło2->koło3->koło4->koło5->…..
-Szukamy koła ratunkowego które chcemy usunąć z łańcuszka (iterujemy po całym łańcuszku). 
-Jeśli się udało to koło2 odczepia swoją linę doczepioną do koła4 i doczepia ją do koła5 (wskaźnik w kole2 trzeba nadpisać wskaźnikiem do koła5)
-Usuwamy koło3 z pamięci jeśli było alokowane na stercie. Jeśli nie to nic nie robimy.
-</div>
-<div class="test3">
-<h3 align="center">Wskazówki</h3>
-Pamiętaj lista jednokierunkowa jest w jednym kierunku, idzie tylko do przodu.
-Jeśli chcesz usunąć jakąś daną o konkretnej danej szukaj jakie dane przechowują „topielcy”. Upewnij się że kasujesz to co chcesz, może jest dwóch takich samych topielców?
-Pamiętaj o zwalnianiu pamięci.
-Często wyświetlaj program, patrz jak działa i czy działa tak jak się spodziewasz.
-Nazywaj zmienne żebyś wiedział co reprezentują, nazwy typu k, cos, a1 mało mówią i łatwo się pogubić.
-…
-</div>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1 align="center">LISTA Jednokierunkowa</h1>
 
 <div class="test4">
-<h3 align="center">Cechy:</h3>
-- nie możemy odnieść się do konkretnych elementów jak w tablicy, trzeba przejść przez całą listę.
-- tworząc listę nie musimy wiedzieć ile będzie mieć elementów
-- 
-wizualizacja można zrobić coś takiego :<br>
+            <h3 align="center">Wprowadzenie</h3>
+            <span style="font-size: 18px">
+                <br>Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
+                <br>Koło ratunkowe zawiera:
+                <br>Topielca który przechowuje dane(np. int, tablica, string, char itp.)
+                <br>Linę mocująca do kolejnego koła.(wskaźnik do następnego elementu)
 
-<img style="display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;" src="../textimg/lista2.png"><br>
-</div><br>
-<a href="https://binarnie.pl/lista-jednokierunkowa/" target="_blank">binarnie.pl - lista jednokierunkowa</a><br>
-<a href="https://en.wikipedia.org/wiki/Linked_list#Singly_linked_list" align="center" target="_blank">wikipedia.org</a>
-</html></body>
+                <img style="display: block;
+                width: 100%;" src="../textimg/kołaratunkowe.png">
+                <br>
+                <h3 align="center">Cechy:</h3>
+                <br>- nie możemy odnieść się do konkretnych elementów jak w tablicy, trzeba przejść przez całą listę.
+                <br>- tworząc listę nie musimy wiedzieć ile będzie mieć elementów
+                <br>- ostatnio element to tail i jego wskaźnik nie powinien wskazywać na nic, najlepiej ustawić go jako null/nullptr.
+                <br>- pierwszy element nazywa się head
+                <br>
+            </span>
+</div>
+<div class="test1">
+			
+			 <h3><center>Dodawanie Węzła</center> </h3>
+    <span style="font-size: 18px">
+        <p>
+            1. Tworzymy nowe koło ratunkowe. (np. KołoRatunkowe koło13)
+            <br>2. Wrzucamy do niego topielca (np. koło13.dane = jakaśDana)
+            <br>3. Dołączamy do łańcucha.
+        </p>
+		<img style="display: block;
+                width: 100%;" src="../textimg/LJdodawanie.gif">
+                <br>
+        <p>
+            W przypadku najprostszej listy na końcu doczepiany jest nowy element.
+            <br>Wskaźnik poprzedniego elementu pokazuje na nowo wstawiony, natomiast on staje się ogonem i wskazuje na pustkę.
+            <br>Lista zaimplementowana w wizualizacji przedstawia listę z sortowaniem przy wstawianiu. 
+            <br>Polega to na sprawdzaniu po kolei kluczy istniejących w liście i porównywaniu kluczy.
+            <br>Doskonale widać to w przykładach pseudkodu i samych kodów. Nowo powstały element jest wrzucany przed element który ma większy klucz od niego.
+            <br>Oczywiście będzie to przykład listy posortowanej od najmniejszego elementu do największego. Można posortować te elementy również od od największego od najmniejszego.
+            <br>
+        </p>
+    </span>
+</div>
+<div class="test2">
+			
+			<h3 align="center">Usuwanie węzła</h3>
+    <span style="font-size: 18px">
+			<br>Tworzymy dwa wskaźniki, jeden przypisujemy do adresu pierwszego węzła.
+			<br>W przypadku zaimplenetowanej listy w wizualizacji, szukamy węzła posiadający dany klucz. Po znalezieniu go zachowujemy jego adres.
+			<br>To jest nasz drugi wskaźnik.
+			<br>Następnie elementowi poprzedzającemu element usuwany przekazujemy wskaznik na kolejny. Przykładowo:
+			<br>...-> wezel1 -> wezel2 -> wezel3 -> ...
+			<br>okazuje się że wezel2 posiada klucz po którym identyfikujemy że jest to węzeł który chcieliśmy usunąć.
+			<br>Powyższa operacja usuwania węzła musi doprowadzic do takiego stanu.
+			<br>...->wezel1->wezel3->...
+			<br>Jest również przypadek kiedy usuwany jest pierwszy element. Wtedy trzeba zapewnić żeby dotychczasowy drugi element stał się pierwszym.
+			<br>wezel2->wezel3->wezel4->.....  
+			<br>usuwamy wezel2
+			<br>wezel3->wezel4->....
+			<img style="display: block;
+                width: 100%;" src="../textimg/LJodejmownaie.gif">
+                <br>
+    </span>
+</div>
+<div class="test3">
+	
+	<h3 align="center">Szukanie węzła</h3>
+    <span style="font-size: 18px">
+        <p>
+            Tworzymy wskaźnik na pierwszy element. Następnie porównujemy klucz poszukiwany z kluczem elementu określonego przez wskaźnik.
+            <br>Jeśli okaże się że to ten którego szukamy zwracamy wskaźnik na ten objekt. Wyszukanie dobiegło końca.
+            <br>W innym przypadku zmieniamy wskaxnik na 2 element i tak do końca. W momencie kiedy napotkamy koniec, zwracam że takiego elementu nie ma.
+        </p>
+		<img style="display: block;
+                width: 100%;" img src="../textimg/LJwyszukiwanie.gif">
+		<br>
+    </span>
+</div>	
+</body></html>

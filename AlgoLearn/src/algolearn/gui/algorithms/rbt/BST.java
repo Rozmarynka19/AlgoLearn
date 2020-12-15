@@ -26,7 +26,7 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
             return false;
         else if(e.compareTo(root.element) == 0)
         {
-        	System.out.println((int)e+" found!");
+        	System.out.println(e+" found!");
         	path.getElements().add(new LineTo(root.x,root.y));
         	return true;
         }

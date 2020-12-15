@@ -48,7 +48,7 @@ import org.w3c.dom.Document;
 
 import javax.lang.model.element.Element;
 
-public class IntroductionController implements Initializable {
+public class IntroductionControllerL1List implements Initializable {
 
     @FXML
     private void minimalizeWindow(ActionEvent event) {
@@ -102,7 +102,7 @@ public class IntroductionController implements Initializable {
     public void loadText(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
         String btn_val = clicked_btn.getId();
-        System.out.println(clicked_btn.getText());
+        //System.out.println(clicked_btn.getText());
         Path path;
         final String script;
         path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
@@ -118,7 +118,7 @@ public class IntroductionController implements Initializable {
         else {
             script = "test4()";
         }
-        System.out.println(script);
+        //System.out.println(script);
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
         engine.load( "file:///"+path.toAbsolutePath());
@@ -126,17 +126,17 @@ public class IntroductionController implements Initializable {
                 new ChangeListener() {
                     @Override
                     public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                        System.out.println("oldValue: " + oldValue);
-                        System.out.println("newValue: " + newValue);
+                        //System.out.println("oldValue: " + oldValue);
+                        //System.out.println("newValue: " + newValue);
 
                         if (newValue != Worker.State.SUCCEEDED) {
                             return;
                         }
-                        System.out.println("Succeeded!");
+                        //System.out.println("Succeeded!");
                         String hello2 = (String) engine.executeScript("renev()");
                         String hello = (String) engine.executeScript(script);
 
-                        System.out.println("hello: " + hello);
+                        //System.out.println("hello: " + hello);
                     }
                 }
         );

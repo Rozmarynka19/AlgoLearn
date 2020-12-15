@@ -30,7 +30,14 @@ public class errors {
 	public String addNode = "Dodano węzeł do drzewa";
 	public String searchNode = "Wyszukano węzeł o danej wartości";
 	public String generateTree = "Wygenerowano losowe drzewo";
-	
+
+	//<--------------------Linked-list------------------------->
+	public String InputIsString = "Wprowadzona wartość nie jest liczbą!";
+	public String IsEmpty = "Nie ma elementów w wizualizacji!";
+	public String IsFull = "Maksymalna ilość elementów w wizualizacji to 11";
+	public String CannotBeFound = "Nie można znaleźć podanego węzła!";
+	public String IsNotExisting = "Podany węzęł nie istnieje!";
+
 	public String setupInformation(String info) {
 		return (infoDef+info);
 	}
