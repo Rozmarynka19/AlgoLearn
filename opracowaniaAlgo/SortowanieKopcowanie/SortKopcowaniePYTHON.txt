@@ -1,0 +1,34 @@
+def up(tablica=[], *args):
+	licznik1 = 0
+	licznik2 = 1
+	while licznik2 < n:
+		if licznik2 + 1 < n and tablica[licznik2 + 1] > tablica[licznik2]:
+			licznik2 = licznik2 + 1
+		if tablica[licznik1] >= tablica[licznik2]:
+			break
+		backup = tablica[licznik1]
+		tablica[licznik1] = tablica[licznik2]
+		tablica[licznik2] = backup
+		licznik1 = licznik2
+		licznik2 = 2 * licznik1 + 1
+def down(kopiec, n):
+	licznik1 = n
+	licznik2 = (licznik1 - 1) / 2
+	while licznik1 > 0 and kopiec[licznik2] < kopiec[licznik1]:
+		backup = kopiec[licznik1]
+		kopiec[licznik1] = kopiec[licznik2]
+		kopiec[licznik2] = backup
+		licznik1 = licznik2
+		licznik2 = (licznik1 - 1) / 2
+def sort_kop(kopiec=[], *args):
+	l = 0
+	for i in range(n):
+		down(kopiec, l)
+		l = l + 1
+	for i in range(n):
+		l = l - 1
+		if l != 0:
+			tem = kopiec[0]
+			kopiec[0] = kopiec[l]
+			kopiec[l] = tem
+			up(kopiec, l)
