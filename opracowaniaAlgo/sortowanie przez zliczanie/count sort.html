@@ -1,0 +1,35 @@
+<div id=wstep>
+<h1>Sortowanie przez zliczanie</h1>
+
+Aby posortować przez zliczanie musimy:<br>
+1.Znaleźć największy i najmniejszy elemnt zbioru<br>
+2.Stworzyć dodatkową tablice liczników o wielkości różnicy między najmniejszym a największym elementem + 1<br>
+3.Po kolei zliczyć każde wystąpienie danego elementu i zapisać ich ilość w tablicy licznków<br>
+4.Stworzyć posortowaną tablice złożoną z każdego elementu wyświetlonego tyle razy ile jego wystąpień zapisano w tablicy liczników<br><br>
+
+
+<b>Przykład:</b><br><br>
+<img src="zlicz.gif"></img><br><br>
+Zgodnie z zasadą tworzymy tablicę liczników od 2 do 9 i liczymy wystąpienie każdej liczby.<br>
+Po czym na pokolei wypisujemy wszystkie liczby zgodnie z kolejnością i otrzymujemy posortowaną tablice.<br>
+<img src="csort.gif"></img><br>
+
+</div>
+
+<div id=wadyizalety>
+<h2 id=wady>Wady:</h2>
+-Ze względu na tworzenie dodatkowej tablicy całego przedziału liczb sortowanie jest praktycznie bezużytyeczne w przypadku sortowania liczb zmienno przecinkowych.<br>
+Dla liczb 0.00001, 0.2, 0.003 tablica liczników będzie miała 100000 elementów. Co wobec wielkości tablicy n=3 jest wynikiem tragicznym.<br>
+-To samo dotyczy liczb całkowitych z dużym rozstrzałem wartości.
+<h2 id=zalety>Zalety:</h2>
+-Złożoność N+M gdzie M to rozmiar tablicy pomocniczej deklasyfikuje inne algorytmy w przypadku dużych zbiorów o małym przedziale liczb.
+</div>
+
+<style>
+h1 {text-align: center;}
+h2 {text-align: center;}
+#wady {color:red;}
+#zalety {color:green;}
+img {text-align: center;}
+div {text-align: center;}
+</style>

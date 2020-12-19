@@ -1,0 +1,22 @@
+def counting_sort(tab, n):
+    min = minmax[0]
+    max = minmax[1]
+    countersSize = max - min + 1 #liczymy potrzebna ilosc elementow
+    counters = [0] * countersSize #i od razu tworzymy tablice licznikow
+    print("Stworzono tablice licznikow: ")
+    for x in range(countersSize):
+        print(x+min, "=0", end=" | ")
+    print()
+    for x in range(n):
+        counters[tab[x] - min] += 1 #zliczamy ilosc elementow
+    print("Zliczono ilosc elementow: ")
+    for x in range(countersSize):
+        print(x+min, "=", counters[x], end=" | ")
+    print()
+    lastIndex = 0
+    for x in range(countersSize): # a nastepnie wstawiamy je kolejno w wyjsciowa tablice
+        y = lastIndex
+        while y < counters[x] + lastIndex:
+            tab[y] = x + min
+            y += 1
+        lastIndex = y

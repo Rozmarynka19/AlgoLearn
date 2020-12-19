@@ -1,0 +1,44 @@
+ 
+void counting_sort(int *tab, int n, int yMin, int yMax) {
+ 
+	int* counters = new int[yMax - yMin + 1];
+ 
+	//Wstawiamy pocz¹tkowe wartoœci liczników
+	for (int x = 0; x < (yMax - yMin + 1); x++)
+	{
+		counters[x] = 0;
+	}
+ 
+	cout << endl << "Stworzono tablice licznikow: " << endl;
+	cout << "\t| ";
+	for (int x = 0; x < (yMax - yMin + 1); x++) {
+		cout << x + yMin << ":0 | ";
+	}
+	cout << endl;
+ 
+	for (int x = 0; x < n; x++)
+	{
+		//Zliczamy iloœæ wyst¹pieñ poszczególnych elementów
+		counters[tab[x] - yMin]++;
+	}
+ 
+	cout << endl << "Zliczono elementy: " << endl;
+	cout << "\t| ";
+	for (int x = 0; x < (yMax - yMin + 1); x++) {
+		cout << x + yMin << ":" << counters[x] << " | ";
+	}
+	cout << endl;
+ 
+	//Zapisujemy elementy w iloœci podyktowanej przez liczniki
+	//w tablicy docelowej
+	int lastIndex = 0;
+	for (int x = 0; x < (yMax - yMin + 1); x++)
+	{
+		int y;
+		for (y = lastIndex; y < counters[x] + lastIndex; y++)
+		{
+			tab[y] = x + yMin;
+		}
+		lastIndex = y;
+	}
+}
