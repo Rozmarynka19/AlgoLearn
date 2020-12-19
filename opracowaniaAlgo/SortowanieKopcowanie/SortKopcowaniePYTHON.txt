@@ -1,4 +1,6 @@
-def up(tablica=[], *args):
+Prawdopodobne błedy, python nie jest odpowiednim językiem do implementacji takich algorytmów. Brak  odpowiednika tablicy z c++ czy javy.
+
+def up(tablica, n):
 	licznik1 = 0
 	licznik2 = 1
 	while licznik2 < n:
@@ -20,7 +22,7 @@ def down(kopiec, n):
 		kopiec[licznik2] = backup
 		licznik1 = licznik2
 		licznik2 = (licznik1 - 1) / 2
-def sort_kop(kopiec=[], *args):
+def sort_kop(kopiec, n):
 	l = 0
 	for i in range(n):
 		down(kopiec, l)
