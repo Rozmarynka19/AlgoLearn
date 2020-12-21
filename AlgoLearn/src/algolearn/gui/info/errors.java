@@ -45,4 +45,12 @@ public class errors {
 	public String maxHeightBST = "Osiągnięto maksymalną wysokość drzewa - Ograniczenia aplikacji!";
 	
 	public String delInProgress = "Zaczekaj aż usuwanie zakończy działanie!";
+	public String delMin = "Wyszukiwanie minimum w prawym potomku usuwanego węzła!";
+	public String delSwap = "Zamiana węzła o minimalnej wartości z węzłem usuwanym!";
+	
+	
+	public String searchToDelete = "Wyszukiwanie węzła do usunięcia!";
+	public String deleteNode = "Usuwanie węzła";
+	
+	public String successUnknownValue = "Pomyślnie odganięto ukrytą wartość!";
 }
