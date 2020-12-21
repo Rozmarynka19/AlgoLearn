@@ -1512,6 +1512,8 @@ public class BST_controller implements Initializable {
 	    		break;
 	    	case 13: // find node don't exists
 	    		optMsg(errorMSG.searchNotFound, String.valueOf(node_value));
+	    		selectedOption = 0;
+	    		deleteInProgress = false;
 	    		System.out.println(randomizedIDs[0] + " " + randomizedIDs[1]);
 	    		break;
 	    	case 14: // find node is hidden
