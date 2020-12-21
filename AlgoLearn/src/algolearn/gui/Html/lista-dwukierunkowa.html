@@ -1,0 +1,148 @@
+﻿<html>
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "wprowadzenie" || p.className == "add" || p.className == "search" || p.className == "delete"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+  function test1()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "add"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ function test2()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "delete"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ function test3()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "search"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ function test4()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+		if(p.className == "wprowadzenie"){
+			p.hidden = false;
+		}
+    }
+   alert('test');
+
+ }
+ </script>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1 align="center">Lista Dwukierunkowa</h1>
+
+<div class="wprowadzenie">
+    <h3 align="center">Wprowadzenie</h3>
+    <span style="font-size: 18px">
+        <br>Wyobraź sobie że lista jednokierunkowa to ciąg połączonych  ze sobą kół ratunkowych.
+        <br>Koło ratunkowe zawiera:
+        <br>Topielca który przechowuje dane(np. int, tablica, string, char itp.)
+        <br>Linę mocująca do kolejnego koła.(wskaźnik do następnego elementu)
+        <br>Linę mocująca do poprzedniego koła.(wskaźnik do poprzedniego elementu)
+		<center>
+        <img style="display: block; width: 30%;" src="../textimg/kołaratunkowe2D.svg">
+		</center>
+        <h3 align="center">Cechy:</h3>
+        - nie możemy odnieść się do konkretnych elementów jak w tablicy, trzeba przejść przez całą listę.
+        <br>- tworząc listę nie musimy wiedzieć ile będzie mieć elementów
+        <br>- ostatnio element to tail i jego wskaźnik nie powinien wskazywać na nic, najlepiej ustawić go jako null/nullptr.
+        <br>- pierwszy element nazywa się head
+        <br>- w tej liście możemy przechodzić od końca listy, a także możemy się cofać z węzła do poprzedniego.
+    </span>
+</div>
+
+<div class="add">
+<h3><center>Dodawanie Węzła</center></h3>
+    <span style="font-size: 18px">
+            <br>1. Tworzymy nowe koło ratunkowe. (np. KołoRatunkowe koło13)
+            <br>2. Wrzucamy do niego topielca (np. koło13.dane = jakaśDana)
+            <br>3. Dołączamy do łańcucha.
+            <br>W przypadku najprostszej listy na końcu doczepiany jest nowy element.
+            <br>Nowowstawiony węzeł ustawia swój wskaźnik na następny i poprzedni węzeł.
+            <br>Węzły poprzedzający i następujący ustawiają swoje wskaźniki na nowo wstawiony węzeł.
+            <br>Lista zaimplementowana w wizualizacji przedstawia listę z sortowaniem przy wstawianiu. 
+            <br>Polega to na sprawdzaniu po kolei kluczy istniejących w liście i porównywaniu kluczy.
+            <br>Doskonale widać to w przykładach pseudkodu i samych kodów. Nowo powstały element jest wrzucany przed element który ma większy klucz od niego.
+            <br>Oczywiście będzie to przykład listy posortowanej od najmniejszego elementu do największego. Można posortować te elementy również od od największego od najmniejszego.
+<center>Dodawanie
+<img style="display: block; width: 50%;" img src="../textimg/LD-dodawanie.gif">
+    </span>
+</div>
+
+<div class="search">
+<h3 align="center">Szukanie węzła</h3>
+    <span style="font-size: 18px">
+        <p>
+            Tworzymy wskaźnik na pierwszy element. Następnie porównujemy klucz poszukiwany z kluczem elementu określonego przez wskaźnik.
+            <br>Jeśli okaże się że to ten którego szukamy zwracamy wskaźnik na ten objekt. Wyszukanie dobiegło końca.
+            <br>W innym przypadku zmieniamy wskaxnik na 2 element i tak do końca. W momencie kiedy napotkamy koniec, zwracam że takiego elementu nie ma.
+        </p>
+<br> Jesli szukamy po kluczach:
+<br> żółty kolor -> sprawdzamy czy klucz węzła odpowiada kluczowi poszukiwanemu.
+<br> czerwony kolor -> sprawdzany klucz różni się od poszukiwanego.
+<br> zielony kolor -> znaleziono klucz odpowadający poszukiwanemu.
+<center>Wyszukiwanie od głowy.
+<img style="display: block; width: 50%;" img src="../textimg/LD-wyszukiwanieHead.gif">
+<center>Wyszukiwanie od ogona
+<img style="display: block; width: 50%;" img src="../textimg/LD-wyszukiwanieTail.gif">
+    </span>
+</div>
+
+<div class="delete">
+<h3 align="center">Usuwanie węzła</h3>
+    <span style="font-size: 18px">
+			<br>Tworzymy dwa wskaźniki, jeden przypisujemy do adresu pierwszego węzła.
+			<br>W przypadku zaimplenetowanej listy w wizualizacji, szukamy węzła posiadający dany klucz. Po znalezieniu go zachowujemy jego adres.
+			<br>To jest nasz drugi wskaźnik.
+			<br>Następnie elementowi poprzedzającemu element usuwany przekazujemy wskaznik na kolejny. Przykładowo:
+			<br>...-> wezel1 -> wezel2 -> wezel3 -> ...
+			<br>okazuje się że wezel2 posiada klucz po którym identyfikujemy że jest to węzeł który chcieliśmy usunąć.
+			<br>Powyższa operacja usuwania węzła musi doprowadzic do takiego stanu.
+			<br>...->wezel1->wezel3->...
+			<br>Jest również przypadek kiedy usuwany jest pierwszy element. Wtedy trzeba zapewnić żeby dotychczasowy drugi element stał się pierwszym.
+			<br>wezel2->wezel3->wezel4->.....  
+			<br>usuwamy wezel2
+			<br>wezel3->wezel4->....
+			<center>Usuwanie
+<img style="display: block; width: 50%;" img src="../textimg/LD-usuwanie.gif">
+    </span>
+	
+</div>
+
+</html></body>

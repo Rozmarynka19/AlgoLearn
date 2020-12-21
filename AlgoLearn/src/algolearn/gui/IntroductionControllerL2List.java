@@ -22,7 +22,9 @@ import java.util.ResourceBundle;
 //import org.jsoup.Jsoup;
 
 
-public class IntroductionControllerBST extends FXMLDocumentController implements Initializable {
+public class IntroductionControllerL2List extends FXMLDocumentController implements Initializable {
+
+
     @FXML
     public void BackToMainStage(ActionEvent event) {
         loadMenu();
@@ -42,12 +44,18 @@ public class IntroductionControllerBST extends FXMLDocumentController implements
         Button clicked_btn = (Button)event.getSource();
         Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/BST.html");
+        path=Paths.get("src/algolearn/gui/Html/lista-dwukierunkowa.html");
         if(clicked_btn.getText().equals("Dodawanie Węzła")){
             script="test1()";
         }
-        else{
+        else if(clicked_btn.getText().equals("Usuwanie Węzła")){
             script="test2()";
+        }
+        else if(clicked_btn.getText().equals("Wyszukiwanie Węzła")){
+            script="test3()";
+        }
+        else {
+            script = "test4()";
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);

@@ -5,11 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<<<<<<< HEAD
-<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
-=======
+
 <AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController_RBT">
->>>>>>> mrDocu/misc
     <children>
         <HBox prefHeight="514.0" prefWidth="245.0">
             <children>

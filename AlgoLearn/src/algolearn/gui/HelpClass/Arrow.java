@@ -1,4 +1,4 @@
-package algolearn.gui;
+package algolearn.gui.HelpClass;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.property.DoubleProperty;

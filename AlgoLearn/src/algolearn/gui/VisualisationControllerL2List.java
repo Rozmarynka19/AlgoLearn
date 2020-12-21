@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,8 +28,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 
-
-public class VisualisationControllerL1List extends FXMLDocumentController implements Initializable {
+public class VisualisationControllerL2List extends FXMLDocumentController implements Initializable {
 
     @FXML
     //id for each top AnchorPane element in every window-fxmlFile
@@ -73,7 +74,8 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
     @FXML TextField FindNodeText;
 
     List<Button> childrenButtonList = new ArrayList<>();
-    List<Arrow> childrenArrowList = new ArrayList<>();;
+    List<Arrow> childrenArrowList = new ArrayList<>();
+    List<VBox> ArrowBoxList = new ArrayList<>();
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -197,7 +199,8 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
     public void restartWindow(ActionEvent actionEvent) {
         MainVBox.getChildren().clear();
         childrenButtonList.clear();
-        childrenArrowList.clear();
+        //childrenArrowList.clear();
+        ArrowBoxList.clear();
     }
 
     private void deleteNode(){
@@ -206,7 +209,8 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
         for(int i=0;i<childrenButtonList.size();i++){
             if(Integer.parseInt(childrenButtonList.get(i).getText())==valueToDelete){
                 childrenButtonList.remove(i);
-                childrenArrowList.remove(i);
+                //childrenArrowList.remove(i);
+                ArrowBoxList.remove(i);
                 reloadVisualisationBox();
                 flag = true;
                 break;
@@ -264,28 +268,23 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
 
         addSortButtonList(btnNumber, keyValue);
         checklist();
+        VBox box = new VBox();
         Arrow arrow = new Arrow();
+        //arrow.setEndX(previousButton.getLayoutX() + 40);
         arrow.setEndX(previousButton.getLayoutX() + 40);
-        //arrow.setEndX(previousButton.getLayoutX() - 40); reverse
         arrow.setEndY(previousButton.getLayoutY());
-        childrenArrowList.add(arrow);
+        Arrow arrow2 = new Arrow();
+        arrow2.setEndX(btnNumber.getLayoutX() - 40);
+        arrow2.setEndY(btnNumber.getLayoutY());
+        //childrenArrowList.add(arrow);
+        //childrenArrowList.add(arrow2);
+        //box.setSpacing(10);
+        box.setMargin(arrow, new Insets(45, 0, 0, 0));
+        box.setMargin(arrow2, new Insets(5, 0, 0, 0));
+        box.getChildren().addAll(arrow, arrow2);
+        ArrowBoxList.add(box);
         reloadVisualisationBox(); //function to add elements from list
         AddNodeText.setText("");
-        //PauseTransition pause = new PauseTransition(
-         //       Duration.seconds(1));
-       // pause.setOnFinished(event -> {
-         //   btnNumber.setStyle(
-          //          " -fx-background-color: " +
-          //                  "linear-gradient(#ff0000, #990000 100%)" +
-          //                  "linear-gradient(#3a3a3a, #020b02); " +
-          //                  "-fx-background-radius: 5em; " +
-          //                  "-fx-min-width: 30px; " +
-         //                   "-fx-min-height: 30px; " +
-         //                   "-fx-max-width: 30px; " +
-         //                   "-fx-max-height: 30px; "
-         //   );
-        //});
-       // pause.play();
     }
 
     private void checklist(){ //funkcja do testowania sortowania listy
@@ -296,10 +295,12 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
     //function to
     private void reloadVisualisationBox(){
         MainVBox.getChildren().clear();
-        for(int i=0;i<childrenButtonList.size();i++){
+        for(int i=0, k=0;i<childrenButtonList.size();i++, k+=2){
             MainVBox.getChildren().add(childrenButtonList.get(i));
-            childrenArrowList.get(i).setVisible(i != childrenButtonList.size() - 1);
-            MainVBox.getChildren().add(childrenArrowList.get(i));
+            ArrowBoxList.get(i).getChildren().get(0).setVisible(i != childrenButtonList.size() - 1);
+            ArrowBoxList.get(i).getChildren().get(1).setVisible(i != childrenButtonList.size() - 1);
+            MainVBox.getChildren().add(ArrowBoxList.get(i));
+            //MainVBox.getChildren().add(childrenArrowList.get(k+1));
         }
     }
 

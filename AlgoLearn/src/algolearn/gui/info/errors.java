@@ -37,6 +37,7 @@ public class errors {
 	public String IsFull = "Maksymalna ilość elementów w wizualizacji to 11";
 	public String CannotBeFound = "Nie można znaleźć podanego węzła!";
 	public String IsNotExisting = "Podany węzęł nie istnieje!";
+	public String HaveDuplicate = "Nie są przyjmowane duplikaty";
 
 	public String setupInformation(String info) {
 		return (infoDef+info);
