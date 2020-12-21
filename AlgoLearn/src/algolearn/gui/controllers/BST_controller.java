@@ -477,7 +477,8 @@ public class BST_controller implements Initializable {
     
     // =================================	VISUALISATION	=====================================//
 	@FXML private AnchorPane Visualisation_anchorPane;
-	@FXML private TextArea errorTextArea;
+	@FXML
+	public TextArea errorTextArea;
 	@FXML private Button hiddenValues;
 	//private Map<Circle,Text> arrayCircles = new HashMap<Circle,Text>();
 

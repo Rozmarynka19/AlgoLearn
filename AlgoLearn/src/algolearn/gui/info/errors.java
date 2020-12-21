@@ -33,8 +33,16 @@ public class errors {
 	public String searchNotFound = "Wyszukiwany węzeł nie istnieje";
 	public String searchHidden = "Wyszukiwany węzeł jest ukryty";
 	public String generateTree = "Wygenerowano losowe drzewo";
-	
-	
+
+
+	//<--------------------Linked-list------------------------->
+	public String InputIsString = "Wprowadzona wartość nie jest liczbą!";
+	public String IsEmpty = "Nie ma elementów w wizualizacji!";
+	public String IsFull = "Maksymalna ilość elementów w wizualizacji to 11";
+	public String CannotBeFound = "Nie można znaleźć podanego węzła!";
+	public String IsNotExisting = "Podany węzęł nie istnieje!";
+	public String HaveDuplicate = "Nie są przyjmowane duplikaty";
+
 	public String setupInformation(String info) {
 		return (infoDef+info);
 	}

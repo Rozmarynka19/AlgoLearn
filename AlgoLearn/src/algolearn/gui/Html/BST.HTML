@@ -1,0 +1,90 @@
+<html>
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "wstep" || p.className == "operacje" || p.className == "test3" || p.className == "test4"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+  function test1()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "operacje"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ function test2()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "wstep"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+    <meta charset="UTF-8">
+</head>
+
+<h1>Binarne Drzewo Poszukiwań</h1>
+<div id=wstep class="wstep">
+<img style="display: block;
+                width: 100%;" src="../textimg/1.png"></img><br>
+
+Binarne drzewo poszukiwań to struktura danych oparta na tworzeniu połączeń każdego z węzłów z maksymalnie dwoma potomkami. 
+Lewy potomek jest zawszę mniejszy od rodzica, a prawy większy.<br>
+
+<img style="display: block;
+                width: 100%;" src="../textimg/2.png"></img><br>
+
+Jak można zauważyć w lewym poddrzewie mieszczą się wszystkie wartości mniejsze od korzenia i analogiczni w prawym większe,
+co ułatwia przeszukiwanie wartości gdyż za pomocą jednego porównania można wykluczyć z poszukiwania nawet połowę z posiadanych wartości. <br>
+Powoduje to też że łatwo znaleźć największą wartość która będzie znajdować się na skrajnym prawym liściu i analogiczne najmniejszą.
+
+</div>
+
+<div id=operacje class="operacje">
+<h1>Operacje</h1>
+	<b>Szukanie</b>: aby wykonać dowolną operacje w drzewie najpierw trzeba znaleźć odpowiednie miejsce lub element. 
+	Przeszukiwanie drzewa BST postępuje według schematu:<br>
+
+<img style="display: block;
+                width: 100%;" src="../textimg/3.png"></img><br>
+
+Jeśli szukamy wartości 40 to najpierw porównujemy ją z korzeniem czyli 30 od którego jest większy, więc idziemy w prawo.
+ Od prawego potomka 40 jest mniejsze więc idziemy w lewo. Przy pomocy przyrównania 40 = 40 odnajdujemy rzeczony element.<br>
+<img style="display: block;
+                width: 100%;" src="../textimg/4.png"></img><br>
+W przypadku wartości która nie występuje w drzewie droga wygląda analogicznie oprócz ostatniego przypadku.
+ Kiedy dochodzimy do 40 nie ma już możliwości przejścia do jego lewego potomka, oznacza to że w drzewie nie ma takiej wartości.<br><br>
+ 
+ <b>Dodawanie wartości:</b> Aby dodać wartość najpierw musimy sprawdzić czy w drzewie nie ma jeszcze takiej wartości posługując się operacją szukania.
+ Jeśli znaleźliśmy wartości dodajemy ją zgodnie z zasadą tworząc prawego lub lewego potomka. <br>
+<img style="display: block;
+                width: 100%;" src="../textimg/5.png"></img><br>
+
+<b>Usuwanie wartości:</b> Problemy zaczynają się przy usuwaniu wartości. Jeśli wartość którą chcemy usunąć jest liściem to nie ma problemu, postępujemy jak w poprzednich przypadkach. Ale jeśli posiada potomków, albo co gorsza jest korzeniem to sprawa się komplikuje. W takim przypadku wybieramy wartość najbliższą usuwanej. W przypadku usunięcia 30 może to być 20 albo 39. Aby znaleźć takiego następce należy kierować się raz w prawo i cały czas w lewo aby znaleźć najbliższą większą wartość, albo raz w lewo i cały czas w prawo żeby znaleźć najbliższą mniejszą wartość. Jeśli szukana wartość również posiada potomka to postępujemy analogicznie szukając zastępcy.
+ Nasuwa się tu więc rekurencyjne rozwiązanie problemu usuwania.<br>
+
+</div>
+
+<style>
+h1 {text-align: center;}
+</style>
+</div>	
+</body></html>

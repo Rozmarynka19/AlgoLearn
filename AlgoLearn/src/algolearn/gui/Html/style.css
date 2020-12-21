@@ -1,0 +1,61 @@
+body
+{
+    margin:0;
+    padding:0;
+    /* background-color: black; */
+}
+
+.red
+{
+    color:red;
+}
+
+h1,h4,h3
+{
+    text-align: center;
+    line-height: 0;
+}
+
+h1
+{
+    padding: 10px  0px  5px  0px
+} 
+
+.intro
+{
+    padding: 20px 50px;
+}
+
+.parallel
+{
+    float: left;
+}
+
+.below
+{
+    clear: both;
+}
+
+.imgIntro
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:25%;
+    height:25%;
+}
+
+.imgRotations, .imgSearch, .imgInsert
+{
+    padding:20px 60px;
+}
+
+/* #Lrotation,#Rrotation,#resume
+{
+    padding: 10px;
+} */
+
+section
+{
+    padding: 10px;
+}

@@ -38,7 +38,7 @@ import javafx.util.Duration;
  * 
  */
 public class FXMLDocumentController implements Initializable{
-    FileNames fileNames = FileNames.getInstance();
+    SavedValues savedValues = SavedValues.getInstance();
 
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
@@ -76,7 +76,7 @@ public class FXMLDocumentController implements Initializable{
     WebView introText;
     private WebEngine engine;
 
-    private int realId;
+    private int realId = savedValues.savedRealId;
 
     /**
      * 
@@ -95,6 +95,7 @@ public class FXMLDocumentController implements Initializable{
         Button clicked_btn = (Button)event.getSource();
         String btn_val = clicked_btn.getId();
         realId=Integer.parseInt(clicked_btn.getId());
+        savedValues.savedRealId=realId;
         System.out.println(realId);
         this.algo_id = Integer.parseInt(btn_val);
         if(this.btn_id == "NULL") this.btn_id = btn_val;
@@ -102,10 +103,14 @@ public class FXMLDocumentController implements Initializable{
         	resize(stage, scene_max[1], (double)15, 1, 3);
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         	categorySetBackground();
+        	savedValues.resizeFlag=true;
         	setProgress(calculateProgress());
         }
         else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id)  {
+            if(!savedValues.resizeFlag)
         	resize(stage, scene_base[1], (double)-15, 1, 3);
+            else
+                realId=savedValues.savedRealId;
         }else if(clicked_btn.getId() != btn_id) {
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         	categorySetBackground();
@@ -301,7 +306,7 @@ public class FXMLDocumentController implements Initializable{
      */
     @FXML
     public void pressButtonVisualization(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(2)));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(savedValues.paths.get(realId).get(2)));
         AnchorPane anchorPane = loader.load();
         setScreen(anchorPane);
     }
@@ -314,7 +319,7 @@ public class FXMLDocumentController implements Initializable{
      */
     @FXML
     public void pressButtonIntroduction(ActionEvent event) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(0)));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(savedValues.paths.get(realId).get(0)));
         AnchorPane anchorPane = loader.load();
         setScreen(anchorPane);
     }
@@ -327,7 +332,7 @@ public class FXMLDocumentController implements Initializable{
      */
     @FXML
     public void pressButtonDescription(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource(fileNames.paths.get(realId).get(1)));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource(savedValues.paths.get(realId).get(1)));
     	AnchorPane anchorPane = loader.load();
     	setScreen(anchorPane);
     }
@@ -431,50 +436,3 @@ public class FXMLDocumentController implements Initializable{
     }
 }
 
-class FileNames{
-    private static FileNames instance;
-    //instrukcja podpięcia własnych plików:
-    //1.Nadaj plikom nazwy unikalne dla algorytmu (struktury danych czy co tam to jest)
-    //2.dodaj same nazwy plików do poniższych list w wiersz zgodny z oznaczeniem
-    //3.Niczym się nie przejmuj
-    //Uwaga, z pewnych powodów nazwy tak długie jak linked_list_description_fxml.fxml powodują błąd więc sugeruję krótsze
-    public List<List<String>> paths = addToList(
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // kopiec binarny
-            asList("linked_list_introduction.fxml","linked_list_description.fxml","linked_list_visualization.fxml"), //lista jednokierunkowa
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // lista dwukierunkowa
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // sortowanie kubełkowe
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez zliczanie
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez kopcowanie
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // fft
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // lista z przeskokami
-            asList("introduction_fxml.fxml","description_fxml.fxml","bst_visualisation.fxml"), // bst
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // tablica haszująca o xd xd mieszająca
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // floyd warshall
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Union Find
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // algorytm grahama
-            asList("introduction_fxml.fxml","description_fxml.fxml","rbt_visualisation.fxml") //  red-black tree
-    );
-
-    private static <String> List<String> asList(String ... items) {
-        List<String> list = new ArrayList();
-        for (String item : items) {
-            list.add((String) ("fxml/"+item));
-        }
-        return list;
-    }
-    private static <String> List<String> addToList(String ... items) {
-        List<String> list = new ArrayList();
-        for (String item : items) {
-            list.add(item);
-        }
-        return list;
-    }
-
-    public static FileNames getInstance() {
-        if (instance == null) {
-            instance = new FileNames();
-        }
-        return instance;
-    }
-
-}
