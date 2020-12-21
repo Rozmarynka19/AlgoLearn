@@ -57,7 +57,7 @@ import javafx.util.Duration;
  * JavaFX handler class that controls the buttons in main window and sub-windows.
  * 
  */
-public class FXMLVisualisationController implements Initializable {
+public class BST_controller implements Initializable {
 	private double [] scene_base = {300, 300}; 
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
@@ -507,7 +507,6 @@ public class FXMLVisualisationController implements Initializable {
 	static int max_height = 4;
 	
 	static double [] def_pos = {board_width/2, 50};
-	private double x = def_pos[0], y = def_pos[1];
 	
 	private Color randomColor() {
 		Random rand = new Random();
@@ -737,7 +736,6 @@ public class FXMLVisualisationController implements Initializable {
 				cords.add(getNodePositions(rootBST, p));
 				System.out.println(p);
 			}
-			
 			initSwapPath(cords, 21);
 		}
 	}
@@ -863,7 +861,6 @@ public class FXMLVisualisationController implements Initializable {
 		}
 	}
 	
-	private int deleteCounter = 0;
 	private void Delete(BSTNode newRoot, String getValue, int deleteTime, int multiChilds, String bonus, boolean AlreadyDeleted) throws InterruptedException {
 		optMsg(errorMSG.deleteNode, getValue);
 		Thread.sleep(deleteTime);
@@ -911,7 +908,6 @@ public class FXMLVisualisationController implements Initializable {
 				}else {
 					int circleID = getID(delValue, true, false, false);
 					int textID = getID(delValue, false, true, false);
-					int linesID = getID(delValue, false, false, true);
 					
 					System.out.println("New keys :"+delValue+" " +newRoot.key);
 					if(newRoot.right != null)
@@ -962,7 +958,6 @@ public class FXMLVisualisationController implements Initializable {
 				HashMap<String, double[]> before_remove = getPositions(keys);
 				rootBST = deleteRec(rootBST, Integer.parseInt(getValue));
 				HashMap<String, double[]> after_remove = getPositions(keys);
-				deleteCounter = keys.size() * 2;
 				for(Integer k : keys) {
 					Path path = new Path();
 					path.getElements().add(new MoveTo(before_remove.get(Integer.toString(k))[0], before_remove.get(Integer.toString(k))[1]));
@@ -1030,8 +1025,6 @@ public class FXMLVisualisationController implements Initializable {
 				
 				int circleID = getID(getValue, true, false, false);
 				int textID = getID(getValue, false, true, false);
-				
-				deleteCounter = keys_multiple.size() * 2 + 1;
 				
 				for(Integer k : keys_multiple) {
 					if(k == delMin)
@@ -1413,7 +1406,7 @@ public class FXMLVisualisationController implements Initializable {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/error_fxml.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
-            FXMLVisualisationController controller = (FXMLVisualisationController)fxmlLoader.getController();
+            BST_controller controller = (BST_controller)fxmlLoader.getController();
             Stage stage = new Stage();
             setStyle(stage);
             setMouse(root1, stage);
@@ -1696,7 +1689,7 @@ public class FXMLVisualisationController implements Initializable {
     		handleAnimation(StepByStepCheckBox.isSelected(), selectedOption);
     }
     // =================================	Binnary search tree =================================//
-    class BSTNode extends FXMLVisualisationController{
+    class BSTNode extends BST_controller{
     	int key;
     	BSTNode left, right;
     }
