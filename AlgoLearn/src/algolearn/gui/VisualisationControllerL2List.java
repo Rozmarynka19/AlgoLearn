@@ -2,7 +2,7 @@ package algolearn.gui;
 
 import algolearn.gui.HelpClass.Arrow;
 import algolearn.gui.FXMLDocumentController;
-import algolearn.gui.FXMLVisualisationController;
+import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -329,7 +329,7 @@ public class VisualisationControllerL2List extends FXMLDocumentController implem
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/error_fxml.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
-            FXMLVisualisationController controller = (FXMLVisualisationController) fxmlLoader.getController();
+            BST_controller controller = (BST_controller) fxmlLoader.getController();
             Stage stage = new Stage();
             setStyle(stage);
             setMouse(root1, stage);

@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 public class BucketSortVisualisationController extends FXMLDocumentController  implements Initializable {
 	
     List<Button> childrenButtonList = new ArrayList<>();
-    List<Arrow> childrenArrowList = new ArrayList<>();
+//    List<Arrow> childrenArrowList = new ArrayList<>();
     
     @FXML TextField AddNodeTextBS;
     @FXML private Button previousSearchedChildBS;
