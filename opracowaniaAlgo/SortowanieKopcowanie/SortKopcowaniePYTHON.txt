@@ -1,5 +1,3 @@
-Prawdopodobne błedy, python nie jest odpowiednim językiem do implementacji takich algorytmów. Brak  odpowiednika tablicy z c++ czy javy.
-
 def up(tablica, n):
 	licznik1 = 0
 	licznik2 = 1
