@@ -1,0 +1,59 @@
+import numpy as np
+def down(kopiec, n):
+	t = kopiec[0]
+	x = n-1
+	y = (x - 1) // 2 -1
+	while x > 0 and kopiec[y] < kopiec[x]:
+		t = kopiec[x]
+		kopiec[x] = kopiec[y]
+		kopiec[y] = t
+		x = y
+		y = (x - 1) / 2
+def dodaj(kopiec,  k):
+	kopiec[k] = k
+	down(kopiec, n)
+def up(kopiec, n):
+	t = kopiec[0]
+	x = 0
+	y = 1
+	while y < n:
+		if y + 1 < n and kopiec[y + 1] > kopiec[y]:
+			y = y + 1
+		if (kopiec[x] >= kopiec[y]):
+			break
+
+		t = kopiec[x]
+		kopiec[x] = kopiec[y]
+		kopiec[y] = t
+		x = y
+		y = 2 * x + 1
+def usun(kopiec, n):
+	if n != 0:
+		kopiec[0] = kopiec[n]
+		kopiec[n] = -1
+		up(kopiec, n - 1)
+def wypisz(kopiec, n):
+	if (n > 0):
+		for i in range(100):
+			print(str(kopiec[i]) + " ")
+			if i % 10 == 0 and i > 0:
+				print("\n")
+	else:
+		print("Kopiec pusty")
+	print("\n")
+if __name__ == '__main__':
+		n = 100
+		l = 0
+		kopiec = np.zeros(n)
+		print(len(kopiec)) 
+		print("Rozmiar kopca: " + str(n) + ":" + "\n\n")
+		for i in range(n-1):
+			dodaj(kopiec, l)
+			l = l + 1
+		wypisz(kopiec, l)
+		print("\n")
+		for i in range (n-1):
+			usun(kopiec, l - 1)
+			l = l - 1
+		wypisz(kopiec, l)
+		print("\n\n")

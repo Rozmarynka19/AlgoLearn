@@ -1,0 +1,43 @@
+	private static void countingSort(int[] tab) {
+		int[] minmax = getMinMax(tab);
+		int yMin = minmax[0];
+		int yMax = minmax[1];
+		int[] counters = new int[yMax - yMin + 1];
+		 
+		//Wstawiamy pocz¹tkowe wartoœci liczników
+		for (int x = 0; x < (yMax - yMin + 1); x++)
+		{
+			counters[x] = 0;
+		}
+	 
+		System.out.println("Stworzono tablice licznikow: ");
+		for (int x = 0; x < (yMax - yMin + 1); x++) {
+			System.out.print((x + yMin) + ":" + counters[x] + "| ");
+		}
+		System.out.println();
+	 
+		for (int x = 0; x < tab.length; x++)
+		{
+			//Zliczamy iloœæ wyst¹pieñ poszczególnych elementów
+			counters[tab[x] - yMin]++;
+		}
+	 
+		System.out.println("Zliczono elementy: ");
+		for (int x = 0; x < (yMax - yMin + 1); x++) {
+			System.out.print((x + yMin) + ":" + counters[x] + "| ");
+		}
+		System.out.println();
+	 
+		//Zapisujemy elementy w iloœci podyktowanej przez liczniki
+		//w tablicy docelowej
+		int lastIndex = 0;
+		for (int x = 0; x < (yMax - yMin + 1); x++)
+		{
+			int y;
+			for (y = lastIndex; y < counters[x] + lastIndex; y++)
+			{
+				tab[y] = x + yMin;
+			}
+			lastIndex = y;
+		}
+	}

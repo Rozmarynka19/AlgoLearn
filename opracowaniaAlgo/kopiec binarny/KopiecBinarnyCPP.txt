@@ -1,0 +1,87 @@
+#include <iostream>
+#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+void down(int kopiec[], int n){
+	int x, y, t;
+	x = n;
+	y = (x - 1) / 2;
+	while (x > 0 && kopiec[y] < kopiec[x]){
+		t = kopiec[x];
+		kopiec[x] = kopiec[y];
+		kopiec[y] = t;
+		x = y;
+		y = (x - 1) / 2;
+	}
+}
+void dodaj(int kopiec[], int n){
+	kopiec[n] = n;
+	down(kopiec, n);
+}
+void up(int kopiec[], int n){
+	int x, y, t;
+	x = 0;
+	y = 1;
+	while (y < n){
+		if (y + 1 < n && kopiec[y + 1] > kopiec[y]){
+			y = y + 1;
+		}
+
+		if (kopiec[x] >= kopiec[y]){
+			break;
+		}
+
+		t = kopiec[x];
+		kopiec[x] = kopiec[y];
+		kopiec[y] = t;
+		x = y;
+		y = 2 * x + 1;
+	}
+}
+void usun(int kopiec[], int n){
+	if (n != 0){
+		kopiec[0] = kopiec[n];
+		kopiec[n] = -1;
+		up(kopiec, n - 1);
+	}
+}
+void wyczysc(int* kopiec){
+	delete kopiec;
+}
+void wypisz(int kopiec[], int n){
+	if (n > 0){
+		for (int i = 0; i < 100; i++){
+			cout << kopiec[i] << " ";
+			if (i % 10 == 0 && i > 0)
+				cout << endl;
+		}
+	}
+	else{
+		cout << "Kopiec pusty";
+	}
+}
+int main(){
+	int* kopiec;
+		int n = 100;
+		int l = 0;
+		kopiec = new int[n];
+		cout << "Rozmiar kopca: " << n << ":" << endl << endl;
+		for (int i = 0; i < n; i++){
+			dodaj(kopiec, l);
+			l = l + 1;
+		}
+		wypisz(kopiec, l);
+		cout << endl;
+		for (int i = 0; i < n; i++){
+			usun(kopiec, l - 1);
+			l = l - 1;
+		}
+		wypisz(kopiec, l);
+		cout << endl;
+		wyczysc(kopiec);
+		cout << endl << endl;
+	return 0;
+}

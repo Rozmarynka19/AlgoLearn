@@ -1,0 +1,46 @@
+void up(int tablica[], int n){
+	int licznik1, licznik2, backup;
+	licznik1 = 0;
+	licznik2 = 1;
+	while (licznik2 < n){
+		if (licznik2 + 1 < n && tablica[licznik2 + 1] > tablica[licznik2]){
+			licznik2 = licznik2 + 1;
+		}
+		if (tablica[licznik1] >= tablica[licznik2]){
+			break;
+		}
+		backup = tablica[licznik1];
+		tablica[licznik1] = tablica[licznik2];
+		tablica[licznik2] = backup;
+		licznik1 = licznik2;
+		licznik2 = 2 * licznik1 + 1;
+	}
+}
+void down(int kopiec[], int n){
+	int licznik1, licznik2, backup;
+	licznik1 = n;
+	licznik2 = (licznik1 - 1) / 2;
+	while (licznik1 > 0 && kopiec[licznik2] < kopiec[licznik1]){
+		backup = kopiec[licznik1];
+		kopiec[licznik1] = kopiec[licznik2];
+		kopiec[licznik2] = backup;
+		licznik1 = licznik2;
+		licznik2 = (licznik1 - 1) / 2;
+	}
+}
+void sort_kop(int kopiec[], int n){
+	int l = 0;
+	for (int i = 0; i < n; i++){
+		down(kopiec, l);
+		l = l + 1;
+	}
+	for (int i = 0; i < n; i++){
+		l = l - 1;
+		if (l != 0){
+			int tem = kopiec[0];
+			kopiec[0] = kopiec[l];
+			kopiec[l] = tem;
+			up(kopiec, l);
+		}
+	}
+}

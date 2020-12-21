@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.BucketSortVisualisationController">
+    <children>
+        <HBox prefHeight="514.0" prefWidth="245.0">
+            <children>
+                <VBox prefHeight="560.0" prefWidth="461.0">
+                    <children>
+                        <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
+                            <children>
+                                <Text fill="WHITE" layoutX="6.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Dostępne funkcje" textAlignment="CENTER" wrappingWidth="266.5982971191406">
+                                    <font>
+                                        <Font name="Cambria" size="30.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </Pane>
+                        <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Dodaj węzeł" />
+                  <Pane prefHeight="48.0" prefWidth="279.0">
+                     <children>
+                        <TextField fx:id="AddNodeTextBS" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="" layoutX="223.0" layoutY="-1.0" mnemonicParsing="false" onAction="#generateButtonHandlerBS" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Usuń węzeł" />
+                  <Pane prefHeight="48.0" prefWidth="324.0">
+                     <children>
+                        <TextField prefHeight="39.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Wyszukaj węzeł" />
+                  <Pane prefHeight="48.0" prefWidth="279.0">
+                     <children>
+                        <TextField prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
+                  <Pane prefHeight="48.0" prefWidth="200.0">
+                     <children>
+                              <TextField fx:id="" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                                  <font>
+                                      <Font size="18.0" />
+                                  </font>
+                              </TextField>
+                        <Button fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Pane prefHeight="50.0" prefWidth="279.0" styleClass="titlePlane">
+                            <children>
+                                <Text fill="WHITE" layoutX="-58.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Step-by-step" textAlignment="CENTER" wrappingWidth="266.5982971191406">
+                                    <font>
+                                        <Font name="Cambria" size="30.0" />
+                                    </font>
+                                </Text>
+                        <CheckBox fx:id="StepByStepCheckBox" layoutX="234.0" layoutY="6.0" mnemonicParsing="false" />
+                            </children>
+                        </Pane>
+                        <HBox prefHeight="48.0" prefWidth="279.0">
+                            <children>
+                                <Button id="5" fx:id="hiddenValues" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Ukryte liczby: [ ?, ? ]" />
+                            </children>
+                        </HBox>
+                    </children></VBox>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="20.0">
+                    <children>
+                        <Pane prefHeight="517.0" prefWidth="74.0" styleClass="titlePlane" />
+                    </children></VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <HBox prefHeight="71.0" prefWidth="824.0">
+                            <children>
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="673.0" styleClass="titlePlane">
+                                    <children>
+                                        <Text fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Wizualizacja" textAlignment="CENTER" wrappingWidth="674.931640625">
+                                            <font>
+                                                <Font name="Cambria" size="40.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Pane>
+                                <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />
+                                <Button id=".empty" fx:id="btn11" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="76.0" styleClass="algHard" text="X" />
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="401.0" prefWidth="825.0">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane layoutY="15.0" prefHeight="318.0" prefWidth="825.0">
+                                <content>
+                                  <AnchorPane fx:id="Visualisation_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="812.0">
+                                       <children>
+                                          <HBox fx:id="MainHBox" prefHeight="100.0" prefWidth="813.0" />
+                                          <HBox fx:id="BucketHBox" layoutY="100.0" prefHeight="100.0" prefWidth="816.0">
+                                             <children>
+                                                <AnchorPane id="1" fx:id="anchorPane" prefHeight="100.0" prefWidth="133.0">
+                                                   <children>
+                                                      <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
+                                                      <TextField id="1" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="2" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="3" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="4" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      
+                                                      <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
+                                                      <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
+                                                      <TextField editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="41.0" text="1-4" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane id="2" fx:id="anchorPane2" prefHeight="100.0" prefWidth="133.0">
+                                                   <children>
+                                                      <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
+                                                      <TextField id="5" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="6" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="7" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="8" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
+                                                      <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
+                                                      <TextField id="0" editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="41.0" text="5-8" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane id="3" fx:id="anchorPane3" prefHeight="100.0" prefWidth="133.0">
+                                                   <children>
+                                                      <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
+                                                      <TextField id="9" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="10" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="11" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="12" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
+                                                      <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
+                                                      <TextField id="0" editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="41.0" text="9-12" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane id="4" fx:id="anchorPane4" prefHeight="100.0" prefWidth="133.0">
+                                                   <children>
+                                                      <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
+                                                      <TextField id="13" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="14" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="15" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="16" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
+                                                      <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
+                                                      <TextField id="0" editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="48.0" text="13-16" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </children></HBox>
+                                          <HBox layoutX="-4.0" layoutY="201.0" prefHeight="100.0" prefWidth="819.0" />
+                                       </children></AnchorPane>
+                                </content>
+                              </ScrollPane>
+                              <Text fill="WHITE" layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="795.0">
+                                 <font>
+                                    <Font name="Cambria Bold Italic" size="19.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="825.0" styleClass="titlePlane">
+                                    <children>
+                              <Button id="1" fx:id="restartBTN" layoutX="157.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#restartWindowBS" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Restartuj" />
+                              <Button id="1" layoutX="433.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sortBS" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Dalej" />
+                              <Button id="1" layoutX="574.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Pomiń" />
+                              <Button id=".empty" fx:id="backBTN" layoutX="715.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
+                              <ProgressBar fx:id="generateBar" layoutX="299.0" layoutY="2.0" prefHeight="68.0" prefWidth="133.0" progress="1.0" styleClass="generate-bar" />
+                              <Text fill="WHITE" layoutX="322.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Generuj" textAlignment="CENTER" wrappingWidth="85.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                              <Slider fx:id="timeSlider" layoutX="15.0" layoutY="34.0" max="1000.0" min="500.0" prefHeight="30.0" prefWidth="124.0" value="500.0" />
+                              <Text fill="WHITE" layoutX="27.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szybkość animacji" wrappingWidth="100.0">
+                                 <font>
+                                    <Font name="System Bold" size="11.0" />
+                                 </font>
+                              </Text>
+                                    </children></Pane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>

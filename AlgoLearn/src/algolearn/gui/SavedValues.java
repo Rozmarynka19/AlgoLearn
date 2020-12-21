@@ -16,7 +16,7 @@ public class SavedValues {
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // kopiec binarny
             asList("linked_list_introduction.fxml","linked_list_description.fxml","linked_list_visualization.fxml"), //lista jednokierunkowa
             asList("linked_list2_introduction.fxml","description_fxml.fxml","linked_list2_visualization.fxml"), // lista dwukierunkowa
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // sortowanie kubełkowe
+            asList("introduction_fxml.fxml","description_fxml.fxml","03_bucket_sort_visualisation.fxml"), // sortowanie kubełkowe
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez zliczanie
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez kopcowanie
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // fft

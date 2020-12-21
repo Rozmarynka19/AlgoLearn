@@ -29,7 +29,11 @@ public class errors {
 	
 	public String addNode = "Dodano węzeł do drzewa";
 	public String searchNode = "Wyszukano węzeł o danej wartości";
+	public String searchRoot = "Wyszukano korzeń o danej wartości";
+	public String searchNotFound = "Wyszukiwany węzeł nie istnieje";
+	public String searchHidden = "Wyszukiwany węzeł jest ukryty";
 	public String generateTree = "Wygenerowano losowe drzewo";
+
 
 	//<--------------------Linked-list------------------------->
 	public String InputIsString = "Wprowadzona wartość nie jest liczbą!";
@@ -45,4 +49,16 @@ public class errors {
 	public String setupOperationInfo(String info, String value) {
 		return (infoDef+info+" [ "+value+" ]");
 	}
+	
+	public String maxHeightBST = "Osiągnięto maksymalną wysokość drzewa - Ograniczenia aplikacji!";
+	
+	public String delInProgress = "Zaczekaj aż usuwanie zakończy działanie!";
+	public String delMin = "Wyszukiwanie minimum w prawym potomku usuwanego węzła!";
+	public String delSwap = "Zamiana węzła o minimalnej wartości z węzłem usuwanym!";
+	
+	
+	public String searchToDelete = "Wyszukiwanie węzła do usunięcia!";
+	public String deleteNode = "Usuwanie węzła";
+	
+	public String successUnknownValue = "Pomyślnie odganięto ukrytą wartość!";
 }
