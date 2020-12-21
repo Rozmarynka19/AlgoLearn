@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body id="up">
+    <h1>Drzewo <span class="red">czerwono</span>-czarne</h1>
+    <h4>(ang. <span class="red">red</span>-black tree)</h4>
+
+    <div class="intro">
+        <h3><u>Wyszukiwanie węzła o zadanym kluczu</u></h3>
+        <p>
+            Jeśli chodzi o wyszukiwanie węzła o zadanym kluczu, to przebiega ono dokładnie tak samo, jak w BST.
+            Krótkie przypomnienie...
+            <br/>
+            <br/>
+            Spis treści (kliknij, by nie scrollować ;]):
+            <ul>
+                <li><a href="#exists">Przypadek pozytywny - węzeł istnieje</a></li>
+                <li><a href="#notexists">Przypadek negatywny - węzeł nie istnieje</a></li>
+            </ul>
+            <br/>
+        </p>
+
+
+        <section id="exists">
+            <p>
+                <h4>Przypadek pozytywny - węzeł istnieje</h4>
+                Mamy poniższe RBT:
+                <br/>
+                <img class="imgSearch" src="img/search/search_init.png"/>
+                <br/>
+                Chcemy w nim wyszukać węzła o kluczu "11". My widzmy, że istnieje taki węzeł. Komputer musi wykonać następujący ciąg instrukcji:
+                <ul>
+                    <li>Jesteśmy w węźle o kluczu "6". Czy jest to węzeł o kluczu "11"? Nie</li>
+                    <li>Podejmuje decyzję, gdzie iść. 11 &lt 6? Nie. 11 &gt 6? Tak, idziemy w prawo.</li>
+                </ul>
+                <br/>
+                <img class="imgSearch" src="img/search/search_ok1.png"/>
+                <br/>
+                <ul>
+                    <li>Jesteśmy w węźle o kluczu "12". Czy jest to węzeł o kluczu "11"? Nie</li>
+                    <li>Podejmuje decyzję, gdzie iść. 11 &lt 12? Tak. Tak, idziemy w lewo.</li>
+                </ul>
+                <br/>
+                <img class="imgSearch" src="img/search/search_ok2.png"/>
+                <br/>
+                <ul>
+                    <li>Jesteśmy w węźle o kluczu "10". Czy jest to węzeł o kluczu "11"? Nie</li>
+                    <li>Podejmuje decyzję, gdzie iść. 11 &lt 10? Nie. 11 &gt 10? Tak, idziemy w prawo.</li>
+                </ul>
+                <br/>
+                <img class="imgSearch" src="img/search/search_ok3.png"/>
+                <br/>
+                <ul>
+                    <li>Jesteśmy w węźle o kluczu "11". Czy jest to węzeł o kluczu "11"? Tak :) Kończymy procedurę</li>
+                </ul>
+                <br/>
+                <img class="imgSearch" src="img/search/search_ok4.png"/>
+                <br/>
+                Małe podsumowanie całości:
+                <br/>
+                <img class="imgSearch" src="img/search/search_ok.gif"/>
+                <br/>
+
+            </p>
+        </section>
+
+
+        <section id="notexists">
+            <p>
+                <h4>Przypadek negatywny - węzeł nie istnieje</h4>
+                Korzystamy z tego samego drzewka. Chcemy w nim wyszukać węzła o kluczu "22". Tym razem widzmy, że nie istnieje taki węzeł. 
+                Rozpoczynamy procedurę przeszukiwania:
+                <ul>
+                    <li>Jesteśmy w węźle o kluczu "6". Czy jest to węzeł o kluczu "22"? Nie</li>
+                    <li>Podejmuje decyzję, gdzie iść. 22 &lt 6? Nie. 22 &gt 6? Tak, idziemy w prawo.</li>
+                </ul>
+                <br/>
+                <img class="imgSearch" src="img/search/search_bad1.png"/>
+                <br/>
+                <ul>
+                    <li>Jesteśmy w węźle o kluczu "12". Czy jest to węzeł o kluczu "22"? Nie</li>
+                    <li>Podejmuje decyzję, gdzie iść. 22 &lt 12? Nie. 22 &gt 12? Tak, idziemy w prawo.</li>
+                </ul>
+                <br/>
+                <img class="imgSearch" src="img/search/search_bad2.png"/>
+                <br/>
+                <ul>
+                    <li>Jesteśmy w węźle o kluczu "23". Czy jest to węzeł o kluczu "22"? Nie</li>
+                    <li>Podejmuje decyzję, gdzie iść. 22 &lt 23? Tak, powinniśmy iść w lewo, ale sprawdzamy, że jest tam tylko czarny liść,
+                        zatem kończymy poszukiwania węzła o kluczu "23" z wynikiem negatywnym.</li>
+                </ul>
+                <br/>
+                <img class="imgSearch" src="img/search/search_bad3.png"/>
+                <br/>
+                Całość przedstawia się w następujący sposób:
+                <br/>
+                <img class="imgSearch" src="img/search/search_bad.gif"/>
+                <br/>
+            </p>
+        </section>
+        
+        <a href="#up">Powrót do góry</a>
+    </div>
+
+</body>
+
+</html>

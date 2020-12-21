@@ -1,0 +1,231 @@
+//BST
+#include <iostream>
+#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+int licz;
+struct wezelBST{
+	int kluczWezla;
+	char dana;
+	wezelBST* lewy;
+	wezelBST* prawy;
+};
+struct BST{
+	wezelBST* korzen = NULL;
+	void wstaw(int klucz, char znak){
+		wezelBST* iterator = korzen;
+		wezelBST* po;
+		int pow = 0;
+		char kierunek = 'b';
+		po = NULL;
+		while (iterator != NULL) {
+			if (iterator->kluczWezla == klucz){
+				cout << "Element o takim kluczu juz istnieje" << endl;
+				pow = 1;
+				break;
+			}
+			else if (iterator->kluczWezla > klucz){
+				po = iterator;
+				iterator = iterator->lewy;
+				kierunek = 'l';
+			}
+			else {
+				po = iterator;
+				iterator = iterator->prawy;
+				kierunek = 'p';
+			}
+		}
+
+		if (pow == 0) {
+			wezelBST* n = (wezelBST*)malloc(sizeof(wezelBST));
+			n->kluczWezla = klucz;
+			n->dana = znak;
+			n->lewy = NULL;
+			n->prawy = NULL;
+			if (po == NULL) {
+				korzen = n;
+			}
+			else if (kierunek == 'l') {
+				po->lewy = n;
+			}
+			else {
+				po->prawy = n;
+			}
+		}
+	}
+	void szukaj(int klucz){
+		wezelBST* iterator = korzen;
+		while (iterator != NULL){
+			if (iterator->kluczWezla == klucz){
+				cout << "Element istnieje" << endl;
+				return;
+			}
+			else if (iterator->kluczWezla > klucz){
+				iterator = iterator->lewy;
+			}
+			else{
+				iterator = iterator->prawy;
+			}
+		}
+		cout << "Element nie istnieje lub drzewo puste" << endl;
+	}
+	void usun(wezelBST*& korzen, int klucz){
+		wezelBST* iterator = korzen;
+		wezelBST* pomocniczy;
+		int ist = 0;
+		char kierunek = 'b';
+		pomocniczy = NULL;
+
+		while (iterator != NULL){
+			if (iterator->kluczWezla == klucz){
+				ist = 1;
+				break;
+			}
+			else if (iterator->kluczWezla > klucz){
+				pomocniczy = iterator;
+				iterator = iterator->lewy;
+				kierunek = 'l';
+			}
+			else{
+				pomocniczy = iterator;
+				iterator = iterator->prawy;
+				kierunek = 'p';
+			}
+		}
+		if (ist == 0){
+			cout << "Element nie istnieje lub drzewo puste" << endl << endl;
+			return;
+		}
+		if (iterator->lewy == NULL && iterator->prawy == NULL){
+			if (iterator == korzen){
+				korzen = NULL;
+			}
+			else if (kierunek == 'l'){
+				pomocniczy->lewy = NULL;
+			}
+			else{
+				pomocniczy->prawy = NULL;
+			}
+			free(iterator);
+			return;
+		}
+		if (iterator->lewy == NULL && iterator->prawy != NULL){
+			if (iterator == korzen){
+				korzen = iterator->prawy;
+			}
+			else if (kierunek == 'l'){
+				pomocniczy->lewy = iterator->prawy;
+			}
+			else{
+				pomocniczy->prawy = iterator->prawy;
+			}
+			free(iterator);
+			return;
+		}
+		if (iterator->lewy != NULL && iterator->prawy == NULL){
+			if (iterator == korzen){
+				korzen = iterator->lewy;
+			}
+			else if (kierunek == 'l'){
+				pomocniczy->lewy = iterator->lewy;
+			}
+			else{
+				pomocniczy->prawy = iterator->lewy;
+			}
+			free(iterator);
+			return;
+		}
+		if (iterator->lewy != NULL && iterator->prawy != NULL){
+			wezelBST* s;
+			wezelBST* pop;
+			pop = iterator;
+			s = iterator->prawy;
+			while (s->lewy != NULL){
+				pop = s;
+				s = s->lewy;
+			}
+			if (s->prawy != NULL && pop != iterator){
+				pop->lewy = s->prawy;
+			}
+			else if (s->prawy == NULL && pop != iterator){
+				pop->lewy = NULL;
+			}
+			if (iterator == korzen){
+				korzen = s;
+			}
+			else if (kierunek = 'l'){
+				pomocniczy->lewy = s;
+			}
+			else{
+				pomocniczy->prawy = s;
+			}
+			s->lewy = iterator->lewy;
+			if (s != iterator->prawy){
+				s->prawy = iterator->prawy;
+			}
+			free(iterator);
+			return;
+		}
+	}
+	//ordery
+	int preOrder(wezelBST* korzen){
+		if (korzen != NULL){
+			cout << korzen->kluczWezla << " " << korzen->dana << endl;
+			preOrder(korzen->lewy);
+			preOrder(korzen->prawy);
+			licz++;
+		}
+		return licz;
+	}
+	void wyswietl_preOrder()
+	{
+		licz = 0;
+		cout << "Liczba odwiedzonych wezlow: " << preOrder(korzen) << endl;
+	}
+	int inOrder(wezelBST* korzen) {
+		if (korzen != NULL) {
+			inOrder(korzen->lewy);
+			cout << korzen->kluczWezla << " " << korzen->dana << endl;
+			inOrder(korzen->prawy);
+			licz++;
+		}
+		return licz;
+	}
+	void wyswietl_inOrder() {
+		licz = 0;
+		cout << "Liczba odwiedzonych wezlow: " << inOrder(korzen) << endl;
+	}
+	int postOrder(wezelBST* korzen) {
+		if (korzen != NULL) {
+			postOrder(korzen->lewy);
+			postOrder(korzen->prawy);
+			cout << korzen->kluczWezla << " " << korzen->dana << endl;
+			licz++;
+		}
+		return licz;
+	}
+	void wyswietl_postOrder() {
+		licz = 0;
+		cout << "Liczba odwiedzonych wezlow: " << postOrder(korzen) << endl;
+	}
+};
+int main() {
+	BST* drzewko = new BST;;
+	drzewko->wstaw(1, 'd');
+	drzewko->wstaw(2, 'r');
+	drzewko->wstaw(3, 'z');
+	drzewko->wstaw(4, 'e');
+	drzewko->wstaw(5, 'w');
+	drzewko->wstaw(6, 'o');
+	drzewko->wstaw(7, ' ');
+	drzewko->wstaw(8, 'B');
+	drzewko->wstaw(9, 'S');
+	drzewko->wstaw(10, 'T');
+	drzewko->wyswietl_inOrder();
+	drzewko->wyswietl_preOrder();
+	drzewko->wyswietl_postOrder();
+	return 0;
+}

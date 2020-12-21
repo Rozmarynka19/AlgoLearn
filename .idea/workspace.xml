@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2e1b9206-d3b3-462d-803f-4cede1d8a8ef" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoLearn/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoLearn/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn/AlgoLearn.iml" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoLearn/AlgoLearn.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/FXMLDocumentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/FXMLDocumentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/fxml/introduction_fxml.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/fxml/introduction_fxml.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/fxml/main_fxml.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/AlgoLearn/src/algolearn/gui/fxml/main_fxml.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/FXMLDocumentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/css/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/fonts/CollegiateBlackFLF.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/fonts/Famirids..otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/fonts/HighlandGothicLightFLF.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/fonts/riffic.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/fxml/description_fxml.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/fxml/introduction_fxml.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/fxml/main_fxml.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/algorythm_list.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/app_ico.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/bar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/difficulty_levels.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/empty_BTN.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/empty_BTN_hover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/lang.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/main_menu_tag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/opis_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/opis_not_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/separator.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/wizualizacja_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/wizualizacja_not_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/wprowadzenie_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/img/wprowadzenie_not_done.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algolearn/gui/main_window.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1k5Ub7O6IVpmOGFNOyzHJI8fETH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/AlgoLearn" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e1b9206-d3b3-462d-803f-4cede1d8a8ef" name="Default Changelist" comment="" />
+      <created>1604990014547</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604990014547</updated>
+      <workItem from="1604990030193" duration="22000" />
+      <workItem from="1604990364003" duration="128000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="695" y="342" key="FileChooserDialogImpl" timestamp="1604990490939">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="695" y="342" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.720.440@0.0.1920.1040" timestamp="1604990490939" />
+  </component>
+</project>

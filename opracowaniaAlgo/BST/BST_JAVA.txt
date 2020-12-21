@@ -1,0 +1,221 @@
+package BST_package;
+
+class wezelBST{
+	int kluczWezla;
+	char dana;
+	wezelBST lewy;
+	wezelBST prawy;
+};
+class BST{
+	wezelBST korzen = null;
+	int licznik =0;
+	void wstaw(int klucz, char znak){
+		wezelBST iterator = korzen;
+		wezelBST po;
+		int pow = 0;
+		char kierunek = 'b';
+		po = null;
+		while (iterator != null) {
+			if (iterator.kluczWezla == klucz){
+				System.out.println("Element o takim kluczu juz istnieje");
+				pow = 1;
+				break;
+			}
+			else if (iterator.kluczWezla > klucz){
+				po = iterator;
+				iterator = iterator.lewy;
+				kierunek = 'l';
+			}
+			else {
+				po = iterator;
+				iterator = iterator.prawy;
+				kierunek = 'p';
+			}
+		}
+
+		if (pow == 0) {
+			wezelBST n = new wezelBST();
+			n.kluczWezla = klucz;
+			n.dana = znak;
+			n.lewy = null;
+			n.prawy = null;
+			if (po == null) {
+				korzen = n;
+			}
+			else if (kierunek == 'l') {
+				po.lewy = n;
+			}
+			else {
+				po.prawy = n;
+			}
+		}
+	}
+	void szukaj(int klucz){
+		wezelBST iterator = korzen;
+		while (iterator != null){
+			if (iterator.kluczWezla == klucz){
+				System.out.println("Element istnieje");
+				return;
+			}
+			else if (iterator.kluczWezla > klucz){
+				iterator = iterator.lewy;
+			}
+			else{
+				iterator = iterator.prawy;
+			}
+		}
+		System.out.println("Element nie istnieje lub drzewo puste");
+	}
+	void usun(wezelBST korzen, int klucz){
+		wezelBST iterator = korzen;
+		wezelBST pomocniczy;
+		int ist = 0;
+		char kierunek = 'b';
+		pomocniczy = null;
+		while (iterator != null){
+			if (iterator.kluczWezla == klucz){
+				ist = 1;
+				break;
+			}
+			else if (iterator.kluczWezla > klucz){
+				pomocniczy = iterator;
+				iterator = iterator.lewy;
+				kierunek = 'l';
+			}
+			else{
+				pomocniczy = iterator;
+				iterator = iterator.prawy;
+				kierunek = 'p';
+			}
+		}
+		if (ist == 0){
+			System.out.println("Element nie istnieje lub drzewo puste");
+			return;
+		}
+		if (iterator.lewy == null && iterator.prawy == null){
+			if (iterator == korzen){
+				korzen = null;
+			}
+			else if (kierunek == 'l'){
+				pomocniczy.lewy = null;
+			}
+			else{
+				pomocniczy.prawy = null;
+			}
+			return;
+		}
+		if (iterator.lewy == null && iterator.prawy != null){
+			if (iterator == korzen){
+				korzen = iterator.prawy;
+			}
+			else if (kierunek == 'l'){
+				pomocniczy.lewy = iterator.prawy;
+			}
+			else{
+				pomocniczy.prawy = iterator.prawy;
+			}
+			return;
+		}
+		if (iterator.lewy != null && iterator.prawy == null){
+			if (iterator == korzen){
+				korzen = iterator.lewy;
+			}
+			else if (kierunek == 'l'){
+				pomocniczy.lewy = iterator.lewy;
+			}
+			else{
+				pomocniczy.prawy = iterator.lewy;
+			}
+			return;
+		}
+		if (iterator.lewy != null && iterator.prawy != null){
+			wezelBST s;
+			wezelBST pop;
+			pop = iterator;
+			s = iterator.prawy;
+			while (s.lewy != null){
+				pop = s;
+				s = s.lewy;
+			}
+			if (s.prawy != null && pop != iterator){
+				pop.lewy = s.prawy;
+			}
+			else if (s.prawy == null && pop != iterator){
+				pop.lewy = null;
+			}
+			if (iterator == korzen){
+				korzen = s;
+			}
+			else if (kierunek == 'l'){
+				pomocniczy.lewy = s;
+			}
+			else{
+				pomocniczy.prawy = s;
+			}
+			s.lewy = iterator.lewy;
+			if (s != iterator.prawy){
+				s.prawy = iterator.prawy;
+			}
+			return;
+		}
+	}
+	int preOrder(wezelBST korzen){
+		if (korzen != null){
+			System.out.println(korzen.kluczWezla + " " + korzen.dana);
+			preOrder(korzen.lewy);
+			preOrder(korzen.prawy);
+			licznik++;
+		}
+		return licznik;
+	}
+	void wyswietl_preOrder()
+	{
+		licznik = 0;
+		System.out.println("Liczba odwiedzonych wezlow: " + preOrder(korzen));
+	}
+	int inOrder(wezelBST korzen) {
+		if (korzen != null) {
+			inOrder(korzen.lewy);
+			System.out.println(korzen.kluczWezla + " " + korzen.dana);
+			inOrder(korzen.prawy);
+			licznik++;
+		}
+		return licznik;
+	}
+	void wyswietl_inOrder() {
+		licznik = 0;
+		System.out.println("Liczba odwiedzonych wezlow: "+inOrder(korzen));
+	}
+	int postOrder(wezelBST korzen) {
+		if (korzen != null) {
+			postOrder(korzen.lewy);
+			postOrder(korzen.prawy);
+			System.out.println(korzen.kluczWezla + " " + korzen.dana);
+			licznik++;
+		}
+		return licznik;
+	}
+	void wyswietl_postOrder() {
+		licznik = 0;
+		System.out.println("Liczba odwiedzonych wezlow: " + postOrder(korzen));
+	}
+}
+
+public class Menu{
+	public static void main(String[] args) {
+	BST drzewko=new BST();
+	drzewko.wstaw(1, 'd');
+	drzewko.wstaw(2, 'r');
+	drzewko.wstaw(3, 'z');
+	drzewko.wstaw(4, 'e');
+	drzewko.wstaw(5, 'w');
+	drzewko.wstaw(6, 'o');
+	drzewko.wstaw(7, ' ');
+	drzewko.wstaw(8, 'B');
+	drzewko.wstaw(9, 'S');
+	drzewko.wstaw(10, 'T');
+	drzewko.wyswietl_inOrder();
+	drzewko.wyswietl_preOrder();
+	drzewko.wyswietl_postOrder();
+	}
+};
