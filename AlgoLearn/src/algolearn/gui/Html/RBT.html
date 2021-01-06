@@ -136,7 +136,26 @@ h1
     height:25%;
 }
 
-.imgRotations, .imgSearch, .imgInsert
+.imgDelete
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:75%;
+    height:75%;
+}
+
+.imgSearch
+{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    height:50%;
+}
+
+
+.imgRotations, .imgInsert
 {
     padding:20px 60px;
 }
@@ -714,7 +733,7 @@ section
                         To proste! Idziemy od węzła o kluczu "41" do lewego syna, a później maksymalnie w prawo. Ostatni węzeł niebędący liściem
                         jest poprzednikiem.
                         <br/>
-                        <img class="imgDelete" src="img/delete/termsPred.gif" />
+                        <img class="imgDelete" src="../textimg/RBTimg/delete/termsPred.gif" />
                         <br/>
 
                     </li>
@@ -724,7 +743,7 @@ section
                         To proste! Idziemy od węzła o kluczu "41" do prawego syna, a później maksymalnie w lewo. Ostatni węzeł niebędący liściem
                         jest następnikiem.
                         <br/>
-                        <img class="imgDelete" src="img/delete/termsSuc.gif" />
+                        <img class="imgDelete" src="../textimg/RBTimg/delete/termsSuc.gif" />
                         <br/>
                     </li>
                 </ul>
@@ -741,17 +760,17 @@ section
                     <li>
                         Jeśli węzeł nie ma dzieci, to możemy go zwyczajnie usunąć.
                         <br/>
-                        <img class="imgDelete" src="img/delete/reminder1.gif" />
+                        <img class="imgDelete" src="../textimg/RBTimg/delete/reminder1.gif" />
                         <br/>
                     </li>
                     <li>
                         Jeśli węzeł ma 1 potomka (lewego lub prawego), to on zastępuje usuwany węzeł.
                         <br/>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="img/delete/reminder2L.gif" />
+                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder2L.gif" />
                         </div>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="img/delete/reminder2R.gif" />
+                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder2R.gif" />
                         </div>
                         <div class="below"></div>
                     </li>
@@ -759,10 +778,10 @@ section
                         Jeśli węzeł ma obu potomków, to zastępujemy usuwany węzeł albo poprzednikiem, albo następnikiem (Twój wybór ;]).
                         <br/>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="img/delete/reminder3L.gif" />
+                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder3L.gif" />
                         </div>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="img/delete/reminder3R.gif" />
+                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder3R.gif" />
                         </div>
                         <div class="below"></div>
                     </li>
@@ -770,10 +789,10 @@ section
                         Jeśli poprzednik/następnik ma dziecko, to to dziecko zastępuje poprzednika/następnika, gdy ten zastąpi usuwany węzeł.
                         <br/>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="img/delete/reminder4L.gif" />
+                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder4L.gif" />
                         </div>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="img/delete/reminder4R.gif" />
+                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder4R.gif" />
                         </div>
                         <div class="below"></div>
                     </li>
@@ -788,20 +807,20 @@ section
                 <br/>
                 Załóżmy, że mamy takie drzewko czerwono-czarne.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike1_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_0.png" />
                 <br />
                 Chcemy usunąć węzeł o kluczu "14". Usuwamy go jak w BST. W jego miejsce wchodzi jego lewy potomek.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike1_part.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_part.gif" />
                 <br/>
                 Jak widać, mamy konflikt - czerwony węzeł nie może mieć czewronych dzieci. Aby to naprawić dziecko usuniętego węzła przejmuje
                 również po nim kolor. Jeśli usuwany węzeł był czarny, to musimy przekolorować dziecko na czarno.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike1_recolor.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_recolor.gif" />
                 <br/>
                 Gotowe!
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike1_full.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_full.gif" />
                 <br/>
             </p>
         </section>
@@ -813,19 +832,19 @@ section
                 Jest to lustrzany przypadek do poprzedniego, więc w poniższym drzewku spróbuj sama/sam usunąć węzeł o kluczu "14", np. na kartce.
                 Jak skończysz - wróć do tego opracowania.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike2_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_0.png" />
                 <br/>
                 Usuwamy węzeł o kluczu "14" jak w BST - zastępujemy "dziurę" jego prawym potomkiem.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike2_part.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_part.gif" />
                 <br/>
                 Konflikt - zmieniamy kolor węzła-potomka, ale to już wiesz, prawda?
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike2_recolor.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_recolor.gif" />
                 <br/>
                 Miałaś/miałeś tak samo? Gratulacje!
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike2_full.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_full.gif" />
                 <br/>
             </p>
         </section>
@@ -837,18 +856,18 @@ section
                 W tym przypadku miejsce usuwanego węzła zajmuje jego następnik. Po usunięciu węzła następuje przekolorowanie. Sam następnik
                 otrzymuje kolor węzła usuwanego. Sprawdźmy to na przykładzie.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike3_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike3_0.png" />
                 <br/>
                 Mamy takie drzewko i chcemy usunąć węzeł o kluczu "18".
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike3_delete&recolor.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike3_delete&recolor.gif" />
                 <br/>
                 Okej, usunęliśmy i zrobiliśmy przekolorowanie. Pytanie, czy wszystkie właściwości drzewa RBT zostały zachowane?
                 Podpowiemy - nie. Jest o 1 czarny węzeł mniej, co za tym idzie już nie każda ścieżka z dowolnego węzła do liścia ma taką samą ilość
                 czarnych węzłów. Aby to naprawić, prawy potomek następnika otrzyma dodatkowy kolor - taki, jakiego był następnik
                 przed przekolorowaniem.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike3_colorBalance.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike3_colorBalance.gif" />
                 <br/>
                 Podwójny kolor czarny lub czerwono-czarność danego węzła zostanie naprawiona w przypadkach dotyczących napraw RBT.
             </p>
@@ -861,7 +880,7 @@ section
                 <br/>
                 Mamy mniej więcej taką sytuację
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike4_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike4_0.png" />
                 <br/>
                 Chcemy węzeł x usunąć z drzewka. W jego miejsce wchodzi następnik x3, a w miejsce następnika x3 wchodzi jego prawy potomek x4.
                 Reszta zostaje bez zmian. Co z kolorami? Zasady są następujące:
@@ -872,7 +891,7 @@ section
                 </ul>
                 Dwie ostatnie sytuacje są rozwiązywane w pozostałych przypadkach, które dotyczą naprawy RBT.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTlike4_full.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike4_full.gif" />
                 <br/>
             </p>
         </section>
@@ -891,15 +910,15 @@ section
                 <br/>
                 Mamy taki przypadek
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTrepair1_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair1_0.png" />
                 <br/>
                 Rotujemy węzeł x1 w lewo. Następnie zamieniamy kolory węzłów x1 i x2.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTrepair1_4.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair1_4.png" />
                 <br/>
                 Dalej sytuacja się rozstrzyga na podstawie kolorów węzłów potomnych od brata x*, czyli x3.
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTrepair1.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair1.gif" />
                 <br/>
             </p>
         </section>
@@ -910,17 +929,17 @@ section
                 <br/>
                 Nasz punkt startowy:
                 <br>
-                <img class="imgDelete" src="img/delete/BSTrepair2_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair2_0.png" />
                 <br/>
                 Zabieramy z węzłów x* i x2 kolor czarny i przenosimy go w górę, do węzła x1. 
                 <br>
-                <img class="imgDelete" src="img/delete/BSTrepair2_2.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair2_2.png" />
                 <br/>
                 W wyniku takiej operacji, węzeł x staje się normalnym węzłem czerwonym lub czarnym (w zależności, czy był czerwono-czarny,
                 czy podwójnie czarny),a węzeł x2 staje się czerwony (jego potomkowie są czarni, więc nie naruszami struktury drzewa RBT).
                 Niestety, skoro teraz węzeł x1* posiada dodatkowy kolor, to musimy wykonać procedurę naprawy rekurencyjnie w górę drzewka.
                 <br>
-                <img class="imgDelete" src="img/delete/BSTrepair2.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair2.gif" />
                 <br/>
             </p>
         </section>
@@ -929,7 +948,7 @@ section
             <p>
                 <h4>Naprawa RBT - przypadek 3 - brat węzła zastępującego jest czarny, lewy syn brata czerwony i prawy czarny</h4>
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTrepair3_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair3_0.png" />
                 <br/>
                 Wykonujemy następujące kroki:
                 <ol>
@@ -938,7 +957,7 @@ section
                 </ol>
                 Następnie przechodzimy do przypadku 4.
                 <br>
-                <img class="imgDelete" src="img/delete/BSTrepair3.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair3.gif" />
                 <br/>
             </p>
         </section>
@@ -947,7 +966,7 @@ section
             <p>
                 <h4>Naprawa RBT - przypadek 4 - brat węzła zastępującego jest czarny i jego prawy syn czerwony</h4>
                 <br/>
-                <img class="imgDelete" src="img/delete/BSTrepair4_0.png" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair4_0.png" />
                 <br/>
                 Wykonujemy następujące kroki:
                 <ol>
@@ -958,7 +977,7 @@ section
                 </ol>
                 Taka procedura w końcu kończy naprawianie drzewka czerwono-czarnego po usunięciu węzła.
                 <br>
-                <img class="imgDelete" src="img/delete/BSTrepair4.gif" />
+                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair4.gif" />
                 <br/>
             </p>
         </section>
