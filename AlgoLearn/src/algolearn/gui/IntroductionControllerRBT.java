@@ -51,8 +51,11 @@ public class IntroductionControllerRBT extends FXMLDocumentController implements
         else if(clicked_btn.getText().equals("Wyszukiwanie Węzła")){
             script="test3()";
         }
+        else if(clicked_btn.getText().equals("Wprowadzenie")){
+            script="test4()";
+        }
         else {
-            script = "test4()";
+            script = "test5()";
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
