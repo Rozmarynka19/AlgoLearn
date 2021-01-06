@@ -1,5 +1,5 @@
 public class Node<T extends Comparable<T>>
-{}
+{
     public Node<T> parent,left,right;
     public T data;
     public boolean isBlack;
