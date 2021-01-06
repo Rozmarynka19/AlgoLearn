@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.FXMLDocumentController">
+   <children>
+      <HBox prefHeight="514.0" prefWidth="245.0">
+         <children>
+            <VBox prefHeight="560.0" prefWidth="461.0">
+               <children>
+                  <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
+                     <children>
+                        <Text fill="WHITE" layoutX="73.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Pseudokody" textAlignment="CENTER" wrappingWidth="133.931640625">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Text>
+                        <Pane layoutX="-2.0" layoutY="-2.0" prefHeight="78.0" prefWidth="75.0" styleClass="backBTN" />
+                     </children>
+                  </Pane>
+                  <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Przykład klasy drzewa" />
+                  <Button id="2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Przykład klasy węzła" />
+                  <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Rotacje" />
+                  <Button id="4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Wstawianie węzła" />
+                  <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Wyszukiwanie węzła" />
+                  <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Usuwanie węzła" />
+                  <Pane prefHeight="96.0" prefWidth="282.0" styleClass="titlePlane">
+                     <children>
+                        <Text fill="WHITE" layoutX="7.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Dostępne języki" textAlignment="CENTER" wrappingWidth="266.5982971191406">
+                           <font>
+                              <Font name="Cambria" size="30.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <HBox prefHeight="48.0" prefWidth="279.0">
+                     <children>
+                        <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="93.0" styleClass="langBTN" text="C++" />
+                        <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="93.0" styleClass="langBTN" text="Java" />
+                        <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="93.0" styleClass="langBTN" text="PY" />
+                     </children>
+                  </HBox>
+               </children></VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="20.0">
+               <children>
+                  <Pane prefHeight="517.0" prefWidth="74.0" styleClass="titlePlane" />
+               </children></VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="71.0" prefWidth="824.0">
+                     <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="673.0" styleClass="titlePlane">
+                           <children>
+                              <Text fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Opis algorytmu" textAlignment="CENTER" wrappingWidth="674.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />
+                        <Button id=".empty" fx:id="btn11" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="76.0" styleClass="algHard" text="X" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="401.0" prefWidth="800.0">
+                     <VBox.margin>
+                        <Insets left="25.0" />
+                     </VBox.margin>
+                     <children>
+                        <VBox prefHeight="343.0" prefWidth="780.0">
+                           <children>
+                              <TextArea editable="false" prefHeight="346.0" prefWidth="780.0" text="Lorem ipsum dolor sit amet,&#10;                                      consectetur adipiscing elit. &#10;Integer nec odio. Praesent &#10;libero.                                       Sed cursus ante dap&#10;ibus diam. Sed nisi. Nul&#10;la quis sem at nibh                                       elem&#10;entum imperdiet. Duis s&#10;agittis ipsum. Praesent&#10; mauris.                                        Fusce nec tell&#10;us sed augue semper &#10;porta. Mauris massa.                                        V&#10;estibulum lacinia arcu &#10;eget nulla. Class apten&#10;t                                        taciti sociosqu ad lito&#10;ra torquent per conubi&#10;a nostra,                                         per inceptos &#10;himenaeos. Curabitur s&#10;odales ligula in libero.                                         &#10;Sed dignissim lacinia n&#10;unc. Curabitur tortor. P&#10;ellentesque nibh.                                          Aene&#10;an quam. In scelerisqu&#10;e sem at dolor. Maece&#10;nas mattis.                                           Sed convall&#10;is tristique sem. Proin &#10;ut ligula vel nunc eges&#10;                                           tas porttitor. Morbi lec&#10;tus risus, iaculis vel, su&#10;scipit quis,                                            luctus non, &#10;massa. Fusce ac turpis q&#10;uis ligula lacinia ali&#10;quet.                                            Mauris ipsum&#10;. Nulla metus metu&#10;s, ullamcorper vel, t&#10;incidunt sed,                                             euism&#10;od in, nibh. Quisqu&#10;e volutpat condime&#10;ntum velit.                                             Class ap&#10;tent taciti sociosqu &#10;ad litora torquent p&#10;er conubia nostra,                                         &#10;per inceptos himen&#10;aeos. Nam nec ante&#10;. Sed lacinia, urna n&#10;on tincidunt mattis&#10;, tortor neque adip&#10;iscing diam,                                          a cursu&#10;s ipsum ante quis t&#10;urpis. Nulla facilisi. &#10;Ut fringilla. Suspen&#10;disse potenti. Nunc&#10; feugiat mi a tellus                                         &#10;consequat imperdi&#10;et. Vestibulum sapi&#10;en. Proin quam. Eti&#10;am ultrices. Suspen&#10;disse in justo eu m&#10;agna luctus                                         suscip&#10;it. Sed lectus. Inte&#10;ger euismod lacus&#10; luctus magna.                                          Qu&#10;isque cursus, metu&#10;s vitae pharetra au&#10;ctor,                                           sem massa m&#10;attis sem, at interd&#10;um magna augue &#10;eget diam.                                           Vestibu&#10;lum ante ipsum pr&#10;imis in faucibus or&#10;ci luctus et                                           ultrices&#10; posuere cubilia C&#10;urae; Morbi lacinia &#10;molestie dui.                                            Praes&#10;ent blandit dolor. S&#10;ed non quam. In ve&#10;l mi sit amet                                            augue&#10; congue elementu&#10;m. Morbi in ipsum &#10;sit amet pede facili&#10;sis                                             laoreet. Donec l&#10;acus nunc, v&#10;&#10;iverra nec." wrapText="true">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <effect>
+                                    <InnerShadow />
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="714.0" styleClass="titlePlane">
+                           <children>
+                              <Pane layoutX="216.0" layoutY="17.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="43.0" styleClass="colorInfo" />
+                              <Text fill="WHITE" layoutX="39.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Kolorem          oznaczone są podpowiedzi" textAlignment="CENTER" wrappingWidth="674.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                           </children></Pane>
+                        <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

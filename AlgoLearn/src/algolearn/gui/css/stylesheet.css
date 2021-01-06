@@ -208,6 +208,7 @@
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
 	-fx-background-color: linear-gradient(#c91414 0%, #6e0303 100%);
 }
+
 .langBTN{
 
 	-fx-font-family: 'Cambria Math';
@@ -223,6 +224,23 @@
 }
 .langBTN:pressed{
 	-fx-background-color: linear-gradient(#09689c 0%, #053652 100%);
+}
+
+.langBTNselected{
+
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);
+	-fx-background-color: linear-gradient(#00ff00 0%, #33cc33 100%);
+}
+.langBTNselected:hover{
+	-fx-background-color: linear-gradient(#33cc33 0%, #009900 100%);
+}
+.langBTNselected:pressed{
+	-fx-background-color: linear-gradient(#009900 0%, #006600 100%);
 }
 .colorInfo{
 	-fx-font-family: 'Cambria Math';

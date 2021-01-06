@@ -87,15 +87,10 @@
                                 <Insets left="25.0" />
                             </VBox.margin>
                             <children>
-<<<<<<< HEAD
-                                <VBox id="TEE" fx:id="MainVBox" prefHeight="343.0" prefWidth="780.0">
-                           </VBox>
-=======
                                 <VBox prefHeight="343.0" prefWidth="780.0">
                            <children>
                               <Pane fx:id="visPane" prefHeight="200.0" prefWidth="200.0" />
                            </children></VBox>
->>>>>>> mrDocu/misc
                             </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">

@@ -26,7 +26,7 @@ public class SavedValues {
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // floyd warshall
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Union Find
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // algorytm grahama
-            asList("RBT_introduction.fxml","description_fxml.fxml","rbt_visualisation.fxml") //  red-black tree
+            asList("RBT_introduction.fxml","RBT_description.fxml","RBT_visualisation.fxml") //  red-black tree
     );
 
     private static <String> List<String> asList(String ... items) {
