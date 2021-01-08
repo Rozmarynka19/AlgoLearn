@@ -1,0 +1,40 @@
+import numpy as np
+class TablicaMieszajaca:
+	rozmiar=0
+	tablica=np.zeros(2)
+	def __init__(self,size):
+		self.rozmiar = size
+		self.tablica = np.zeros(size)
+	def usun(self, k):
+		index = ((k % 1000) + pow(2, k % 10) + 1) % self.rozmiar
+		while 0 < 1:
+			if tablica[index] == k:
+				tablica[index] = -1
+				return
+			elif tablica[index] == 0:
+				print("Element o podanym kluczu nie istnieje w tablicy\n")
+				return
+			else:
+				index = (index + 1) % self.rozmiar
+	def wstaw(self,k):
+		index = ((k % 1000) + pow(2, k % 10) + 1) % self.rozmiar
+		while 0 < 1:
+			if self.tablica[index] == k:
+				print("Element o podanym kluczu juz istnieje w tablicy\n")
+				return
+			elif self.tablica[index] == 0:
+				self.tablica[index] = k
+				return
+			else:
+				index = (index + 1) % self.rozmiar
+	def wyswietl(self):
+		for i in range(self.rozmiar):
+			print(str(self.tablica[i]) + " ")
+			if i % 10 == 0 and i != 0:
+				print("\n")
+		print("\n")
+if __name__ == '__main__':
+	tablica1 = TablicaMieszajaca(10)
+	for i in range(11):
+		tablica1.wstaw(i)
+	tablica1.wyswietl()
