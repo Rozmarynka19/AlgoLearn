@@ -33,6 +33,12 @@ public class errors {
 	public String searchNotFound = "Wyszukiwany węzeł nie istnieje";
 	public String searchHidden = "Wyszukiwany węzeł jest ukryty";
 	public String generateTree = "Wygenerowano losowe drzewo";
+	
+	public String selectedBinnaryTree = "Wybrano typ drzewa binarnego!";
+	public String minTree = "Kopiec zorientowany na minimum";
+	public String maxTree = "Kopiec zoreintowany na maksimum";
+	public String generateHeap = "Wygenerowano losowy kopiec binarny!";
+	public String restartHeap = "Zrestartowano kopiec binarny!";
 
 
 	//<--------------------Linked-list------------------------->

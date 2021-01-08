@@ -13,7 +13,7 @@ public class SavedValues {
     //3.Niczym się nie przejmuj
     //Uwaga, z pewnych powodów nazwy tak długie jak linked_list_description_fxml.fxml powodują błąd więc sugeruję krótsze
     public List<List<String>> paths = addToList(
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // kopiec binarny
+            asList("introduction_fxml.fxml","description_fxml.fxml","bin_heap_visualisation.fxml"), // kopiec binarny
             asList("linked_list_introduction.fxml","linked_list_description.fxml","linked_list_visualization.fxml"), //lista jednokierunkowa
             asList("linked_list2_introduction.fxml","description_fxml.fxml","linked_list2_visualization.fxml"), // lista dwukierunkowa
             asList("introduction_fxml.fxml","description_fxml.fxml","03_bucket_sort_visualisation.fxml"), // sortowanie kubełkowe

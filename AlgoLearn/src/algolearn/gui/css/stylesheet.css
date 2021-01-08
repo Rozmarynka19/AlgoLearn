@@ -243,6 +243,12 @@
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
 }
+.textMin{
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 16px;
+	-fx-text-fill: white;
+}
 
 .questionmark{
     -fx-border-color: transparent;
