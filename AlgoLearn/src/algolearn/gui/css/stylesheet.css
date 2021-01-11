@@ -271,6 +271,13 @@
 	-fx-text-fill: white;
 }
 
+.circle_small, .textBST_small, .line_small{
+	-fx-effect: dropshadow(three-pass-box, grey, 7, 0, 0, 0);
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 18px;
+	-fx-text-fill: white;
+}
+
 .circle:hover{
 	-fx-opacity: 0.65;
 }

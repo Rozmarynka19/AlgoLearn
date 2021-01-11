@@ -37,11 +37,15 @@ import java.util.ResourceBundle;
 
 
 public class VisualisationBinaryTree extends FXMLDocumentController implements Initializable {
-    private boolean minHeap = false, generateInProgress = false, restartInProgress = false;
+    private boolean minHeap = false;
+    private boolean generateInProgress = false;
+    private boolean restartInProgress = false;
     private errors msg = new errors();
     
-    private static final double [] def_pos = {400, 50};
     private static final int radius = 20;
+    private static final int small_radius = radius * 3 / 4;
+    private static final boolean enable_repeating = true;
+    
     private static final double [][] nodePositions = {
     		{400, 50},
     		{200, 110}, {600, 110},
@@ -66,6 +70,12 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
     		{720, 180, 740, 210, 0}, // null
     };
     
+    private static final double [][] nodeListPostions = {
+    		{60, 290}, {110, 290}, {160, 290}, {210, 290}, {260, 290},
+    		{310, 290}, {360, 290}, {410, 290}, {460, 290}, {510, 290},
+    		{560, 290}, {610, 290}, {660, 290}, {710, 290}, {760, 290}
+    };
+    
     @FXML private Button addBTN, deleteBTN, searchBTN, minBTN, maxBTN, backBTN, minimalizeBTN, closeBTN;
     @FXML private TextField addField, deleteField, searchField;
     @FXML private ProgressBar generateBar, restartBTN; 
@@ -80,8 +90,14 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 		}
 		
 		int value = Integer.parseInt(getValue);
-		insert(value);
-		drawTree();
+		int id = findID(value);
+		
+		if((enable_repeating && id > -1) || (id == -1)) {
+			insert(value);
+			drawTree();
+        	bhTEXT.setText(msg.setupOperationInfo(msg.addNodeHeap, getValue));
+		}else
+        	bhTEXT.setText(msg.setupInformation(msg.HaveDuplicate));
     }
     
     @FXML private void deleteValue(ActionEvent event) {
@@ -96,10 +112,51 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 		if(id > -1) {
 			delete(id);
 			drawTree();
-		}
+        	bhTEXT.setText(msg.setupOperationInfo(msg.deleteHeap, getValue));
+		}else
+        	bhTEXT.setText(msg.setupOperationInfo(msg.deleteNotFoundHeap, getValue));
 	}
     
-    @FXML private void searchValue(ActionEvent event) {}
+    @FXML private void searchValue(ActionEvent event) {
+
+    	String getValue = searchField.getText();
+		searchField.setText("");
+		if(!analizeInput(getValue) || generateInProgress || restartInProgress) {
+			return;
+		}
+		
+		int value = Integer.parseInt(getValue);
+		int id = findID(value);
+		
+		if(id > -1) {
+			drawTree();
+			searchValues(value);
+        	bhTEXT.setText(msg.setupOperationInfo(msg.searchFoundHeap, getValue));
+		}else
+        	bhTEXT.setText(msg.setupOperationInfo(msg.searchNotFoundHeap, getValue));
+    	
+    }
+    
+    private void searchValues(int value) {
+    	ArrayList<Integer> ids = new ArrayList<Integer>();
+    	
+    	for(int i = 0; i<heapSize; i++)
+    		if(value == heap[i])
+    			ids.add(i);
+    	
+    	for(Integer i : ids) {
+    		drawHighlightCircle(nodePositions[i][0], nodePositions[i][1], radius);
+    		drawHighlightCircle(nodeListPostions[i][0], nodeListPostions[i][1], small_radius);
+    	}
+    	
+    }
+    
+    private void drawHighlightCircle(double xx, double yy, int r) {
+		Circle hintCricle = new Circle(xx, yy, r+5, new Color(0, 0, 0, 0));
+		hintCricle.setStroke(Color.RED);
+		hintCricle.setStrokeWidth(3.0);
+		Visualisation_anchorPane.getChildren().add(hintCricle);
+    }
     
     @FXML private void restartVisualisation() {
     	if(restartBTN.isDisabled() || generateInProgress || restartInProgress)
@@ -208,13 +265,16 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 	private void drawTree() {
 		freeDrawArrays();
 		for(int i = 0, j = -1; i < heapSize; i++, j++) {
-			drawCircle(nodePositions[i][0], nodePositions[i][1], Integer.toString(heap[i]));
-			if(i>0)
+			drawCircle(nodePositions[i][0], nodePositions[i][1], Integer.toString(heap[i]), radius);
+			drawCircle(nodeListPostions[i][0], nodeListPostions[i][1], Integer.toString(heap[i]), radius/4 *3);
+			if(i>0) {
 				drawArrow(linesPositions[j][0], linesPositions[j][1], linesPositions[j][2], linesPositions[j][3], (linesPositions[j][4] == 1)? true:false, Integer.toString(heap[j]));
+				drawListArrow(i, heap[i]);
+			}
 		}
 	}
 	
-    private void drawCircle(double x, double y, String nodeValue) {
+    private void drawCircle(double x, double y, String nodeValue, double radius) {
 		Color color;
 		if(colors[Integer.parseInt(nodeValue)] != null) {
 			color = colors[Integer.parseInt(nodeValue)];
@@ -232,8 +292,14 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 		
     	circle.getStyleClass().add("circle");
     	circle.setId(nodeValue);
-    	
-    	text.getStyleClass().add("textBST");
+    	if(radius == VisualisationBinaryTree.radius) {
+    		text.getStyleClass().add("textBST");
+        	circle.getStyleClass().add("circle");
+    	}else{
+    		text.getStyleClass().add("textBST_small");
+        	circle.getStyleClass().add("circle_small");
+    	}
+    		
     	text.setId(nodeValue);
     	text.addEventHandler(MouseEvent.MOUSE_ENTERED_TARGET, e->{
     		String id = text.getId();
@@ -269,6 +335,24 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 		arrayCircles.add(circle);
 		arrayTexts.add(text);
 		Visualisation_anchorPane.getChildren().addAll(circle, text);
+    }
+    
+    private void drawListArrow(int id, int value) {
+    	int r = small_radius;
+    	double xx = nodeListPostions[id][0] -r, yy = nodeListPostions[id][1];
+    	double xx_prev = nodeListPostions[id-1][0] +r, yy_prev = nodeListPostions[id-1][1];
+    	Line [] line = new Line[3];
+
+    	line[0] = new Line(xx_prev, yy_prev, xx, yy);
+    	line[1] = new Line(xx-8, yy-6, xx, yy);
+    	line[2] = new Line(xx-8, yy+6, xx, yy);
+    	
+    	for(Line l : line) {
+    		l.getStyleClass().add("line_small");
+    		l.setId(Integer.toString(value));
+    	}
+		arrayLines.add(line);
+		Visualisation_anchorPane.getChildren().addAll(line);
     }
     
     private void drawArrow(double x_start, double y_start, double x_end, double y_end, boolean left, String value) {

@@ -39,6 +39,12 @@ public class errors {
 	public String maxTree = "Kopiec zoreintowany na maksimum";
 	public String generateHeap = "Wygenerowano losowy kopiec binarny!";
 	public String restartHeap = "Zrestartowano kopiec binarny!";
+	public String addNodeHeap = "Dodano element do kopca binarnego!";
+	public String searchFoundHeap = "Znaleziono wyszukiwany element w kopcu!";
+	public String searchNotFoundHeap = "Nie znaleziono wyszukiwanego elementu w kopcu!";
+	public String deleteHeap = "Usuwanie elementu z kopca binarnego!";
+	public String deleteNotFoundHeap = "Nie znaleziono usuwanego elementu w kopcu!";
+	
 
 
 	//<--------------------Linked-list------------------------->
