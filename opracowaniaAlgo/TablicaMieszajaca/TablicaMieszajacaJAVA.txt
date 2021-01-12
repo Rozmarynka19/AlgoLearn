@@ -1,4 +1,3 @@
-//Metoda Łańcuchowa
 package TablicaMieszajaca;
 import java.lang.Math;
 public class TablicaMieszajaca {

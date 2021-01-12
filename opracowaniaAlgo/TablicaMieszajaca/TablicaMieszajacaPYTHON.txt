@@ -1,4 +1,3 @@
-#Metoda Łańcuchowa
 import numpy as np
 class TablicaMieszajaca:
 	rozmiar=0

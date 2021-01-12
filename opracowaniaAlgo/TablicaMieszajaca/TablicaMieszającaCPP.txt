@@ -1,4 +1,3 @@
-//Metoda Łańcuchowa
 #include <iostream>
 using namespace std;
 struct TablicaMieszajaca {
