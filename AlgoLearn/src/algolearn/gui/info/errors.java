@@ -61,4 +61,29 @@ public class errors {
 	public String deleteNode = "Usuwanie węzła";
 	
 	public String successUnknownValue = "Pomyślnie odganięto ukrytą wartość!";
+	
+	//<-------------------- RBT ------------------------->
+
+	public static class rbtMsg
+	{
+		public rbtMsg() {
+			// TODO Auto-generated constructor stub
+		}
+		public String setupInformation(String info) {
+			return (infoDef+info);
+		}
+		public String infoDef = "Informacja: ";
+		public String msgTypeCongrats = "congrats";
+		public String msgTypeError = "error";
+		
+		public String msgCongratsHeader = "Brawo!";
+		public String msgErrorHeader = "Błąd!";
+		
+		public String finishedGuessGame = "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!";
+		public String selectNodeFirst = "Najpierw zaznacz węzeł, którego wartość chcesz odgadnąć!";
+		public String goodCall = "Brawo! Tu faktycznie powinna być liczba ";
+		public String wrongCall = "Niestety, tutaj nie może być liczba ";
+	}
 }
+
+

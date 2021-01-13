@@ -112,7 +112,7 @@
                                   <AnchorPane fx:id="visAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="812.0" />
                                 </content>
                               </ScrollPane>
-                              <Text fx:id="bstTEXT" fill="WHITE" layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="795.0">
+                              <Text fx:id="info" fill="WHITE" layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="795.0">
                                  <font>
                                     <Font name="Cambria Bold Italic" size="19.0" />
                                  </font>

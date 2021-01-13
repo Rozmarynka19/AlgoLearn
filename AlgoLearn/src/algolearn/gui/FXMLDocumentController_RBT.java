@@ -67,7 +67,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	private boolean generateDone = true;
 	private boolean deleteInProgress = false;
 	private boolean pathTransitionDone = true;
-	private errors errorMSG = new errors();
+	private errors.rbtMsg msg = new errors.rbtMsg();
 	
 	@FXML AnchorPane visAnchorPane;
 	@FXML private ProgressBar generateBar;
@@ -87,6 +87,9 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	//--------- Msg box stuff ----------
 	@FXML Text txtMainTitle;
 	@FXML TextArea msgTextArea;
+	
+	//---------- Infoline stuff ----------
+	@FXML Text info;
 	
 	
 	
@@ -397,7 +400,6 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     @FXML
     public void letsPlay(ActionEvent event)
     {
-    	createMessageBox("Brawo!", "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "error");
     	restartVis(true);
     	generateTree();
     	
@@ -453,18 +455,19 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     			displayHiddenValues();
     			displayTree();
     			System.out.println("brawo! tu faktycznie powinna byc liczba "+input);
-    			//info - brawo!
+    			info.setText(msg.setupInformation(msg.goodCall + input));
     		}
     		else
     		{
     			System.out.println("tu nie powinna byc liczba "+input);
-    			//info - tu nie powinna byc xyz liczba
+    			info.setText(msg.setupInformation(msg.wrongCall + input));
     		}
     	}
     	else
     	{
     		System.out.println("najpierw zaznacz wezel, ktore wartosc chcesz odgadnac");
-    		//messagebox - najpierw zaznacz wezel, ktore wartosc chcesz odgadnac
+    		createMessageBox(msg.msgErrorHeader, msg.selectNodeFirst , msg.msgTypeError);
+    		
     	}
     	unknownTextField.clear();
     	
@@ -473,8 +476,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     		switchToTheGameMode(false);
         	
         	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
-        	createMessageBox("Brawo!", "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!", "congrats");
-        	//messagebox - brawo mistrzu za odgadniecie wartosci wszystkich wezlow!
+        	createMessageBox(msg.msgCongratsHeader, msg.finishedGuessGame , msg.msgTypeCongrats);
     	}
     }
     
@@ -540,12 +542,12 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
             stage.show();
             controller.txtMainTitle.setText(header);
             controller.msgTextArea.setText(message);
-            if(msgBoxStyle=="error")
+            if(msgBoxStyle==msg.msgTypeError)
             {
             	controller.txtMainTitle.getStyleClass().add("errorHeader");
             	controller.msgTextArea.getStyleClass().add("errorText");
             }
-            else if(msgBoxStyle=="congrats")
+            else if(msgBoxStyle==msg.msgTypeCongrats)
             {
             	controller.txtMainTitle.getStyleClass().add("congratsHeader");
             	controller.msgTextArea.getStyleClass().add("congratsText");
