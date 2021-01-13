@@ -331,12 +331,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	
     	generateBar.setProgress(0);
     	
-    	addButton.setDisable(true);
-    	deleteButton.setDisable(true);
-    	searchButton.setDisable(true);
-    	unknownButton.setDisable(true);
-    	restartButton.setDisable(true);
-    	backButton.setDisable(true);
+    	blockButtons(true);
     	
     	generateDone = false;
     	Timeline timeline = new Timeline();
@@ -344,26 +339,10 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	KeyFrame keyFrame = new KeyFrame(new Duration(1500), keyValue);
     	timeline.getKeyFrames().add(keyFrame);
     	timeline.setOnFinished(event->{
-        	addButton.setDisable(false);
-        	deleteButton.setDisable(false);
-        	searchButton.setDisable(false);
-        	unknownButton.setDisable(false);
-        	restartButton.setDisable(false);
-        	backButton.setDisable(false);
-        	
-        	letsPlayButton.setDisable(false);
-        	letsPlayButton.setVisible(true);
-        	unknownTextField.setDisable(true);
-        	unknownTextField.setVisible(false);
-        	unknownButton.setDisable(true);
-        	unknownButton.setVisible(false);
-        	hiddenNodes.clear();
-        	indexesOfHiddenNodes.clear();
-        	selectedButton=null;
-    
-        	hiddenValues.setText("");
+    		blockButtons(false);
+        	switchToTheGameMode(false);
 
-        	restartVis();
+        	restartVis(false);
         	generateTree();
     		this.displayTree();
         	generateDone = true;
@@ -374,9 +353,17 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     @FXML
     public void restartVis()
     {
+    	restartVis(false);
+    }
+    
+    private void restartVis(boolean isGameModeOn)
+    {
+    	switchToTheGameMode(isGameModeOn);
     	this.tree.clear();
     	this.nodes.clear();
     	this.displayTree();
+    	hiddenNodes.clear();
+    	indexesOfHiddenNodes.clear();
     }
     
     private void generateTree()
@@ -397,18 +384,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     @FXML
     public void letsPlay(ActionEvent event)
     {
-    	letsPlayButton.setDisable(true);
-    	letsPlayButton.setVisible(false);
-    	unknownTextField.setDisable(false);
-    	unknownTextField.setVisible(true);
-    	unknownButton.setDisable(false);
-    	unknownButton.setVisible(true);
-    	
-    	addButton.setDisable(true);
-    	deleteButton.setDisable(true);
-    	searchButton.setDisable(true);
-    	
-    	restartVis();
+    	restartVis(true);
     	generateTree();
     	
     	int randomIndex;
@@ -425,13 +401,6 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     			}
     		indexesOfHiddenNodes.add(randomIndex);
     		hiddenNodes.add(nodes.get(randomIndex));
-//    		do {
-//    			System.out.println("searching: " + nodes.get(randomIndex).toString() + 
-//    					", to replace for: " + nodes.get(randomIndex)*(-1) + 
-//    					", nodes size: "+String.valueOf(nodes.size())+", index: " + 
-//    					String.valueOf(randomIndex));
-//    			} 
-//    		while (!tree.searchAndReplace(tree.root, nodes.get(randomIndex), nodes.get(randomIndex)*(-1)));
     	}
     	
     	displayTree();
@@ -451,36 +420,48 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	hiddenValues.setText(hiddenValuesText);
     }
     
-//    @FXML
-//    public void guessValue()
-//    {    	
-//    	int input = Integer.parseInt(unknownTextField.getText());
-//    	if(selectedButton!=null && selectedButton.getAccessibleText()!=null)
-//    	{
-//    		if(input == Integer.parseInt(selectedButton.getAccessibleText()))
-//    		{
-//    			selectedButton.setText(selectedButton.getAccessibleText());
-//    			selectedButton.setAccessibleText(null);
-//    			for(int i=0;i<hiddenNodes.size();i++)
-//    				if(hiddenNodes.get(i)==input)
-//    				{
-//    					hiddenNodes.remove(i);
-//    					break;
-//    				}
-//    			displayHiddenValues();
-//    			//info - brawo!
-//    		}
-//    		else
-//    		{
-//    			//info - tu nie powinna byc xyz liczba
-//    		}
-//    	}
-//    	else
-//    	{
-//    		//messagebox - najpierw zaznacz wezel, ktore wartosc chcesz odgadnac
-//    	}
-//    	unknownTextField.clear();
-//    }
+    @FXML
+    public void guessValue()
+    {    	
+    	int input = Integer.parseInt(unknownTextField.getText());
+    	if(selectedButton!=null && selectedButton.getAccessibleText()!=null)
+    	{
+    		if(input == Integer.parseInt(selectedButton.getAccessibleText()))
+    		{
+    			selectedButton.setText(selectedButton.getAccessibleText());
+    			selectedButton.setAccessibleText(null);
+    			for(int i=0;i<hiddenNodes.size();i++)
+    				if(hiddenNodes.get(i)==input)
+    				{
+    					hiddenNodes.remove(i);
+    					break;
+    				}
+    			displayHiddenValues();
+    			displayTree();
+    			System.out.println("brawo! tu faktycznie powinna byc liczba "+input);
+    			//info - brawo!
+    		}
+    		else
+    		{
+    			System.out.println("tu nie powinna byc liczba "+input);
+    			//info - tu nie powinna byc xyz liczba
+    		}
+    	}
+    	else
+    	{
+    		System.out.println("najpierw zaznacz wezel, ktore wartosc chcesz odgadnac");
+    		//messagebox - najpierw zaznacz wezel, ktore wartosc chcesz odgadnac
+    	}
+    	unknownTextField.clear();
+    	
+    	if(hiddenNodes.size()<=0)
+    	{
+    		switchToTheGameMode(false);
+        	
+        	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
+        	//messagebox - brawo mistrzu za odgadniecie wartosci wszystkich wezlow!
+    	}
+    }
     
     private void setCircle()
     {
@@ -499,6 +480,33 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	tree.search(val);
         displayTree();
         animateSearch(true);   
+    }
+    
+    private void switchToTheGameMode(boolean isGameModeActivated)
+    {
+    	letsPlayButton.setDisable(isGameModeActivated);
+    	letsPlayButton.setVisible(!isGameModeActivated);
+    	unknownTextField.setDisable(!isGameModeActivated);
+    	unknownTextField.setVisible(isGameModeActivated);
+    	unknownButton.setDisable(!isGameModeActivated);
+    	unknownButton.setVisible(isGameModeActivated);
+    	
+    	addButton.setDisable(isGameModeActivated);
+    	deleteButton.setDisable(isGameModeActivated);
+    	searchButton.setDisable(isGameModeActivated);
+    	
+    	hiddenValues.setText("");
+    }
+    
+    private void blockButtons(boolean areButtonsBlocked)
+    {
+    	addButton.setDisable(areButtonsBlocked);
+    	deleteButton.setDisable(areButtonsBlocked);
+    	searchButton.setDisable(areButtonsBlocked);
+    	unknownButton.setDisable(areButtonsBlocked);
+    	restartButton.setDisable(areButtonsBlocked);
+    	backButton.setDisable(areButtonsBlocked);
+    	letsPlayButton.setDisable(areButtonsBlocked);
     }
 
 }

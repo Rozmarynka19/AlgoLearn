@@ -68,7 +68,7 @@
                                       <Font size="18.0" />
                                   </font>
                               </TextField>
-                        <Button fx:id="unknownButton" disable="true" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" visible="false" />
+                        <Button fx:id="unknownButton" disable="true" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" onAction="#guessValue" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" visible="false" />
                         <Button fx:id="letsPlayButton" layoutY="-4.0" mnemonicParsing="false" onAction="#letsPlay" prefHeight="49.0" prefWidth="279.0" styleClass="algEasy" text="Zagramy? :D" />
                      </children>
                   </Pane>
