@@ -201,5 +201,11 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
         return null;
     }
     
+    public void clear()
+    {
+    	this.root=null;
+    	this.path.getElements().clear();
+    }
+    
 }
 
