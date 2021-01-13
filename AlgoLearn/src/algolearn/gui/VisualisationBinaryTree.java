@@ -1,5 +1,6 @@
 package algolearn.gui;
 
+import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -8,6 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
@@ -54,20 +57,20 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
     };
     
     private static final double [][] linesPositions = {
-    		{380, 60, 210, 90, 1}, // 44
-    		{420, 60, 590, 90, 0}, // 60
-    		{180, 120, 110, 150, 1}, // 33
-    		{220, 120, 290, 150, 0}, // 48
-    		{580, 120, 510, 150, 1}, // 57
-    		{620, 120, 690, 150, 0}, // 80
-    		{80, 180, 60, 210, 1}, // 22
-    		{120, 180, 140, 210, 0}, // 36
-    		{280, 180, 260, 210, 1}, // 46
-    		{320, 180, 340, 210, 0}, // 51
-    		{480, 180, 460, 210, 1}, // 56
-    		{520, 180, 540, 210, 0}, // 58
-    		{680, 180, 660, 210, 1}, // 66
-    		{720, 180, 740, 210, 0}, // null
+    		{380, 60, 210, 90, 1},
+    		{420, 60, 590, 90, 0},
+    		{180, 120, 110, 150, 1},
+    		{220, 120, 290, 150, 0},
+    		{580, 120, 510, 150, 1},
+    		{620, 120, 690, 150, 0},
+    		{80, 180, 60, 210, 1},
+    		{120, 180, 140, 210, 0},
+    		{280, 180, 260, 210, 1},
+    		{320, 180, 340, 210, 0},
+    		{480, 180, 460, 210, 1},
+    		{520, 180, 540, 210, 0},
+    		{680, 180, 660, 210, 1},
+    		{720, 180, 740, 210, 0},
     };
     
     private static final double [][] nodeListPostions = {
@@ -81,6 +84,7 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
     @FXML private ProgressBar generateBar, restartBTN; 
     @FXML private Text bhTEXT;
     @FXML private AnchorPane anchorPaneRoot, Visualisation_anchorPane;
+    @FXML private Slider timeSlider;
     
     @FXML private void addValue(ActionEvent event) {
     	String getValue = addField.getText();
@@ -230,13 +234,13 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 		if( len > 0 && len <= 2) {
 			for(int i = 0; i<len; i++) {
 				if(!isCharNum(in.charAt(i))) {
-					//CreateError(errorMSG.OnlyNumeric);
+					//CreateError(msg.OnlyNumeric);
 					return false;
 				}
 			}
 			return true;
 		}
-		//CreateError(errorMSG.WrongInput);
+		//CreateError(msg.WrongInput);
 		return false;
 	}
     
@@ -429,6 +433,28 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
         setScreen(anchorPane);
     }
 
+    public void CreateError(String msg) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/error_fxml.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            BST_controller controller = (BST_controller) fxmlLoader.getController();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1));
+            stage.show();
+            controller.errorTextArea.setText(msg);
+            controller.errorTextArea.setStyle("-fx-text-fill: RED;-fx-font-weight:bold;");
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     //==================================  Binary heap implementation ==================================//
     
     private static final int d= 2;
@@ -439,11 +465,17 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
     private int parent(int i){
         return (i-1)/d;
     }
-     
-    private int iChild(int i,int k){
-        return d*i+k;
+    
+    private int LEFT(int i)
+    {
+        return (2 * i + 1);
     }
-     
+ 
+    private int RIGHT(int i)
+    {
+        return (2 * i + 2);
+    }
+    
     public void insert(int x){
     	if(heapSize == heap.length -1)
     		return;
@@ -455,7 +487,10 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
         int key = heap[x];
         heap[x] = heap[heapSize -1];
         heapSize--;
-        heapifyDown(x);
+        if(minHeap)
+        	heapify_down_min_it(x);
+        else
+        	heapify_down_max(x);
         return key;
     }
     private boolean ifHeapUp(int i, int temp) {
@@ -474,42 +509,72 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
         heap[i] = temp;
     }
     
-    private boolean ifHeapDown(int i) {
-    	if(minHeap == false) 
-    		return (iChild(i, 1) < heapSize);
-    	else
-    		return (iChild(i, 1) > heapSize);
+    private void heapify_down_max(int i) {
+        int left = LEFT(i);
+        int right = RIGHT(i);
+        int largest = i;
+        
+        if (left < heapSize && heap[left] > heap[i])
+            largest = left;
+ 
+        if (right < heapSize && heap[right] > heap[largest])
+            largest = right;
+ 
+        if (largest != i){
+            swap(i, largest);
+			heapify_down_max(largest);
+        }
     }
     
-    private void heapifyDown(int i){
-        int child;
-        int temp = heap[i];
-        while(ifHeapDown(i)){
-            child = (minHeap) ? minChild(i) : maxChild(i);
-            if(temp < heap[child]){ heap[i] = heap[child]; }
-            else break; i = child; 
-            }
-        heap[i] = temp;
+    private void heapify_down_min_recur(int i) {
+        int left = LEFT(i);
+        int right = RIGHT(i);
+        int smallest = i;
+
+        if (left < heapSize && heap[left] < heap[i])
+            smallest = left;
+
+        if (right < heapSize && heap[right] < heap[smallest])
+            smallest = right;
+ 
+        if (smallest != i){
+            swap(i, smallest);
+            heapify_down_min_recur(smallest);
+        }
     }
     
-    private int maxChild(int i) { 
-    	int leftChild = iChild(i, 1); 
-    	int rightChild = iChild(i, 2);
-    	return heap[leftChild]>heap[rightChild]?leftChild:rightChild;
+    private void heapify_down_min_it(int i) {
+        while(true){
+	        int left = LEFT(i);
+	        int right = RIGHT(i);
+	        int smallest = i;
+	        if (left < heapSize && heap[left] < heap[i])
+	            smallest = left;
+	
+	        if (right < heapSize && heap[right] < heap[smallest])
+	            smallest = right;
+	 
+	        if (smallest != i) {
+	            swap(i, smallest);
+	            i = smallest;
+	            drawTree();
+	        }
+	        else
+	        	return;
+        }
     }
     
-    private int minChild(int i) {
-    	int leftChild = iChild(i, 1); 
-    	int rightChild = iChild(i, 2);
-    	return heap[leftChild]<heap[rightChild]?leftChild:rightChild;
+    private void swap(int x,int y) {
+    	int temp = heap[x];
+        heap[x] = heap[y];
+        heap[y] = temp;
     }
      
-    public void printHeap()
-        {
-            System.out.print("Heap = ");
-            for (int i = 0; i < heapSize; i++)
-                System.out.print(heap[i] +" ");
-            System.out.println();
-        }
+    public void printHeap(){
+    	System.out.print("Heap = ");
+    	for (int i = 0; i < heapSize; i++)
+    		System.out.print(heap[i] +" ");
+    	System.out.println();
+	}
 
 }
