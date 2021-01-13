@@ -397,6 +397,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     @FXML
     public void letsPlay(ActionEvent event)
     {
+    	createMessageBox("Brawo!", "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "error");
     	restartVis(true);
     	generateTree();
     	
@@ -472,7 +473,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     		switchToTheGameMode(false);
         	
         	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
-        	createMessageBox("Brawo!", "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!");
+        	createMessageBox("Brawo!", "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!", "congrats");
         	//messagebox - brawo mistrzu za odgadniecie wartosci wszystkich wezlow!
     	}
     }
@@ -523,7 +524,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	letsPlayButton.setDisable(areButtonsBlocked);
     }
     
-    private void createMessageBox(String header, String message)
+    private void createMessageBox(String header, String message, String msgBoxStyle)
     {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/msg_fxml.fxml"));
@@ -539,7 +540,17 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
             stage.show();
             controller.txtMainTitle.setText(header);
             controller.msgTextArea.setText(message);
-//            controller.errorTextArea.setStyle("-fx-text-fill: RED;-fx-font-weight:bold;");
+            if(msgBoxStyle=="error")
+            {
+            	controller.txtMainTitle.getStyleClass().add("errorHeader");
+            	controller.msgTextArea.getStyleClass().add("errorText");
+            }
+            else if(msgBoxStyle=="congrats")
+            {
+            	controller.txtMainTitle.getStyleClass().add("congratsHeader");
+            	controller.msgTextArea.getStyleClass().add("congratsText");
+            }
+            
         }
         catch (IOException e) {
             e.printStackTrace();

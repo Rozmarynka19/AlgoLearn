@@ -34,7 +34,7 @@
                      <children>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="183.0" prefWidth="435.0" styleClass="hintPane">
                            <children>
-                              <TextArea fx:id="msgTextArea" editable="false" layoutX="12.0" layoutY="12.0" prefHeight="109.0" prefWidth="412.0">
+                              <TextArea fx:id="msgTextArea" editable="false" layoutX="12.0" layoutY="12.0" prefHeight="109.0" prefWidth="412.0" wrapText="true">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>

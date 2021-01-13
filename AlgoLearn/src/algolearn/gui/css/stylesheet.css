@@ -341,24 +341,31 @@
 	-fx-background-color: linear-gradient(#333333 0%, #262626 100%);
 }
 
-.congratsHeader
+.congratsHeader, .errorHeader
 {
-	
+	-fx-font-size: 40px;
+	-fx-alignment: center;
+	-fx-text-align: center;
+	-fx-font-weight: bold;
 }
 
-.congratsText
+.congratsHeader
 {
-	
+	-fx-fill: #00e600;
 }
 
 .errorHeader
 {
-	
+	-fx-fill: #e60000;
 }
 
-.errorText
+.congratsText, .errorText
 {
-	
+	-fx-font-size: 13px;
+	-fx-alignment: center;
+	-fx-text-align: center;
 }
+
+
 
 
