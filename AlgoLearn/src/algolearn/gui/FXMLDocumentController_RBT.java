@@ -272,19 +272,26 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	
 	    tree.getRed(root);
 	
-	    Circle circle = new Circle(x, y, radius);
-	    circle.setStroke(Color.BLACK);
+	    Button node = new Button();//new Circle(x, y, radius);
+	    node.setLayoutX(x);
+	    node.setLayoutY(y);
+	    
+//	    circle.setStroke(Color.BLACK);
+//	    if(tree.getRed(root))
+//	        circle.setFill(Color.INDIANRED);
+//	    else circle.setFill(Color.GRAY);
+	    
+	    node.getStyleClass().clear();
 	    if(tree.getRed(root))
-	        circle.setFill(Color.INDIANRED);
-	    else circle.setFill(Color.GRAY);
-	    if(root.element<0)
-	    {
-	    	visAnchorPane.getChildren().addAll(circle, new Text(x - 4, y + 4, "?"));
-	    }
+	    	node.getStyleClass().add("rbtNodeRed");
 	    else
-	    {
-	    	visAnchorPane.getChildren().addAll(circle, new Text(x - 4, y + 4, root.element + ""));
-	    }
+	    	node.getStyleClass().add("rbtNodeBlack");
+	    	
+	    if(root.element<0)
+	    	node.setText("?");
+	    else
+	    	node.setText(root.element.toString());
+	    visAnchorPane.getChildren().add(node);
 	    
 	}
 	

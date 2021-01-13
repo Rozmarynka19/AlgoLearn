@@ -290,3 +290,52 @@
 .circle:pressed{
 	-fx-opacity: 0.45;
 }
+
+.rbtNodeRed, .rbtNodeBlack
+{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 15px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-border-radius: 5em;
+	-fx-alignment: center;
+	
+   	-fx-background-radius: 5em;
+	-fx-min-width: 35px;
+    -fx-min-height: 35px;
+    -fx-max-width: 35px;
+    -fx-max-height: 35px;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+}
+
+.rbtNodeRed
+{
+	-fx-background-color: linear-gradient(#e60000 0%, #cc0000 100%);
+}
+
+.rbtNodeRed:hover
+{
+	-fx-background-color: linear-gradient(#cc0000 0%, #b30000 100%);
+}
+
+.rbtNodeRed:pressed
+{
+	-fx-background-color: linear-gradient(#b30000 0%, #990000 100%);
+}
+
+.rbtNodeBlack
+{
+
+	-fx-background-color: linear-gradient(#4d4d4d 0%, #404040 100%);
+}
+
+.rbtNodeBlack:hover
+{
+	-fx-background-color: linear-gradient(#404040 0%, #333333 100%);
+}
+
+.rbtNodeBlack:pressed
+{
+	-fx-background-color: linear-gradient(#333333 0%, #262626 100%);
+}
