@@ -63,13 +63,13 @@
                         <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
                   <Pane prefHeight="48.0" prefWidth="200.0">
                      <children>
-                              <TextField fx:id="unknownTextField" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                              <TextField fx:id="unknownTextField" disable="true" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled" visible="false">
                                   <font>
                                       <Font size="18.0" />
                                   </font>
                               </TextField>
-                        <Button fx:id="unknownButton" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
-                        <Button fx:id="letsPlayButton" disable="true" layoutY="-4.0" mnemonicParsing="false" onAction="#letsPlay" prefHeight="49.0" prefWidth="279.0" styleClass="algEasy" text="Zagramy? :D" visible="false" />
+                        <Button fx:id="unknownButton" disable="true" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" visible="false" />
+                        <Button fx:id="letsPlayButton" layoutY="-4.0" mnemonicParsing="false" onAction="#letsPlay" prefHeight="49.0" prefWidth="279.0" styleClass="algEasy" text="Zagramy? :D" />
                      </children>
                   </Pane>
                         <Pane prefHeight="50.0" prefWidth="279.0" styleClass="titlePlane" />
