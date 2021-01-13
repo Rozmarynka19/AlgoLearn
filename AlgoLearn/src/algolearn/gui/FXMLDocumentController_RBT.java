@@ -93,6 +93,9 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     private ArrayList<Integer> hiddenNodes = new ArrayList<>();
     private ArrayList<Integer> indexesOfHiddenNodes = new ArrayList<>();
     private int maxHiddenValues = 2;
+    private double bias = 35/2;
+//    private int correctCurrentUnknownValue=0;
+    private Button selectedButton=null;
     
 	private Circle hintCricle = null;
 	
@@ -158,7 +161,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	//	for(int i=0;i<nodes.size();i++)
 	//		path.getElements().add(new LineTo(c[0], c[1]));
 		
-		hintCricle = new Circle(tree.root.x,tree.root.y,radius+5, new Color(0, 0, 0, 0));
+		hintCricle = new Circle(tree.root.x,tree.root.y,radius+10, new Color(0, 0, 0, 0));
 		hintCricle.setStroke(Color.GREEN);
 		hintCricle.setStrokeWidth(3.0);
 		visAnchorPane.getChildren().add(hintCricle);
@@ -273,8 +276,8 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	    tree.getRed(root);
 	
 	    Button node = new Button();//new Circle(x, y, radius);
-	    node.setLayoutX(x);
-	    node.setLayoutY(y);
+	    node.setLayoutX(x-bias);
+	    node.setLayoutY(y-bias);
 	    
 //	    circle.setStroke(Color.BLACK);
 //	    if(tree.getRed(root))
@@ -286,13 +289,30 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	    	node.getStyleClass().add("rbtNodeRed");
 	    else
 	    	node.getStyleClass().add("rbtNodeBlack");
-	    	
-	    if(root.element<0)
-	    	node.setText("?");
-	    else
-	    	node.setText(root.element.toString());
-	    visAnchorPane.getChildren().add(node);
 	    
+	    
+	    boolean found = false;
+	    for(int i=0;i<hiddenNodes.size();i++)
+	    {
+	    	if(hiddenNodes.get(i)==root.element)
+	    		found=true;
+	    }
+	    
+    	if(found)
+    	{
+	    	node.setText("?");
+	    	node.setAccessibleText(Integer.valueOf(root.element).toString());
+    	}
+    	else
+    		node.setText(root.element.toString());
+
+    	node.setOnMouseClicked(e -> 
+	    	{
+	    		selectedButton = (Button) e.getSource();
+	    		setCircle();
+	    	}
+		);
+	    visAnchorPane.getChildren().add(node);
 	}
 	
     @FXML public void pressRandomBar() {
@@ -330,6 +350,18 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
         	unknownButton.setDisable(false);
         	restartButton.setDisable(false);
         	backButton.setDisable(false);
+        	
+        	letsPlayButton.setDisable(false);
+        	letsPlayButton.setVisible(true);
+        	unknownTextField.setDisable(true);
+        	unknownTextField.setVisible(false);
+        	unknownButton.setDisable(true);
+        	unknownButton.setVisible(false);
+        	hiddenNodes.clear();
+        	indexesOfHiddenNodes.clear();
+        	selectedButton=null;
+    
+        	hiddenValues.setText("");
 
         	restartVis();
         	generateTree();
@@ -353,9 +385,12 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	for(int i=0;i<maxRandomNodes;i++)
     	{
     		randomInteger = (int)(Math.random()*(maxInputRange-1)+1);
-            nodes.add(randomInteger);
             if (!tree.search(randomInteger))
-        		tree.insert(randomInteger);
+            {
+            	tree.insert(randomInteger);
+            	nodes.add(randomInteger);
+            }
+        		
     	}
     }
     
@@ -390,10 +425,21 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     			}
     		indexesOfHiddenNodes.add(randomIndex);
     		hiddenNodes.add(nodes.get(randomIndex));
-    		do {System.out.println("here!");} while (!tree.searchAndReplace(tree.root, nodes.get(randomIndex), nodes.get(randomIndex)*(-1)));
+//    		do {
+//    			System.out.println("searching: " + nodes.get(randomIndex).toString() + 
+//    					", to replace for: " + nodes.get(randomIndex)*(-1) + 
+//    					", nodes size: "+String.valueOf(nodes.size())+", index: " + 
+//    					String.valueOf(randomIndex));
+//    			} 
+//    		while (!tree.searchAndReplace(tree.root, nodes.get(randomIndex), nodes.get(randomIndex)*(-1)));
     	}
     	
     	displayTree();
+    	displayHiddenValues();
+    }
+    
+    private void displayHiddenValues()
+    {
     	String hiddenValuesText="Ukryte liczby: [";
     	for(int i=0;i<hiddenNodes.size();i++)
     	{
@@ -403,6 +449,56 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	}
     	hiddenValuesText+="]";
     	hiddenValues.setText(hiddenValuesText);
+    }
+    
+//    @FXML
+//    public void guessValue()
+//    {    	
+//    	int input = Integer.parseInt(unknownTextField.getText());
+//    	if(selectedButton!=null && selectedButton.getAccessibleText()!=null)
+//    	{
+//    		if(input == Integer.parseInt(selectedButton.getAccessibleText()))
+//    		{
+//    			selectedButton.setText(selectedButton.getAccessibleText());
+//    			selectedButton.setAccessibleText(null);
+//    			for(int i=0;i<hiddenNodes.size();i++)
+//    				if(hiddenNodes.get(i)==input)
+//    				{
+//    					hiddenNodes.remove(i);
+//    					break;
+//    				}
+//    			displayHiddenValues();
+//    			//info - brawo!
+//    		}
+//    		else
+//    		{
+//    			//info - tu nie powinna byc xyz liczba
+//    		}
+//    	}
+//    	else
+//    	{
+//    		//messagebox - najpierw zaznacz wezel, ktore wartosc chcesz odgadnac
+//    	}
+//    	unknownTextField.clear();
+//    }
+    
+    private void setCircle()
+    {
+    	System.out.println("setCircle: selectedButton-Text: "+selectedButton.getText()+
+    						", selectedButton-AccesibleText: "+selectedButton.getAccessibleText()
+    			);
+    	
+    	int val=0;
+    	if(selectedButton.getText()=="?")
+    		val = Integer.parseInt(selectedButton.getAccessibleText());
+    	else
+    		val = Integer.parseInt(selectedButton.getText());
+    	System.out.println("setCircle: "+String.valueOf(val));
+    	
+    	tree.path.getElements().clear();
+    	tree.search(val);
+        displayTree();
+        animateSearch(true);   
     }
 
 }

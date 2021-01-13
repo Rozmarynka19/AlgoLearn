@@ -300,6 +300,7 @@
 	-fx-border-color: #101010;
 	-fx-border-radius: 5em;
 	-fx-alignment: center;
+	-fx-padding: 0px;
 	
    	-fx-background-radius: 5em;
 	-fx-min-width: 35px;
