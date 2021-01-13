@@ -172,6 +172,8 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 		
 		PathTransition pathT = new PathTransition();
 		pathT.setDuration(Duration.millis(1000));
+		if(tree.path.getElements().size()<=2)
+			tree.path.getElements().add(new LineTo(406.0,51.0));
 		pathT.setPath(tree.path);
 		pathT.setNode(hintCricle);
 		pathT.setCycleCount(1);
@@ -244,6 +246,10 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
          }
          displayTree();
          searchTextField.clear();
+         
+         System.out.println("Path size: " + String.valueOf(tree.path.getElements().size()));
+         for(int i=0;i<tree.path.getElements().size();i++)
+        	 System.out.println(tree.path.getElements().get(i));
          animateSearch(isNodeFound);     
 
     }
