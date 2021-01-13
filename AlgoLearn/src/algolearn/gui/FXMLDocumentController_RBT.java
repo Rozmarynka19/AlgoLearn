@@ -370,13 +370,20 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	generateTree();
     	
     	int randomIndex;
+    	outer:
     	for(int i=0;i<maxHiddenValues;i++)
     	{
     		randomIndex = (int)(Math.random()*(nodes.size()-1));
     		System.out.println("Index: "+randomIndex+" Value: "+nodes.get(randomIndex));
+    		for(int j=0;j<indexesOfHiddenNodes.size();j++)
+    			if(indexesOfHiddenNodes.get(j)==randomIndex)
+    			{
+    				i--;
+    				continue outer;
+    			}
     		indexesOfHiddenNodes.add(randomIndex);
     		hiddenNodes.add(nodes.get(randomIndex));
-    		nodes.set(randomIndex, 0);
+    		do {System.out.println("here!");} while (!tree.searchAndReplace(tree.root, nodes.get(randomIndex), nodes.get(randomIndex)*(-1)));
     	}
     	
     	displayTree();
