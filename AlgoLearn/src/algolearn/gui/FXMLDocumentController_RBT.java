@@ -4,6 +4,7 @@ import algolearn.gui.main_window;
 import algolearn.gui.algorithms.rbt.RBPane;
 import algolearn.gui.algorithms.rbt.RedBlackTree;
 import algolearn.gui.algorithms.rbt.TreeNode;
+import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 
 import java.io.IOException;
@@ -35,6 +36,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -54,6 +56,7 @@ import javafx.scene.shape.LineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -80,6 +83,10 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	@FXML Button hiddenValues;
 	@FXML Button restartButton;
 	@FXML Button backButton;
+	
+	//--------- Msg box stuff ----------
+	@FXML Text txtMainTitle;
+	@FXML TextArea msgTextArea;
 	
 	
 	
@@ -465,6 +472,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     		switchToTheGameMode(false);
         	
         	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
+        	createMessageBox("Brawo!", "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!");
         	//messagebox - brawo mistrzu za odgadniecie wartosci wszystkich wezlow!
     	}
     }
@@ -513,6 +521,29 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	restartButton.setDisable(areButtonsBlocked);
     	backButton.setDisable(areButtonsBlocked);
     	letsPlayButton.setDisable(areButtonsBlocked);
+    }
+    
+    private void createMessageBox(String header, String message)
+    {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/msg_fxml.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            FXMLDocumentController_RBT controller = (FXMLDocumentController_RBT)fxmlLoader.getController();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1));  
+            stage.show();
+            controller.txtMainTitle.setText(header);
+            controller.msgTextArea.setText(message);
+//            controller.errorTextArea.setStyle("-fx-text-fill: RED;-fx-font-weight:bold;");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
