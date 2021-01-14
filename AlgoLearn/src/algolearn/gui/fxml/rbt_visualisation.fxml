@@ -109,14 +109,18 @@
                            <children>
                               <ScrollPane layoutY="15.0" prefHeight="318.0" prefWidth="825.0">
                                 <content>
-                                  <AnchorPane fx:id="visAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="812.0" />
+                                  <AnchorPane fx:id="visAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="818.0" />
                                 </content>
                               </ScrollPane>
-                              <Text fx:id="info" fill="WHITE" layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="795.0">
-                                 <font>
-                                    <Font name="Cambria Bold Italic" size="19.0" />
-                                 </font>
-                              </Text>
+                              <ScrollPane fx:id="infoScrollPane" layoutY="333.0" prefHeight="39.0" prefWidth="826.0" style="-fx-background-color: transparent;">
+                                 <content>
+                                    <Text fx:id="info" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="802.3999274730681">
+                                       <font>
+                                          <Font name="Cambria Bold Italic" size="19.0" />
+                                       </font>
+                                    </Text>
+                                 </content>
+                              </ScrollPane>
                            </children>
                         </AnchorPane>
                      </children>

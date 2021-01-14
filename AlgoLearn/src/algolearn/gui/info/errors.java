@@ -100,6 +100,7 @@ public class errors {
 		//--------------- search -----------------------------
 		public String nodeNotFound = "Nie znaleziono węzła o kluczu ";
 		public String nodeFound = "Znaleziono węzeł o kluczu ";
+		public String emptyTree = "Drzewo jest puste!";
 		
 		//--------------- deletion -----------------------------
 		public String nodeDeletedPart1 = "Węzeł o kluczu ";

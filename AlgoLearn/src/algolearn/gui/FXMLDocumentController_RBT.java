@@ -36,6 +36,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -90,6 +91,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	
 	//---------- Infoline stuff ----------
 	@FXML Text info;
+	@FXML ScrollPane infoScrollPane;
 	
 	
 	
@@ -107,6 +109,14 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     private Button selectedButton=null;
     
 	private Circle hintCricle = null;
+	
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		if (infoScrollPane == null)
+			return;
+		infoScrollPane.getStyleClass().clear();
+		infoScrollPane.getStyleClass().add("infoScrollPane");
+	}
 
 	public void highlightNode(Integer index,Color color)
     {
@@ -130,7 +140,9 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     }
 
 	
-	public void animateSearch(boolean isNodeFound) {		
+	public void animateSearch(boolean isNodeFound) {	
+		if(tree.root==null)
+			return;
 		hintCricle = new Circle(tree.root.x,tree.root.y,radius+10, new Color(0, 0, 0, 0));
 		hintCricle.setStroke(Color.GREEN);
 		hintCricle.setStrokeWidth(3.0);
@@ -157,49 +169,38 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	
 	@FXML
     public void insert(ActionEvent event) {
-		 if(insertTextField.getText().length() == 0) {
-			 	createMessageBox(msg.msgErrorHeader, msg.valueNotGiven, msg.msgTypeError);
-	        }
-	        else 
-	        {
-	        	int key;
-	        	try
-	        	{
-	        		key = Integer.parseInt(insertTextField.getText());
-	        	}
-	        	catch (Exception e)
-	        	{
-	        		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
-	        		return;
-	        	}
-	        	
-	        	if(key<minInputRange || key>maxInputRange)
-	        	{
-	        		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
-	        		return;
-	        	}
-	        	
-	            nodes.add(key);
-	            if (tree.search(key)) 
-	            {
-	                displayTree();
-	                info.setText(msg.setupInformation(msg.nodeAlredyExistsPart1+key+msg.nodeAlredyExistsPart2));
-	            } 
-	            else 
-	            {
-	                tree.insert(key);
-	                displayTree();
-	                
-	                info.setText(msg.setupInformation(msg.nodeInserted+key));
-	            }
-	            insertTextField.clear();
-	            
-	        }
+		int key = validateInput(insertTextField);
+		
+		if(key<0)
+			return;
+		else
+        {        	
+            nodes.add(key);
+            if (tree.search(key)) 
+            {
+                displayTree();
+                info.setText(msg.setupInformation(msg.nodeAlredyExistsPart1+key+msg.nodeAlredyExistsPart2));
+            } 
+            else 
+            {
+                tree.insert(key);
+                displayTree();
+                
+                info.setText(msg.setupInformation(msg.nodeInserted+key));
+            }
+            insertTextField.clear();
+            
+        }
     }
 	
 	@FXML
 	public void delete(ActionEvent event) {
-         int key = Integer.parseInt(deleteTextField.getText());
+		int key = validateInput(deleteTextField);
+		
+		if(key<0)
+			return;
+		else
+        {      
          if(!tree.search(key)){
              displayTree();
              info.setText(msg.setupInformation(msg.nodeNotFound+key));
@@ -210,29 +211,39 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
              info.setText(msg.setupInformation(msg.nodeDeletedPart1+key+msg.nodeDeletedPart2));
          }
          deleteTextField.clear();
+        }
 
      }
 	
 	@FXML
 	public void search(ActionEvent event) {
-         int key = Integer.parseInt(searchTextField.getText());
-         boolean isNodeFound;
-         tree.path.getElements().clear();
-         if(!tree.search(key)){
-        	 isNodeFound=false;
-	             info.setText(msg.setupInformation(msg.nodeNotFound+key));
-         }
-         else{
-        	 isNodeFound=true;
-        	 info.setText(msg.setupInformation(msg.nodeFound+key));
-         }
-         displayTree();
-         searchTextField.clear();
-         
-         System.out.println("Path size: " + String.valueOf(tree.path.getElements().size()));
-         for(int i=0;i<tree.path.getElements().size();i++)
-        	 System.out.println(tree.path.getElements().get(i));
-         animateSearch(isNodeFound);     
+		int key = validateInput(searchTextField);
+		
+		if(key<0)
+			return;
+		else
+        {               
+		 boolean isNodeFound;
+		 tree.path.getElements().clear();
+		 if(!tree.search(key)){
+			 isNodeFound=false;
+			 if(tree.root==null)
+				 info.setText(msg.setupInformation(msg.emptyTree));
+			 else
+				 info.setText(msg.setupInformation(msg.nodeNotFound+key));
+		 }
+		 else{
+			 isNodeFound=true;
+			 info.setText(msg.setupInformation(msg.nodeFound+key));
+		 }
+		 displayTree();
+		 searchTextField.clear();
+		 
+		 System.out.println("Path size: " + String.valueOf(tree.path.getElements().size()));
+		 for(int i=0;i<tree.path.getElements().size();i++)
+			 System.out.println(tree.path.getElements().get(i));
+		 animateSearch(isNodeFound);     
+        }
     }
 	
 	
@@ -412,45 +423,52 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     @FXML
     public void guessValue()
     {    	
-    	int input = Integer.parseInt(unknownTextField.getText());
-    	if(selectedButton!=null && selectedButton.getAccessibleText()!=null)
-    	{
-    		if(input == Integer.parseInt(selectedButton.getAccessibleText()))
-    		{
-    			selectedButton.setText(selectedButton.getAccessibleText());
-    			selectedButton.setAccessibleText(null);
-    			for(int i=0;i<hiddenNodes.size();i++)
-    				if(hiddenNodes.get(i)==input)
-    				{
-    					hiddenNodes.remove(i);
-    					break;
-    				}
-    			displayHiddenValues();
-    			displayTree();
-    			System.out.println("brawo! tu faktycznie powinna byc liczba "+input);
-    			info.setText(msg.setupInformation(msg.goodCall + input));
-    		}
-    		else
-    		{
-    			System.out.println("tu nie powinna byc liczba "+input);
-    			info.setText(msg.setupInformation(msg.wrongCall + input));
-    		}
-    	}
-    	else
-    	{
-    		System.out.println("najpierw zaznacz wezel, ktore wartosc chcesz odgadnac");
-    		createMessageBox(msg.msgErrorHeader, msg.selectNodeFirst , msg.msgTypeError);
-    		
-    	}
-    	unknownTextField.clear();
+		int input = validateInput(unknownTextField);
+		
+		if(input<0)
+			return;
+		else
+        {   
+			if(selectedButton!=null && selectedButton.getAccessibleText()!=null)
+	    	{
+	    		if(input == Integer.parseInt(selectedButton.getAccessibleText()))
+	    		{
+	    			selectedButton.setText(selectedButton.getAccessibleText());
+	    			selectedButton.setAccessibleText(null);
+	    			for(int i=0;i<hiddenNodes.size();i++)
+	    				if(hiddenNodes.get(i)==input)
+	    				{
+	    					hiddenNodes.remove(i);
+	    					break;
+	    				}
+	    			displayHiddenValues();
+	    			displayTree();
+	    			System.out.println("brawo! tu faktycznie powinna byc liczba "+input);
+	    			info.setText(msg.setupInformation(msg.goodCall + input));
+	    		}
+	    		else
+	    		{
+	    			System.out.println("tu nie powinna byc liczba "+input);
+	    			info.setText(msg.setupInformation(msg.wrongCall + input));
+	    		}
+	    	}
+	    	else
+	    	{
+	    		System.out.println("najpierw zaznacz wezel, ktore wartosc chcesz odgadnac");
+	    		createMessageBox(msg.msgErrorHeader, msg.selectNodeFirst , msg.msgTypeError);
+	    		
+	    	}
+	    	unknownTextField.clear();
+	    	
+	    	if(hiddenNodes.size()<=0)
+	    	{
+	    		switchToTheGameMode(false);
+	        	
+	        	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
+	        	createMessageBox(msg.msgCongratsHeader, msg.finishedGuessGame , msg.msgTypeCongrats);
+	    	}
+        }
     	
-    	if(hiddenNodes.size()<=0)
-    	{
-    		switchToTheGameMode(false);
-        	
-        	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
-        	createMessageBox(msg.msgCongratsHeader, msg.finishedGuessGame , msg.msgTypeCongrats);
-    	}
     }
     
     private void setCircle()
@@ -535,6 +553,38 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private int validateInput(TextField inputTextField)
+    {
+		 if(inputTextField.getText().length() == 0)
+		 {
+			 	createMessageBox(msg.msgErrorHeader, msg.valueNotGiven, msg.msgTypeError);
+			 	inputTextField.clear();
+			 	return -1;
+		 }
+
+    	int key;
+    	try
+    	{
+    		key = Integer.parseInt(inputTextField.getText());
+    	}
+    	catch (Exception e)
+    	{
+    		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
+    		inputTextField.clear();
+    		return -1;
+    	}
+    	
+    	if(key<minInputRange || key>maxInputRange)
+    	{
+    		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
+    		inputTextField.clear();
+    		return -1;
+    	}
+    	
+    	inputTextField.clear();
+    	return key;
     }
 
 }

@@ -368,4 +368,16 @@
 
 
 
+.infoScrollPane
+{
+	-fx-background-color: transparent;
+	-fx-control-inner-background: transparent;
+	-fx-padding: 5px;
+}
+
+.infoScrollPane > .viewport {
+   -fx-background-color: transparent;
+}
+
+
 
