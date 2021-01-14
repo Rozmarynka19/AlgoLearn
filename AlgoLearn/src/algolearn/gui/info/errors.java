@@ -103,7 +103,7 @@ public class errors {
 		public String emptyTree = "Drzewo jest puste!";
 		
 		//--------------- deletion -----------------------------
-		public String nodeDeletedPart1 = "Węzeł o kluczu ";
+		public String nodeDeletedPart1 = "Węzeł ";
 		public String nodeDeletedPart2 = " został zastąpiony przez swojego poprzednika, a następnie usunięty!";
 		
 		//--------------- insertion -----------------------------
