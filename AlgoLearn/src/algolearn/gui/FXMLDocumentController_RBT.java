@@ -104,36 +104,10 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     private ArrayList<Integer> indexesOfHiddenNodes = new ArrayList<>();
     private int maxHiddenValues = 2;
     private double bias = 35/2;
-//    private int correctCurrentUnknownValue=0;
     private Button selectedButton=null;
     
 	private Circle hintCricle = null;
-	
-//	@FXML
-//	public void generate()
-//	{
-////	    public void start(Stage primaryStage){
-////		visPane.setBackground(new Background(new BackgroundFill(Color.web("#" + "FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));
-//	     	tree 
-//	     	nodes
-////	        BorderPane pane = new BorderPane();
-////	        RBPane view = new RBPane(tree);
-////	        setPane(pane, view, tree);
-////	        setStage(pane, primaryStage, "RedBlackTree Visualisation");
-//	        
-////	        Alert alert = new Alert(Alert.AlertType.INFORMATION,"This is a RedBlackTree Visualiser created by Ankit Sharma. This demonstrates the operations of insertion and deletion.\n\n" +
-////	                "Insert button inserts a node, delete button deletes a node", ButtonType.OK);
-////	        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-////	        alert.show();
-//	 }
-    
-	//	private Path createMovePath() {
-	//	Path path = new Path();
-	//	path.getElements().add(new MoveTo(tree.getRoot().x, tree.getRoot().y));
-	//	return path;
-	//}
-	
-//    public void highlightNode(double nodeX, double nodeY, Color color,int e)
+
 	public void highlightNode(Integer index,Color color)
     {
     	displayTree();
@@ -153,24 +127,10 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 		ft.setToValue(0);
 		ft.setOnFinished(e->tree.ensureRBTree(index));
 		ft.play();
-		
-//		PathTransition pathT = new PathTransition();
-//		pathT.setDuration(Duration.millis(5000));
-//		pathT.setPath(tree.path);
-//		pathT.setNode(hintCricle);
-//		pathT.setCycleCount(1);
-//		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-//		pathT.setAutoReverse(false);
-//		pathT.play();
     }
 
 	
-	public void animateSearch(boolean isNodeFound) {
-	//	if(hintCricle == null) return;
-	//	Path path = createMovePath();
-	//	for(int i=0;i<nodes.size();i++)
-	//		path.getElements().add(new LineTo(c[0], c[1]));
-		
+	public void animateSearch(boolean isNodeFound) {		
 		hintCricle = new Circle(tree.root.x,tree.root.y,radius+10, new Color(0, 0, 0, 0));
 		hintCricle.setStroke(Color.GREEN);
 		hintCricle.setStrokeWidth(3.0);
@@ -192,33 +152,45 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 		if(!isNodeFound)
 			pathT.setOnFinished(e -> ft.play());
 		pathT.play();
-		
-//		visPane.getChildren().remove(hintCricle);
 	}
 	
 	
 	@FXML
     public void insert(ActionEvent event) {
 		 if(insertTextField.getText().length() == 0) {
-	            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You haven't entered anything!", ButtonType.OK);
-	            alert.getDialogPane().setMinHeight(80);
-	            alert.show();
+			 	createMessageBox(msg.msgErrorHeader, msg.valueNotGiven, msg.msgTypeError);
 	        }
-	        else {
-	            int key = Integer.parseInt(insertTextField.getText());
+	        else 
+	        {
+	        	int key;
+	        	try
+	        	{
+	        		key = Integer.parseInt(insertTextField.getText());
+	        	}
+	        	catch (Exception e)
+	        	{
+	        		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
+	        		return;
+	        	}
+	        	
+	        	if(key<minInputRange || key>maxInputRange)
+	        	{
+	        		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
+	        		return;
+	        	}
+	        	
 	            nodes.add(key);
-	            if (tree.search(key)) {
+	            if (tree.search(key)) 
+	            {
 	                displayTree();
-//	                view.setStatus(key + " is already present!");
-	            } else {
-//	            	System.out.println("Inserting...");
+	                info.setText(msg.setupInformation(msg.nodeAlredyExistsPart1+key+msg.nodeAlredyExistsPart2));
+	            } 
+	            else 
+	            {
 	                tree.insert(key);
 	                displayTree();
-//	                tree.path.getElements().clear();
-//	                tree.search(key);
-//		            animateSearch();
 	                
-//	                setStatus(key + " is inserted!");
+	                info.setText(msg.setupInformation(msg.nodeInserted+key));
 	            }
 	            insertTextField.clear();
 	            
@@ -230,12 +202,12 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
          int key = Integer.parseInt(deleteTextField.getText());
          if(!tree.search(key)){
              displayTree();
-//	             view.setStatus(key +" is not present!");
+             info.setText(msg.setupInformation(msg.nodeNotFound+key));
          }
          else{
              tree.delete(key);
              displayTree();
-//	             view.setStatus(key+" is replaced by its predecessor and is deleted!");
+             info.setText(msg.setupInformation(msg.nodeDeletedPart1+key+msg.nodeDeletedPart2));
          }
          deleteTextField.clear();
 
@@ -248,11 +220,11 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
          tree.path.getElements().clear();
          if(!tree.search(key)){
         	 isNodeFound=false;
-//	             view.setStatus(key +" is not present!");
+	             info.setText(msg.setupInformation(msg.nodeNotFound+key));
          }
          else{
         	 isNodeFound=true;
-//	             view.setStatus(key +" is present!");
+        	 info.setText(msg.setupInformation(msg.nodeFound+key));
          }
          displayTree();
          searchTextField.clear();
@@ -261,7 +233,6 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
          for(int i=0;i<tree.path.getElements().size();i++)
         	 System.out.println(tree.path.getElements().get(i));
          animateSearch(isNodeFound);     
-
     }
 	
 	
@@ -291,14 +262,9 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	
 	    tree.getRed(root);
 	
-	    Button node = new Button();//new Circle(x, y, radius);
+	    Button node = new Button();
 	    node.setLayoutX(x-bias);
 	    node.setLayoutY(y-bias);
-	    
-//	    circle.setStroke(Color.BLACK);
-//	    if(tree.getRed(root))
-//	        circle.setFill(Color.INDIANRED);
-//	    else circle.setFill(Color.GRAY);
 	    
 	    node.getStyleClass().clear();
 	    if(tree.getRed(root))
@@ -326,6 +292,11 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	    	{
 	    		selectedButton = (Button) e.getSource();
 	    		setCircle();
+	    		
+	    		if(selectedButton.getText()=="?")
+	    			info.setText(msg.setupInformation(msg.unknownNodeSelected));
+	    		else
+	    			info.setText(msg.setupInformation(msg.knownNodeSelected+selectedButton.getText()));
 	    	}
 		);
 	    visAnchorPane.getChildren().add(node);
@@ -335,15 +306,15 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	if(generateDone == false)
     		return;
 
-//		if(deleteInProgress) {
-//			bstTEXT.setText(errorMSG.setupInformation(errorMSG.delInProgress));
-//			return;
-//		}
+    	if(deleteInProgress) {
+			info.setText(msg.setupInformation(msg.delInProgress));
+			return;
+    	}
 		
-//		if(!pathTransitionDone) {
-//			CreateError(errorMSG.pathTNotDone);
-//			return;
-//		}
+    	if(!pathTransitionDone) {
+		createMessageBox(msg.msgErrorHeader, msg.pathTNotDone, msg.msgTypeError);
+			return;
+		}
     	
     	generateBar.setProgress(0);
     	
@@ -362,6 +333,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
         	generateTree();
     		this.displayTree();
         	generateDone = true;
+        	info.setText(msg.setupInformation(msg.generateDone));
     	});
     	timeline.play();
     }
@@ -370,6 +342,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     public void restartVis()
     {
     	restartVis(false);
+    	info.setText(msg.setupInformation(msg.restartDone));
     }
     
     private void restartVis(boolean isGameModeOn)
@@ -501,6 +474,11 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     
     private void switchToTheGameMode(boolean isGameModeActivated)
     {
+    	if (isGameModeActivated)
+    		info.setText(msg.setupInformation(msg.gameModeOn));
+    	else
+    		info.setText(msg.setupInformation(msg.gameModeOff));
+    	
     	letsPlayButton.setDisable(isGameModeActivated);
     	letsPlayButton.setVisible(!isGameModeActivated);
     	unknownTextField.setDisable(!isGameModeActivated);
