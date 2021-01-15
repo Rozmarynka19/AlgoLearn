@@ -69,7 +69,7 @@ public class FXMLDocumentController implements Initializable{
     };
     private int algo_id = 0;
     @FXML
-    private Text txtMainTitle, txtProgress;
+    private Text txtMainTitle;
     private String txtMainTitleString = "Algolearn - ", txtProgressString = "/100";
     
     @FXML
@@ -104,7 +104,6 @@ public class FXMLDocumentController implements Initializable{
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         	categorySetBackground();
         	savedValues.resizeFlag=true;
-        	setProgress(calculateProgress());
         }
         else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id)  {
             if(!savedValues.resizeFlag)
@@ -114,7 +113,6 @@ public class FXMLDocumentController implements Initializable{
         }else if(clicked_btn.getId() != btn_id) {
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         	categorySetBackground();
-        	setProgress(calculateProgress());
         }
         this.btn_id = clicked_btn.getId();
     }
@@ -129,14 +127,10 @@ public class FXMLDocumentController implements Initializable{
     	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
     }
     
-    @FXML
     //id for each top AnchorPane element in every window-fxmlFile
     //necessary for switching between windows
-    private AnchorPane anchorPaneRoot; 
-    @FXML
-    private StackPane parentContainer;
-    @FXML
-    private ProgressBar progressBar;
+    @FXML private AnchorPane anchorPaneRoot; 
+    @FXML private StackPane parentContainer;
 
     
     /**
@@ -238,64 +232,6 @@ public class FXMLDocumentController implements Initializable{
 
         }, delay, wait);
     	this.resize_locker = false;
-    }
-
-    /**
-     * 
-     * @param  Button handler.
-     * 
-     * 	Setup progress of the progressbar.
-     */
-    public void handleProgress(ActionEvent event) {
-    	Button clicked_btn = (Button)event.getSource();
-    	String id = clicked_btn.getId();
-    	
-    	if(id.equals(wpr.getId())) 
-    		category_data[this.algo_id][0] = category_data[this.algo_id][0] ? false : true;
-    	else if(id.equals(opi.getId())) 
-    		category_data[this.algo_id][1] = category_data[this.algo_id][1] ? false : true;
-    	else if(id.equals(wiz.getId())) 
-    		category_data[this.algo_id][2] = category_data[this.algo_id][2] ? false : true;
-    	
-    	setProgress(calculateProgress());
-    	int prog = (int)(calculateProgress() * 100);
-    	categorySetBackground();
-    	txtProgress.setText(Integer.toString(prog)+txtProgressString);
-    }
-    
-    /**
-     * Calculate progress of currennt algorithm
-     * @return progress value
-     */
-    private double calculateProgress() {
-    	int count_done = 0;
-    	for(int i = 0 ; i < 3; i++)
-    		if(category_data[this.algo_id][i] == true) 
-    			count_done++;
-    	switch(count_done) {
-    		case 1:
-    			return 0.33;
-    		case 2:
-    			return 0.66;
-    		case 3:
-    			return 1.0;
-    		default:
-    			return 0;
-    	}
-    }
-    
-    /**
-     * @param progress : Progress of currennt alghoritm
-     * 
-     * Animated progressbar based on Timeline
-     */
-    private void setProgress(double progress) {
-    	Timeline timeline = new Timeline();
-    	KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
-    	KeyFrame keyFrame = new KeyFrame(new Duration(1000), keyValue);
-    	timeline.getKeyFrames().add(keyFrame);
-
-    	timeline.play();
     }
 
     /**
