@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -70,7 +71,9 @@ public class FXMLDocumentController implements Initializable{
     private int algo_id = 0;
     @FXML
     private Text txtMainTitle;
-    private String txtMainTitleString = "Algolearn - ", txtProgressString = "/100";
+    //private String txtMainTitleString = "Algolearn - ";
+    private String txtMainTitleString = "";
+    private String txtProgressString = "/100";
     
     @FXML
     WebView introText;
@@ -353,6 +356,9 @@ public class FXMLDocumentController implements Initializable{
             Stage stage = new Stage();
             setStyle(stage);
             setMouse(root1, stage);
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(root1));  
             stage.show();
         }
@@ -364,6 +370,10 @@ public class FXMLDocumentController implements Initializable{
 	@FXML
     public void BackToMainStage(ActionEvent event) {
     	loadMenu();
+    }
+	
+	@FXML public void quiz(ActionEvent event) {
+    	System.out.println("Jestem przyciskiem w menu głównym który nie robi aktualnie nic! Miło że to czytasz!");
     }
 
     @Override

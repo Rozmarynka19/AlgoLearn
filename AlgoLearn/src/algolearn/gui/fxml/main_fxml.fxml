@@ -120,7 +120,10 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="824.0" styleClass="titlePlane" />
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="824.0" styleClass="titlePlane">
+                           <children>
+                              <Button layoutY="9.0" mnemonicParsing="false" onAction="#quiz" prefHeight="49.0" prefWidth="824.0" styleClass="algEasy" text="Sprawdź swoją wiedzę!" textAlignment="CENTER" />
+                           </children></Pane>
                      </children>
                   </HBox>
                </children>

@@ -122,7 +122,6 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 	}
     
     @FXML private void searchValue(ActionEvent event) {
-
     	String getValue = searchField.getText();
 		searchField.setText("");
 		if(!analizeInput(getValue) || generateInProgress || restartInProgress) {
@@ -138,7 +137,6 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
         	bhTEXT.setText(msg.setupOperationInfo(msg.searchFoundHeap, getValue));
 		}else
         	bhTEXT.setText(msg.setupOperationInfo(msg.searchNotFoundHeap, getValue));
-    	
     }
     
     private void searchValues(int value) {
