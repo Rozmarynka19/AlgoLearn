@@ -95,6 +95,18 @@
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
 }
+.titleButton{
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color:    linear-gradient( #505050, #1a1a1a);
+	-fx-text-alignment: center;
+	-fx-padding: 0px;
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 40px;
+	-fx-text-fill: white;
+}
 .textPlane{
 	-fx-font-family: 'Cambria Math';
 	-fx-font-size: 36px;
