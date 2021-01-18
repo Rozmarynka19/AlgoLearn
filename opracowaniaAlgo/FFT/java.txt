@@ -1,0 +1,93 @@
+import static java.lang.Math.*;
+
+public class FFT {
+
+
+    static Complex[] fft2(double [] x, int n){
+        if (n <= 1) {
+            Complex [] tmp = new Complex[n];
+            for (int i = 0; i < n; i++) {
+                tmp[i]=new Complex();
+                tmp[i].setReal(x[i]);
+            }
+            return tmp;
+        }
+        double []even = new double[n / 2];
+        double []odd = new double[n / 2];
+        int k = 0;
+        for (int i = 0; i < n; i += 2, k++) {
+            even[k] = x[i];
+            odd[k] = x[i + 1];
+        }
+
+        Complex[] even1=fft2(even, n/2);
+        Complex[] odd1=fft2(odd, n/2);
+        Complex[] outputs = new Complex[n];
+        for (int j = 0; j < n / 2; ++j){
+            //Complex t = (1.0, -2 * Math.PI * k / n) * odd1[j];
+            double term = (-2 * PI * j) / (double) n;
+            Complex t = (new Complex(cos(term), sin(term)).mult(odd1[j]));
+            outputs[j] = even1[j].add(t);
+            outputs[j + n / 2] = even1[j].sub(t);
+        }
+        return outputs;
+    }
+
+
+    public static void main(String[] args) {
+        int MAX_ORDER = 3;
+        int N = 1 << MAX_ORDER;
+        System.out.println(N+"\n");
+
+        double[] f = new double[N];
+        for (int i = 0; i < N; i++) {
+            f[i] = i / (double)N;
+        }
+        System.out.println(N);
+        Complex[] output = fft2(f, N);
+        System.out.println("Results fft2:");
+        for (Complex c : output) {
+            System.out.println(c);
+        }
+
+    }
+}
+
+class Complex {
+    public double real;
+    public double imag;
+
+    public Complex() {
+        this(0, 0);
+    }
+
+    public Complex setReal(double real){
+        this.real=real;
+        if(imag==0)
+            return new Complex(real, 0);
+        else
+            return new Complex(real, imag);
+    }
+
+    public Complex(double r, double i) {
+        real = r;
+        imag = i;
+    }
+
+    public Complex add(Complex b) {
+        return new Complex(this.real + b.real, this.imag + b.imag);
+    }
+
+    public Complex sub(Complex b) {
+        return new Complex(this.real - b.real, this.imag - b.imag);
+    }
+
+    public Complex mult(Complex b) {
+        return new Complex(this.real * b.real - this.imag * b.imag, this.real * b.imag + this.imag * b.real);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%f;%f)", real, imag);
+    }
+}
