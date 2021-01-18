@@ -1,0 +1,51 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h3><center><font size=19>Algorytm Floyda-Warshalla</font></center> </h3>
+    <span style="font-size: 18">
+        <p>
+            <br><h3><center>Wstęp</center> </h3>
+            <br>Algorytm Floyda-Warshalla służy do wyliczenie najkrótszej ścieżki w grafie.
+            <br>Przy czym poszczególne wagi krawędzi mogą być ujemne, jednak suma wag(ścieżka) nie może być ujemna.
+            <br>Oblicza rekurencyjnie sumę wszystkich ścieżek.
+            <br>Często przedstawia się to w formie tablicy.
+            <br>Gdzie indeksy tablicy oznaczają poszczególne połączenia między elementami.
+        </p>
+        <br>
+        <center>
+            <img style="display: block;
+                width: 40%;" img src="tablicaDzialanie.gif">
+        </center>
+        <p>
+            <br><h3><center>Opis tablicy</center> </h3>
+            <br>Jak widzimy graf który stworzymy będzie miał połączenie objektu 4 z 3.
+            <br>W tym konkretnym grafie(nieskierowanym) połączenie będzie dwustronne co oznacza że 3 i 4 są połączone jak i 4 z 3.
+            <br>W skierowanym graf należy dać strzałki z obu stron, aby był on dwustronny.
+            <br>Dodatkwo widzimy również jaka jest waga połączenia, czyli 4.
+            <br>Poniżej zaprezentowano przykład już całego grafu. Czy już wiesz jak czytać taką tabelę?
+        </p>
+        <center>
+            <img style="display: block;
+                width: 40%;" img src="graf2.png">
+        </center>
+        <br>Pseudokod algorytmu Floyda-Warshalla
+        <pre>
+         n = no of vertices
+        A = matrix of dimension n*n
+        for k = 1 to n
+            for i = 1 to n
+                for j = 1 to n
+                    Ak[i, j] = min (Ak-1[i, j], Ak-1[i, k] + Ak-1[k, j])
+        return A
+        </pre>
+        <br>Zobaczmy zatem, w jaki sposób będzie on działał dla danego grafu dla przypadku path(1,5)
+        <center>
+            <img style="display: block;
+                width: 40%;" img src="działanie.gif">
+        </center>
+        <br>https://www.programiz.com/dsa/floyd-warshall-algorithm
+    </span>
+</body>
+</html>

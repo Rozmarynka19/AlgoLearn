@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+struct TablicaMieszajaca {
+	int rozmiar;
+	int* tablica;
+	TablicaMieszajaca(int size) {
+		rozmiar = size;
+		tablica = new int[rozmiar];
+		for (int i = 0; i < rozmiar; i++) {
+			tablica[i] = 0;
+		}
+	}
+	~TablicaMieszajaca() {
+		delete[] tablica;
+	}
+	void usun(int k) {
+		int ws = 0;
+		int p = pow(2, k % 10);
+		int index = ((k % 1000) + p + 1) % rozmiar;
+		while (ws < 1) {
+			if (tablica[index] == k) {
+				tablica[index] = -1;
+				cout << "OK" << endl << endl;
+				return;
+			}
+			else if (tablica[index] == 0) {
+				cout << "Element o podanym kluczu nie istnieje w tablicy" << endl << endl;
+				return;
+			}
+			else {
+				index = (index + 1) % rozmiar;
+			}
+		}
+	}
+	void wstaw(int k) {
+		int ws = 0;
+		int p = pow(2, k % 10);
+		int index = ((k % 1000) + p + 1) % rozmiar;
+		while (ws < 1) {
+			if (tablica[index] == k) {
+				cout << "Element o podanym kluczu juz istnieje w tablicy" << endl;
+				return;
+			}
+			else if (tablica[index] == 0) {
+				tablica[index] = k;
+				return;
+			}
+			else {
+				index = (index + 1) % rozmiar;
+			}
+		}
+	}
+	void wyswietl() {
+		for (int i = 0; i < rozmiar; i++) {
+			cout << tablica[i] << " ";
+			if (i % 10 == 0 && i != 0)
+				cout << endl;
+		}
+		cout << endl;
+	}
+};
+int main(){
+	TablicaMieszajaca tablica1(10);
+	for(int i =0; i < 11; i++)
+		tablica1.wstaw(i);
+	tablica1.wyswietl();
+	return 0;
+}
