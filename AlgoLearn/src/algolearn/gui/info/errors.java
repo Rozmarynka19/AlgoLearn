@@ -61,4 +61,23 @@ public class errors {
 	public String deleteNode = "Usuwanie węzła";
 	
 	public String successUnknownValue = "Pomyślnie odganięto ukrytą wartość!";
+	
+	//<--------------------Bucket-Sort------------------------->
+	public String exceedValueBS = "Zakres wartości od 1-16!";
+	public String addedTo = "Dodano wartość ";
+	public String toUnsortedList = " do nieposortowanej listy";
+	public String addedToBucket = "Do kubełka ";
+	public String addedValueToBucket = " dodano wartość ";
+	public String bucketsAreSorted = "Posortowano wartości w kubełkach i wypisano posortowaną listę";
+	public String addedToBucketNotExist = "Wszystkie elementy z listy zostały już umieszczone w kubełkach!";
+	public String notFoundInBucket = "Podana wartość nie znajduje się w kubełku!";
+	public String isFound = "Odnaleziono wartość ";
+	public String notFoundInUnsortedList = "Podana wartość nie istnieje!";
+	public String isRemoved = "Usunięto wartość ";
+	public String isReloaded = " z nieposortowanej listy";
+	public String isReloadedAndInBucket = "oraz kubełka";
+	public String isEmptyList = "Lista jest pusta!";
 }
+
+
+
