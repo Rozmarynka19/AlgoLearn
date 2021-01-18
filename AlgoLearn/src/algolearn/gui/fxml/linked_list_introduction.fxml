@@ -75,8 +75,7 @@
                             <children>
                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="824.0" styleClass="titlePlane">
                            <children>
-                              <Button fx:id="btn2" layoutX="589.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pressButtonDescription" prefHeight="70.0" prefWidth="110.0" styleClass="algEasy" text="----&gt;" />
-                              <Button id=".empty" layoutX="713.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="110.0" styleClass="algHard" text="Menu" />
+                              <Button id=".empty" layoutX="713.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="110.0" styleClass="algHard" text="Powrót" />
                            </children></Pane>
                             </children>
                         </HBox>
