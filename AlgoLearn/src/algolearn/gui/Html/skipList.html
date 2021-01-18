@@ -1,0 +1,169 @@
+<html>
+<head>
+<script language="javascript">
+var vid;
+function pause_vid(){
+try {
+  vid.pause();
+}
+catch(err) {
+  
+}
+	
+}
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro" || p.className == "add" || p.className == "search" || p.className == "delete"){
+			p.hidden = true;
+        }	
+    }
+   alert('test');
+ }
+  function test1()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "add"){
+			p.hidden = false;
+			vid=document.getElementById("myVideo");
+        }
+    }
+   alert('test');
+ }
+ function test2()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "delete"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+ }
+ function test3()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "search"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+ }
+ function test4()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+		if(p.className == "intro"){
+			p.hidden = false;
+		}
+    }
+   alert('test');
+ }
+ </script>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1 align="center">Listy z przeskokami (skip lists)</h1>
+
+<div class="intro">
+    <h3 align="center">Wprowadzenie</h3>
+    <span style="font-size: 14px">
+        <br>Lista z przeskokami jest zbudowana bazując na strukturze zwykłej listy.
+        <br>Tak samo mamy listę z węzłami w posortowanej kolejności wg klucza, zawierające wskaźnik do kolejnego elementu.
+        <br>Znaczącą różnicą jednak jest istnienie parametru listy określającego jej maksymalną wysokość,
+		<br>czyli ile może mieć warstw/poziomów (które mozna sobie wyobrazić jako zbiór list jednokierunkowych),
+		<br>oraz parametru który mówi, jaką wysokość ma węzeł (tzn przez ile warstw przechodzi) gdzie wysokość ta jest mniejsza od maksymalnej wysokości listy.
+		<br>Tak samo jak w liście jedno kierunkowej i dwukierunkowej mamy głowę(head) i ogon(tail), ale nie pełnią one tej samej funkcji.
+		<br>Ogon i głowa pełnią tutaj bardziej funkcję kolumn, pomiędzy którymi umieszczamy kolejne węzły.
+		<br>wszystkie istniejące elmenty listy bedą zawsze obecne na najniższym poziomie/warstwie. 
+		<br>
+		<center>
+		<br>
+		<img style="display: block;
+                width: 50%;" img src="../textimg/SkipListKolumny.png">
+                <br>
+		</center>
+		
+		<br>Jescze jedną różnicą jest to, że węzeł może przechowywać tyle wskaźników ile ma wysokości.
+		<br>Wysokość węzła ustalamy losowo, gdzie wartość z jakim prawdopodobnieństwem węzeł zostanie "awansowany" jest naczęściej ustalana jako 1/2, i jest stałym parametrem listy.
+		<br>Można uznac to za rzut monetą, np orzeł jako awans, reszka bez awansu.
+		<br>Przy dodawaniu elementu rzucamy monetą aż nie wyrzucimy reszki lub nie dojdziemy do maksymalnej wysokości, przy czym każdy orzeł oznacza awans o jeden stopień. 
+		
+		<center>
+		<br><b>Poniżej przykład gotowej listy o wysokości h=7 i prawdopodobieństwie p=0,5:</b>
+		<br><br>
+		<img style="display: block;
+                width: 50%;" img src="../textimg/SkipListPrzykladowaLista.png">
+                <br>
+		</center>		
+		 
+		 <br>Różnice wymienione powyżej powodują że oczekiwany czas wyszukiwania, usuwania oraz dodawania elementu to <b>O(log(N))</b>
+		 <br>Pesymistyczny przypadek to <b>O(N)</b> jak w klasycznej liście.
+</div>
+
+<div class="add">
+    <h3 align="center">Dodawanie elementu</h3>
+    <span style="font-size: 14px">
+	<br>Aby dodać nowy element:
+    <br>Rozpoczynamy przeszukiwanie od najwyższego poziomu.
+	<br>Wyszukujemy gdzie należy umieścić nowy element przechodząć przez listę
+	<br>Dodajemy element.
+	<br>Losujemy jaką wysokość będzie miał nowy węzeł.
+	<br>aktualizujemy wskaźniki.
+	
+	<center>
+	<br><br><b>Operacja dodawania nowego elementu do listy dla wylosowanej wysokości węzła h=3 w liście o wysokości h=7 i prawdopodobieństwie p=0.5:</b>
+	<img style="display: block;
+                width: 50%;" img src="../textimg/SkipListDodawanie.gif">
+                <br>
+    </center>
+</div>
+
+<div class="search">
+    <h3 align="center">Wyszukiwanie elementu</h3>
+    <span style="font-size: 14px">
+	<br>Aby wyszukać element:
+    <br>1. Rozpoczynamy przeszukiwanie od najwyższego poziomu.
+	<br>2. Przechodzimy po każdym poziomie jak po zwyczajniej liście.
+	<br>3. Jeżeli trafimy na element ostatni czyli tzw NIL lub na węzęł z kluczem większym od szukanego, schodzimy poziom niżej i zaczynamy od początku listy
+	<br>4. Powyższą instrukcję ponawiamy aż trafimy na element mniejszy lub na najniższy poziom listy
+	<br>5. Gdy trafimy na element z mniejszą wartością klucza, sprawdzamy na co wskazuje, jeżeli wskazany element ma wartość klucza mniejszą niż szukana, przechodzimy do niego, jeżeli większą, ponownie schodzimy na niższy poziom tylko że nie na początek listy a na niszy poziom węzła,
+    <br>6. następnie sprawdzamy co wskazywane jest na tym niższym poziomie.
+	<br>Powtarzamy powyższe aż do znalezienia elementu lub aż do zejścia na najniższy poziom.
+	
+	<center>
+	<br><br><b>Operacja wyszukania elementu o kluczu '20' zakończona sukcesem:</b>
+	<img style="display: block;
+                width: 50%;" img src="../textimg/SkipListWyszukiwaniePoz.gif">
+                <br>
+				
+	<br><b>Operacja wyszukania elementu o kluczu '35' zakończona porażką:</b>
+	<img style="display: block;
+                width: 50%;" img src="../textimg/SkipListWyszukiwanieNeg.gif">
+                <br>
+    </center>    
+</div>
+
+<div class="delete">
+    <h3 align="center">Usuwanie elementu</h3>
+    <span style="font-size: 14px">
+	<br>Procedura usuwania wykorzystuje kroki z procedury wyszukiwania,
+	<br>Usuwanie również działa jak w przypadku zwykłej listy, z tą różnicą że musimy zaktualizować więcej wskaźników w zależności od tego, jaką wysokość miał węzęł 
+	
+	<center>
+	<br><b>Operacja usuwania elementu z listy listy:</b>
+	<img style="display: block;
+                width: 50%;" img src="../textimg/SkipListDodawanie.gif">
+                <br>
+    </center>    
+</div>                         
+
+</html></body>
