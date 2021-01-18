@@ -1,0 +1,459 @@
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <time.h>
+#include <iostream>
+#include <string>
+#ifndef drzewo_mst
+#define drzewo_mst
+
+struct Node {
+	int parent;
+	int rank;
+};
+struct Edge {
+	int in1, in2;
+	float weight;
+};
+class Union
+{
+private:
+	int cykle = 0;
+	Node * Z;
+public:
+	Union(const int &n);
+	~Union();
+	const int getCykles();
+	void makeSet(const int &v);
+	int findCompr(const int &v);
+	void unionRank(Edge e);
+	int find(const int &v);
+	void unionNormal(const Edge &e);
+};
+
+
+
+class Heap {
+private:
+	Edge * heap;
+	int hpos;
+public:
+	Heap(const int &n);
+	~Heap();
+	Edge front();
+	void push(const Edge &e);
+	void pop();
+};
+
+struct Tnode {
+	Tnode *next;
+	int v;
+	float weight;
+};
+
+class MSTree
+{
+private:
+	Tnode ** A;
+	int Alen;
+	float weight;
+public:
+	MSTree(const int &n);
+	~MSTree();
+	void addEdge(const Edge &e);
+	void print();
+	const float getWeight();
+};
+Union::Union(const int &n)
+{
+	Z = new Node[n];
+}
+
+Union::~Union()
+{
+	delete[] Z;
+}
+
+const int Union::getCykles()
+{
+	return cykle;
+}
+
+void Union::makeSet(const int &v)
+{
+	Z[v].parent = v;  //ok
+	Z[v].rank = 0;
+}
+
+int Union::findCompr(const int &v)
+{
+
+	if (Z[v].parent != v) {
+		cykle++;
+		return Z[v].parent = findCompr(Z[v].parent);
+
+	}
+	return Z[v].parent;  //ok
+}
+
+void Union::unionRank(Edge e)
+{
+	int ru, rv;
+
+	ru = findCompr(e.in1);
+	rv = findCompr(e.in2);
+	if (Z[ru].rank < Z[rv].rank)
+		Z[ru].parent = rv;
+	else if (Z[ru].rank >Z[rv].rank)  //ok
+		Z[rv].parent = ru;
+	else {
+		Z[rv].parent = ru;
+		Z[ru].rank++;
+	}
+}
+
+int Union::find(const int &v)
+{
+
+	if (Z[v].parent != v) {
+		cykle++;
+		return find(Z[v].parent);
+
+	}
+
+	return v;
+}
+
+void Union::unionNormal(const Edge &e)
+{
+	int ru, rv;
+	ru = find(e.in1);
+	rv = find(e.in2);
+	Z[ru].parent = rv;
+}
+
+Heap::Heap(const int &n)
+{
+	heap = new Edge[n];
+	hpos = 0;
+}
+
+Heap::~Heap()
+{
+	delete[]heap;
+}
+
+Edge Heap::front()
+{
+	return heap[0];
+}
+
+void Heap::push(const Edge &e)
+{
+	int i, j;
+	i = hpos++;
+	j = (i - 1) / 2;
+	while (i && (heap[j].weight > e.weight)) {
+		heap[i] = heap[j];
+		i = j;
+		j = (i - 1) / 2;
+	}
+	heap[i] = e;
+}
+
+void Heap::pop()
+{
+	int i, j;
+	Edge e;
+	if (hpos) {
+		e = heap[--hpos];
+		i = 0;
+		j = 1;
+		while (j < hpos) {
+			if ((j + 1 < hpos) && (heap[j + 1].weight < heap[j].weight)) j++;
+			if (e.weight <= heap[j].weight) break;
+			heap[i] = heap[j];
+			i = j;
+			j = (j * 2) + 1;
+		}
+		heap[i] = e;
+	}
+}
+const float MSTree::getWeight()
+{
+	return weight;
+}
+MSTree::MSTree(const int &n)
+{
+	int i;
+
+	A = new Tnode *[n];
+	for (i = 0; i < n; i++) A[i] = NULL;
+	Alen = n - 1;
+	weight = 0;
+}
+
+MSTree::~MSTree()
+{
+	int i;
+	Tnode *p, *r = nullptr;
+
+	for (i = 0; i <= Alen; i++) {
+		p = A[i];
+		while (p) {
+			r = p;
+			p = p->next;
+			delete r;
+		}
+	}
+	delete[] A;
+}
+
+void MSTree::addEdge(const Edge &e)
+{
+	Tnode *p;
+
+	weight += e.weight;
+	p = new Tnode;
+	p->v = e.in2;
+	p->weight = e.weight;
+	p->next = A[e.in1];
+	A[e.in1] = p;
+
+	p = new Tnode;
+	p->v = e.in1;
+	p->weight = e.weight;
+	p->next = A[e.in2];
+	A[e.in2] = p;
+}
+
+void MSTree::print()
+{
+	int i;
+	Tnode *p;
+
+	std::cout << std::endl;
+	for (i = 0; i <= Alen; i++) {
+		std::cout << "wierzcholek " << i << " - ";
+		for (p = A[i]; p; p = p->next) std::cout << p->v << ":" << p->weight << " ";
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl << "Minimalne drzewo rozpinające waga = " << weight << std::endl << std::endl;
+}
+
+
+#endif
+
+
+void pomiarstop(clock_t begin) {
+	clock_t end = clock();
+	double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+	std::cout << elapsed_secs << std::endl;
+}
+
+void pomiarstop(clock_t begin, int time) {
+	clock_t end = clock();
+	double elapsed_secs_ave = ((double(end - begin) / CLOCKS_PER_SEC) / time) * 1000;
+	std::cout << elapsed_secs_ave << std::endl;
+}
+
+
+
+
+int main() {
+	clock_t t1,t2;
+	std::ifstream plik;
+	int tmp, tmp2;
+	for (int i = 0; i < 3; i++) {
+			std::string lista[3] = { "g1.txt","g2.txt","g3.txt" };
+			plik.open(lista[i]);
+			if (plik.good() == true) {
+				plik >> tmp;
+				float *x = new float[tmp];
+				float *y = new float[tmp];
+				for (int i = 0; i < tmp; i++) {
+					plik >> x[i] >> y[i];
+				}
+				plik >> tmp2;
+				float *z = new float[tmp2];
+				int *index1 = new int[tmp2];
+				int *index2 = new int[tmp2];
+				for (int i = 0; i < tmp2; i++) {
+					plik >> index1[i] >> index2[i] >> z[i];
+				}
+
+				for (int i = 0; i < 4; i++) {
+					Edge e;
+					Union Z(tmp);
+					Heap Q(tmp2);
+					MSTree T(tmp);
+					int licz = 0;
+					if (i == 0) {
+						for (int i = 0; i < tmp; i++)
+							Z.makeSet(i);
+						for (int i = 0; i < tmp2; i++) {
+							e.in1 = index1[i];
+							e.in2 = index2[i];
+							e.weight = z[i];
+							Q.push(e);
+						}
+
+						t1 = t2 = clock();
+						int k = 0;
+						for (int i = 1; i < tmp; i++)
+						{
+							do
+							{
+								k++;
+								e = Q.front();
+								Q.pop();
+							} while (Z.findCompr(e.in1) == Z.findCompr(e.in2));
+							if (i == tmp - 1) {
+								std::cout << "czas kroku petli sortujacej(ms): ";
+								pomiarstop(t2, k);
+							}
+							T.addEdge(e);
+							licz++;
+							Z.unionRank(e);
+						}
+						std::cout << "czas algorytmu Kruskala: ";
+						pomiarstop(t1);
+						
+						std::cout << "krawedzie: " << licz << std::endl;
+						std::cout << "operacje find: " << Z.getCykles() << std::endl;
+						std::cout << "waga: " << T.getWeight() << std::endl;
+						std::cout << std::endl;
+						//T.print();
+					}
+					else if (i==1) {
+						for (int i = 0; i < tmp; i++)
+							Z.makeSet(i);
+						for (int i = 0; i < tmp2; i++) {
+							e.in1 = index1[i];
+							e.in2 = index2[i];
+							e.weight = z[i];
+							Q.push(e);
+						}
+
+						t1 = t2 = clock();
+						int k = 0;
+						for (int i = 1; i < tmp; i++)
+						{
+							do
+							{
+								k++;
+								e = Q.front();
+								Q.pop();
+							} while (Z.find(e.in1) == Z.find(e.in2));
+							if (i == tmp - 1) {
+								std::cout << "czas kroku petli sortujacej(ms): ";
+								pomiarstop(t2, k);
+							}
+							T.addEdge(e);
+							licz++;
+							Z.unionNormal(e);
+						}
+						std::cout << "czas algorytmu Kruskala bez rang i kompresji : ";
+						pomiarstop(t1);
+						
+						std::cout << "krawedzie: " << licz << std::endl;
+						std::cout << "operacje find: " << Z.getCykles() << std::endl;
+						std::cout << "waga: " << T.getWeight() << std::endl;
+						std::cout << std::endl;
+						//T.print();
+					}
+					else if (i == 2) {
+						for (int i = 0; i < tmp; i++)
+							Z.makeSet(i);
+						for (int i = 0; i < tmp2; i++) {
+							e.in1 = index1[i];
+							e.in2 = index2[i];
+							e.weight = z[i];
+							Q.push(e);
+						}
+
+						t1 = t2 = clock();
+						int k = 0;
+						for (int i = 1; i < tmp; i++)
+						{
+							do
+							{
+								k++;
+								e = Q.front();
+								Q.pop();
+							} while (Z.find(e.in1) == Z.find(e.in2));
+							if (i == tmp - 1) {
+								std::cout << "czas kroku petli sortujacej(ms): ";
+								pomiarstop(t2, k);
+							}
+							T.addEdge(e);
+							licz++;
+							Z.unionRank(e);
+						}
+						std::cout << "czas algorytmu Kruskala bez kompresji  : ";
+						pomiarstop(t1);
+						
+						std::cout << "krawedzie: " << licz << std::endl;
+						std::cout << "operacje find: " << Z.getCykles() << std::endl;
+						std::cout << "waga: " << T.getWeight() << std::endl;
+						std::cout << std::endl;
+						//T.print();
+					}
+					else {
+						for (int i = 0; i < tmp; i++)
+							Z.makeSet(i);
+						for (int i = 0; i < tmp2; i++) {
+							e.in1 = index1[i];
+							e.in2 = index2[i];
+							e.weight = z[i];
+							Q.push(e);
+						}
+
+						t1 = t2 = clock();
+						int k = 0;
+						for (int i = 1; i < tmp; i++)
+						{
+							do
+							{
+								k++;
+								e = Q.front();
+								Q.pop();
+							} while (Z.findCompr(e.in1) == Z.findCompr(e.in2));
+							if (i == tmp - 1) {
+								std::cout << "czas kroku petli sortujacej(ms): ";
+								pomiarstop(t2, k);
+							}
+							T.addEdge(e);
+							licz++;
+							Z.unionNormal(e);
+						}
+						std::cout << "czas algorytmu Kruskala bez rang : ";
+						pomiarstop(t1);
+						
+						std::cout << "krawedzie: " << licz << std::endl;
+						std::cout << "operacje find: " << Z.getCykles() << std::endl;
+						std::cout << "waga: " << T.getWeight() << std::endl;
+						std::cout << std::endl;
+						//T.print();
+					}
+				}
+
+				delete[] x;
+				delete[] y;
+				delete[] z;
+				delete[] index1;
+				delete[] index2;
+				plik.close();
+				std::cout << std::endl;
+			}
+			else
+				std::cout << "Brak pliku!" << std::endl;
+	}
+	
+	
+
+
+	system("PAUSE");
+	return 0;
+}

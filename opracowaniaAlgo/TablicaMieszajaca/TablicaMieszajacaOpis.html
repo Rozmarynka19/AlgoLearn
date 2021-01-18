@@ -1,0 +1,75 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h3><center><font size=19>Tablica Mieszająca</font></center> </h3>
+    <span style="font-size: 18">
+        <p>
+            <h3><center>Wstęp</center> </h3>
+            Tablica mieszająca struktura danych która opiera się na tablicy. Jej cechą jest funkcja mieszająca.
+            <br>Oblicza ona z danego klucza w jakim indeksie tablicy znajdzie się klucz.
+            <br>Problemy tej struktury danych to(wpływają na złożoność obliczeniową):
+            <br>- sama funkcja mieszająca, jej wzór, jej złożoność itp. Musi ona być dostosowana do zbioru danych które będziemy przypisywac do tablicy.
+            <br>Przykładowo funkcja licząca klucz w postaci inta, nie policzy będzie odpowiednia do policzenia indeksu zbioru danych gdzie klucz bedzie np. stringiem.
+            <br>- Kolizja, co ma zrobić struktura w momencie kiedy wyliczony indeks jest już zajęty?
+
+            <br>"Dobra" funkcja mieszająca powinna być:
+            <br>- łatwo obliczalna, o niskiej złożoności obliczeniowej.
+            <br>- losowa, czyli wylosowanie każdego indeksu ma takie samo prawdopodobieństwo
+            <br>oraz funkcja nie jest monotoniczna(tendencyjna, dająca przewidywalne wyniki).
+        </p>
+        <center>
+            <img style="display: block;
+                width: 50%;" img src="TablicaMieszań.png">
+        </center>
+
+        <center>
+            <img style="display: block;
+                width: 50%;" img src="TablicaWyników.png">
+        </center>
+        <p>
+            <h3><center>Wstawianie</center> </h3>
+            W pierwszym kroku operacji wyszukiwania, obliczyć za pomocą funkcji mieszającej H() związany z kluczem k indeks: h = H(k),
+            <br>w drugim kroku - co jest konieczne - sprawdzić, czy element o kluczu k jest rzeczywiście wskazywany przez indeks h w tablicy A,
+            <br>tj. sprawdzić, czy A[H(k)].klucz = k
+            <br>w przypadku błędnego wyznaczenia adresu obiektu, należy w większości metod implementacji tablicy mieszającej wyznaczył indeks alternatywny h',
+            <br>ponownie sprawdzić, czy wskazuje on poszukiwany obiekt, zaś w przypadku niepowodzenia wyznaczyć olejny indeks h'', itd.
+
+            <br>Najprościej mówiąc, funkcja mieszająca zwraca indeks pod którym zapisujemy dany obiekt.
+            <br>Problem pojawia się gdy dla dwóch lub wiecej elementów indeks zostanie wyliczony ten sam.
+            <br>W tym momencie jest problem i nazywa się go kolizją.  
+        </p>
+        <p>
+            <h3><center>Kolizja</center></h3>
+            Rozwiązań kolizji jest kilka.
+            <br>1. Metoda łańcuchowa - Tworzymy tablicę 2D lub tablice zawierającą listę. W momencie kolizji dodajemy do listy pod danym indeksem kolejny obiekt.
+            <br>2. Adresowanie liniowe - w momencie kolizji wstawiany obiekt jest przypisywany do pierwszego wolnego indeksu za zajętym.
+            <br>Tworzą się w ten sposób grupy które powodują że prawdopodobieństwo wylosowania danego miejsca w tablicy nie jest równomierne.
+            <br>3. Mieszanie podwójne - są dwie funkcje mieszające jedna wylicza indeks, a druga w przypadku kolizji wylicza nowe miejsce.
+            <br>
+            <center>
+                <div>
+                    Dodawanie z kolizją - rozwiązanie metodą łańcuchową.
+                    <img style="display: block;
+                width: 50%;" img src="wstawianie.gif">
+                </div>
+            </center>
+        </p>
+        <p>
+            <h3><center>Usuwanie</center> </h3>
+            <br>Usuwanie zaczynamy od znalezienia elementu który chcemy usunąć.
+            <br>Odbywa się dość prosto jeśli szukamy po kluczu. W tym wypadku funkcja mieszająca po prostu zwraca nam indeks, pod którym znajduje się objekt z danym kluczem.
+            <br>W innym przypadku trzeba by przeiterować całą tablicę, jak przy liście jednokierunkowej. 
+            <br>Po znalezieniu elementu usuwamy go.
+            <center>
+                    <img style="display: block;
+                width: 50%;" img src="usuwanie.gif">
+            </center>
+        </p>
+        <br>Na podstawie:
+        <br>Prezentacja G, mgr Włodzimierza Chocianowicza
+
+    </span>
+</body>
+</html>
