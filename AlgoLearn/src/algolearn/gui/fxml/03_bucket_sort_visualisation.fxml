@@ -38,34 +38,34 @@
                         <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Dodaj węzeł" />
                   <Pane prefHeight="48.0" prefWidth="279.0">
                      <children>
-                        <TextField fx:id="AddNodeTextBS" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
+                        <TextField fx:id="addTextBS" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="" layoutX="223.0" layoutY="-1.0" mnemonicParsing="false" onAction="#generateButtonHandlerBS" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                        <Button id="1" fx:id="" layoutX="223.0" layoutY="-1.0" mnemonicParsing="false" onAction="#generateButtonHandlerBS" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
                      </children>
                   </Pane>
                         <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Usuń węzeł" />
                   <Pane prefHeight="48.0" prefWidth="324.0">
                      <children>
-                        <TextField prefHeight="39.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
+                        <TextField fx:id="deleteTextBS" prefHeight="39.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                        <Button id="2" fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" onAction="#generateButtonHandlerBS" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
                      </children>
                   </Pane>
                         <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Wyszukaj węzeł" />
                   <Pane prefHeight="48.0" prefWidth="279.0">
                      <children>
-                        <TextField prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
+                        <TextField fx:id="findTextBS" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość(1-16)" styleClass="inputFiled">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                        <Button id="3" fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" onAction="#generateButtonHandlerBS" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
                      </children>
                   </Pane>
                         <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
@@ -80,15 +80,9 @@
                      </children>
                   </Pane>
                         <Pane prefHeight="50.0" prefWidth="279.0" styleClass="titlePlane">
-                            <children>
-                                <Text fill="WHITE" layoutX="-58.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Step-by-step" textAlignment="CENTER" wrappingWidth="266.5982971191406">
-                                    <font>
-                                        <Font name="Cambria" size="30.0" />
-                                    </font>
-                                </Text>
-                        <CheckBox fx:id="StepByStepCheckBox" layoutX="234.0" layoutY="6.0" mnemonicParsing="false" />
-                            </children>
-                        </Pane>
+                     <children>
+                        <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sortBS" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="Sortuj" />
+                     </children></Pane>
                         <HBox prefHeight="48.0" prefWidth="279.0">
                             <children>
                                 <Button id="5" fx:id="hiddenValues" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Ukryte liczby: [ ?, ? ]" />
@@ -127,64 +121,64 @@
                                 <content>
                                   <AnchorPane fx:id="Visualisation_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="812.0">
                                        <children>
-                                          <HBox fx:id="MainHBox" prefHeight="100.0" prefWidth="813.0" />
+                                          <HBox fx:id="TopHBox" alignment="CENTER" prefHeight="100.0" prefWidth="813.0" />
                                           <HBox fx:id="BucketHBox" layoutY="100.0" prefHeight="100.0" prefWidth="816.0">
                                              <children>
                                                 <AnchorPane id="1" fx:id="anchorPane" prefHeight="100.0" prefWidth="133.0">
                                                    <children>
                                                       <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
-                                                      <TextField id="1" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="2" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="3" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="4" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="1" alignment="CENTER" editable="false" layoutX="39.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="2" alignment="CENTER" editable="false" layoutX="68.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="3" alignment="CENTER" editable="false" layoutX="39.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="4" alignment="CENTER" editable="false" layoutX="68.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
                                                       
                                                       <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
                                                       <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
-                                                      <TextField editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="41.0" text="1-4" />
+                                                      <Text layoutX="56.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1-4" wrappingWidth="22.13671875" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane id="2" fx:id="anchorPane2" prefHeight="100.0" prefWidth="133.0">
                                                    <children>
                                                       <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
-                                                      <TextField id="5" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="6" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="7" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="8" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="5" alignment="CENTER" editable="false" layoutX="39.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="6" alignment="CENTER" editable="false" layoutX="68.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="7" alignment="CENTER" editable="false" layoutX="39.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="8" alignment="CENTER" editable="false" layoutX="68.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
                                                       <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
                                                       <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
-                                                      <TextField id="0" editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="41.0" text="5-8" />
+                                                      <Text layoutX="56.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5-8" wrappingWidth="22.13671875" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane id="3" fx:id="anchorPane3" prefHeight="100.0" prefWidth="133.0">
                                                    <children>
                                                       <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
-                                                      <TextField id="9" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="10" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="11" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="12" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="9" alignment="CENTER" editable="false" layoutX="39.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="10" alignment="CENTER" editable="false" layoutX="68.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="11" alignment="CENTER" editable="false" layoutX="39.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="12" alignment="CENTER" editable="false" layoutX="68.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
                                                       <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
                                                       <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
-                                                      <TextField id="0" editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="41.0" text="9-12" />
+                                                      <Text layoutX="50.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="9-12" textAlignment="CENTER" wrappingWidth="33.13671875" />
                                                    </children>
                                                 </AnchorPane>
                                                 <AnchorPane id="4" fx:id="anchorPane4" prefHeight="100.0" prefWidth="133.0">
                                                    <children>
                                                       <Line endX="20.0" endY="70.0" AnchorPane.leftAnchor="20.0" />
-                                                      <TextField id="13" editable="false" layoutX="41.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="14" editable="false" layoutX="67.0" layoutY="2.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="15" editable="false" layoutX="41.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
-                                                      <TextField id="16" editable="false" layoutX="67.0" layoutY="27.0" prefHeight="25.0" prefWidth="26.0" text="" />
+                                                      <TextField id="13" alignment="CENTER" editable="false" layoutX="39.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" />
+                                                      <TextField id="14" alignment="CENTER" editable="false" layoutX="68.0" layoutY="2.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="15" alignment="CENTER" editable="false" layoutX="39.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
+                                                      <TextField id="16" alignment="CENTER" editable="false" layoutX="68.0" layoutY="27.0" prefHeight="25.0" prefWidth="28.0" text="" />
                                                       <Line endY="140.0" layoutX="91.0" layoutY="-70.0" startX="20.0" startY="70.0" AnchorPane.rightAnchor="20.0" />
                                                       <Line endX="50.0" endY="70.0" layoutX="34.0" startY="70.0" AnchorPane.leftAnchor="40.0" />
-                                                      <TextField id="0" editable="false" layoutX="45.0" layoutY="74.0" prefHeight="25.0" prefWidth="48.0" text="13-16" />
+                                                      <Text layoutX="50.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="13-16" textAlignment="CENTER" wrappingWidth="33.13671875" />
                                                    </children>
                                                 </AnchorPane>
                                              </children></HBox>
-                                          <HBox layoutX="-4.0" layoutY="201.0" prefHeight="100.0" prefWidth="819.0" />
+                                          <HBox fx:id="BottomHBox" alignment="CENTER" layoutX="-4.0" layoutY="201.0" prefHeight="100.0" prefWidth="819.0" />
                                        </children></AnchorPane>
                                 </content>
                               </ScrollPane>
-                              <Text fill="WHITE" layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="795.0">
+                              <Text fx:id="Information" fill="WHITE" layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="795.0">
                                  <font>
                                     <Font name="Cambria Bold Italic" size="19.0" />
                                  </font>
@@ -197,20 +191,13 @@
                             <children>
                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="825.0" styleClass="titlePlane">
                                     <children>
-                              <Button id="1" fx:id="restartBTN" layoutX="157.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#restartWindowBS" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Restartuj" />
-                              <Button id="1" layoutX="433.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sortBS" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Dalej" />
-                              <Button id="1" layoutX="574.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Pomiń" />
+                              <Button id="1" fx:id="restartBTN" layoutX="-1.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#restartWindowBS" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Restartuj" />
+                              <Button id="1" layoutX="273.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addToBucket" prefHeight="68.0" prefWidth="212.0" styleClass="algEasy" text="Dodaj do kubełka" />
                               <Button id=".empty" fx:id="backBTN" layoutX="715.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
-                              <ProgressBar fx:id="generateBar" layoutX="299.0" layoutY="2.0" prefHeight="68.0" prefWidth="133.0" progress="1.0" styleClass="generate-bar" />
-                              <Text fill="WHITE" layoutX="322.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Generuj" textAlignment="CENTER" wrappingWidth="85.931640625">
+                              <ProgressBar fx:id="generateBar" layoutX="141.0" layoutY="2.0" prefHeight="68.0" prefWidth="133.0" progress="1.0" styleClass="generate-bar" />
+                              <Text fill="WHITE" layoutX="164.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Generuj" textAlignment="CENTER" wrappingWidth="85.931640625">
                                  <font>
                                     <Font name="Cambria" size="40.0" />
-                                 </font>
-                              </Text>
-                              <Slider fx:id="timeSlider" layoutX="15.0" layoutY="34.0" max="1000.0" min="500.0" prefHeight="30.0" prefWidth="124.0" value="500.0" />
-                              <Text fill="WHITE" layoutX="27.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szybkość animacji" wrappingWidth="100.0">
-                                 <font>
-                                    <Font name="System Bold" size="11.0" />
                                  </font>
                               </Text>
                                     </children></Pane>
