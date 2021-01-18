@@ -46,6 +46,34 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
             }
         }
     }
+    
+    public boolean searchAndReplace(TreeNode<E> root, E e, E replaceVal){
+        if(root == null)
+            return false;
+        else if(e.compareTo(root.element) == 0)
+        {
+        	System.out.println(e+" found!, replace:"+replaceVal);
+        	root.element=replaceVal;
+        	System.out.println(root.element);
+        	path.getElements().add(new LineTo(root.x,root.y));
+        	return true;
+        }
+            
+        else{
+            if(e.compareTo(root.element) > 0)
+            {
+            	if(root.right!=null) 
+            		path.getElements().add(new LineTo(root.right.x,root.right.y));
+            	return searchAndReplace(root.right, e, replaceVal);
+            }
+            else
+            {
+            	if(root.left!=null) 
+            		path.getElements().add(new LineTo(root.left.x,root.left.y));
+            	return searchAndReplace(root.left, e, replaceVal);
+            }
+        }
+    }
 
     public int height(TreeNode<E> N) {
         if (N == null)
@@ -199,6 +227,12 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
     @Override
     public Iterator<E> iterator() {
         return null;
+    }
+    
+    public void clear()
+    {
+    	this.root=null;
+    	this.path.getElements().clear();
     }
     
 }

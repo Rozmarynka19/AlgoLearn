@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.VisualisationHeapSort">
+    <children>
+        <HBox prefHeight="514.0" prefWidth="245.0">
+            <children>
+                <VBox prefHeight="560.0" prefWidth="461.0">
+                    <children>
+                        <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
+                            <children>
+                                <Text fill="WHITE" layoutX="6.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Dostępne funkcje" textAlignment="CENTER" wrappingWidth="266.5982971191406">
+                                    <font>
+                                        <Font name="Cambria" size="30.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </Pane>
+                        <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Dodaj wartość" />
+                  <Pane prefHeight="48.0" prefWidth="279.0">
+                     <children>
+                        <TextField fx:id="addField" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="addBTN" disable="true" layoutX="223.0" layoutY="-1.0" mnemonicParsing="false" onAction="#addValue" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                     </children>
+                  </Pane>
+                        <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Budowanie Kopca" />
+                  <Pane prefHeight="48.0" prefWidth="324.0">
+                     <children>
+                        <Button fx:id="sortBTN" disable="true" layoutY="1.0" mnemonicParsing="false" onAction="#sortArray" prefHeight="45.0" prefWidth="279.0" styleClass="algEasy" text="Zbuduj kopiec" />
+                     </children>
+                  </Pane>
+                        <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Sortowanie" />
+                  <Pane prefHeight="48.0" prefWidth="279.0">
+                     <children>
+                        <Button fx:id="heapsortBTN" disable="true" layoutY="1.0" mnemonicParsing="false" onAction="#sortHeap" prefHeight="45.0" prefWidth="279.0" styleClass="algEasy" text="Wykonaj Sortowanie" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="161.0" prefWidth="279.0">
+                     <children>
+                        <Button fx:id="minBTN" mnemonicParsing="false" onAction="#selectTree" prefHeight="80.0" prefWidth="79.0" styleClass="algEasy">
+                           <graphic>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textMin" text="Minimalny kopiec ( Kopiec binarny zorientowany na minimum )" textAlignment="CENTER" wrappingWidth="244.59829711914062">
+                                 <font>
+                                    <Font name="Cambria" size="30.0" />
+                                 </font>
+                              </Text>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="maxBTN" layoutY="77.0" mnemonicParsing="false" onAction="#selectTree" prefHeight="84.0" prefWidth="266.0" styleClass="algHard">
+                           <graphic>
+                              <Text fx:id="minBTN1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textMin" text="Maksymalny kopiec ( Kopiec binarny zorientowany na maksimum )" textAlignment="CENTER" wrappingWidth="244.59829711914062">
+                                 <font>
+                                    <Font name="Cambria" size="30.0" />
+                                 </font>
+                              </Text>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+                    </children></VBox>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="20.0">
+                    <children>
+                        <Pane prefHeight="517.0" prefWidth="74.0" styleClass="titlePlane" />
+                    </children></VBox>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <HBox prefHeight="71.0" prefWidth="824.0">
+                            <children>
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="673.0" styleClass="titlePlane">
+                                    <children>
+                                        <Text fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Wizualizacja" textAlignment="CENTER" wrappingWidth="674.931640625">
+                                            <font>
+                                                <Font name="Cambria" size="40.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Pane>
+                                <Button id=".empty" fx:id="minimalizeBTN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />
+                                <Button id=".empty" fx:id="closeBTN" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="76.0" styleClass="algHard" text="X" />
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="401.0" prefWidth="825.0">
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <ScrollPane layoutY="-1.0" prefHeight="334.0" prefWidth="825.0">
+                                <content>
+                                  <AnchorPane fx:id="Visualisation_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="315.0" prefWidth="812.0" />
+                                </content>
+                              </ScrollPane>
+                              <Text fx:id="bhTEXT" fill="WHITE" layoutX="15.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informacja: " wrappingWidth="795.0">
+                                 <font>
+                                    <Font name="Cambria Bold Italic" size="19.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="825.0" styleClass="titlePlane">
+                                    <children>
+                              <Button id=".empty" fx:id="backBTN" layoutX="715.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
+                              <ProgressBar fx:id="generateBar" disable="true" layoutX="142.0" layoutY="2.0" onMouseClicked="#pressRandomBar" prefHeight="68.0" prefWidth="133.0" progress="1.0" styleClass="generate-bar" />
+                              <Text fill="WHITE" layoutX="165.0" layoutY="43.0" onMouseClicked="#pressRandomBar" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Generuj" textAlignment="CENTER" wrappingWidth="85.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                              <ProgressBar fx:id="restartBTN" disable="true" layoutX="2.0" layoutY="2.0" onMouseClicked="#restartVisualisation" prefHeight="68.0" prefWidth="140.0" progress="1.0" styleClass="generate-bar" />
+                              <Text fill="WHITE" layoutX="23.0" layoutY="42.0" onMouseClicked="#restartVisualisation" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Restartuj" textAlignment="CENTER" wrappingWidth="99.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                              <ProgressBar fx:id="next" disable="true" layoutX="582.0" layoutY="2.0" onMouseClicked="#clickNext" prefHeight="68.0" prefWidth="133.0" progress="1.0" styleClass="generate-bar" />
+                              <Text fill="WHITE" layoutX="605.0" layoutY="43.0" onMouseClicked="#clickNext" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Dalej" textAlignment="CENTER" wrappingWidth="85.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                              <ProgressBar fx:id="prev" disable="true" layoutX="449.0" layoutY="2.0" onMouseClicked="#clickBack" prefHeight="68.0" prefWidth="133.0" progress="1.0" styleClass="generate-bar" />
+                              <Text fill="WHITE" layoutX="472.0" layoutY="43.0" onMouseClicked="#clickBack" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Wstecz" textAlignment="CENTER" wrappingWidth="85.931640625">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                                    </children></Pane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+      <Line endX="1124.0" endY="334.79296875" layoutY="22.0" startX="300.0" startY="334.79296875" />
+      <Line endX="1124.0" endY="334.79296875" layoutY="-216.0" startX="300.0" startY="334.79296875" />
+    </children>
+</AnchorPane>
