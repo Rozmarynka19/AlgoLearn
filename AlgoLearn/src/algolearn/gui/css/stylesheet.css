@@ -273,6 +273,12 @@
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
 }
+.textMin{
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 16px;
+	-fx-text-fill: white;
+}
 
 .questionmark{
     -fx-border-color: transparent;
@@ -292,6 +298,13 @@
 	-fx-effect: dropshadow(three-pass-box, grey, 7, 0, 0, 0);
 	-fx-font-family: 'Cambria Math';
 	-fx-font-size: 22px;
+	-fx-text-fill: white;
+}
+
+.circle_small, .textBST_small, .line_small{
+	-fx-effect: dropshadow(three-pass-box, grey, 7, 0, 0, 0);
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 18px;
 	-fx-text-fill: white;
 }
 

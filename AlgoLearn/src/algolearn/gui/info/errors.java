@@ -33,7 +33,36 @@ public class errors {
 	public String searchNotFound = "Wyszukiwany węzeł nie istnieje";
 	public String searchHidden = "Wyszukiwany węzeł jest ukryty";
 	public String generateTree = "Wygenerowano losowe drzewo";
+	
+	public String selectedBinnaryTree = "Wybrano typ drzewa binarnego!";
+	public String minTree = "Kopiec zorientowany na minimum";
+	public String maxTree = "Kopiec zoreintowany na maksimum";
+	public String generateHeap = "Wygenerowano losowy kopiec binarny!";
+	public String restartHeap = "Zrestartowano kopiec binarny!";
+	public String addNodeHeap = "Dodano element do kopca binarnego!";
+	public String searchFoundHeap = "Znaleziono wyszukiwany element w kopcu!";
+	public String searchNotFoundHeap = "Nie znaleziono wyszukiwanego elementu w kopcu!";
+	public String deleteHeap = "Usuwanie elementu z kopca binarnego!";
+	public String deleteNotFoundHeap = "Nie znaleziono usuwanego elementu w kopcu!";
+	
+	public String waitUntilDone = "Poczakaj na wykonanie się bieżącej operacji!";
+	public String addUnsorted = "Dodano element do nieposortowanego zbioru!";
+	public String generateUnsortedArray = "Wygenerowano losowy nieposortowany zbiór!";
+	public String restartHeapSort = "Zrestartowano wizualizacje sortowania przez kopcowanie!";
 
+	public String step = "Krok: ";
+	
+	public String beginHeapBuild = "Rozpoczęto buidowanie kopca binarnego!";
+	public String heapBuildInProgress = "Trwa budowanie kopca binarnego!";
+	public String endHeapSort = "Budowanie kopca binarnego zakończyło się powodzeniem!";
+	
+	public String beginSort = "Rozpoczęto sortowanie przez kopcowanie!";
+	public String sortInProgress = "Trwa sortowanie przez kopcowanie!";
+	public String endSort = "Sortowanie przez kopcowanie zakończyło się powodzeniem!";
+	
+	public String foundSuccess = "Znaleziono wyszukiwaną wartość!";
+	public String foundFailure = "Nie znaleziono wyszukiwanego elementu!";
+	
 
 	//<--------------------Linked-list------------------------->
 	public String InputIsString = "Wprowadzona wartość nie jest liczbą!";
@@ -48,6 +77,10 @@ public class errors {
 	}
 	public String setupOperationInfo(String info, String value) {
 		return (infoDef+info+" [ "+value+" ]");
+	}
+	
+	public String getStep(int id, int max) {
+		return step+Integer.toString(id)+"/"+Integer.toString(max);
 	}
 	
 	public String maxHeightBST = "Osiągnięto maksymalną wysokość drzewa - Ograniczenia aplikacji!";

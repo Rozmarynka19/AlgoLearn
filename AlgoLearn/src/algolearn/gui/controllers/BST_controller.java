@@ -443,7 +443,7 @@ public class BST_controller implements Initializable {
 		}
 		
 		if(!pathTransitionDone) {
-			CreateError(errorMSG.pathTNotDone);
+			//CreateError(errorMSG.pathTNotDone);
 			return;
 		}
     	loadMenu();
@@ -480,6 +480,8 @@ public class BST_controller implements Initializable {
 	@FXML
 	public TextArea errorTextArea;
 	@FXML private Button hiddenValues;
+
+	private boolean test = true;
 	//private Map<Circle,Text> arrayCircles = new HashMap<Circle,Text>();
 
 	private ArrayList<Circle> arrayCircles = new ArrayList<Circle>();
@@ -585,7 +587,7 @@ public class BST_controller implements Initializable {
 		}
 		
 		if(!pathTransitionDone) {
-			CreateError(errorMSG.pathTNotDone);
+			//CreateError(errorMSG.pathTNotDone);
 			return;
 		}
 		
@@ -606,8 +608,6 @@ public class BST_controller implements Initializable {
 	private void setHiddenValues(String a, String b) {
 		hiddenValues.setText("Ukryte liczby: [ " + a + ", "+b+" ]");
 	}
-	
-	private boolean test = false;
 	
 	private void randomNode() {
 		Random rand = new Random();
@@ -665,7 +665,7 @@ public class BST_controller implements Initializable {
 		}
 		
 		if(!pathTransitionDone) {
-			CreateError(errorMSG.pathTNotDone);
+			//CreateError(errorMSG.pathTNotDone);
 			return;
 		}
 		String getValue = addField.getText();
@@ -694,7 +694,7 @@ public class BST_controller implements Initializable {
 		}
 		
 		if(!pathTransitionDone) {
-			CreateError(errorMSG.pathTNotDone);
+			//CreateError(errorMSG.pathTNotDone);
 			return;
 		}
 		
@@ -1164,7 +1164,7 @@ public class BST_controller implements Initializable {
 		}
 		
 		if(!pathTransitionDone) {
-			CreateError(errorMSG.pathTNotDone);
+			//CreateError(errorMSG.pathTNotDone);
 			return;
 		}
 		String getValue = unknownField.getText();
@@ -1173,7 +1173,7 @@ public class BST_controller implements Initializable {
 			return;
 		
 		if(selectedCircle == null) {
-			CreateError(errorMSG.nodeNotSelected);
+			//CreateError(errorMSG.nodeNotSelected);
 			return;
 		}
 		
@@ -1392,13 +1392,13 @@ public class BST_controller implements Initializable {
 		if( len > 0 && len <= 2) {
 			for(int i = 0; i<len; i++) {
 				if(!isCharNum(in.charAt(i))) {
-					CreateError(errorMSG.OnlyNumeric);
+					//CreateError(errorMSG.OnlyNumeric);
 					return false;
 				}
 			}
 			return true;
 		}
-		CreateError(errorMSG.WrongInput);
+		//CreateError(errorMSG.WrongInput);
 		return false;
 	}
 	
@@ -1435,7 +1435,7 @@ public class BST_controller implements Initializable {
 		}
 		
 		if(!pathTransitionDone) {
-			CreateError(errorMSG.pathTNotDone);
+			//CreateError(errorMSG.pathTNotDone);
 			return;
 		}
     	
@@ -1938,6 +1938,7 @@ public class BST_controller implements Initializable {
         	
      
         	double [] arr = {x1, x2, x3, x4, x5, x6};
+        	System.out.println(arr[0] + " " + arr[1] + " " + arr[2] + " " + arr[3] + " " + arr[4] + " " + arr[5] + " KEY: " + key);
         	lines.add(arr);
     	}
         return lines;
