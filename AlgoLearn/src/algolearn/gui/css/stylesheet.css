@@ -95,6 +95,18 @@
 	-fx-font-size: 22px;
 	-fx-text-fill: white;
 }
+.titleButton{
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+	-fx-background-color:    linear-gradient( #505050, #1a1a1a);
+	-fx-text-alignment: center;
+	-fx-padding: 0px;
+	
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 40px;
+	-fx-text-fill: white;
+}
 .textPlane{
 	-fx-font-family: 'Cambria Math';
 	-fx-font-size: 36px;
@@ -208,6 +220,7 @@
 	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
 	-fx-background-color: linear-gradient(#c91414 0%, #6e0303 100%);
 }
+
 .langBTN{
 
 	-fx-font-family: 'Cambria Math';
@@ -223,6 +236,23 @@
 }
 .langBTN:pressed{
 	-fx-background-color: linear-gradient(#09689c 0%, #053652 100%);
+}
+
+.langBTNselected{
+
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 22px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-effect: dropshadow(three-pass-box, green, 10, 0, 0, 0);
+	-fx-background-color: linear-gradient(#00ff00 0%, #33cc33 100%);
+}
+.langBTNselected:hover{
+	-fx-background-color: linear-gradient(#33cc33 0%, #009900 100%);
+}
+.langBTNselected:pressed{
+	-fx-background-color: linear-gradient(#009900 0%, #006600 100%);
 }
 .colorInfo{
 	-fx-font-family: 'Cambria Math';
@@ -272,3 +302,94 @@
 .circle:pressed{
 	-fx-opacity: 0.45;
 }
+
+.rbtNodeRed, .rbtNodeBlack
+{
+	-fx-font-family: 'Cambria Math';
+	-fx-font-size: 15px;
+	-fx-text-fill: white;
+	-fx-border-width: 3px;
+	-fx-border-color: #101010;
+	-fx-border-radius: 5em;
+	-fx-alignment: center;
+	-fx-padding: 0px;
+	
+   	-fx-background-radius: 5em;
+	-fx-min-width: 35px;
+    -fx-min-height: 35px;
+    -fx-max-width: 35px;
+    -fx-max-height: 35px;
+	-fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+}
+
+.rbtNodeRed
+{
+	-fx-background-color: linear-gradient(#e60000 0%, #cc0000 100%);
+}
+
+.rbtNodeRed:hover
+{
+	-fx-background-color: linear-gradient(#cc0000 0%, #b30000 100%);
+}
+
+.rbtNodeRed:pressed
+{
+	-fx-background-color: linear-gradient(#b30000 0%, #990000 100%);
+}
+
+.rbtNodeBlack
+{
+
+	-fx-background-color: linear-gradient(#4d4d4d 0%, #404040 100%);
+}
+
+.rbtNodeBlack:hover
+{
+	-fx-background-color: linear-gradient(#404040 0%, #333333 100%);
+}
+
+.rbtNodeBlack:pressed
+{
+	-fx-background-color: linear-gradient(#333333 0%, #262626 100%);
+}
+
+.congratsHeader, .errorHeader
+{
+	-fx-font-size: 40px;
+	-fx-alignment: center;
+	-fx-text-align: center;
+	-fx-font-weight: bold;
+}
+
+.congratsHeader
+{
+	-fx-fill: #00e600;
+}
+
+.errorHeader
+{
+	-fx-fill: #e60000;
+}
+
+.congratsText, .errorText
+{
+	-fx-font-size: 13px;
+	-fx-alignment: center;
+	-fx-text-align: center;
+}
+
+
+
+.infoScrollPane
+{
+	-fx-background-color: transparent;
+	-fx-control-inner-background: transparent;
+	-fx-padding: 5px;
+}
+
+.infoScrollPane > .viewport {
+   -fx-background-color: transparent;
+}
+
+
+
