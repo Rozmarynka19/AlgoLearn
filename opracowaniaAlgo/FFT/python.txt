@@ -1,0 +1,17 @@
+from cmath import exp, pi
+
+
+def fft(x):
+    n = len(x)
+    if n <= 1:
+        return x
+    even = fft(x[0::2])
+    odd = fft(x[1::2])
+    t = [exp(-2j * pi * k / n) * odd[k] for k in range(n // 2)]
+    return [even[k] + t[k] for k in range(n // 2)] + [even[k] - t[k] for k in range(n // 2)]
+
+
+A = [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875]
+B = fft(A)
+for x in B:
+    print("{ " + "{:.5f}".format(x.real) + " ; " + "{:.5f}".format(x.imag) + " }")

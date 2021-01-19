@@ -1,0 +1,30 @@
+std::complex<double>* fft( double *x, int n){
+	if (n <= 1) {
+		 std::complex<double>* tmp = new std::complex<double>[n];
+		 for (int i = 0; i < n; i++) {
+			 tmp[i] = x[i];
+		 }
+		 return tmp;
+	}
+	double *even = new double[n / 2];
+	double *odd = new double[n / 2];
+	int k = 0;
+	for (int i = 0; i < n; i += 2, k++) {
+		even[k] = x[i];
+		odd[k] = x[i + 1];
+	}
+	
+	std::complex<double>* even1=fft(even, n/2);
+	std::complex<double>* odd1=fft(odd, n/2);
+	std::complex<double> *outputs = new std::complex<double>[n];
+	for (size_t k = 0; k < n / 2; ++k){
+		std::complex<double> t = std::polar(1.0, -2 * M_PI * k / n) * odd1[k];
+		outputs[k] = even1[k] + t;
+		outputs[k + n / 2] = even1[k] - t;
+	}
+	delete[]even;
+	delete[]odd;
+	delete[]odd1;
+	delete[]even1;
+	return outputs;
+}

@@ -94,4 +94,75 @@ public class errors {
 	public String deleteNode = "Usuwanie węzła";
 	
 	public String successUnknownValue = "Pomyślnie odganięto ukrytą wartość!";
+	
+	//<--------------------Bucket-Sort------------------------->
+	public String exceedValueBS = "Zakres wartości od 1-16!";
+	public String addedTo = "Dodano wartość ";
+	public String toUnsortedList = " do nieposortowanej listy";
+	public String addedToBucket = "Do kubełka ";
+	public String addedValueToBucket = " dodano wartość ";
+	public String bucketsAreSorted = "Posortowano wartości w kubełkach i wypisano posortowaną listę";
+	public String addedToBucketNotExist = "Wszystkie elementy z listy zostały już umieszczone w kubełkach!";
+	public String notFoundInBucket = "Podana wartość nie znajduje się w kubełku!";
+	public String isFound = "Odnaleziono wartość ";
+	public String notFoundInUnsortedList = "Podana wartość nie istnieje!";
+	public String isRemoved = "Usunięto wartość ";
+	public String isReloaded = " z nieposortowanej listy";
+	public String isReloadedAndInBucket = "oraz kubełka";
+	public String isEmptyList = "Lista jest pusta!";
+	
+	//<-------------------- RBT ------------------------->
+
+	public static class rbtMsg
+	{
+		public rbtMsg() {
+			// TODO Auto-generated constructor stub
+		}
+		public String setupInformation(String info) {
+			return (infoDef+info);
+		}
+		//---------------- general -------------------------
+		public String infoDef = "Informacja: ";
+		public String msgTypeCongrats = "congrats";
+		public String msgTypeError = "error";
+		
+		//--------------------- headers ------------------
+		public String msgCongratsHeader = "Brawo!";
+		public String msgErrorHeader = "Błąd!";
+		
+		//----------------- guess game ------------------------
+		public String finishedGuessGame = "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!";
+		public String selectNodeFirst = "Najpierw zaznacz węzeł, którego wartość chcesz odgadnąć!";
+		public String goodCall = "Brawo! Tu faktycznie powinna być liczba ";
+		public String wrongCall = "Niestety, tutaj nie może być liczba ";
+		
+		//--------------- buttons -----------------------------
+		public String generateDone = "Wygenerowano nowy przykład.";
+		public String restartDone = "Zrestartowano wizualizację.";
+		public String gameModeOn = "Tryb gry włączony.";
+		public String gameModeOff = "Tryb gry wyłączony.";
+		
+		//--------------- generate -----------------------------
+		public String delInProgress = "Zaczekaj, aż usuwanie zakończy działanie!";
+		public String pathTNotDone = "Musisz zaczekać na wykonanie się animacji!";
+		
+		//--------------- search -----------------------------
+		public String nodeNotFound = "Nie znaleziono węzła o kluczu ";
+		public String nodeFound = "Znaleziono węzeł o kluczu ";
+		public String emptyTree = "Drzewo jest puste!";
+		
+		//--------------- deletion -----------------------------
+		public String nodeDeletedPart1 = "Węzeł ";
+		public String nodeDeletedPart2 = " został zastąpiony przez swojego poprzednika, a następnie usunięty!";
+		
+		//--------------- insertion -----------------------------
+		public String nodeAlredyExistsPart1 = "Węzeł o kluczu ";
+		public String nodeAlredyExistsPart2 = " już istnieje!";
+		public String nodeInserted = "Wstawiono węzeł o kluczu ";
+		public String valueNotGiven = "Nie podano wartości węzła!";
+		public String acceptableValues = "Dozwolone wartości węzła: liczby całkowite z przedziału <1,99>";
+		public String unknownNodeSelected = "Zaznaczono węzeł z niewiadomą wartością klucza.";
+		public String knownNodeSelected = "Zaznaczono węzeł z o kluczu ";
+		
+	}
 }
