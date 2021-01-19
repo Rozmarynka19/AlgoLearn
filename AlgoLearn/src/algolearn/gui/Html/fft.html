@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+ function intro()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+ <style>
+    h1 {text-align: center;}
+    h2 {text-align: center;}
+    #wady {color:red;}
+    #zalety {color:green;}
+    img 
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:50%;
+        height:50%;
+    }
+    div {text-align: center;}
+    </style>
+ <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <h1>Szybka Transformacja Fouriera</h1>
+
+    <div class=intro>
+        <h2>Wprowadzenie</h2>
+
+        <div>
+        <i>Założeniem Szbkiej Transformacji Fouriera jest wyznaczenie dyskretnej transformaty szybciej niż w przypadku Dyskretnej Transformacji Fouriera.</i><br>
+        <br>
+        <div>
+        ck=N−1∑n=0fne−2πikn/N,   k= 0,1, . . . , N−1,
+        </div><br>
+        Szybka transformacja polega na osobnym policzeniu transformaty dla liczb <b>parzystych</b> i <b>nieparzystych</b> a potem połączeniu ich:<br>
+        1.Dzielimy tablice liczb zespolonych na dwie tablice <b>parzystych</b> i <b>nieparzystych</b>.<br>
+        2.Otrzymane tablice liczb parzystych i nieparzystych ponownie zwracamy do programu. Czyli wywołujemy funkcje z nimi jako argumentami.<br>
+        3.Robimy tak dopóki nie uzyskamy tablic pojedyńczych tak jak na gifie poniżej.<br>
+        4.Otrzymane w ostatnim kroku tablice parzystych i nieparzystych przekształcamy mnożąc liczby nieparzyste przez podany wzór, a potem dodając i odejmując otrzymaną liczbę od liczby parzystej.<br>
+        5.Otrzymane w ten sposób sumę ustawiamy na pierwszej pozycji tablicy, a różnice na pierwszej pozycji drugiej połowy tablicy.<br>
+        6.Wynik tego obliczenia zwracamy otrzymując transformate.<br>
+        <br>
+        <i>Oto przykład poprawnego działania algorytmu. Na czerwono zaznaczone są tablice liczb nieparzystych, a na zielono parzystych.</i>
+        <img src="../textimg/FFT/FFT.gif"></img>
+
+        </div>
+    </div>
+    
+</body>
+
+</html>
