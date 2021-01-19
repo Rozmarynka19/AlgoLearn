@@ -1,6 +1,5 @@
 package algolearn.gui;
 
-import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -14,13 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -31,12 +26,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
-import java.util.ResourceBundle;
 
 
 public class VisualisationBinaryTree extends FXMLDocumentController implements Initializable {
