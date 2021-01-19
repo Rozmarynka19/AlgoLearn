@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro" || p.className == "optimistic" || p.className == "pessimistic"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+ function intro()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+  function optimistic()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "optimistic"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ function pessimistic()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "pessimistic"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+ <style>
+    h1 {text-align: center;}
+    h2 {text-align: center;}
+    #wady {color:red;}
+    #zalety {color:green;}
+    img 
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:75%;
+        height:75%;
+    }
+    div {text-align: center;}
+    </style>
+ <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <h1> Sortowanie kubełkowe </h1>
+
+    <div class=intro>
+        <div id=wstep>
+            Do wykonania sortowania kubełkowego potrzebne nam będą:<br>
+            -rozmiar sortowanego zbioru<br>
+            -przedział znajdujących się w nim liczb
+        </div><br>
+        
+        <div id=instrukcja>
+            1.Odnajdujemy w zbiorze najmniejszą i największą liczbę żeby ustalić przedział.<br>
+            2.Posiadany przedział dzielimy na tyle równych części ile posiadamy liczb do sortowania.<br>
+            3.Posiadane dane porównujemy z zakresem i przypisujemy do poszczególnych kubełków.<br>
+            4.Puste kubełki usuwamy, pełne posiadające co najmniej 2 liczby sortujemy w dowolny sposób.<br>
+            5.Scalamy w ten sposób otrzymane kubełki.<br>
+        </div><br>
+    </div>
+    
+
+    <div class=optimistic>
+        <div id=przykladOpt>
+            Przykład optymistyczny:<br>
+        
+        
+            posiadamy dziesięć liczb w przedziale od 0 do 99<br>
+            tworzymy 10 kubełków o równych przedziałach <br>
+            do każdego kubełka trafia jedna liczba i w ten sposób cały zbiór zostaje posortowany. <br>
+            </div><br>
+            <div id=obrazek1>
+            <img src="../textimg/bucketSort/kubełki.gif"></img>
+        </div>
+    </div>
+    
+    <div class=pessimistic>
+        <div id=przykladPes>
+            Przykład pesymistyczny:<br>
+            <img src="../textimg/bucketSort/pes.png" ></img><br><br>
+        
+            Postępując analogicznie jak w poprzednim przypadku zostajemy z dwoma kubełkami w tym jednym i nadal nie posortowanym.<br>
+            Kosztowało to nas sprawdzenie prawie n^2 kubełków. Poza tym musimy posortować jeszcze zawartość ostatniego kubełka,<br>
+            możemy to wykonać analogicznie przeprowadzając w nim kolejne sortowanie kubełkowe.<br>
+            </div><br>
+        
+            <div id=obrazek2>
+            <img src="../textimg/bucketSort/pesy.png" ></img>
+        </div>
+    </div>
+
+</body>
+
+</html>
