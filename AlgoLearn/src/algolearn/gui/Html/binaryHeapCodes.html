@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "rotacje" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function up_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "up_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function down_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "down_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function up_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "up_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function down_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "down_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function up_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "up_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function down_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "down_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+	</style>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="up_CPP">
+            <pre>
+void up(int kopiec[], int n){
+	int x, y, t;
+	x = 0;
+	y = 1;
+	while (y < n){
+		if (y + 1 < n && kopiec[y + 1] > kopiec[y]){
+			y = y + 1;
+		}
+
+		if (kopiec[x] >= kopiec[y]){
+			break;
+		}
+
+		t = kopiec[x];
+		kopiec[x] = kopiec[y];
+		kopiec[y] = t;
+		x = y;
+		y = 2 * x + 1;
+	}
+}
+            </pre>
+        </div>
+
+        <div class="down_CPP">
+            <pre>
+void down(int kopiec[], int n){
+	int x, y, t;
+	x = n;
+	y = (x - 1) / 2;
+	while (x > 0 && kopiec[y] < kopiec[x]){
+		t = kopiec[x];
+		kopiec[x] = kopiec[y];
+		kopiec[y] = t;
+		x = y;
+		y = (x - 1) / 2;
+	}
+}
+            </pre>
+        </div>
+
+        <div class="insert_CPP">
+            <pre>
+void dodaj(int kopiec[], int n){
+	kopiec[n] = n;
+	down(kopiec, n);
+}
+            </pre>
+        </div>
+
+        <div class="delete_CPP">
+            <pre>
+void usun(int kopiec[], int n){
+	if (n != 0){
+		kopiec[0] = kopiec[n];
+		kopiec[n] = -1;
+		up(kopiec, n - 1);
+	}
+}
+            </pre>
+        </div>
+
+        <!-- Java -->
+
+        <div class="up_Java">
+            <pre>
+static void up(int kopiec[], int n){
+    int x, y, t;
+    x = 0;
+    y = 1;
+    while (y < n){
+        if (y + 1 < n && kopiec[y + 1] > kopiec[y]){
+            y = y + 1;
+        }
+
+        if (kopiec[x] >= kopiec[y]){
+            break;
+        }
+
+        t = kopiec[x];
+        kopiec[x] = kopiec[y];
+        kopiec[y] = t;
+        x = y;
+        y = 2 * x + 1;
+    }
+}
+            </pre>
+        </div>
+
+        <div class="down_Java">
+            <pre>
+static void down(int kopiec[], int n){
+    int x, y, t;
+    x = n;
+    y = (x - 1) / 2;
+    while (x > 0 && kopiec[y] < kopiec[x]){
+        t = kopiec[x];
+        kopiec[x] = kopiec[y];
+        kopiec[y] = t;
+        x = y;
+        y = (x - 1) / 2;
+    }
+}
+            </pre>
+        </div>
+
+        <div class="insert_Java">
+            <pre>
+static void dodaj(int kopiec[], int n){
+    kopiec[n] = n;
+    down(kopiec, n);
+}
+            </pre>
+        </div>
+
+        <div class="delete_Java">
+            <pre>
+static void usun(int kopiec[], int n){
+    if (n != 0){
+        kopiec[0] = kopiec[n];
+        kopiec[n] = -1;
+        up(kopiec, n - 1);
+    }
+}
+            </pre>
+        </div>
+
+        <!-- Python -->
+
+        <div class="up_PY">
+            <pre>
+def up(kopiec, n):
+	t = kopiec[0]
+	x = 0
+	y = 1
+	while y < n:
+		if y + 1 < n and kopiec[y + 1] > kopiec[y]:
+			y = y + 1
+		if (kopiec[x] >= kopiec[y]):
+			break
+
+		t = kopiec[x]
+		kopiec[x] = kopiec[y]
+		kopiec[y] = t
+		x = y
+		y = 2 * x + 1
+            </pre>
+        </div>
+
+        <div class="down_PY">
+            <pre>
+def down(kopiec, n):
+	t = kopiec[0]
+	x = n-1
+	y = (x - 1) // 2 -1
+	while x > 0 and kopiec[y] < kopiec[x]:
+		t = kopiec[x]
+		kopiec[x] = kopiec[y]
+		kopiec[y] = t
+		x = y
+		y = (x - 1) / 2
+            </pre>
+        </div>
+
+        <div class="insert_PY">
+            <pre>
+def dodaj(kopiec,  k):
+	kopiec[k] = k
+	down(kopiec, n)
+            </pre>
+        </div>
+
+        <div class="delete_PY">
+            <pre>
+def usun(kopiec, n):
+	if n != 0:
+		kopiec[0] = kopiec[n]
+		kopiec[n] = -1
+		up(kopiec, n - 1)
+            </pre>
+        </div>
+
+    </body>
+</html>
