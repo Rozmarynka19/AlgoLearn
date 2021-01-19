@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 //import org.jsoup.Jsoup;
 
 
-public class DescriptionControllerL1List extends FXMLDocumentController implements Initializable {
+public class DescriptionControllerL2List extends FXMLDocumentController implements Initializable {
 
 
     @FXML
@@ -75,7 +75,7 @@ public class DescriptionControllerL1List extends FXMLDocumentController implemen
         Button clicked_btn = (Button)event.getSource();
         Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/L1Listcodes.html");
+        path= Paths.get("src/algolearn/gui/Html/L2Listcodes.html");
         if(clicked_btn.getText().equals("Przykład klasy listy")){
             script="listClass_"+selectedLangButton+"()";
         }

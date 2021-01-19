@@ -15,12 +15,12 @@
               alert('test');
            
             }
-            function treeClass_CPP()
+            function listClass_CPP()
             {
               var p_list = document.getElementsByTagName("div");
                for(var i=p_list.length-1; i>=0; i--){
                    var p = p_list[i];
-                   if(p.className == "treeClass_CPP"){
+                   if(p.className == "listClass_CPP"){
                        p.hidden = false;
                    }
                }
@@ -71,12 +71,12 @@
               alert('test');
             }
 
-            function treeClass_Java()
+            function listClass_Java()
             {
               var p_list = document.getElementsByTagName("div");
                for(var i=p_list.length-1; i>=0; i--){
                    var p = p_list[i];
-                   if(p.className == "treeClass_Java"){
+                   if(p.className == "listClass_Java"){
                        p.hidden = false;
                    }
                }
@@ -127,12 +127,12 @@
               alert('test');
             }
             
-            function treeClass_PY()
+            function listClass_PY()
             {
               var p_list = document.getElementsByTagName("div");
                for(var i=p_list.length-1; i>=0; i--){
                    var p = p_list[i];
-                   if(p.className == "treeClass_PY"){
+                   if(p.className == "listClass_PY"){
                        p.hidden = false;
                    }
                }
@@ -193,7 +193,7 @@
     <body>
         <!-- C++ -->
 
-        <div class="treeClass_CPP">
+        <div class="listClass_CPP">
             <pre>
 struct ListaJednokierunkowa {
 	wezel* brzeg_HEAD = 0;
@@ -324,7 +324,7 @@ void wyszukaj(int klucz) {
 
         <!-- Java -->
 
-        <div class="treeClass_Java">
+        <div class="listClass_Java">
             <pre>
 public class ciagKolRatunkowych {
     KoloRatunkowe brzeg_HEAD = null;
@@ -419,7 +419,7 @@ void wyszukajKoloRatunkowe(int klucz){
 
         <!-- Python -->
 
-        <div class="treeClass_PY">
+        <div class="listClass_PY">
             <pre>
 class ListaJednokierunkowa:
 	def __init__(self):
