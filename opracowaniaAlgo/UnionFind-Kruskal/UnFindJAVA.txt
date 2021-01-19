@@ -1,0 +1,167 @@
+package Union;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+public class Menu {
+	//	#ifndef drzewo_mst
+	//	#define drzewo_mst
+
+	class Node {
+		int parent;
+		int rank;
+	};
+	class Edge {
+		int in1, in2;
+		float weight;
+	};
+	class Union{
+		int cykle = 0;
+		Node Z[];
+		Union(int n){
+			Z = new Node[n];
+		}
+		int getCykles(){
+			return cykle;
+		}
+		void makeSet(int v){
+			Z[v].parent = v;  //ok
+			Z[v].rank = 0;
+		}
+		int findCompr(int v) {
+			if (Z[v].parent != v) {
+				cykle++;
+				return Z[v].parent = findCompr(Z[v].parent);
+
+			}
+			return Z[v].parent;  //ok
+		}
+		void unionRank(Edge e){
+			int ru, rv;
+			ru = findCompr(e.in1);
+			rv = findCompr(e.in2);
+			if (Z[ru].rank < Z[rv].rank)
+				Z[ru].parent = rv;
+			else if (Z[ru].rank >Z[rv].rank)  //ok
+				Z[rv].parent = ru;
+			else {
+				Z[rv].parent = ru;
+				Z[ru].rank++;
+			}
+		}
+		int find(int v){
+			if (Z[v].parent != v) {
+				cykle++;
+				return find(Z[v].parent);
+
+			}
+			return v;
+		}
+		void unionNormal(Edge e){
+			int ru, rv;
+			ru = find(e.in1);
+			rv = find(e.in2);
+			Z[ru].parent = rv;
+		}
+	};
+	class Heap {
+		Edge heap[];
+		int hpos;
+		Heap(int n){
+			heap = new Edge[n];
+			hpos = 0;
+		}
+		Edge front(){
+			return heap[0];
+		}
+		void push(Edge e){
+			int i, j;
+			i = hpos++;
+			j = (i - 1) / 2;
+			while (i>0 && (heap[j].weight > e.weight)) {
+				heap[i] = heap[j];
+				i = j;
+				j = (i - 1) / 2;
+			}
+			heap[i] = e;
+		}
+		void pop(){
+			int i, j;
+			Edge e;
+			if (hpos>0) {
+				e = heap[--hpos];
+				i = 0;
+				j = 1;
+				while (j < hpos) {
+					if ((j + 1 < hpos) && (heap[j + 1].weight < heap[j].weight)) j++;
+					if (e.weight <= heap[j].weight) break;
+					heap[i] = heap[j];
+					i = j;
+					j = (j * 2) + 1;
+				}
+				heap[i] = e;
+			}
+		}
+	}
+	class Tnode {
+		Tnode next;
+		int v;
+		float weight;
+	};
+	class MSTree{
+		Tnode A[];
+		int Alen;
+		float weight;
+		void addEdge(Edge e) {
+			Tnode p;
+			weight += e.weight;
+			p = new Tnode();
+			p.v = e.in2;
+			p.weight = e.weight;
+			p.next = A[e.in1];
+			A[e.in1] = p;
+
+			p = new Tnode();
+			p.v = e.in1;
+			p.weight = e.weight;
+			p.next = A[e.in2];
+			A[e.in2] = p;
+		}
+		void print(){
+			int i;
+			Tnode p;
+			System.out.println();
+			for (i = 0; i <= Alen; i++) {
+				System.out.print("wierzcholek " + i + " - ");
+				for (p = A[i]; p!=null; p = p.next) System.out.println(p.v + ":" + p.weight + " ");
+				System.out.println();
+			}
+			System.out.println();
+			System.out.println();
+			System.out.println("Minimalne drzewo rozpinające waga = " + weight);
+			System.out.println();
+			System.out.println();
+		}
+		float getWeight(){
+			return weight;
+		}
+		MSTree(int n){
+			int i;
+			A = new Tnode[n];
+			for (i = 0; i < n; i++) A[i] = null;
+			Alen = n - 1;
+			weight = 0;
+		}
+	};
+	void pomiarstop(Instant begin) {
+		Instant end = Instant.now();
+		Duration timeElapsed = Duration.between(begin, end);
+		System.out.println("Time taken: "+ timeElapsed.toMillis() +" milliseconds");
+	}
+	void pomiarstop(Instant begin, int time) {
+		Instant end = Instant.now();
+		Duration timeElapsed = Duration.between(begin, end);
+		System.out.println("Time taken: "+ timeElapsed.toMillis()/time +" milliseconds");
+	}
