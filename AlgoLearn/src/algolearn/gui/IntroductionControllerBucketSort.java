@@ -6,13 +6,10 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,7 +19,9 @@ import java.util.ResourceBundle;
 //import org.jsoup.Jsoup;
 
 
-public class IntroductionControllerBST extends FXMLDocumentController implements Initializable {
+public class IntroductionControllerBucketSort extends FXMLDocumentController implements Initializable {
+
+
     @FXML
     public void BackToMainStage(ActionEvent event) {
         loadMenu();
@@ -42,18 +41,15 @@ public class IntroductionControllerBST extends FXMLDocumentController implements
         Button clicked_btn = (Button)event.getSource();
         Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/BST.html");
-        if(clicked_btn.getText().equals("Dodawanie Węzła")){
-            script="insert()";
-        }
-        else if(clicked_btn.getText().equals("Usuwanie Węzła")){
-        	script="del()";
-        }
-        else if(clicked_btn.getText().equals("Wyszukiwanie Węzła")){
-        	script="search()";
-        }
-        else{
+        path= Paths.get("src/algolearn/gui/Html/bucketSort.html");
+        if(clicked_btn.getText().equals("Wprowadzenie")){
             script="intro()";
+        }
+        else if(clicked_btn.getText().equals("Przykład optymistyczny")){
+            script="optimistic()";
+        }
+        else {
+            script = "pessimistic()";
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
@@ -70,7 +66,5 @@ public class IntroductionControllerBST extends FXMLDocumentController implements
                     }
                 }
         );
-
-
     }
 }

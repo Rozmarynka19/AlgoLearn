@@ -1,0 +1,112 @@
+#include <iostream>
+ 
+using namespace std;
+void printTab(int *tab, int n);
+int*  findMinAndMax(int* tab, int n);
+ 
+ 
+void bucketSort(int *tab, int n, int yMin, int yMax) {
+ 
+	int* buckets = new int[yMax - yMin + 1];
+ 
+	//Wstawiamy pocz¹tkowe wartoœci liczników
+	for (int x = 0; x < (yMax - yMin + 1); x++)
+	{
+		buckets[x] = 0;
+	}
+ 
+	cout << endl << "Stworzono kubelki: " << endl;
+	cout << "\t| ";
+	for (int x = 0; x < (yMax - yMin + 1); x++) {
+		cout << "B" << x+yMin << " | ";
+	}
+	cout << endl;
+ 
+	for (int x = 0; x < n; x++)
+	{
+		//Zliczamy iloœæ wyst¹pieñ poszczególnych elementów
+		buckets[tab[x] - yMin]++;
+	}
+ 
+	cout << endl << "Zliczono elementy: " << endl;
+	cout << "\t| ";
+	for (int x = 0; x < (yMax - yMin + 1); x++) {
+		cout << "B" << x + yMin << "=" << buckets[x] <<" | ";
+	}
+	cout << endl;
+ 
+	//Zapisujemy elementy w iloœci podyktowanej przez kube³ki
+	//w tablicy
+	int lastIndex = 0;
+	for (int x = 0; x < (yMax - yMin + 1); x++)
+	{
+		int y;
+		for (y = lastIndex; y < buckets[x] + lastIndex; y++)
+		{
+			tab[y] = x + yMin;
+		}
+		lastIndex = y;
+	}
+}
+ 
+int main() {
+	int n;
+ 
+	cout << "Wprowadz liczbe elementow tablicy: ";
+	cin >> n;
+ 
+	//Dynamiczne tworzenie tablicy
+	int *tab = new int[n];
+ 
+	cout << "\nWprowadz " << n << " liczb do posortowania" << endl;
+	cout << "Zatwierdz kazda z nich klawiszem Enter:" << endl;
+ 
+	for (int x = 0; x < n; x++) {
+		cin >> tab[x];
+	}
+ 
+	cout << endl << "Tablica przed posortowaniem:" << endl;
+	printTab(tab, n);
+ 
+	int* minAndMax = findMinAndMax(tab, n);
+	cout << endl << "Minimalny element tablicy: " << minAndMax[0] << endl;
+	cout << "Maksymalny element tablicy: " << minAndMax[1] << endl;
+	cout << endl << "Rozpoczecie sortowania" << endl;
+	bucketSort(tab, n, minAndMax[0], minAndMax[1]);
+ 
+	cout << endl << "Oto tablica po sortowaniu:" << endl;
+ 
+	printTab(tab, n);
+ 
+	delete[] tab;
+	delete[] minAndMax;
+	system("pause");
+	return 0;
+ 
+}
+ 
+void printTab(int *tab, int n) {
+	cout << endl << "\t| ";
+	for (int x = 0; x < n; x++) {
+		cout << tab[x] << " | ";
+	}
+	cout << endl << endl;
+}
+ 
+//Funkcja do wyszukiwania najwiêkszej i 
+//najmniejszej wartoœci w tablicy
+int*  findMinAndMax(int* tab, int n)
+{
+	int* minAndMax = new int[2];
+	minAndMax[0] = tab[0];
+	minAndMax[1] = tab[0];
+ 
+	for (int x = 0; x < n; x++)
+	{
+		if (tab[x] < minAndMax[0])
+		{
+			minAndMax[0] = tab[x];
+		}
+		if (tab[x] > minAndMax[1])
+		{
+			minAndMax[1] = tab[x];

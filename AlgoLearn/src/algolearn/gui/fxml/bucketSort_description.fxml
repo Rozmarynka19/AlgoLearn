@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.DescriptionControllerL1List">
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.DescriptionControllerBucketSort">
    <children>
       <HBox prefHeight="514.0" prefWidth="245.0">
          <children>
@@ -26,14 +26,10 @@
                         <Pane layoutX="-2.0" layoutY="-2.0" prefHeight="78.0" prefWidth="75.0" styleClass="backBTN" />
                      </children>
                   </Pane>
-                  <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadCodeExample" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Przykład klasy listy" />
-                  <Button id="2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadCodeExample" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Przykład klasy węzła" />
-                  <Button id="4" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadCodeExample" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Wstawianie węzła" />
-                  <Button id="5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadCodeExample" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Wyszukiwanie węzła" />
-                  <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadCodeExample" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Usuwanie węzła" />
-                  <Pane prefHeight="149.0" prefWidth="279.0" styleClass="titlePlane">
+                  <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadCodeExample" prefHeight="47.0" prefWidth="279.0" styleClass="pseudocode" text="Sortowanie kubełkowe" />
+                  <Pane prefHeight="336.0" prefWidth="282.0" styleClass="titlePlane">
                      <children>
-                        <Text fill="WHITE" layoutX="6.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Dostępne języki" textAlignment="CENTER" wrappingWidth="266.5982971191406">
+                        <Text fill="WHITE" layoutX="7.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Dostępne języki" textAlignment="CENTER" wrappingWidth="266.5982971191406">
                            <font>
                               <Font name="Cambria" size="30.0" />
                            </font>
