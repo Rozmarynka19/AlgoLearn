@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+ function intro()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+ <style>
+    h1 {text-align: center;}
+    h2 {text-align: center;}
+    #wady {color:red;}
+    #zalety {color:green;}
+    img 
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:50%;
+        height:50%;
+    }
+    div {text-align: center;}
+    </style>
+ <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <h1>Sortowanie przez kopcowanie</h1>
+
+    <div class=intro>
+        Jeśli usuniemy teraz wszystkie wartości, a otrzymane wartości dodamy do tablicy,<br>
+        zostanie ona posortowana od największej do najmniejszej wartości. Jeśli to samo zrobimy <br>
+        z kopcem minimalnym tablica będzie posortowana od najmniejszej do największej wartości.<br>
+        <img src="../textimg/heapSort/hsort.gif"></img>
+    </div>
+    
+</body>
+
+</html>
