@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "rotacje" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function class_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "class_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function del_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "del_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function class_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "class_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function del_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "del_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function class_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "class_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function del_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "del_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+    </style>
+    <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="class_CPP">
+            <pre>
+struct TablicaMieszajaca {
+	int rozmiar;
+	int* tablica;
+	TablicaMieszajaca(int size) {
+		rozmiar = size;
+		tablica = new int[rozmiar];
+		for (int i = 0; i < rozmiar; i++) {
+			tablica[i] = 0;
+		}
+	}
+	~TablicaMieszajaca() {
+		delete[] tablica;
+	}
+	void usun(int k);
+	void wstaw(int k);
+	void wyswietl() {
+		for (int i = 0; i < rozmiar; i++) {
+			cout << tablica[i] << " ";
+			if (i % 10 == 0 && i != 0)
+				cout << endl;
+		}
+		cout << endl;
+	}
+};
+            </pre>
+        </div>
+
+        <div class="insert_CPP">
+            <pre>
+void wstaw(int k) {
+    int ws = 0;
+    int p = pow(2, k % 10);
+    int index = ((k % 1000) + p + 1) % rozmiar;
+    while (ws < 1) {
+        if (tablica[index] == k) {
+            cout << "Element o podanym kluczu juz istnieje w tablicy" << endl;
+            return;
+        }
+        else if (tablica[index] == 0) {
+            tablica[index] = k;
+            return;
+        }
+        else {
+            index = (index + 1) % rozmiar;
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <div class="del_CPP">
+            <pre>
+void usun(int k) {
+    int ws = 0;
+    int p = pow(2, k % 10);
+    int index = ((k % 1000) + p + 1) % rozmiar;
+    while (ws < 1) {
+        if (tablica[index] == k) {
+            tablica[index] = -1;
+            cout << "OK" << endl << endl;
+            return;
+        }
+        else if (tablica[index] == 0) {
+            cout << "Element o podanym kluczu nie istnieje w tablicy" << endl << endl;
+            return;
+        }
+        else {
+            index = (index + 1) % rozmiar;
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <!-- Java -->
+
+        <div class="class_Java">
+            <pre>
+public class TablicaMieszajaca {
+	int rozmiar;
+	int tablica[];
+	public TablicaMieszajaca(int size) {
+		rozmiar = size;
+		tablica = new int[rozmiar];
+		for (int i = 0; i < rozmiar; i++) {
+			tablica[i] = 0;
+		}
+	}
+	void usun(int k) {...}
+	void wstaw(int k) {...}
+	void wyswietl() {
+		for (int i = 0; i < rozmiar; i++) {
+			System.out.print(tablica[i] + " ");
+			if (i % 10 == 0 && i != 0)
+				System.out.println();
+		}
+		System.out.println();
+	}
+}
+
+            </pre>
+        </div>
+
+        <div class="insert_Java">
+            <pre>
+void wstaw(int k) {
+    int ws = 0;
+    int p = (int) Math.pow(2, k % 10);
+    int index = ((k % 1000) + p + 1) % rozmiar;
+    while (ws < 1) {
+        if (tablica[index] == k) {
+            System.out.println("Element o podanym kluczu juz istnieje w tablicy");
+            return;
+        }
+        else if (tablica[index] == 0) {
+            tablica[index] = k;
+            return;
+        }
+        else {
+            index = (index + 1) % rozmiar;
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <div class="del_Java">
+            <pre>
+void usun(int k) {
+    int ws = 0;
+    int p = (int) Math.pow(2, k % 10);
+    int index = ((k % 1000) + p + 1) % rozmiar;
+    while (ws < 1) {
+        if (tablica[index] == k) {
+            tablica[index] = -1;
+            return;
+        }
+        else if (tablica[index] == 0) {
+            System.out.println("Element o podanym kluczu nie istnieje w tablicy");
+            return;
+        }
+        else {
+            index = (index + 1) % rozmiar;
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <!-- Python -->
+
+        <div class="class_PY">
+            <pre>
+class TablicaMieszajaca:
+	rozmiar=0
+	tablica=np.zeros(2)
+	def __init__(self,size):
+		self.rozmiar = size
+		self.tablica = np.zeros(size)
+	def usun(self, k):
+		...
+	def wstaw(self,k):
+		...
+	def wyswietl(self):
+		for i in range(self.rozmiar):
+			print(str(self.tablica[i]) + " ")
+			if i % 10 == 0 and i != 0:
+				print("\n")
+		print("\n")
+            </pre>
+        </div>
+
+        <div class="insert_PY">
+            <pre>
+def wstaw(self,k):
+    index = ((k % 1000) + pow(2, k % 10) + 1) % self.rozmiar
+    while 0 < 1:
+        if self.tablica[index] == k:
+            print("Element o podanym kluczu juz istnieje w tablicy\n")
+            return
+        elif self.tablica[index] == 0:
+            self.tablica[index] = k
+            return
+        else:
+            index = (index + 1) % self.rozmiar
+            </pre>
+        </div>
+
+        <div class="del_PY">
+            <pre>
+def usun(self, k):
+    index = ((k % 1000) + pow(2, k % 10) + 1) % self.rozmiar
+    while 0 < 1:
+        if tablica[index] == k:
+            tablica[index] = -1
+            return
+        elif tablica[index] == 0:
+            print("Element o podanym kluczu nie istnieje w tablicy\n")
+            return
+        else:
+            index = (index + 1) % self.rozmiar
+            </pre>
+        </div>
+
+    </body>
+</html>
