@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import algolearn.gui.info.errors;
+import algolearn.gui.main_window;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
