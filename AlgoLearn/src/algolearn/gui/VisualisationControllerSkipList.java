@@ -1,7 +1,6 @@
 package algolearn.gui;
 
 import algolearn.gui.HelpClass.Arrow;
-import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -359,8 +358,10 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
             arrowList.get(i).clear();
             for (int j = 0; j < buttonList.get(i).size() + 1; j++) {
                 Arrow arrow = new Arrow();
-                if(buttonList.get(i).size()!=0)
-                    arrow.setEndX(0+40);
+                if(buttonList.get(i).size()!=0) {
+                    arrow.setEndX(findBaseX(buttonList.get(0).get(j).getText()) + 40); //błąd
+                    System.out.println("line: " + i + "\n returned value from line 0: " + findBaseX(buttonList.get(0).get(j).getText()) + "\n loop: " + j);
+                }
                 else
                     arrow.setEndX(0+40);
                 arrow.setEndY(previousButton.getLayoutY());
@@ -371,6 +372,15 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
             reloadVisualisationBox(levelsList.get(i), i);
 
         }
+    }
+
+    private double findBaseX(String val){
+       for(int i=0;i<buttonList.get(0).size();i++){
+           if(val.equals(buttonList.get(0).get(i).getText()))
+               return buttonList.get(0).get(i).getLayoutX();
+       }
+        System.out.println("tego być nie powinno");
+       return 0;
     }
 
     private void reloadArrows(){

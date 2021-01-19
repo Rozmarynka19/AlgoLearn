@@ -2,7 +2,6 @@ package algolearn.gui;
 
 import algolearn.gui.HelpClass.Arrow;
 //import algolearn.gui.FXMLDocumentController;
-import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

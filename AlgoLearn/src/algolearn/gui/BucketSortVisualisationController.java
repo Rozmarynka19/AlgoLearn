@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +15,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
