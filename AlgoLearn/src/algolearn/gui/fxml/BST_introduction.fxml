@@ -29,11 +29,7 @@
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Dodawanie Węzła" />
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Usuwanie Węzła" />
                         <Button fx:id="btn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadText" prefHeight="47.0" prefWidth="279.0" styleClass="algHard" text="Wyszukiwanie Węzła" />
-                        <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Rady od Studentów" />
-                        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="292.0" styleClass="langBTN" text="Button" />
-                        <Button mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Dodatkowe Źródła" />
-                        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="292.0" styleClass="langBTN" text="82.145.73.240" />
-                        <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="292.0" styleClass="langBTN" text="Button" />
+                        <Button mnemonicParsing="false" prefHeight="265.0" prefWidth="279.0" styleClass="titlePlane" />
 
                     </children></VBox>
                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="20.0">
@@ -79,12 +75,6 @@
                             <children>
                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="824.0" styleClass="titlePlane">
                                     <children>
-                                        <Text fx:id="txtMainTitle1" fill="WHITE" layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Źródła" textAlignment="CENTER" wrappingWidth="674.931640625">
-                                            <font>
-                                                <Font name="Cambria" size="40.0" />
-                                            </font>
-                                        </Text>
-                                        <Button fx:id="btn2" layoutX="598.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="63.0" prefWidth="105.0" styleClass="algEasy" text="----&gt;" />
                                         <Button id=".empty" layoutX="713.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
                                     </children></Pane>
                             </children>

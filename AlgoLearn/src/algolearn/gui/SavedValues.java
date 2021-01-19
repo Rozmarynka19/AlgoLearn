@@ -21,7 +21,7 @@ public class SavedValues {
             asList("heapSort_introduction.fxml","heapSort_description.fxml","heap_sort_visualisation.fxml"), // Sortowanie przez kopcowanie
             asList("FFT_introduction.fxml","FFT_description.fxml","visualisation_fxml.fxml"), // fft
             asList("skip_list_introduction.fxml","description_fxml.fxml","skip_list_visualisation.fxml"), // lista z przeskokami
-            asList("BST_introduction.fxml","description_fxml.fxml","bst_visualisation.fxml"), // bst
+            asList("BST_introduction.fxml","BST_description.fxml","bst_visualisation.fxml"), // bst
             asList("introduction_fxml.fxml","description_fxml.fxml","hash_table_visualisation.fxml"), // tablica mieszająca
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // floyd warshall
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Union Find
