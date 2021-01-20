@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro" || p.className == "maxHeap" || p.className == "delMax" || p.className == "insert"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+ function intro()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+  function maxHeap()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "maxHeap"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ function delMax()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "delMax"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ function insert()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "insert"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+ <meta charset="UTF-8">
+ <style>
+    h1 {text-align: center;}
+    h2 {text-align: center;}
+    img 
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:50%;
+        height:50%;
+    }
+    div {text-align: center;}
+</style>
+
+</head>
+
+<body>
+    <h1>Sterta</h1>
+
+    <div class="intro">
+        <div>
+        Sterta wyróżnia dwa rodzaje:<br>
+        -sterta minimalna gdzie wartości są układane od najmniejszej do największej<br>
+        -sterta maksymalna gdzie wartości sa układane od największej do najmniejszej<br>
+        1.Do wykonania stery potrzebujemy tablicy lub listy z wartościami.<br>
+        2.Z posiadanych wartości tworzymy drzewo binarne dodając wartości kolejno od lewej strony.<br>
+        3.Po utworzeniu drzewa sprawdzamy dwie sąsiadujące wartości i porównujemy która jest mniejsza w przypadku drzewa minimalnego lub większa w przypadku maksymalnego.<br>
+        4.Po ustaleniu mniejszą lub większą wartość porównujemy z rodzicem. Załóżmy że tworzymy drzewo minimalne i chcemy sprawdzić czy rodzic jest mniejszy. 
+        Aby to zrobić bierzemy indeks i danej wartości i dzielimy przez 2 zaokrąglając w dół. <br>
+        5.Jeśli nadal nasza wartość jest mniejsza wykonujemy operacje ponownie, jeśli nie zamieniamy wartości miejscami.<br>
+        6.Wykonujemy analogiczną operację dla wszystkich liści.
+        </div>
+        <h2>Przykład</h2>
+        <div>
+        <img src="../textimg/binaryHeap/budowa.gif"></img>
+        </div>
+    </div>
+
+    <div class="maxHeap">
+        <h2>Sterta maksymalna</h2>
+        <img src="../textimg/binaryHeap/maxheap.gif"/>
+    </div>
+
+    <div class="delMax">
+        <h2>Usuwanie maksymalnej wartości</h2>
+        <div>
+        <img src="../textimg/binaryHeap/hdel.gif"></img>
+        </div>
+    </div>
+
+    <div class="insert">
+        <h2>Dodawanie wartości</h2>
+        <div>
+        Dodajmy np liczbę 12.<br>
+        Zgodnie z poprzednimi punktami dodajemy ją na najbliższe wolne miejsce i sprawdzamy czy tam pasuje.<br>
+        <img src="../textimg/binaryHeap/hadd.gif"></img>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "rotacje" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function union_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "union_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function MST_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "MST_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function helpClasses_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "helpClasses_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function union_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "union_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function MST_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "MST_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function helpClasses_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "helpClasses_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function union_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "union_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function MST_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "MST_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function helpClasses_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "helpClasses_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+    </style>
+    <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="union_CPP">
+            <pre>
+class Union
+{
+private:
+	int cykle = 0;
+	Node * Z;
+public:
+	Union(const int &n);
+	~Union();
+	const int getCykles();
+	void makeSet(const int &v);
+	int findCompr(const int &v);
+	void unionRank(Edge e);
+	int find(const int &v);
+	void unionNormal(const Edge &e);
+};
+
+Union::Union(const int &n)
+{
+	Z = new Node[n];
+}
+
+Union::~Union()
+{
+	delete[] Z;
+}
+
+const int Union::getCykles()
+{
+	return cykle;
+}
+
+void Union::makeSet(const int &v)
+{
+	Z[v].parent = v;  //ok
+	Z[v].rank = 0;
+}
+
+int Union::findCompr(const int &v)
+{
+
+	if (Z[v].parent != v) {
+		cykle++;
+		return Z[v].parent = findCompr(Z[v].parent);
+
+	}
+	return Z[v].parent;  //ok
+}
+
+void Union::unionRank(Edge e)
+{
+	int ru, rv;
+
+	ru = findCompr(e.in1);
+	rv = findCompr(e.in2);
+	if (Z[ru].rank < Z[rv].rank)
+		Z[ru].parent = rv;
+	else if (Z[ru].rank >Z[rv].rank)  //ok
+		Z[rv].parent = ru;
+	else {
+		Z[rv].parent = ru;
+		Z[ru].rank++;
+	}
+}
+
+int Union::find(const int &v)
+{
+
+	if (Z[v].parent != v) {
+		cykle++;
+		return find(Z[v].parent);
+
+	}
+
+	return v;
+}
+
+void Union::unionNormal(const Edge &e)
+{
+	int ru, rv;
+	ru = find(e.in1);
+	rv = find(e.in2);
+	Z[ru].parent = rv;
+}
+            </pre>
+        </div>
+
+        <div class="MST_CPP">
+          <pre>
+class MSTree
+{
+private:
+	Tnode ** A;
+	int Alen;
+	float weight;
+public:
+	MSTree(const int &n);
+	~MSTree();
+	void addEdge(const Edge &e);
+	void print();
+	const float getWeight();
+};
+
+const float MSTree::getWeight()
+{
+	return weight;
+}
+MSTree::MSTree(const int &n)
+{
+	int i;
+
+	A = new Tnode *[n];
+	for (i = 0; i < n; i++) A[i] = NULL;
+	Alen = n - 1;
+	weight = 0;
+}
+
+MSTree::~MSTree()
+{
+	int i;
+	Tnode *p, *r = nullptr;
+
+	for (i = 0; i <= Alen; i++) {
+		p = A[i];
+		while (p) {
+			r = p;
+			p = p->next;
+			delete r;
+		}
+	}
+	delete[] A;
+}
+
+void MSTree::addEdge(const Edge &e)
+{
+	Tnode *p;
+
+	weight += e.weight;
+	p = new Tnode;
+	p->v = e.in2;
+	p->weight = e.weight;
+	p->next = A[e.in1];
+	A[e.in1] = p;
+
+	p = new Tnode;
+	p->v = e.in1;
+	p->weight = e.weight;
+	p->next = A[e.in2];
+	A[e.in2] = p;
+}
+
+void MSTree::print()
+{
+	int i;
+	Tnode *p;
+
+	std::cout << std::endl;
+	for (i = 0; i <= Alen; i++) {
+		std::cout << "wierzcholek " << i << " - ";
+		for (p = A[i]; p; p = p->next) std::cout << p->v << ":" << p->weight << " ";
+		std::cout << std::endl;
+	}
+	std::cout << std::endl << std::endl << "Minimalne drzewo rozpinające waga = " << weight << std::endl << std::endl;
+}
+          </pre>
+       </div>
+
+        <div class="helpClasses_CPP">
+          <pre>
+struct Node {
+	int parent;
+	int rank;
+};
+
+struct Edge {
+	int in1, in2;
+	float weight;
+};
+
+class Heap {
+private:
+	Edge * heap;
+	int hpos;
+public:
+	Heap(const int &n);
+	~Heap();
+	Edge front();
+	void push(const Edge &e);
+	void pop();
+};
+
+struct Tnode {
+	Tnode *next;
+	int v;
+	float weight;
+};
+
+Heap::Heap(const int &n)
+{
+	heap = new Edge[n];
+	hpos = 0;
+}
+
+Heap::~Heap()
+{
+	delete[]heap;
+}
+
+Edge Heap::front()
+{
+	return heap[0];
+}
+
+void Heap::push(const Edge &e)
+{
+	int i, j;
+	i = hpos++;
+	j = (i - 1) / 2;
+	while (i && (heap[j].weight > e.weight)) {
+		heap[i] = heap[j];
+		i = j;
+		j = (i - 1) / 2;
+	}
+	heap[i] = e;
+}
+
+void Heap::pop()
+{
+	int i, j;
+	Edge e;
+	if (hpos) {
+		e = heap[--hpos];
+		i = 0;
+		j = 1;
+		while (j < hpos) {
+			if ((j + 1 < hpos) && (heap[j + 1].weight < heap[j].weight)) j++;
+			if (e.weight <= heap[j].weight) break;
+			heap[i] = heap[j];
+			i = j;
+			j = (j * 2) + 1;
+		}
+		heap[i] = e;
+	}
+}
+          </pre>
+       </div>
+
+        <!-- Java -->
+
+        <div class="union_Java">
+            <pre>
+class Union{
+		int cykle = 0;
+		Node Z[];
+		Union(int n){
+			Z = new Node[n];
+		}
+		int getCykles(){
+			return cykle;
+		}
+		void makeSet(int v){
+			Z[v].parent = v;  //ok
+			Z[v].rank = 0;
+		}
+		int findCompr(int v) {
+			if (Z[v].parent != v) {
+				cykle++;
+				return Z[v].parent = findCompr(Z[v].parent);
+
+			}
+			return Z[v].parent;  //ok
+		}
+		void unionRank(Edge e){
+			int ru, rv;
+			ru = findCompr(e.in1);
+			rv = findCompr(e.in2);
+			if (Z[ru].rank < Z[rv].rank)
+				Z[ru].parent = rv;
+			else if (Z[ru].rank >Z[rv].rank)  //ok
+				Z[rv].parent = ru;
+			else {
+				Z[rv].parent = ru;
+				Z[ru].rank++;
+			}
+		}
+		int find(int v){
+			if (Z[v].parent != v) {
+				cykle++;
+				return find(Z[v].parent);
+
+			}
+			return v;
+		}
+		void unionNormal(Edge e){
+			int ru, rv;
+			ru = find(e.in1);
+			rv = find(e.in2);
+			Z[ru].parent = rv;
+		}
+	};
+            </pre>
+        </div>
+
+        <div class="MST_Java">
+          <pre>
+class MSTree{
+		Tnode A[];
+		int Alen;
+		float weight;
+		void addEdge(Edge e) {
+			Tnode p;
+			weight += e.weight;
+			p = new Tnode();
+			p.v = e.in2;
+			p.weight = e.weight;
+			p.next = A[e.in1];
+			A[e.in1] = p;
+
+			p = new Tnode();
+			p.v = e.in1;
+			p.weight = e.weight;
+			p.next = A[e.in2];
+			A[e.in2] = p;
+		}
+		void print(){
+			int i;
+			Tnode p;
+			System.out.println();
+			for (i = 0; i <= Alen; i++) {
+				System.out.print("wierzcholek " + i + " - ");
+				for (p = A[i]; p!=null; p = p.next) System.out.println(p.v + ":" + p.weight + " ");
+				System.out.println();
+			}
+			System.out.println();
+			System.out.println();
+			System.out.println("Minimalne drzewo rozpinające waga = " + weight);
+			System.out.println();
+			System.out.println();
+		}
+		float getWeight(){
+			return weight;
+		}
+		MSTree(int n){
+			int i;
+			A = new Tnode[n];
+			for (i = 0; i < n; i++) A[i] = null;
+			Alen = n - 1;
+			weight = 0;
+		}
+	};
+          </pre>
+        </div>
+
+        <div class="helpClasses_Java">
+          <pre>
+class Node {
+  int parent;
+  int rank;
+};
+
+class Edge {
+  int in1, in2;
+  float weight;
+};
+
+class Heap {
+  Edge heap[];
+  int hpos;
+  Heap(int n){
+    heap = new Edge[n];
+    hpos = 0;
+  }
+  Edge front(){
+    return heap[0];
+  }
+  void push(Edge e){
+    int i, j;
+    i = hpos++;
+    j = (i - 1) / 2;
+    while (i>0 && (heap[j].weight > e.weight)) {
+      heap[i] = heap[j];
+      i = j;
+      j = (i - 1) / 2;
+    }
+    heap[i] = e;
+  }
+  void pop(){
+    int i, j;
+    Edge e;
+    if (hpos>0) {
+      e = heap[--hpos];
+      i = 0;
+      j = 1;
+      while (j < hpos) {
+        if ((j + 1 < hpos) && (heap[j + 1].weight < heap[j].weight)) j++;
+        if (e.weight <= heap[j].weight) break;
+        heap[i] = heap[j];
+        i = j;
+        j = (j * 2) + 1;
+      }
+      heap[i] = e;
+    }
+  }
+}
+
+class Tnode {
+  Tnode next;
+  int v;
+  float weight;
+};
+          </pre>
+        </div>
+
+        <!-- Python -->
+
+        <div class="union_PY">
+            <pre>
+class Union:
+	cykle = 0;
+	Z = Node()
+	def __init__(n):
+		Z = np.zeros(n)
+	def getCykles():
+		return cykle
+	def makeSet(v):
+		Z[v].parent = v
+		Z[v].rank = 0
+	def findCompr(v):
+		if Z[v].parent != v :
+			cykle+=1
+			Z[v].parent = findCompr(Z[v].parent);
+			return Z[v].parent
+		return Z[v].parent
+	def unionRank(e):
+		ru = findCompr(e.in1);
+		rv = findCompr(e.in2);
+		if Z[ru].rank < Z[rv].rank:
+			Z[ru].parent = rv
+		elif Z[ru].rank > Z[rv].rank:
+			Z[rv].parent = ru;
+		else:
+			Z[rv].parent = ru;
+			Z[ru].rank+=1
+	def find(v):
+		if Z[v].parent != v:
+			cykle+=1
+			return find(Z[v].parent);
+		return v;
+	def unionNormal(e):
+		ru = find(e.in1);
+		rv = find(e.in2);
+		Z[ru].parent = rv
+            </pre>
+        </div>
+
+        <div class="MST_PY">
+          <pre>
+class MSTree:
+		def __init__():
+			A = Tnod
+			Alen = 0
+			weight = 0.1
+		def addEdge(e):
+			p = Tnode
+			weight += e.weight;
+			p = Tnode();
+			p.v = e.in2;
+			p.weight = e.weight;
+			p.next = A[e.in1];
+			A[e.in1] = p;
+
+			p = Tnode();
+			p.v = e.in1;
+			p.weight = e.weight;
+			p.next = A[e.in2];
+			A[e.in2] = p
+		def printUF():
+			i=0
+			p=Tnode
+			print("\n")
+			for i in range(Alen):
+				print("wierzcholek " + str(i) + " ")
+				p = A[i]
+				while p!=null:
+					print(p.v + ":" + p.weight + " ")
+					p = p.next
+				print("\n");
+			print("\n");
+			print("\n");
+			print("Minimalne drzewo rozpinające waga = " + str(weight))
+			print("\n");
+			print("\n");
+		def MSTree(n):
+			i = 0
+			A = Tnode[n];
+			for i in range(n):
+				A[i] = null
+			Alen = n - 1;
+			weight = 0;
+          </pre>
+        </div>
+
+        <div class="helpClasses_PY">
+          <pre>
+class Node:
+	parent=0
+  rank =0
+  
+class Edge:
+	def __init__():
+		in1=0
+		in2=0;
+    weight=0.1
+
+class Heap:
+	def __init__ (n):
+		heap = Edge[n];
+		hpos = 0;
+	def front():
+		return heap[0];
+	def push(e):
+		i = hpos
+		i+=1
+		j = (i - 1) / 2
+		while i>0 and (heap[j].weight > e.weight):
+			heap[i] = heap[j]
+			i = j;
+			j = (i - 1) / 2;
+		heap[i] = e;
+	def pop():
+		if hpos>0:
+			e = heap[--hpos];
+			i = 0;
+			j = 1;
+			while j < hpos:
+				if (j + 1 < hpos) and (heap[j + 1].weight < heap[j].weight):
+					j+=1
+				if e.weight <= heap[j].weight:
+					return
+					heap[i] = heap[j];
+					i = j;
+					j = (j * 2) + 1;
+        heap[i] = e;
+        
+class Tnode:
+  next = Tnode
+  v=0
+  weight=0.1
+          </pre>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "rotacje" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function heapSort_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "heapSort_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function up_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "up_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function down_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "down_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function heapSort_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "heapSort_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function up_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "up_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function down_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "down_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function heapSort_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "heapSort_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function up_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "up_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function down_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "down_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+    </style>
+    <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="heapSort_CPP">
+            <pre>
+void sort_kop(int kopiec[], int n){
+	int l = 0;
+	for (int i = 0; i < n; i++){
+		down(kopiec, l);
+		l = l + 1;
+	}
+	for (int i = 0; i < n; i++){
+		l = l - 1;
+		if (l != 0){
+			int tem = kopiec[0];
+			kopiec[0] = kopiec[l];
+			kopiec[l] = tem;
+			up(kopiec, l);
+		}
+	}
+}
+            </pre>
+        </div>
+
+        <div class="up_CPP">
+            <pre>
+void up(int tablica[], int n){
+	int licznik1, licznik2, backup;
+	licznik1 = 0;
+	licznik2 = 1;
+	while (licznik2 < n){
+		if (licznik2 + 1 < n && tablica[licznik2 + 1] > tablica[licznik2]){
+			licznik2 = licznik2 + 1;
+		}
+		if (tablica[licznik1] >= tablica[licznik2]){
+			break;
+		}
+		backup = tablica[licznik1];
+		tablica[licznik1] = tablica[licznik2];
+		tablica[licznik2] = backup;
+		licznik1 = licznik2;
+		licznik2 = 2 * licznik1 + 1;
+	}
+}
+            </pre>
+        </div>
+
+        <div class="down_CPP">
+            <pre>
+void down(int kopiec[], int n){
+	int licznik1, licznik2, backup;
+	licznik1 = n;
+	licznik2 = (licznik1 - 1) / 2;
+	while (licznik1 > 0 && kopiec[licznik2] < kopiec[licznik1]){
+		backup = kopiec[licznik1];
+		kopiec[licznik1] = kopiec[licznik2];
+		kopiec[licznik2] = backup;
+		licznik1 = licznik2;
+		licznik2 = (licznik1 - 1) / 2;
+	}
+}
+            </pre>
+        </div>
+
+        <!-- Java -->
+
+        <div class="heapSort_Java">
+            <pre>
+void sort_kop(int kopiec[], int n){
+	int l = 0;
+	for (int i = 0; i < n; i++){
+		down(kopiec, l);
+		l = l + 1;
+	}
+	for (int i = 0; i < n; i++){
+		l = l - 1;
+		if (l != 0){
+			int tem = kopiec[0];
+			kopiec[0] = kopiec[l];
+			kopiec[l] = tem;
+			up(kopiec, l);
+		}
+	}
+}
+            </pre>
+        </div>
+
+        <div class="up_Java">
+            <pre>
+void up(int tablica[], int n){
+	int licznik1, licznik2, backup;
+	licznik1 = 0;
+	licznik2 = 1;
+	while (licznik2 < n){
+		if (licznik2 + 1 < n && tablica[licznik2 + 1] > tablica[licznik2]){
+			licznik2 = licznik2 + 1;
+		}
+		if (tablica[licznik1] >= tablica[licznik2]){
+			break;
+		}
+		backup = tablica[licznik1];
+		tablica[licznik1] = tablica[licznik2];
+		tablica[licznik2] = backup;
+		licznik1 = licznik2;
+		licznik2 = 2 * licznik1 + 1;
+	}
+}
+            </pre>
+        </div>
+
+        <div class="down_Java">
+            <pre>
+void down(int kopiec[], int n){
+	int licznik1, licznik2, backup;
+	licznik1 = n;
+	licznik2 = (licznik1 - 1) / 2;
+	while (licznik1 > 0 && kopiec[licznik2] < kopiec[licznik1]){
+		backup = kopiec[licznik1];
+		kopiec[licznik1] = kopiec[licznik2];
+		kopiec[licznik2] = backup;
+		licznik1 = licznik2;
+		licznik2 = (licznik1 - 1) / 2;
+	}
+}
+            </pre>
+        </div>
+
+        <!-- Python -->
+
+        <div class="heapSort_PY">
+            <pre>
+def sort_kop(kopiec, n):
+	l = 0
+	for i in range(n):
+		down(kopiec, l)
+		l = l + 1
+	for i in range(n):
+		l = l - 1
+		if l != 0:
+			tem = kopiec[0]
+			kopiec[0] = kopiec[l]
+			kopiec[l] = tem
+			up(kopiec, l)
+            </pre>
+        </div>
+
+        <div class="up_PY">
+            <pre>
+def up(tablica, n):
+	licznik1 = 0
+	licznik2 = 1
+	while licznik2 < n:
+		if licznik2 + 1 < n and tablica[licznik2 + 1] > tablica[licznik2]:
+			licznik2 = licznik2 + 1
+		if tablica[licznik1] >= tablica[licznik2]:
+			break
+		backup = tablica[licznik1]
+		tablica[licznik1] = tablica[licznik2]
+		tablica[licznik2] = backup
+		licznik1 = licznik2
+		licznik2 = 2 * licznik1 + 1
+            </pre>
+        </div>
+
+        <div class="down_PY">
+            <pre>
+def down(kopiec, n):
+	licznik1 = n
+	licznik2 = (licznik1 - 1) / 2
+	while licznik1 > 0 and kopiec[licznik2] < kopiec[licznik1]:
+		backup = kopiec[licznik1]
+		kopiec[licznik1] = kopiec[licznik2]
+		kopiec[licznik2] = backup
+		licznik1 = licznik2
+		licznik2 = (licznik1 - 1) / 2
+            </pre>
+        </div>
+
+    </body>
+</html>

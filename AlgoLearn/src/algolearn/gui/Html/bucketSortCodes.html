@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "rotacje" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function bucketSort_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "bucketSort_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function bucketSort_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "bucketSort_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function bucketSort_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "bucketSort_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+    </style>
+    <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="bucketSort_CPP">
+            <pre>
+void bucketSort(int *tab, int n, int yMin, int yMax) {
+ 
+	int* buckets = new int[yMax - yMin + 1];
+ 
+	//Wstawiamy początkowe wartości liczników
+	for (int x = 0; x < (yMax - yMin + 1); x++)
+	{
+		buckets[x] = 0;
+	}
+ 
+	cout << endl << "Stworzono kubelki: " << endl;
+	cout << "\t| ";
+	for (int x = 0; x < (yMax - yMin + 1); x++) {
+		cout << "B" << x+yMin << " | ";
+	}
+	cout << endl;
+ 
+	for (int x = 0; x < n; x++)
+	{
+		//Zliczamy ilość wystąpień poszczególnych elementów
+		buckets[tab[x] - yMin]++;
+	}
+ 
+	cout << endl << "Zliczono elementy: " << endl;
+	cout << "\t| ";
+	for (int x = 0; x < (yMax - yMin + 1); x++) {
+		cout << "B" << x + yMin << "=" << buckets[x] <<" | ";
+	}
+	cout << endl;
+ 
+	//Zapisujemy elementy w ilości podyktowanej przez kubełki
+	//w tablicy
+	int lastIndex = 0;
+	for (int x = 0; x < (yMax - yMin + 1); x++)
+	{
+		int y;
+		for (y = lastIndex; y < buckets[x] + lastIndex; y++)
+		{
+			tab[y] = x + yMin;
+		}
+		lastIndex = y;
+	}
+}
+            </pre>
+        </div>
+
+        <!-- Java -->
+
+        <div class="bucketSort_Java">
+            <pre>
+private static int[] getMinMax(int[] arr) {
+    int[] result = new int[2];
+    result[0] = arr[0]; // pierwszy element bedzie najmniejszym elementem
+    result[1] = arr[0]; // drugi element bedzie najwiekszym elementem
+    for(int i : arr) {
+        if(result[0] > i) { //dokonujemy podmiany najwiekszego/najmniejszego elementu w przypadku gdy iterowana wartosc bedzie wieksza/mniejsza od przechowanej
+            result[0] = i;
+        }
+        else if (result[1] < i) {
+            result[1] = i;
+        }
+    }
+    return result;
+}
+private static void bucketSort(int[] tab) {
+    int[] results = getMinMax(tab);
+    int yMax = results[1];
+    int yMin = results[0];
+    int[] buckets = new int[yMax - yMin + 1];
+    
+    //Wstawiamy początkowe wartości liczników
+    for (int x = 0; x < (yMax - yMin + 1); x++)
+    {
+        buckets[x] = 0;
+    }
+    
+    System.out.println("Stworzono kubelki: ");
+    for (int x = 0; x < (yMax - yMin + 1); x++) {
+        System.out.print("B" + (x+yMin) + " | ");
+    }
+    System.out.println();
+    
+    for (int x = 0; x < tab.length; x++)
+    {
+        //Zliczamy ilość wystąpień poszczególnych elementów
+        buckets[tab[x] - yMin]++;
+    }
+    
+    System.out.println("Zliczono elementy: ");
+
+    for (int x = 0; x < (yMax - yMin + 1); x++) {
+        System.out.print("B" + (x + yMin) + "=" + buckets[x] +" | ");
+    }
+    System.out.println();
+    
+    //Zapisujemy elementy w ilości podyktowanej przez kubełki
+    //w tablicy
+    int lastIndex = 0;
+    for (int x = 0; x < (yMax - yMin + 1); x++)
+    {
+        int y;
+        for (y = lastIndex; y < buckets[x] + lastIndex; y++)
+        {
+            tab[y] = x + yMin;
+        }
+        lastIndex = y;
+    }
+}
+            </pre>
+        </div>
+
+        <!-- Python -->
+
+        <div class="bucketSort_PY">
+            <pre>
+def minMax(tab): #tworzymy funkcje znajdujaca najwiekszy i najmniejszy element
+    min = tab[0] #tworzymy zmienne pomocnicze
+    max = tab[0]
+    for el in tab:
+        if el > max: # a nastepnie sprawdzamy czy sa one wieksz, lub mniejsze od iterowanej wartosci
+            max = el
+        if el < min:
+            min = el
+    array = []
+    array.append(min) #na koniec wrzucamy je w tablice
+    array.append(max)
+    return array
+ 
+def sortujKub(tab, n):
+    minmax = minMax(tab)
+    yMin = minmax[0] #wyznaczamy min i max z tablicy
+    yMax = minmax[1]
+    buckets = [0] * (yMax - yMin+1) #nastepnie tworzymy tablice przechowujaca kubelki
+    print("Stworzono kubelki:")
+    for x in range(yMax - yMin+1):
+        print("B", (x+yMin), end=" | ")
+    print()
+    for x in range(n):
+        buckets[tab[x]-yMin] += 1 #zliczamy nastepnie ilosc wystapien dla kazdego z kubelkow
+    print("Zliczono elementy:")
+    for x in range(yMax - yMin+1):
+        print("B", (x+yMin), "=", buckets[x], end=" | ")
+    print()
+    lastIndex = 0
+    for x in range(yMax - yMin+1): #na koniec sortujemy podlug kubelkow tablice
+        y = lastIndex
+        while y < buckets[x] + lastIndex:
+            tab[y] = x+yMin
+            y += 1
+        lastIndex = y
+            </pre>
+        </div>
+
+    </body>
+</html>

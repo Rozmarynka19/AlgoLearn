@@ -1,0 +1,46 @@
+<h1>Sterta</h1>
+
+
+<div>
+Sterta wyróżnia dwa rodzaje:<br>
+-sterta minimalna gdzie wartości są układane od najmniejszej do największej<br>
+-sterta maksymalna gdzie wartości sa układane od największej do najmniejszej<br>
+1.Do wykonania stery potrzebujemy tablicy lub listy z wartościami.<br>
+2.Z posiadanych wartości tworzymy drzewo binarne dodając wartości kolejno od lewej strony.<br>
+3.Po utworzeniu drzewa sprawdzamy dwie sąsiadujące wartości i porównujemy która jest mniejsza w przypadku drzewa minimalnego lub większa w przypadku maksymalnego.<br>
+4.Po ustaleniu mniejszą lub większą wartość porównujemy z rodzicem. Załóżmy że tworzymy drzewo minimalne i chcemy sprawdzić czy rodzic jest mniejszy. 
+Aby to zrobić bierzemy indeks i danej wartości i dzielimy przez 2 zaokrąglając w dół. <br>
+5.Jeśli nadal nasza wartość jest mniejsza wykonujemy operacje ponownie, jeśli nie zamieniamy wartości miejscami.<br>
+6.Wykonujemy analogiczną operację dla wszystkich liści.
+</div>
+<h2>Przykład</h2>
+<div>
+<img src="budowa.gif"></img>
+</div>
+<h2>Sterta maksymalna</h2>
+<div>
+<img src="maxheap.gif"></img>
+</div>
+<h2>Usuwanie maksymalnej wartości</h2>
+<div>
+<img src="hdel.gif"></img>
+</div>
+<h2>Dodawanie wartości</h2>
+<div>
+Dodajmy np liczbę 12.<br>
+Zgodnie z poprzednimi punktami dodajemy ją na najbliższe wolne miejsce i sprawdzamy czy tam pasuje.<br>
+<img src="hadd.gif"></img>
+</div>
+<h2>Sortowanie przez kopcowanie</h2>
+<div>
+Jeśli usuniemy teraz wszystkie wartości, a otrzymane wartości dodamy do tablicy,<br>
+zostanie ona posortowana od największej do najmniejszej wartości. Jeśli to samo zrobimy <br>
+z kopcem minimalnym tablica będzie posortowana od najmniejszej do największej wartości.<br>
+<img src="hsort.gif"></img>
+</div>
+<style>
+h1 {text-align: center;}
+h2 {text-align: center;}
+img {text-align: center;}
+div {text-align: center;}
+</style>

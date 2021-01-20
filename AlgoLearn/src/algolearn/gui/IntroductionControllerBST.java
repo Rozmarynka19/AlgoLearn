@@ -44,10 +44,16 @@ public class IntroductionControllerBST extends FXMLDocumentController implements
         final String script;
         path= Paths.get("src/algolearn/gui/Html/BST.html");
         if(clicked_btn.getText().equals("Dodawanie Węzła")){
-            script="test1()";
+            script="insert()";
+        }
+        else if(clicked_btn.getText().equals("Usuwanie Węzła")){
+        	script="del()";
+        }
+        else if(clicked_btn.getText().equals("Wyszukiwanie Węzła")){
+        	script="search()";
         }
         else{
-            script="test2()";
+            script="intro()";
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "rotacje" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function complex_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "complex_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function fft_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "fft_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function complex_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "complex_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function fft_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "fft_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function complex_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "complex_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function fft_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "fft_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+    </style>
+    <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="complex_CPP">
+            <pre>
+Korzystamy z typu generycznego complex ze standardowej biblioteki.
+            </pre>
+        </div>
+
+        <div class="fft_CPP">
+            <pre>
+std::complex<double>* fft( double *x, int n){
+	if (n <= 1) {
+		 std::complex<double>* tmp = new std::complex<double>[n];
+		 for (int i = 0; i < n; i++) {
+			 tmp[i] = x[i];
+		 }
+		 return tmp;
+	}
+	double *even = new double[n / 2];
+	double *odd = new double[n / 2];
+	int k = 0;
+	for (int i = 0; i < n; i += 2, k++) {
+		even[k] = x[i];
+		odd[k] = x[i + 1];
+	}
+	
+	std::complex<double>* even1=fft(even, n/2);
+	std::complex<double>* odd1=fft(odd, n/2);
+	std::complex<double> *outputs = new std::complex<double>[n];
+	for (size_t k = 0; k < n / 2; ++k){
+		std::complex<double> t = std::polar(1.0, -2 * M_PI * k / n) * odd1[k];
+		outputs[k] = even1[k] + t;
+		outputs[k + n / 2] = even1[k] - t;
+	}
+	delete[]even;
+	delete[]odd;
+	delete[]odd1;
+	delete[]even1;
+	return outputs;
+}
+            </pre>
+        </div>
+
+        <!-- Java -->
+
+        <div class="complex_Java">
+            <pre>
+class Complex {
+    public double real;
+    public double imag;
+
+    public Complex() {
+        this(0, 0);
+    }
+
+    public Complex setReal(double real){
+        this.real=real;
+        if(imag==0)
+            return new Complex(real, 0);
+        else
+            return new Complex(real, imag);
+    }
+
+    public Complex(double r, double i) {
+        real = r;
+        imag = i;
+    }
+
+    public Complex add(Complex b) {
+        return new Complex(this.real + b.real, this.imag + b.imag);
+    }
+
+    public Complex sub(Complex b) {
+        return new Complex(this.real - b.real, this.imag - b.imag);
+    }
+
+    public Complex mult(Complex b) {
+        return new Complex(this.real * b.real - this.imag * b.imag, this.real * b.imag + this.imag * b.real);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%f;%f)", real, imag);
+    }
+}
+            </pre>
+        </div>
+
+        <div class="fft_Java">
+            <pre>
+static Complex[] fft2(double [] x, int n){
+    if (n <= 1) {
+        Complex [] tmp = new Complex[n];
+        for (int i = 0; i < n; i++) {
+            tmp[i]=new Complex();
+            tmp[i].setReal(x[i]);
+        }
+        return tmp;
+    }
+    double []even = new double[n / 2];
+    double []odd = new double[n / 2];
+    int k = 0;
+    for (int i = 0; i < n; i += 2, k++) {
+        even[k] = x[i];
+        odd[k] = x[i + 1];
+    }
+
+    Complex[] even1=fft2(even, n/2);
+    Complex[] odd1=fft2(odd, n/2);
+    Complex[] outputs = new Complex[n];
+    for (int j = 0; j < n / 2; ++j){
+        //Complex t = (1.0, -2 * Math.PI * k / n) * odd1[j];
+        double term = (-2 * PI * j) / (double) n;
+        Complex t = (new Complex(cos(term), sin(term)).mult(odd1[j]));
+        outputs[j] = even1[j].add(t);
+        outputs[j + n / 2] = even1[j].sub(t);
+    }
+    return outputs;
+}
+            </pre>
+        </div>
+
+        <!-- Python -->
+
+        <div class="complex_PY">
+            <pre>
+Liczby zespolone są uwzględnione w samym języku.
+            </pre>
+        </div>
+
+        <div class="fft_PY">
+            <pre>
+def fft(x):
+    n = len(x)
+    if n <= 1:
+        return x
+    even = fft(x[0::2])
+    odd = fft(x[1::2])
+    t = [exp(-2j * pi * k / n) * odd[k] for k in range(n // 2)]
+    return [even[k] + t[k] for k in range(n // 2)] + [even[k] - t[k] for k in range(n // 2)]
+            </pre>
+        </div>
+
+    </body>
+</html>

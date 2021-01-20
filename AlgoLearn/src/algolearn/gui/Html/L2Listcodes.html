@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function listClass_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "listClass_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function nodeClass_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "nodeClass_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function search_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "search_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function listClass_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "listClass_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function nodeClass_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "nodeClass_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function search_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "search_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function listClass_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "listClass_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function nodeClass_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "nodeClass_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function search_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "search_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+	</style>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="listClass_CPP">
+            <pre>
+struct LinkedList {
+	node* head;
+	node* tail;
+	int size;
+	LinkedList() {
+		this->head = nullptr;
+		this->tail = nullptr;
+		size = 0;
+	}
+	~LinkedList() {
+		while (size) RemoveFromTail();
+	}
+	void addToTail(int klucz, char znak);
+	void addToHead(int klucz, char znak);
+	void RemoveFromHead();
+	void RemoveFromTail();
+	char GetDataOfElement(int iterator);
+	node* SearchByTheKey(int klucz);
+    bool SearchAndDestroyNode(int klucz);
+    
+	void ReplaceData(int iterator, char znak) {
+		if (iterator<0 || iterator>size - 1) cout << "Wrong iterator - out of range." << endl;
+		else if (iterator == size - 1) tail->dane = znak;
+		else if (iterator == 0) head->dane = znak;
+		else {
+			node* temp = head;
+			for (int i = 0; i < iterator; i++) {
+				temp = temp->next;
+			}
+			temp->dane = znak;
+		}
+    }
+    
+    void AddInOrder(int klucz, char znak);
+    
+	int compare(int Data1, int Data2) {
+		if (Data1 < Data2) return -1;
+		else if (Data1 == Data2) return 0;
+		else return 1;
+	}
+	void ShowListFromHead() {
+		node* iterator = head;
+		while (iterator != nullptr) {
+			cout << iterator->kluczWezla << " " << iterator->dane << endl;
+			iterator = iterator->next;
+		}
+		cout << endl;
+	}
+	void ShowListFromTail() {
+		node* iterator = tail;
+		while (iterator != nullptr) {
+			cout << iterator->kluczWezla << " " << iterator->dane << endl;
+			iterator = iterator->previous;
+		}
+		cout << endl;
+	}
+};
+            </pre>
+        </div>
+
+        <div class="nodeClass_CPP">
+            <pre>
+struct node {
+	int kluczWezla;
+	char dane;
+	node* next;
+	node* previous;
+	node(int klucz, char znak) {
+		this->dane = znak;
+		this->kluczWezla = klucz;
+		this->next = nullptr;
+		this->previous = nullptr;
+	}
+};
+            </pre>
+        </div>
+
+        <div class="insert_CPP">
+            <pre>
+void addToTail(int klucz, char znak) {
+    node* wezel = new node(klucz, znak);
+    if (size == 0) {
+        this->head = wezel;
+        this->tail = wezel;
+    }
+    else {
+        tail->next = wezel;
+        wezel->previous = tail;
+        this->tail = wezel;
+    }
+    size++;
+}
+
+void addToHead(int klucz, char znak) {
+    node* wezel = new node(klucz, znak);
+    if (size == 0) {
+        this->head = wezel;
+        this->tail = wezel;
+    }
+    else {
+        head->previous = wezel;
+        wezel->next = head;
+        this->head = wezel;
+    }
+    size++;
+}
+
+void AddInOrder(int klucz, char znak) {
+    if (size == 0) { 
+        this->addToTail(klucz, znak);
+    }
+    else {
+        node* wezel = new node(klucz, znak);
+        node* current = head;
+
+        while (current != nullptr) {
+            if (compare(klucz, current->kluczWezla) < 0) {
+                if (current->previous != nullptr) {
+                    current->previous->next = wezel;
+                    wezel->previous = current->previous;
+
+                    wezel->next = current;
+                    current->previous = wezel;
+
+                    size++;
+                    current = nullptr;
+                }
+                else {
+                    addToHead(klucz, znak);
+                    delete wezel;
+                    current = nullptr;
+                }
+            }
+            else {
+                current = current->next;
+                if (current == nullptr) {
+                    delete wezel;
+                    addToTail(klucz, znak);
+                }
+            }
+
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <div class="delete_CPP">
+            <pre>
+void RemoveFromHead() {
+    if (size == 0) {
+        cout << "\nThe list is empty.\n\n";
+    }
+    else {
+        node* temp;
+        if (size == 1)
+            delete tail;
+        else {
+            temp = head->next;
+            delete head;
+            head = temp;
+        }
+        size--;
+    }
+}
+
+void RemoveFromTail() {
+    if (size == 0) {
+        cout << "\nThe list is empty.\n\n";
+    }
+    else {
+        node* temp;
+        if (size == 1)
+            delete head;
+        else {
+            temp = tail->previous;
+            delete tail;
+            tail = temp;
+        }
+        size--;
+    }
+}
+
+bool SearchAndDestroyNode(int klucz) {
+    node* temp = SearchByTheKey(klucz);
+    if (size == 0) {
+        cout << "The list is empty.\n\n";
+        return 1;
+    }
+    else if (temp == nullptr) {
+        return 1;
+    }
+    else if (temp == this->head) {
+        RemoveFromHead();
+        return 0;
+    }
+    else if (temp == this->tail) {
+        RemoveFromTail();
+        return 0;
+    }
+    else {
+        temp->previous->next = temp->next;
+        temp->next->previous = temp->previous;
+        delete temp;
+        size--;
+        return 0;
+    }
+}
+            </pre>
+        </div>
+
+        <div class="search_CPP">
+            <pre>
+char GetDataOfElement(int iterator) {
+    if (iterator<0 || iterator>size - 1) cout << "\nWrong iterator - out of range.";
+    else if (iterator == size - 1) return tail->dane;
+    else if (iterator == 0) return head->dane;
+    else {
+        node* temp = head;
+        for (int i = 0; i < iterator; i++) {
+            temp = temp->next;
+        }
+        return temp->dane;
+    }
+    return 0;
+}
+
+node* SearchByTheKey(int klucz) {
+    node* temp = head;
+    for (int i = 0; i < size; i++) {
+        if (compare(temp->kluczWezla, klucz) == 0)
+            return temp;
+        temp = temp->next;
+    }
+    return NULL;
+}
+            </pre>
+        </div>
+
+        <!-- Java -->
+
+        <div class="listClass_Java">
+            <pre>
+public class LinkedList{
+	node head;
+	node tail;
+	int size;
+	LinkedList(){
+		this.head = null;
+		this.tail = null;
+		size = 0;
+	}
+	void addToTail(int klucz, char znak){...}
+	void addToHead(int klucz, char znak){...}
+	void RemoveFromHead(){...}
+	void RemoveFromTail(){...}
+	char GetDataOfElement(int iterator){...}
+	node SzukajPoKluczu(int klucz){...}
+    int SearchAndDestroyNode(int klucz){...}
+    
+	void ReplaceData(int iterator, char znak){
+		if (iterator<0 || iterator>size - 1) System.out.println("Wrong iterator - out of range.");
+		else if (iterator == size - 1) tail.dane = znak;
+		else if (iterator == 0) head.dane = znak;
+		else{
+			node temp = head;
+			for (int i = 0; i < iterator; i++){
+				temp = temp.next;
+			}
+			temp.dane = znak;
+		}
+
+    }
+    
+    void AddInOrder(int klucz, char znak){...}
+    
+	int compare(int Data1, int Data2){
+		if (Data1 < Data2) return -1;
+		else if (Data1 == Data2) return 0;
+		else return 1;
+	}
+	void ShowListFromHead() {
+		node iterator =  head;
+		while(iterator != null) {
+			System.out.println(iterator.kluczWezla + " " + iterator.dane);
+			iterator = iterator.next;
+		}
+		System.out.println();
+	}
+	void ShowListFromTail() {
+		node iterator =  tail;
+		while(iterator != null) {
+			System.out.println(iterator.kluczWezla + " " + iterator.dane);
+			iterator = iterator.previous;
+		}
+		System.out.println();
+	}
+}
+            </pre>
+        </div>
+
+        <div class="nodeClass_Java">
+            <pre>
+public class node{
+	int kluczWezla;
+	char dane;
+	node next;
+	node previous;
+	node(int klucz, char znak){
+		this.dane = znak;
+		this.kluczWezla = klucz;
+		this.next = null;
+		this.previous = null;
+	}
+}
+            </pre>
+        </div>
+
+        <div class="insert_Java">
+            <pre>
+void addToTail(int klucz, char znak){
+    node wezel = new node(klucz, znak);
+    if (size == 0){
+        this.head = wezel;
+        this.tail = wezel;
+    }
+    else{
+        tail.next = wezel;
+        wezel.previous = tail;
+        this.tail = wezel;
+    }
+    size++;
+}
+
+void addToHead(int klucz, char znak){
+    node wezel = new node(klucz, znak);
+    if (size == 0){
+        this.head = wezel;
+        this.tail = wezel;
+    }
+    else{
+        head.previous = wezel;
+        wezel.next = head;
+        this.head = wezel;
+    }
+    size++;
+}
+
+void AddInOrder(int klucz, char znak){
+    //cout << size << endl;
+    if (size == 0){
+        //delete node; 
+        this.addToTail(klucz, znak);
+    }
+    else{ 
+        node wezel = new node(klucz, znak);
+        node current = head;
+
+        while (current != null){
+            if (compare(klucz, current.kluczWezla) < 0){
+                if (current.previous != null){
+                    current.previous.next = wezel;
+                    wezel.previous = current.previous;
+
+                    wezel.next = current;
+                    current.previous = wezel;
+
+                    size++;
+                    current = null;
+                }
+                else{
+                    addToHead(klucz, znak);
+                    //delete node;
+                    current = null;
+                }
+            }
+            else{
+                current = current.next;
+                if (current == null){
+                    //delete node;
+                    addToTail(klucz, znak);
+                }
+            }
+
+        }
+    }		
+}
+            </pre>
+        </div>
+
+        <div class="delete_Java">
+            <pre>
+void RemoveFromHead(){
+    if (size == 0){
+        System.out.print("\nThe list is empty.\n\n");
+    }
+    else{ 
+        node temp;
+        if (size == 1)
+            System.out.println("delete tail");
+        else{
+            temp = head.next;
+            System.out.println("delete head");
+            head = temp;
+        }
+        size--;
+    }
+}
+
+void RemoveFromTail(){
+    if (size == 0){
+        System.out.println("\nThe list is empty.\n\n");
+    }
+    else{
+        node temp;
+        if (size == 1)
+            System.out.println("delete head");
+        else{
+            temp = tail.previous;
+            System.out.println("delete tail");
+            tail = temp;
+        }
+        size--;
+    }
+}
+
+int SearchAndDestroyNode(int klucz){
+    node temp = SzukajPoKluczu(klucz);
+    if (size==0){
+        System.out.println("The list is empty.\n\n");
+        return 1;
+    }
+    else if (temp == null){
+        return 1;
+    }
+    else if (temp == this.head){
+        RemoveFromHead();
+        return 0;
+    }
+    else if (temp == this.tail){
+        RemoveFromTail();
+        return 0;
+    }
+    else{
+        temp.previous.next = temp.next;
+        temp.next.previous = temp.previous;
+        //delete temp;
+        size--;
+        return 0;
+    }
+}
+            </pre>
+        </div>
+
+        <div class="search_Java">
+            <pre>
+char GetDataOfElement(int iterator){
+    if (iterator<0 || iterator>size - 1) System.out.println("\nWrong iterator - out of range.");
+    else if (iterator == size - 1) return tail.dane;//return ToString(tail);//cout << tail->data << endl;
+    else if (iterator == 0) return head.dane;//return ToString(head);//cout << head->data << endl;
+    else{
+        node temp = head;
+        for (int i = 0; i < iterator; i++){
+            temp = temp.next;
+        }
+        return temp.dane;
+    }
+    return 0;
+}
+
+node SzukajPoKluczu(int klucz){
+    node temp = head;
+    for (int i = 0; i < size; i++){
+        if(compare(temp.kluczWezla, klucz)==0)
+            return temp;
+        temp = temp.next;
+    }
+    return null;
+}
+            </pre>
+        </div>
+
+
+        <!-- Python -->
+
+        <div class="listClass_PY">
+            <pre>
+class LinkedList:
+	def __init__(self):
+		self.head = None
+		self.tail = None
+		self.size = 0
+
+	def addToTail(self, klucz, znak):
+        ...
+        
+	def addToHead(klucz, znak):
+        ...
+        
+	def RemoveFromHead(self):
+        ...
+        
+	def RemoveFromTail(self):
+        ...
+        
+	def GetDataOfElement(self,iterator):
+        ...
+        
+	def SearchByTheKey(self,klucz):
+        ...
+        
+	def SearchAndDestroyNode(self,klucz):
+        ...
+        
+	def ReplaceData(self,iterator, znak):
+		if iterator<0 or iterator>self.size - 1:
+		   print("Wrong iterator - out of range.")
+		elif iterator == self.size - 1:
+			self.tail.dane = znak
+		elif iterator == 0:
+		   self.head.dane = znak;
+		else:
+			temp = self.head;
+			for i in range(iterator):
+				temp = temp.next;
+            temp.dane = znak;
+            
+	def AddInOrder(self,klucz, znak):
+        ...
+        
+	def compare (Data1,Data2):
+		if Data1 < Data2:
+			return -1;
+		elif Data1 == Data2:
+			return 0
+		else:
+            return 1;
+            
+	def ShowListFromHead(self):
+		iterator = self.head;
+		while iterator != None:
+			print(str(iterator.kluczWezla) + " " +str(iterator.dane))
+			iterator = iterator.next;
+        print("\n")
+        
+	def ShowListFromTail(self):
+		iterator = self.tail;
+		while iterator != None:
+			print(str(iterator.kluczWezla) + " " +str(iterator.dane))
+			iterator = iterator.previous;
+		print("\n")
+            </pre>
+        </div>
+
+        <div class="nodeClass_PY">
+            <pre>
+class node:
+	def __init__(self):
+		self.dane = None
+		self.kluczWezla = None
+		self.next = None
+		self.previous = None
+	def arguments(self, klucz, znak):
+		self.dane = znak
+		self.kluczWezla = klucz
+		self.next = None
+		self.previous = None
+            </pre>
+        </div>
+
+        <div class="insert_PY">
+            <pre>
+def addToTail(self, klucz, znak):
+    wezel=node()
+    wezel.arguments( klucz, znak)
+    if self.size == 0:
+        self.tail = wezel
+        self.head = wezel
+    else:
+        self.tail.next = wezel
+        wezel.previous = self.tail
+        self.tail = wezel
+    self.size=+1
+
+def addToHead(klucz, znak):
+    wezel = arguments(self,klucz, znak)
+    if self.size == 0:
+        self.head = wezel
+        self.tail = wezel
+    else:
+        self.head.previous = wezel
+        wezel.next = self.head
+        self.head = wezel
+    self.size=+1
+
+def AddInOrder(self,klucz, znak):
+    if self.size == 0: 
+        addToTail(klucz, znak);
+    else:
+        wezel = node(klucz, znak);
+        current = self.head;
+        while current != none:
+            if compare(klucz, current.kluczWezla) < 0:
+                if current.previous != none:
+                    current.previous.next = wezel
+                    wezel.previous = current.revious
+                    wezel.next = current;
+                    current.previous = wezel;
+                    self.size=+1
+                    current = None;
+                else:
+                    addToHead(klucz, znak);
+                    current = None;
+            else:
+                current = current.next;
+                if current == None:
+                    addToTail(klucz, znak);
+            </pre>
+        </div>
+
+        <div class="delete_PY">
+            <pre>
+def RemoveFromHead(self):
+    if self.size == 0:
+        print("\nThe list is empty.\n\n")
+    else:
+        temp=node();
+        if self.size > 0:
+            temp = self.head.next
+            self.head = temp
+        self.size=-1
+
+def RemoveFromTail(self):
+    if self.size == 0:
+        print("\nThe list is empty.\n\n")
+    else:
+        temp=node()
+        if self.size > 0:
+            temp = self.tail.previous;
+            self.tail = temp;
+        self.size=-1
+
+def SearchAndDestroyNode(self,klucz):
+    temp = SearchByTheKey(klucz)
+    if self.size == 0:
+        print("The list is empty.\n\n")
+        return 1;
+    elif temp == None:
+        return 1;
+    elif temp == self.head:
+        RemoveFromHead()
+        return 0;
+    elif temp == self.tail:
+        RemoveFromTail()
+        return 0;
+    else:
+        temp.previous.next = temp.next
+        temp.next.previous = temp.previous
+        self.size=-1
+        return 0;
+            </pre>
+        </div>
+
+        <div class="search_PY">
+            <pre>
+def GetDataOfElement(self,iterator):
+    if iterator<0 or iterator > self.size - 1:
+        print("\nWrong iterator - out of range.")
+    elif iterator == self.size - 1: return self.tail.dane;
+    elif iterator == 0: return self.head.dane;
+    else:
+        temp = self.head
+        for i in range(iterator):
+            temp = temp.next;
+        return temp.dane;
+    return 0;
+
+def SearchByTheKey(self,klucz):
+    temp = self.head;
+    for i in range(self.size):
+        if compare(temp.kluczWezla, klucz) == 0:
+            return temp;
+        temp = temp.next;
+    return None;
+            </pre>
+        </div>
+    </body>
+</html>
