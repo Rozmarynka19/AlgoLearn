@@ -356,7 +356,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     private void reloadArrows2(){
         for(int i=1;i<6;i++) {
             arrowList.get(i).clear();
-            for (int j = 0; j < buttonList.get(i).size() + 1; j++) {
+            for (int j = 0; j < buttonList.get(i).size()+1; j++) {
                 Arrow arrow = new Arrow();
                 if(buttonList.get(i).size()!=0) {
                     arrow.setEndX(findBaseX(buttonList.get(0).get(j).getText()) + 40); //błąd
