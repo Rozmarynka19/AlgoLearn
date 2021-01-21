@@ -33,7 +33,36 @@ public class errors {
 	public String searchNotFound = "Wyszukiwany węzeł nie istnieje";
 	public String searchHidden = "Wyszukiwany węzeł jest ukryty";
 	public String generateTree = "Wygenerowano losowe drzewo";
+	
+	public String selectedBinnaryTree = "Wybrano typ drzewa binarnego!";
+	public String minTree = "Kopiec zorientowany na minimum";
+	public String maxTree = "Kopiec zoreintowany na maksimum";
+	public String generateHeap = "Wygenerowano losowy kopiec binarny!";
+	public String restartHeap = "Zrestartowano kopiec binarny!";
+	public String addNodeHeap = "Dodano element do kopca binarnego!";
+	public String searchFoundHeap = "Znaleziono wyszukiwany element w kopcu!";
+	public String searchNotFoundHeap = "Nie znaleziono wyszukiwanego elementu w kopcu!";
+	public String deleteHeap = "Usuwanie elementu z kopca binarnego!";
+	public String deleteNotFoundHeap = "Nie znaleziono usuwanego elementu w kopcu!";
+	
+	public String waitUntilDone = "Poczakaj na wykonanie się bieżącej operacji!";
+	public String addUnsorted = "Dodano element do nieposortowanego zbioru!";
+	public String generateUnsortedArray = "Wygenerowano losowy nieposortowany zbiór!";
+	public String restartHeapSort = "Zrestartowano wizualizacje sortowania przez kopcowanie!";
 
+	public String step = "Krok: ";
+	
+	public String beginHeapBuild = "Rozpoczęto buidowanie kopca binarnego!";
+	public String heapBuildInProgress = "Trwa budowanie kopca binarnego!";
+	public String endHeapSort = "Budowanie kopca binarnego zakończyło się powodzeniem!";
+	
+	public String beginSort = "Rozpoczęto sortowanie przez kopcowanie!";
+	public String sortInProgress = "Trwa sortowanie przez kopcowanie!";
+	public String endSort = "Sortowanie przez kopcowanie zakończyło się powodzeniem!";
+	
+	public String foundSuccess = "Znaleziono wyszukiwaną wartość!";
+	public String foundFailure = "Nie znaleziono wyszukiwanego elementu!";
+	
 
 	//<--------------------Linked-list------------------------->
 	public String InputIsString = "Wprowadzona wartość nie jest liczbą!";
@@ -48,6 +77,10 @@ public class errors {
 	}
 	public String setupOperationInfo(String info, String value) {
 		return (infoDef+info+" [ "+value+" ]");
+	}
+	
+	public String getStep(int id, int max) {
+		return step+Integer.toString(id)+"/"+Integer.toString(max);
 	}
 	
 	public String maxHeightBST = "Osiągnięto maksymalną wysokość drzewa - Ograniczenia aplikacji!";
@@ -70,6 +103,7 @@ public class errors {
 	public String addedValueToBucket = " dodano wartość ";
 	public String bucketsAreSorted = "Posortowano wartości w kubełkach i wypisano posortowaną listę";
 	public String addedToBucketNotExist = "Wszystkie elementy z listy zostały już umieszczone w kubełkach!";
+	public String notEveryInBucket = "Nie wszystkie wartości znajdują się w kubełkach!";
 	public String notFoundInBucket = "Podana wartość nie znajduje się w kubełku!";
 	public String isFound = "Odnaleziono wartość ";
 	public String notFoundInUnsortedList = "Podana wartość nie istnieje!";
@@ -77,7 +111,67 @@ public class errors {
 	public String isReloaded = " z nieposortowanej listy";
 	public String isReloadedAndInBucket = "oraz kubełka";
 	public String isEmptyList = "Lista jest pusta!";
+	
+	//<-------------------- RBT ------------------------->
+
+	public static class rbtMsg
+	{
+		public rbtMsg() {
+			// TODO Auto-generated constructor stub
+		}
+		public String setupInformation(String info) {
+			return (infoDef+info);
+		}
+		//---------------- general -------------------------
+		public String infoDef = "Informacja: ";
+		public String msgTypeCongrats = "congrats";
+		public String msgTypeError = "error";
+		
+		//--------------------- headers ------------------
+		public String msgCongratsHeader = "Brawo!";
+		public String msgErrorHeader = "Błąd!";
+		
+		//----------------- guess game ------------------------
+		public String finishedGuessGame = "Brawo, Mistrzu, za odgadnięcie wartości wszystkich węzłów!";
+		public String selectNodeFirst = "Najpierw zaznacz węzeł, którego wartość chcesz odgadnąć!";
+		public String goodCall = "Brawo! Tu faktycznie powinna być liczba ";
+		public String wrongCall = "Niestety, tutaj nie może być liczba ";
+		
+		//--------------- buttons -----------------------------
+		public String generateDone = "Wygenerowano nowy przykład.";
+		public String restartDone = "Zrestartowano wizualizację.";
+		public String gameModeOn = "Tryb gry włączony.";
+		public String gameModeOff = "Tryb gry wyłączony.";
+		
+		//--------------- generate -----------------------------
+		public String delInProgress = "Zaczekaj, aż usuwanie zakończy działanie!";
+		public String pathTNotDone = "Musisz zaczekać na wykonanie się animacji!";
+		
+		//--------------- search -----------------------------
+		public String nodeNotFound = "Nie znaleziono węzła o kluczu ";
+		public String nodeFound = "Znaleziono węzeł o kluczu ";
+		public String emptyTree = "Drzewo jest puste!";
+		
+		//--------------- deletion -----------------------------
+		public String nodeDeletedPart1 = "Węzeł ";
+		public String nodeDeletedPart2 = " został zastąpiony przez swojego poprzednika, a następnie usunięty!";
+		
+		//--------------- insertion -----------------------------
+		public String nodeAlredyExistsPart1 = "Węzeł o kluczu ";
+		public String nodeAlredyExistsPart2 = " już istnieje!";
+		public String nodeInserted = "Wstawiono węzeł o kluczu ";
+		public String valueNotGiven = "Nie podano wartości węzła!";
+		public String acceptableValues = "Dozwolone wartości węzła: liczby całkowite z przedziału <1,99>";
+		public String unknownNodeSelected = "Zaznaczono węzeł z niewiadomą wartością klucza.";
+		public String knownNodeSelected = "Zaznaczono węzeł z o kluczu ";
+		
+	}
+	
+	//<--------------------Counting-Sort------------------------->
+	public String exceedValueCS = "Zakres wartości od 0-10!";
+	public String exceedMaxSizeCS = "Liczba wartości przekracza 16!";
+	public String notCounted = "Wartości nie zostały jeszcze zliczone!";
+	public String isGenerated = "Lista została wygenerowana";
+	public String isCounted = "Wartości w liście zostały policzone";
+	public String isSorted = "Wartości zostały posortowane według ilości zliczeń";
 }
-
-
-

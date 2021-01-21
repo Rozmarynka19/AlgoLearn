@@ -1,330 +1,95 @@
 package algolearn.gui;
 
-import algolearn.gui.main_window;
-import algolearn.gui.algorithms.rbt.RBPane;
 import algolearn.gui.algorithms.rbt.RedBlackTree;
 import algolearn.gui.algorithms.rbt.TreeNode;
+import algolearn.gui.info.errors;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.FillTransition;
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.PathTransition;
 import javafx.animation.StrokeTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
-public class FXMLDocumentController_RBT {
-	private double [] scene_base = {300, 300}; 
-	public double [] scene_max = {300, 1123};
-	private boolean resize_locker = false;
-    @FXML
-    private Stage stage, secStage;
-    @FXML
-    private Button btn, wpr, opi, wiz;
-    private String btn_id = "NULL";
-    /* Dane dotyczace progressu - tymczasowo false - wymaga implemntacji zapisu i wczytywania danych z pliku*/
-    private boolean[][] category_data =  {
-    		{false, false, false},
-    		{false, false, false},
-    		{false, false, false},
-    		{false, false, false},
-    		{false, false, false},
-    		{false, false, false},
-    		{false, false, false},
-    		{false, false, false}, 
-    		{false, false, false}, 
-    };
-    private int algo_id = 0;
-    @FXML
-    private Text txtMainTitle, txtProgress;
-    private String txtMainTitleString = "Algolearn - ", txtProgressString = "/100";
-    
-    
-    @FXML /* Expand window */
-    private void handleButtonAction(ActionEvent event) throws Exception {
-        Stage stage = (Stage) btn.getScene().getWindow();
-        this.stage = stage;
-        Button clicked_btn = (Button)event.getSource();
-        String btn_val = clicked_btn.getId();
-        this.algo_id = Integer.parseInt(btn_val);
-        if(this.btn_id == "NULL") this.btn_id = btn_val;
-        if(stage.getWidth() < scene_max[1] && this.resize_locker == false) {
-        	resize(stage, scene_max[1], (double)15, 1, 3);
-        	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
-        	categorySetBackground();
-        	setProgress(calculateProgress());
-        }
-        else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id)  {
-        	resize(stage, scene_base[1], (double)-15, 1, 3);
-        }else if(clicked_btn.getId() != btn_id) {
-        	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
-        	categorySetBackground();
-        	setProgress(calculateProgress());
-        }
-        this.btn_id = clicked_btn.getId();
-    }
-    
-    @FXML
-    private void minimalizeWindow(ActionEvent event) {
-    	((Stage)(((Button)event.getSource()).getScene().getWindow())).setIconified(true);
-    }
-    
-    @FXML
-    //id for each top AnchorPane element in every window-fxmlFile
-    //necessary for switching between windows
-    private AnchorPane anchorPaneRoot; 
-    @FXML
-    private StackPane parentContainer;
-    @FXML
-    private ProgressBar progressBar;
-
-    @FXML
-    private void categorySetBackground(){
-    	wpr.getStyleClass().clear();
-    	wiz.getStyleClass().clear();
-    	opi.getStyleClass().clear();
-    	
-    	if(category_data[this.algo_id][0] == false)
-    		wpr.getStyleClass().add("wprowadzenie");
-    	else if(category_data[this.algo_id][0] == true)
-    		wpr.getStyleClass().add("wprowadzenie2");
-    	
-    	if(category_data[this.algo_id][1] == false)
-    		opi.getStyleClass().add("opis");
-    	else if(category_data[this.algo_id][1] == true)
-    		opi.getStyleClass().add("opis2");
-    	
-    	if(category_data[this.algo_id][2] == false)
-    		wiz.getStyleClass().add("wizualizacja");
-    	else if(category_data[this.algo_id][2] == true)
-    		wiz.getStyleClass().add("wizualizacja2");	
-    	
-    }
-    
-    @FXML /* Expand window */
-    private void handleCloseWindowAction(ActionEvent event) throws Exception {
-    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-    }
-    
-    /* Resize window */
-    private void resize(Stage stage, double width, double speed, int delay, int wait) {
-    	this.resize_locker = true;
-    	Timer animTimer = new Timer();
-        animTimer.scheduleAtFixedRate(new TimerTask() {
-        double inc_widht = speed;
-        @Override
-        public void run() {
-        	if ((stage.getWidth() != width )) {
-                	if(inc_widht > 0 && stage.getWidth() + inc_widht > width  ||
-                			inc_widht < 0 && stage.getWidth() - inc_widht < width)
-                		inc_widht = width - stage.getWidth();
-                    stage.setWidth((double)stage.getWidth()+(double)inc_widht);
-                }
-                else {
-                    this.cancel();
-                }
-            }
-
-        }, delay, wait);
-    	this.resize_locker = false;
-    }
-
-    public void handleProgress(ActionEvent event) {
-    	Button clicked_btn = (Button)event.getSource();
-    	String id = clicked_btn.getId();
-    	
-    	if(id.equals(wpr.getId())) 
-    		category_data[this.algo_id][0] = category_data[this.algo_id][0] ? false : true;
-    	else if(id.equals(opi.getId())) 
-    		category_data[this.algo_id][1] = category_data[this.algo_id][1] ? false : true;
-    	else if(id.equals(wiz.getId())) 
-    		category_data[this.algo_id][2] = category_data[this.algo_id][2] ? false : true;
-    	
-    	setProgress(calculateProgress());
-    	int prog = (int)(calculateProgress() * 100);
-    	categorySetBackground();
-    	txtProgress.setText(Integer.toString(prog)+txtProgressString);
-    }
-    
-    private double calculateProgress() {
-    	int count_done = 0;
-    	for(int i = 0 ; i < 3; i++)
-    		if(category_data[this.algo_id][i] == true) 
-    			count_done++;
-    	switch(count_done) {
-    		case 1:
-    			return 0.33;
-    		case 2:
-    			return 0.66;
-    		case 3:
-    			return 1.0;
-    		default:
-    			return 0;
-    	}
-    }
-    
-    
-    private void setProgress(double progress) {
-    	Timeline timeline = new Timeline();
-    	KeyValue keyValue = new KeyValue(progressBar.progressProperty(), progress);
-    	KeyFrame keyFrame = new KeyFrame(new Duration(1000), keyValue);
-    	timeline.getKeyFrames().add(keyFrame);
-
-    	timeline.play();
-    }
-    
-    @FXML
-    public void pressButtonDescription(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/description_fxml.fxml"));
-    	AnchorPane anchorPane = loader.load();
-    	setScreen(anchorPane);
-    }
-
-    @FXML
-    public void pressButtonIntroduction(ActionEvent event) throws Exception {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/introduction_fxml.fxml"));
-    	AnchorPane anchorPane = loader.load();
-    	setScreen(anchorPane);
-    }
-
-    @FXML
-    public void pressButtonVisualization(ActionEvent event) throws Exception {
-      	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/visualisation_fxml.fxml"));
-    	AnchorPane anchorPane = loader.load();
-    	setScreen(anchorPane);
-    }
-    
-    public void setMouse(Parent root, Stage stage) {
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-            	main_window.window_x_offset = event.getSceneX();
-            	main_window.window_y_offset = event.getSceneY();
-            }
-        });
-        
-       root.setOnMouseDragged((EventHandler<? super MouseEvent>) new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - main_window.window_x_offset);
-                stage.setY(event.getScreenY() - main_window.window_y_offset);
-            }
-        });
-    }
-    
-    public void setStyle(Stage stage) {
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setResizable(false);
-        stage.getIcons().add(new Image(this.getClass().getResourceAsStream("img/app_ico.png")));
-        /* Start position of window */
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX((screenBounds.getWidth() - scene_max[1]) / 2);
-        stage.setY(screenBounds.getHeight()/2 - scene_max[0]);
-    }
-    
-    public void loadMenu()
-    {
-		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml/main_fxml.fxml"));
-		AnchorPane anchorPane = null;
-		try {
-			anchorPane = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		setScreen(anchorPane);
-    }
-    
-	public void setScreen(AnchorPane anchorPane) {
-		anchorPaneRoot.getChildren().clear();
-		anchorPaneRoot.getChildren().add(anchorPane);
-	}
+public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	
-	@FXML
-    public void BackToMainStage(ActionEvent event) {
-    	loadMenu();
-    }
+	private boolean generateDone = true;
+	private boolean deleteInProgress = false;
+	private boolean pathTransitionDone = true;
+	private errors.rbtMsg msg = new errors.rbtMsg();
 	
-	// ------------------------------------- RBT vis --------------------------------------------------------
+	@FXML AnchorPane visAnchorPane;
+	@FXML private ProgressBar generateBar;
+	@FXML TextField insertTextField;
+	@FXML TextField deleteTextField;
+	@FXML TextField searchTextField;
+	@FXML TextField unknownTextField;
+	@FXML Button addButton;
+	@FXML Button deleteButton;
+	@FXML Button searchButton;
+	@FXML Button unknownButton;
+	@FXML Button letsPlayButton;
+	@FXML Button hiddenValues;
+	@FXML Button restartButton;
+	@FXML Button backButton;
 	
-	@FXML
-	Pane visPane;
+	//--------- Msg box stuff ----------
+	@FXML Text txtMainTitle;
+	@FXML TextArea msgTextArea;
+	
+	//---------- Infoline stuff ----------
+	@FXML Text info;
+	@FXML ScrollPane infoScrollPane;
+	
+	
 	
     private RedBlackTree<Integer> tree= new RedBlackTree<>(this);
     private ArrayList<Integer> nodes = new ArrayList<>();
     private double radius = 15;
     private double vGap = 50;
+    private int minInputRange = 1;
+    private int maxInputRange = 99;
+    private int maxRandomNodes = 15;
+    private ArrayList<Integer> hiddenNodes = new ArrayList<>();
+    private ArrayList<Integer> indexesOfHiddenNodes = new ArrayList<>();
+    private int maxHiddenValues = 2;
+    private double bias = 35/2;
+    private Button selectedButton=null;
     
 	private Circle hintCricle = null;
 	
-//	@FXML
-//	public void generate()
-//	{
-////	    public void start(Stage primaryStage){
-////		visPane.setBackground(new Background(new BackgroundFill(Color.web("#" + "FFFFFF"), CornerRadii.EMPTY, Insets.EMPTY)));
-//	     	tree 
-//	     	nodes
-////	        BorderPane pane = new BorderPane();
-////	        RBPane view = new RBPane(tree);
-////	        setPane(pane, view, tree);
-////	        setStage(pane, primaryStage, "RedBlackTree Visualisation");
-//	        
-////	        Alert alert = new Alert(Alert.AlertType.INFORMATION,"This is a RedBlackTree Visualiser created by Ankit Sharma. This demonstrates the operations of insertion and deletion.\n\n" +
-////	                "Insert button inserts a node, delete button deletes a node", ButtonType.OK);
-////	        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-////	        alert.show();
-//	 }
-    
-	//	private Path createMovePath() {
-	//	Path path = new Path();
-	//	path.getElements().add(new MoveTo(tree.getRoot().x, tree.getRoot().y));
-	//	return path;
-	//}
-	
-//    public void highlightNode(double nodeX, double nodeY, Color color,int e)
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		if (infoScrollPane == null)
+			return;
+		infoScrollPane.getStyleClass().clear();
+		infoScrollPane.getStyleClass().add("infoScrollPane");
+	}
+
 	public void highlightNode(Integer index,Color color)
     {
     	displayTree();
@@ -337,35 +102,23 @@ public class FXMLDocumentController_RBT {
     	hintCricle = new Circle(node.x,node.y,radius+5, new Color(0, 0, 0, 0));
 		hintCricle.setStroke(color);
 		hintCricle.setStrokeWidth(3.0);
-		visPane.getChildren().add(hintCricle);
+		visAnchorPane.getChildren().add(hintCricle);
 		
 		FadeTransition ft = new FadeTransition(Duration.millis(1000),hintCricle);
 		ft.setFromValue(1);
 		ft.setToValue(0);
 		ft.setOnFinished(e->tree.ensureRBTree(index));
 		ft.play();
-		
-//		PathTransition pathT = new PathTransition();
-//		pathT.setDuration(Duration.millis(5000));
-//		pathT.setPath(tree.path);
-//		pathT.setNode(hintCricle);
-//		pathT.setCycleCount(1);
-//		pathT.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-//		pathT.setAutoReverse(false);
-//		pathT.play();
     }
 
 	
-	public void animateSearch(boolean isNodeFound) {
-	//	if(hintCricle == null) return;
-	//	Path path = createMovePath();
-	//	for(int i=0;i<nodes.size();i++)
-	//		path.getElements().add(new LineTo(c[0], c[1]));
-		
-		hintCricle = new Circle(tree.root.x,tree.root.y,radius+5, new Color(0, 0, 0, 0));
+	public void animateSearch(boolean isNodeFound) {	
+		if(tree.root==null)
+			return;
+		hintCricle = new Circle(tree.root.x,tree.root.y,radius+10, new Color(0, 0, 0, 0));
 		hintCricle.setStroke(Color.GREEN);
 		hintCricle.setStrokeWidth(3.0);
-		visPane.getChildren().add(hintCricle);
+		visAnchorPane.getChildren().add(hintCricle);
 		
 		StrokeTransition ft = new StrokeTransition(Duration.millis(500),hintCricle,Color.GREEN,Color.RED);
 		ft.setCycleCount(1);
@@ -373,6 +126,8 @@ public class FXMLDocumentController_RBT {
 		
 		PathTransition pathT = new PathTransition();
 		pathT.setDuration(Duration.millis(1000));
+		if(tree.path.getElements().size()<=2)
+			tree.path.getElements().add(new LineTo(406.0,51.0));
 		pathT.setPath(tree.path);
 		pathT.setNode(hintCricle);
 		pathT.setCycleCount(1);
@@ -381,95 +136,95 @@ public class FXMLDocumentController_RBT {
 		if(!isNodeFound)
 			pathT.setOnFinished(e -> ft.play());
 		pathT.play();
-		
-//		visPane.getChildren().remove(hintCricle);
 	}
 	
-	@FXML
-	TextField insertTextField;
-	@FXML
-	TextField deleteTextField;
-	@FXML
-	TextField searchTextField;
 	
 	@FXML
-	public void insert(KeyEvent k) {
-		 if (k.getCode().equals(KeyCode.ENTER))
-         {
-			 if(insertTextField.getText().length() == 0) {
-		            Alert alert = new Alert(Alert.AlertType.INFORMATION, "You haven't entered anything!", ButtonType.OK);
-		            alert.getDialogPane().setMinHeight(80);
-		            alert.show();
-		        }
-		        else {
-		            int key = Integer.parseInt(insertTextField.getText());
-		            nodes.add(key);
-		            if (tree.search(key)) {
-		                displayTree();
-//		                view.setStatus(key + " is already present!");
-		            } else {
-//		            	System.out.println("Inserting...");
-		                tree.insert(key);
-		                displayTree();
-//		                tree.path.getElements().clear();
-//		                tree.search(key);
-//			            animateSearch();
-		                
-//		                setStatus(key + " is inserted!");
-		            }
-		            insertTextField.clear();
-		            
-		        }
-         }
+    public void insert(ActionEvent event) {
+		int key = validateInput(insertTextField);
+		
+		if(key<0)
+			return;
+		else
+        {        	
+            nodes.add(key);
+            if (tree.search(key)) 
+            {
+                displayTree();
+                info.setText(msg.setupInformation(msg.nodeAlredyExistsPart1+key+msg.nodeAlredyExistsPart2));
+            } 
+            else 
+            {
+                tree.insert(key);
+                displayTree();
+                
+                info.setText(msg.setupInformation(msg.nodeInserted+key));
+            }
+            insertTextField.clear();
+            
+        }
     }
 	
 	@FXML
-	public void delete(KeyEvent k){
-		if (k.getCode().equals(KeyCode.ENTER))
-        {
-	         int key = Integer.parseInt(deleteTextField.getText());
-	         if(!tree.search(key)){
-	             displayTree();
-//	             view.setStatus(key +" is not present!");
-	         }
-	         else{
-	             tree.delete(key);
-	             displayTree();
-//	             view.setStatus(key+" is replaced by its predecessor and is deleted!");
-	         }
-	         deleteTextField.clear();
+	public void delete(ActionEvent event) {
+		int key = validateInput(deleteTextField);
+		
+		if(key<0)
+			return;
+		else
+        {      
+         if(!tree.search(key)){
+             displayTree();
+             info.setText(msg.setupInformation(msg.nodeNotFound+key));
+         }
+         else{
+             tree.delete(key);
+             displayTree();
+             info.setText(msg.setupInformation(msg.nodeDeletedPart1+key+msg.nodeDeletedPart2));
+         }
+         deleteTextField.clear();
         }
+
      }
 	
 	@FXML
-	public void search(KeyEvent k)
-	{
-		if (k.getCode().equals(KeyCode.ENTER))
-        {
-	         int key = Integer.parseInt(searchTextField.getText());
-	         boolean isNodeFound;
-             tree.path.getElements().clear();
-	         if(!tree.search(key)){
-	        	 isNodeFound=false;
-//	             view.setStatus(key +" is not present!");
-	         }
-	         else{
-	        	 isNodeFound=true;
-//	             view.setStatus(key +" is present!");
-	         }
-             displayTree();
-	         searchTextField.clear();
-	         animateSearch(isNodeFound);     
+	public void search(ActionEvent event) {
+		int key = validateInput(searchTextField);
+		
+		if(key<0)
+			return;
+		else
+        {               
+		 boolean isNodeFound;
+		 tree.path.getElements().clear();
+		 if(!tree.search(key)){
+			 isNodeFound=false;
+			 if(tree.root==null)
+				 info.setText(msg.setupInformation(msg.emptyTree));
+			 else
+				 info.setText(msg.setupInformation(msg.nodeNotFound+key));
+		 }
+		 else{
+			 isNodeFound=true;
+			 info.setText(msg.setupInformation(msg.nodeFound+key));
+		 }
+		 displayTree();
+		 searchTextField.clear();
+		 
+		 System.out.println("Path size: " + String.valueOf(tree.path.getElements().size()));
+		 for(int i=0;i<tree.path.getElements().size();i++)
+			 System.out.println(tree.path.getElements().get(i));
+		 animateSearch(isNodeFound);     
         }
     }
 	
 	
 	public void displayTree(){
-		visPane.getChildren().clear();
+		visAnchorPane.getChildren().clear();
 	    if(tree.getRoot() != null){
-	    	tree.getRoot().x=visPane.getWidth() / 2;
+	    	tree.getRoot().x=visAnchorPane.getWidth() / 2;
 	    	tree.getRoot().y=vGap;
-	        displayTree(tree.getRoot(), tree.getRoot().x, tree.getRoot().y, visPane.getWidth() / 4);
+	        displayTree(tree.getRoot(), tree.getRoot().x, tree.getRoot().y, visAnchorPane.getWidth() / 4);
 	    }
 	}
 	
@@ -477,26 +232,331 @@ public class FXMLDocumentController_RBT {
 	    if(root.left != null){
 	    	root.left.x= x - hGap;
 	    	root.left.y= y + vGap;
-	    	visPane.getChildren().add(new Line(x - hGap, y + vGap, x, y));
+	    	visAnchorPane.getChildren().add(new Line(x - hGap, y + vGap, x, y));
 	        displayTree(root.left, root.left.x, root.left.y, hGap / 2);
 	    }
 	
 	    if (root.right != null){
 	    	root.right.x=x + hGap;
 	    	root.right.y=y + vGap;
-	    	visPane.getChildren().add(new Line(x + hGap, y + vGap, x, y));
+	    	visAnchorPane.getChildren().add(new Line(x + hGap, y + vGap, x, y));
 	        displayTree(root.right, root.right.x, root.right.y, hGap / 2);
 	    }
 	
 	    tree.getRed(root);
 	
-	    Circle circle = new Circle(x, y, radius);
-	    circle.setStroke(Color.BLACK);
+	    Button node = new Button();
+	    node.setLayoutX(x-bias);
+	    node.setLayoutY(y-bias);
+	    
+	    node.getStyleClass().clear();
 	    if(tree.getRed(root))
-	        circle.setFill(Color.INDIANRED);
-	    else circle.setFill(Color.GRAY);
-	    visPane.getChildren().addAll(circle, new Text(x - 4, y + 4, root.element + ""));
+	    	node.getStyleClass().add("rbtNodeRed");
+	    else
+	    	node.getStyleClass().add("rbtNodeBlack");
+	    
+	    
+	    boolean found = false;
+	    for(int i=0;i<hiddenNodes.size();i++)
+	    {
+	    	if(hiddenNodes.get(i)==root.element)
+	    		found=true;
+	    }
+	    
+    	if(found)
+    	{
+	    	node.setText("?");
+	    	node.setAccessibleText(Integer.valueOf(root.element).toString());
+    	}
+    	else
+    		node.setText(root.element.toString());
+
+    	node.setOnMouseClicked(e -> 
+	    	{
+	    		selectedButton = (Button) e.getSource();
+	    		setCircle();
+	    		
+	    		if(selectedButton.getText()=="?")
+	    			info.setText(msg.setupInformation(msg.unknownNodeSelected));
+	    		else
+	    			info.setText(msg.setupInformation(msg.knownNodeSelected+selectedButton.getText()));
+	    	}
+		);
+	    visAnchorPane.getChildren().add(node);
 	}
 	
+    @FXML public void pressRandomBar() {
+    	if(generateDone == false)
+    		return;
+
+    	if(deleteInProgress) {
+			info.setText(msg.setupInformation(msg.delInProgress));
+			return;
+    	}
+		
+    	if(!pathTransitionDone) {
+		createMessageBox(msg.msgErrorHeader, msg.pathTNotDone, msg.msgTypeError);
+			return;
+		}
+    	
+    	generateBar.setProgress(0);
+    	
+    	blockButtons(true);
+    	
+    	generateDone = false;
+    	Timeline timeline = new Timeline();
+    	KeyValue keyValue = new KeyValue(generateBar.progressProperty(), 1);
+    	KeyFrame keyFrame = new KeyFrame(new Duration(1500), keyValue);
+    	timeline.getKeyFrames().add(keyFrame);
+    	timeline.setOnFinished(event->{
+    		blockButtons(false);
+        	switchToTheGameMode(false);
+
+        	restartVis(false);
+        	generateTree();
+    		this.displayTree();
+        	generateDone = true;
+        	info.setText(msg.setupInformation(msg.generateDone));
+    	});
+    	timeline.play();
+    }
+	
+    @FXML
+    public void restartVis()
+    {
+    	restartVis(false);
+    	info.setText(msg.setupInformation(msg.restartDone));
+    }
+    
+    private void restartVis(boolean isGameModeOn)
+    {
+    	switchToTheGameMode(isGameModeOn);
+    	this.tree.clear();
+    	this.nodes.clear();
+    	this.displayTree();
+    	hiddenNodes.clear();
+    	indexesOfHiddenNodes.clear();
+    }
+    
+    private void generateTree()
+    {
+    	int randomInteger;
+    	for(int i=0;i<maxRandomNodes;i++)
+    	{
+    		randomInteger = (int)(Math.random()*(maxInputRange-1)+1);
+            if (!tree.search(randomInteger))
+            {
+            	tree.insert(randomInteger);
+            	nodes.add(randomInteger);
+            }
+        		
+    	}
+    }
+    
+    @FXML
+    public void letsPlay(ActionEvent event)
+    {
+    	restartVis(true);
+    	generateTree();
+    	
+    	int randomIndex;
+    	outer:
+    	for(int i=0;i<maxHiddenValues;i++)
+    	{
+    		randomIndex = (int)(Math.random()*(nodes.size()-1));
+    		System.out.println("Index: "+randomIndex+" Value: "+nodes.get(randomIndex));
+    		for(int j=0;j<indexesOfHiddenNodes.size();j++)
+    			if(indexesOfHiddenNodes.get(j)==randomIndex)
+    			{
+    				i--;
+    				continue outer;
+    			}
+    		indexesOfHiddenNodes.add(randomIndex);
+    		hiddenNodes.add(nodes.get(randomIndex));
+    	}
+    	
+    	displayTree();
+    	displayHiddenValues();
+    }
+    
+    private void displayHiddenValues()
+    {
+    	String hiddenValuesText="Ukryte liczby: [";
+    	for(int i=0;i<hiddenNodes.size();i++)
+    	{
+    		hiddenValuesText+=hiddenNodes.get(i).toString();
+    		if(i!=hiddenNodes.size()-1)
+    			hiddenValuesText+=",";
+    	}
+    	hiddenValuesText+="]";
+    	hiddenValues.setText(hiddenValuesText);
+    }
+    
+    @FXML
+    public void guessValue()
+    {    	
+		int input = validateInput(unknownTextField);
+		
+		if(input<0)
+			return;
+		else
+        {   
+			if(selectedButton!=null && selectedButton.getAccessibleText()!=null)
+	    	{
+	    		if(input == Integer.parseInt(selectedButton.getAccessibleText()))
+	    		{
+	    			selectedButton.setText(selectedButton.getAccessibleText());
+	    			selectedButton.setAccessibleText(null);
+	    			for(int i=0;i<hiddenNodes.size();i++)
+	    				if(hiddenNodes.get(i)==input)
+	    				{
+	    					hiddenNodes.remove(i);
+	    					break;
+	    				}
+	    			displayHiddenValues();
+	    			displayTree();
+	    			System.out.println("brawo! tu faktycznie powinna byc liczba "+input);
+	    			info.setText(msg.setupInformation(msg.goodCall + input));
+	    		}
+	    		else
+	    		{
+	    			System.out.println("tu nie powinna byc liczba "+input);
+	    			info.setText(msg.setupInformation(msg.wrongCall + input));
+	    		}
+	    	}
+	    	else
+	    	{
+	    		System.out.println("najpierw zaznacz wezel, ktore wartosc chcesz odgadnac");
+	    		createMessageBox(msg.msgErrorHeader, msg.selectNodeFirst , msg.msgTypeError);
+	    		
+	    	}
+	    	unknownTextField.clear();
+	    	
+	    	if(hiddenNodes.size()<=0)
+	    	{
+	    		switchToTheGameMode(false);
+	        	
+	        	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
+	        	createMessageBox(msg.msgCongratsHeader, msg.finishedGuessGame , msg.msgTypeCongrats);
+	    	}
+        }
+    	
+    }
+    
+    private void setCircle()
+    {
+    	System.out.println("setCircle: selectedButton-Text: "+selectedButton.getText()+
+    						", selectedButton-AccesibleText: "+selectedButton.getAccessibleText()
+    			);
+    	
+    	int val=0;
+    	if(selectedButton.getText()=="?")
+    		val = Integer.parseInt(selectedButton.getAccessibleText());
+    	else
+    		val = Integer.parseInt(selectedButton.getText());
+    	System.out.println("setCircle: "+String.valueOf(val));
+    	
+    	tree.path.getElements().clear();
+    	tree.search(val);
+        displayTree();
+        animateSearch(true);   
+    }
+    
+    private void switchToTheGameMode(boolean isGameModeActivated)
+    {
+    	if (isGameModeActivated)
+    		info.setText(msg.setupInformation(msg.gameModeOn));
+    	else
+    		info.setText(msg.setupInformation(msg.gameModeOff));
+    	
+    	letsPlayButton.setDisable(isGameModeActivated);
+    	letsPlayButton.setVisible(!isGameModeActivated);
+    	unknownTextField.setDisable(!isGameModeActivated);
+    	unknownTextField.setVisible(isGameModeActivated);
+    	unknownButton.setDisable(!isGameModeActivated);
+    	unknownButton.setVisible(isGameModeActivated);
+    	
+    	addButton.setDisable(isGameModeActivated);
+    	deleteButton.setDisable(isGameModeActivated);
+    	searchButton.setDisable(isGameModeActivated);
+    	
+    	hiddenValues.setText("");
+    }
+    
+    private void blockButtons(boolean areButtonsBlocked)
+    {
+    	addButton.setDisable(areButtonsBlocked);
+    	deleteButton.setDisable(areButtonsBlocked);
+    	searchButton.setDisable(areButtonsBlocked);
+    	unknownButton.setDisable(areButtonsBlocked);
+    	restartButton.setDisable(areButtonsBlocked);
+    	backButton.setDisable(areButtonsBlocked);
+    	letsPlayButton.setDisable(areButtonsBlocked);
+    }
+    
+    private void createMessageBox(String header, String message, String msgBoxStyle)
+    {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/msg_fxml.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            FXMLDocumentController_RBT controller = (FXMLDocumentController_RBT)fxmlLoader.getController();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1));  
+            stage.show();
+            controller.txtMainTitle.setText(header);
+            controller.msgTextArea.setText(message);
+            if(msgBoxStyle==msg.msgTypeError)
+            {
+            	controller.txtMainTitle.getStyleClass().add("errorHeader");
+            	controller.msgTextArea.getStyleClass().add("errorText");
+            }
+            else if(msgBoxStyle==msg.msgTypeCongrats)
+            {
+            	controller.txtMainTitle.getStyleClass().add("congratsHeader");
+            	controller.msgTextArea.getStyleClass().add("congratsText");
+            }
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private int validateInput(TextField inputTextField)
+    {
+		 if(inputTextField.getText().length() == 0)
+		 {
+			 	createMessageBox(msg.msgErrorHeader, msg.valueNotGiven, msg.msgTypeError);
+			 	inputTextField.clear();
+			 	return -1;
+		 }
+
+    	int key;
+    	try
+    	{
+    		key = Integer.parseInt(inputTextField.getText());
+    	}
+    	catch (Exception e)
+    	{
+    		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
+    		inputTextField.clear();
+    		return -1;
+    	}
+    	
+    	if(key<minInputRange || key>maxInputRange)
+    	{
+    		createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
+    		inputTextField.clear();
+    		return -1;
+    	}
+    	
+    	inputTextField.clear();
+    	return key;
+    }
 
 }

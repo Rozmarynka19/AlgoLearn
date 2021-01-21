@@ -1,0 +1,53 @@
+def wypisz(tab):  # tworzymy metode do wypiswania zawartosci naszej tablicy
+    for el in tab:
+        print(el, end=" | ")
+ 
+ 
+def minMax(tab): #tworzymy funkcje znajdujaca najwiekszy i najmniejszy element
+    min = tab[0] #tworzymy zmienne pomocnicze
+    max = tab[0]
+    for el in tab:
+        if el > max: # a nastepnie sprawdzamy czy sa one wieksz, lub mniejsze od iterowanej wartosci
+            max = el
+        if el < min:
+            min = el
+    array = []
+    array.append(min) #na koniec wrzucamy je w tablice
+    array.append(max)
+    return array
+ 
+def sortujKub(tab, n):
+    minmax = minMax(tab)
+    yMin = minmax[0] #wyznaczamy min i max z tablicy
+    yMax = minmax[1]
+    buckets = [0] * (yMax - yMin+1) #nastepnie tworzymy tablice przechowujaca kubelki
+    print("Stworzono kubelki:")
+    for x in range(yMax - yMin+1):
+        print("B", (x+yMin), end=" | ")
+    print()
+    for x in range(n):
+        buckets[tab[x]-yMin] += 1 #zliczamy nastepnie ilosc wystapien dla kazdego z kubelkow
+    print("Zliczono elementy:")
+    for x in range(yMax - yMin+1):
+        print("B", (x+yMin), "=", buckets[x], end=" | ")
+    print()
+    lastIndex = 0
+    for x in range(yMax - yMin+1): #na koniec sortujemy podlug kubelkow tablice
+        y = lastIndex
+        while y < buckets[x] + lastIndex:
+            tab[y] = x+yMin
+            y += 1
+        lastIndex = y
+ 
+ 
+print("Podaj ilosc elementow tablicy:")
+a = int(input())
+tablica = []
+for i in range(a):
+    print("Podaj element nr. ", (i + 1))
+    tablica.append(int(input()))
+print("Oto twoja tablica:")
+wypisz(tablica)
+sortujKub(tablica, a)
+print("Oto twoja tablica po sortowaniu:")
+wypisz(tablica)

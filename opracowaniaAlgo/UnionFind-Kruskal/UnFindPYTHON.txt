@@ -1,0 +1,120 @@
+import numpy as np
+
+class Node:
+	parent=0
+	rank =0
+class Edge:
+	def __init__():
+		in1=0
+		in2=0;
+		weight=0.1
+class Union:
+	cykle = 0;
+	Z = Node()
+	def __init__(n):
+		Z = np.zeros(n)
+	def getCykles():
+		return cykle
+	def makeSet(v):
+		Z[v].parent = v
+		Z[v].rank = 0
+	def findCompr(v):
+		if Z[v].parent != v :
+			cykle+=1
+			Z[v].parent = findCompr(Z[v].parent);
+			return Z[v].parent
+		return Z[v].parent
+	def unionRank(e):
+		ru = findCompr(e.in1);
+		rv = findCompr(e.in2);
+		if Z[ru].rank < Z[rv].rank:
+			Z[ru].parent = rv
+		elif Z[ru].rank > Z[rv].rank:
+			Z[rv].parent = ru;
+		else:
+			Z[rv].parent = ru;
+			Z[ru].rank+=1
+	def find(v):
+		if Z[v].parent != v:
+			cykle+=1
+			return find(Z[v].parent);
+		return v;
+	def unionNormal(e):
+		ru = find(e.in1);
+		rv = find(e.in2);
+		Z[ru].parent = rv
+class Heap:
+	def __init__ (n):
+		heap = Edge[n];
+		hpos = 0;
+	def front():
+		return heap[0];
+	def push(e):
+		i = hpos
+		i+=1
+		j = (i - 1) / 2
+		while i>0 and (heap[j].weight > e.weight):
+			heap[i] = heap[j]
+			i = j;
+			j = (i - 1) / 2;
+		heap[i] = e;
+	def pop():
+		if hpos>0:
+			e = heap[--hpos];
+			i = 0;
+			j = 1;
+			while j < hpos:
+				if (j + 1 < hpos) and (heap[j + 1].weight < heap[j].weight):
+					j+=1
+				if e.weight <= heap[j].weight:
+					return
+					heap[i] = heap[j];
+					i = j;
+					j = (j * 2) + 1;
+				heap[i] = e;
+	class Tnode:
+		next = Tnode
+		v=0
+		weight=0.1
+	class MSTree:
+		def __init__():
+			A = Tnod
+			Alen = 0
+			weight = 0.1
+		def addEdge(e):
+			p = Tnode
+			weight += e.weight;
+			p = Tnode();
+			p.v = e.in2;
+			p.weight = e.weight;
+			p.next = A[e.in1];
+			A[e.in1] = p;
+
+			p = Tnode();
+			p.v = e.in1;
+			p.weight = e.weight;
+			p.next = A[e.in2];
+			A[e.in2] = p
+		def printUF():
+			i=0
+			p=Tnode
+			print("\n")
+			for i in range(Alen):
+				print("wierzcholek " + str(i) + " ")
+				p = A[i]
+				while p!=null:
+					print(p.v + ":" + p.weight + " ")
+					p = p.next
+				print("\n");
+			print("\n");
+			print("\n");
+			print("Minimalne drzewo rozpinające waga = " + str(weight))
+			print("\n");
+			print("\n");
+		def MSTree(n):
+			i = 0
+			A = Tnode[n];
+			for i in range(n):
+				A[i] = null
+			Alen = n - 1;
+			weight = 0;

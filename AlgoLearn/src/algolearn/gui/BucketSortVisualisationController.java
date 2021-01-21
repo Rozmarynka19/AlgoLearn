@@ -5,9 +5,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
-import algolearn.gui.controllers.BST_controller;
 import algolearn.gui.info.errors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -33,7 +32,6 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     
     @FXML TextField addTextBS, deleteTextBS, findTextBS;
     @FXML Text Information;
-    @FXML private Button previousSearchedChildBS;
     @FXML HBox BucketHBox;
     @FXML HBox TopHBox;
     @FXML HBox BottomHBox;
@@ -44,6 +42,7 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     private List<String> numbersToSortStringBackup = new ArrayList<>();
     private List<String> numbersSortedString = new ArrayList<>();
     private List<String> numbersSortedStringBackup = new ArrayList<>();
+	private List<Integer> numbersToSortInt = new ArrayList<>();
     private int idInList=0;
     
     /**
@@ -70,7 +69,6 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     @FXML /* Expand window */
     private void handleCloseWindowAction(ActionEvent event) throws Exception {
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
-        System.exit(0);
     }
     /**
      * Swaping into menu window from main_fxml.fxml by remove and add anchorPane
@@ -123,6 +121,7 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     	childrenButtonListUnsorted.clear();
         numbersToSortString.clear();
         numbersSortedString.clear();
+    	numbersToSortInt.clear();
         clearBuckets();
     }
     
@@ -173,7 +172,7 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     	Button clicked_btn = (Button)event.getSource();
     	String btn_val = clicked_btn.getId();
     			if(btn_val.equals("1")) {
-                	addNewNodeBS(btn_val);  				
+                	addNewNodeBS(btn_val);
     			}
     			if(btn_val.equals("2")) {
     				deleteValue(btn_val);
@@ -195,7 +194,7 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
         	numbersSortedStringBackup.clear();
 		}
         else if(childrenButtonListSorted.size() > 0) {
-        	numbersSortedString = new ArrayList<>(numbersSortedString);
+        	numbersSortedString = new ArrayList<>(numbersSortedStringBackup);
         	numbersSortedStringBackup.clear();
         } 
         int listSize = numbersToSortString.size();
@@ -219,10 +218,11 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
                 break;
             }
     	 }
-    	 if(!flag){
-             CreateError(errorMSG.notFoundInUnsortedList);
-             return;
-         }
+    	deleteTextBS.setText("");
+    	if(!flag){
+            CreateError(errorMSG.notFoundInUnsortedList);
+            return;
+        }
     	 Information.setText("Informacja: " + errorMSG.isRemoved + numberToDelete + errorMSG.isReloaded);
     }
     
@@ -250,6 +250,7 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     	if(!isFound[0] && !isFound[1] && !isFound[2] && !isFound[3]) {
     		CreateError(errorMSG.notFoundInBucket);
     	}
+    	findTextBS.setText("");
     }
     
     private boolean findInBucket(AnchorPane anchorPane, String numberToFind) {
@@ -402,7 +403,7 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     	else {
             Button btnNumber = new Button();
             numbersToSortString.add(numberToSort);
-            numbersToSortStringBackup = new ArrayList<>(numbersToSortString);
+            numbersToSortStringBackup.add(numberToSort);
             numbersSortedString.add(numberToSort);
             numbersSortedStringBackup = new ArrayList<>(numbersSortedString);
             btnNumber.setText(numberToSort);
@@ -451,8 +452,26 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     		CreateError(errorMSG.isEmptyList);
     		return;
     	}
+    	else if(numbersToSortString.size() > 0) {
+    		CreateError(errorMSG.notEveryInBucket);
+    		return;
+    	}
     	idInList = 0;
-    	Collections.sort(numbersSortedString);
+    	int j = 0;
+    	while(j < numbersSortedString.size()) {
+    		numbersToSortInt.add(Integer.parseInt(numbersSortedString.get(j)));
+    		j++;
+    	}
+    	Collections.sort(numbersToSortInt);
+    	j = 0;
+    	numbersSortedString.clear();
+    	numbersSortedStringBackup.clear();
+    	while(j < numbersToSortInt.size()) {
+    		numbersSortedString.add(Integer.toString(numbersToSortInt.get(j)));
+    		numbersSortedStringBackup = new ArrayList<>(numbersSortedString);
+    		j++;
+    	}
+    	numbersToSortInt.clear();
         for (Node node : BucketHBox.getChildren()) {
             if(node instanceof AnchorPane) {
             	if(node.getId().equals("1")) {
@@ -486,5 +505,28 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
                     "-fx-border-width: 20px; "
             );
         } 
+    }
+    
+    public void generateRandomList() {
+    	TopHBox.getChildren().clear();
+    	BottomHBox.getChildren().clear();
+    	childrenButtonListUnsorted.clear();
+        numbersToSortString.clear();
+        numbersSortedString.clear();
+        clearBuckets();
+    	Random rand = new Random();
+    	for(int i = rand.nextInt((10 - 0) + 1); i<16; i++){
+            if(childrenButtonListUnsorted.size()<16) {
+                int randomNum = rand.nextInt((16 - 1) + 1) + 1;
+                if(!CheckForDuplicates(randomNum)) {
+                	addTextBS.setText(Integer.toString(randomNum));
+                    addNewNodeBS("1");
+                }
+                else
+                    i--;
+            }
+            else
+                break;
+        }
     }
 }

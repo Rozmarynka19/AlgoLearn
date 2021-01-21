@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script language="javascript">
+            function renev()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                //    if(p.className == "insert" || p.className == "search" || p.className == "wprowadzenie" || p.className == "del"){
+                //        p.hidden = true;
+                //    }
+                    p.hidden = true;
+               }
+              alert('test');
+           
+            }
+            function listClass_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "listClass_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function nodeClass_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "nodeClass_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function search_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "search_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_CPP()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_CPP"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+
+            function listClass_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "listClass_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function nodeClass_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "nodeClass_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function search_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "search_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_Java()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_Java"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            
+            function listClass_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "listClass_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function nodeClass_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "nodeClass_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function insert_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "insert_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function search_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "search_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            function delete_PY()
+            {
+              var p_list = document.getElementsByTagName("div");
+               for(var i=p_list.length-1; i>=0; i--){
+                   var p = p_list[i];
+                   if(p.className == "delete_PY"){
+                       p.hidden = false;
+                   }
+               }
+              alert('test');
+            }
+            </script>
+	<style>
+		body
+		{
+			font-weight: bold;
+		}
+	</style>
+    </head>
+    <body>
+        <!-- C++ -->
+
+        <div class="listClass_CPP">
+            <pre>
+struct ListaJednokierunkowa {
+	wezel* brzeg_HEAD = 0;
+    wezel* iterator = brzeg_HEAD;
+    
+	void wstaw(int klucz, char literka);
+	void wyszukaj(int klucz);
+	void usun(int klucz);
+	void wyswietl() {
+		if (iterator == nullptr) {
+			cout << "Lista nie istnieje" << endl;
+		}
+		else {
+			while (iterator != nullptr) {
+				cout << iterator->kluczWezla << iterator->znak << endl;
+				iterator = iterator->nastepnyWezel;
+			}
+			cout << endl;
+		}
+		iterator = brzeg_HEAD;
+	}
+	void wyczysc() {
+		while (brzeg_HEAD != nullptr) {
+			iterator = brzeg_HEAD;
+			brzeg_HEAD = iterator->nastepnyWezel;
+			delete iterator;
+		}
+		iterator = brzeg_HEAD;
+	}
+};
+            </pre>
+        </div>
+
+        <div class="nodeClass_CPP">
+            <pre>
+struct wezel {
+	int kluczWezla = 0;
+	char znak = '0';
+	wezel* nastepnyWezel = nullptr;
+};
+            </pre>
+        </div>
+
+        <div class="insert_CPP">
+            <pre>
+void wstaw(int klucz, char literka) {
+    while (iterator != nullptr) {
+        if (iterator->kluczWezla == klucz) {
+            cout << "Element o takim kluczu juz istnieje" << endl;
+            return;
+        }
+        iterator = iterator->nastepnyWezel;
+    }
+    iterator = brzeg_HEAD;
+    wezel* p = new wezel;
+    iterator = brzeg_HEAD;
+    p->nastepnyWezel = nullptr;
+    p->kluczWezla = klucz;
+    p->znak = literka;
+    if (brzeg_HEAD == nullptr) {
+        brzeg_HEAD = p;
+        return;
+    }
+    if (p->kluczWezla < iterator->kluczWezla) {
+        p->nastepnyWezel = iterator;
+        brzeg_HEAD = p;
+        return;
+    }
+    else {
+        while (iterator != nullptr) {
+            if (iterator->nastepnyWezel == nullptr) {
+                iterator->nastepnyWezel = p;
+                break;
+            }
+            if (iterator->nastepnyWezel->kluczWezla > p->kluczWezla) {
+                p->nastepnyWezel = iterator->nastepnyWezel;
+                iterator->nastepnyWezel = p;
+                break;
+            }
+            iterator = iterator->nastepnyWezel;
+        }
+    }
+    iterator = brzeg_HEAD;
+}
+            </pre>
+        </div>
+
+        <div class="delete_CPP">
+            <pre>
+void usun(int klucz) {
+    wezel* usuwany = nullptr;
+    wezel* pomocniczy = brzeg_HEAD;
+    while (iterator != nullptr) {
+        if (iterator->kluczWezla == klucz) {
+            usuwany = iterator;
+            break;
+        }
+        pomocniczy = iterator;
+        iterator = iterator->nastepnyWezel;
+    }
+    if (brzeg_HEAD == usuwany) {
+        brzeg_HEAD = usuwany->nastepnyWezel;
+    }
+    else {
+            pomocniczy->nastepnyWezel = usuwany->nastepnyWezel;
+            delete usuwany;
+    }
+    iterator = brzeg_HEAD;
+}
+            </pre>
+        </div>
+
+        <div class="search_CPP">
+            <pre>
+void wyszukaj(int klucz) {
+    while (iterator != NULL) {
+        if (iterator->kluczWezla == klucz) {
+            cout << "Element istnieje" << endl;
+            return;
+        }
+        iterator = iterator->nastepnyWezel;
+    }
+    cout << "Element nie istnieje lub lista jest pusta" << endl;
+    iterator = brzeg_HEAD;
+}
+            </pre>
+        </div>
+
+        <!-- Java -->
+
+        <div class="listClass_Java">
+            <pre>
+public class ciagKolRatunkowych {
+    KoloRatunkowe brzeg_HEAD = null;
+    
+	void dodajKoloRatunkowe(int klucz) {...}
+	void wyswietlCiag() {
+		KoloRatunkowe iterator = brzeg_HEAD;
+		while (iterator != null) {
+			System.out.println(iterator.topielec);
+			iterator = iterator.nastepneKoloRatunkowe;
+		}
+		System.out.println();
+	}
+	void usunKoloRatunkowe(int numerKolejnosci) {...}
+	void wyszukajKoloRatunkowe(int klucz){...}
+};
+            </pre>
+        </div>
+
+        <div class="nodeClass_Java">
+            <pre>
+public class KoloRatunkowe {
+	int topielec;
+	KoloRatunkowe nastepneKoloRatunkowe;
+	}
+            </pre>
+        </div>
+
+        <div class="insert_Java">
+            <pre>
+void dodajKoloRatunkowe(int klucz) {
+    KoloRatunkowe tworzonyElement = new KoloRatunkowe();
+    tworzonyElement.topielec = klucz;
+    if (brzeg_HEAD == null){
+        brzeg_HEAD = tworzonyElement; //rzucamy line do brzegu 
+    }
+    else {
+        KoloRatunkowe iterator = brzeg_HEAD;
+        while (iterator.nastepneKoloRatunkowe != null) {
+            iterator = iterator.nastepneKoloRatunkowe;
+        }
+        iterator.nastepneKoloRatunkowe = tworzonyElement;
+        tworzonyElement.nastepneKoloRatunkowe = null;
+    }
+}
+            </pre>
+        </div>
+
+        <div class="delete_Java">
+            <pre>
+void usunKoloRatunkowe(int numerKolejnosci) {
+    if (numerKolejnosci == 1) {
+        KoloRatunkowe wskaznik = brzeg_HEAD;
+        brzeg_HEAD = wskaznik.nastepneKoloRatunkowe;
+    }
+    else if (numerKolejnosci >= 2) {
+        int iteratorLiczbowy = 1;
+        KoloRatunkowe iteratorPoElementach = brzeg_HEAD;
+        while (iteratorPoElementach != null) {
+            if ((iteratorLiczbowy + 1) == numerKolejnosci) break;
+            iteratorPoElementach = iteratorPoElementach.nastepneKoloRatunkowe;
+            iteratorLiczbowy++;
+        }
+        if (iteratorPoElementach.nastepneKoloRatunkowe.nastepneKoloRatunkowe == null) {
+            iteratorPoElementach.nastepneKoloRatunkowe = null;
+        }
+        else {
+            iteratorPoElementach.nastepneKoloRatunkowe = 
+                iteratorPoElementach.nastepneKoloRatunkowe.nastepneKoloRatunkowe;
+        }
+    }
+}
+            </pre>
+        </div>
+
+        <div class="search_Java">
+            <pre>
+void wyszukajKoloRatunkowe(int klucz){
+    KoloRatunkowe iteratorPoElementach = brzeg_HEAD;
+    while(iteratorPoElementach != null){
+        if(iteratorPoElementach .topielec==klucz){
+            System.out.println("Element istnieje!")
+            return;
+        }
+        iteratorPoElementach = iteratorPoElementach.nastepneKoloRatunkowe;
+    }
+    System.out.println("Element nie istnieje lub lista jest pusta!")
+}
+            </pre>
+        </div>
+
+
+        <!-- Python -->
+
+        <div class="listClass_PY">
+            <pre>
+class ListaJednokierunkowa:
+	def __init__(self):
+		self.brzeg_HEAD=None
+
+	iterator = wezel()
+	def wstaw(self, klucz, literka):
+        ...
+        
+	def wyszukaj(self, klucz):
+        ...
+        
+	def usun(self, klucz):
+        ...
+        
+	def wyswietl(self):
+		iterator = self.brzeg_HEAD
+		if iterator == None:
+			print("Lista nie istnieje\n")
+		else:
+			while iterator != None:
+				print(str(iterator.kluczWezla) + " " + str(iterator.znak))
+				iterator = iterator.nastepnyWezel
+			print("\n")
+        iterator = self.brzeg_HEAD
+        
+	def wyczysc(self):
+		while self.brzeg_HEAD != None:
+			iterator = self.brzeg_HEAD
+			self.brzeg_HEAD = iterator.nastepnyWezel
+		iterator = self.brzeg_HEAD
+            </pre>
+        </div>
+
+        <div class="nodeClass_PY">
+            <pre>
+class wezel:
+	def __init__(self):
+		self.kluczWezla = None
+		self.znak = None
+		self.nastepnyWezel = None
+            </pre>
+        </div>
+
+        <div class="insert_PY">
+            <pre>
+def wstaw(self, klucz, literka):
+    iterator = self.brzeg_HEAD
+    while iterator is not None:
+        if iterator.kluczWezla == klucz:
+            print("Element o takim kluczu juz istnieje\n")
+            return
+        iterator = iterator.nastepnyWezel
+    iterator = wezel()
+    p=wezel()
+    iterator = self.brzeg_HEAD
+    p.nastepnyWezel = None
+    p.kluczWezla = klucz
+    p.znak = literka
+    if self.brzeg_HEAD == None:
+        self.brzeg_HEAD = p
+        return
+    if p.kluczWezla < iterator.kluczWezla:
+        p.nastepnyWezel = iterator
+        self.brzeg_HEAD = p
+        return
+    else:
+        while iterator is not None:
+            if iterator.nastepnyWezel == None:
+                iterator.nastepnyWezel = p
+                break
+            if iterator.nastepnyWezel.kluczWezla > p.kluczWezla:
+                p.nastepnyWezel = iterator.nastepnyWezel
+                iterator.nastepnyWezel = p;
+                break
+            iterator = iterator.nastepnyWezel
+    iterator = self.brzeg_HEAD
+            </pre>
+        </div>
+
+        <div class="delete_PY">
+            <pre>
+def usun(self, klucz):
+    usuwany = wezel()
+    pomocniczy = wezel()
+    pomocniczy = self.brzeg_HEAD
+    iterator = self.brzeg_HEAD
+    while iterator != None:
+        if iterator.kluczWezla == klucz:
+            usuwany = iterator
+            break
+        pomocniczy = iterator
+        iterator = iterator.nastepnyWezel
+    if self.brzeg_HEAD == usuwany:
+        self.brzeg_HEAD = usuwany.nastepnyWezel
+    else:
+        pomocniczy.nastepnyWezel = usuwany.nastepnyWezel
+    iterator = self.brzeg_HEAD
+            </pre>
+        </div>
+
+        <div class="search_PY">
+            <pre>
+def wyszukaj(self, klucz):
+    iterator = self.brzeg_HEAD
+    while iterator is not None:
+        if iterator.kluczWezla == klucz:
+            print("Element istnieje")
+            return
+        iterator = iterator.nastepnyWezel
+    print("Element nie istnieje lub lista jest pusta")
+    iterator = self.brzeg_HEAD
+            </pre>
+        </div>
+    </body>
+</html>

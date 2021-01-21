@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+ function intro()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+ <style>
+  body
+     {
+         font-size:18px;
+     }
+     #header
+     {
+         font-size: 19px;
+        
+     }
+     h3
+     {
+        text-align: center;
+     }
+     img
+     {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:50%;
+        height:50%;
+     }
+    </style>
+ <meta charset="UTF-8">
+
+</head>
+
+<body>
+        <h1>Struktura Union-Find i algorytm Kruskala</h1>
+
+    <div class=intro>    
+        <h2>Wprowadzenie</h2>
+        <div>
+        <i>Założeniem algorytmu Kruskala jest znalezienie minimalnego drzewa rozpinającego grafu.<br>
+        Do kontroli poprawności drzewa użyjemy struktury Union-Find.</i><br><br>
+        
+        Działanie algorytmu Kruskala z strukturą Union-Find:<br>
+        1.Sortujemy wszystkie połączenia między wierzchołkami od <b>najkrótszego</b> do <b>najdłuższego</b>.<br>
+        2.Tworzymy tablice rodziców dla każdego wiechrzołka grafu <b>na początku każdy wierzchołek jest własnym rodzicem</b>.<br>
+        3.Sprawdzamy po kolei czy wierzchołki mają różnych rodziców operacją <b>Find</b>, jeśli tak to łączymy je operacją <b>Union</b>.<br>
+        4.Jeśli mają tego samego rodzica nie łączymy ich ponieważ zajdzie <b>cykl, więc przechodzimy dalej</b>.<br>
+        5.Robimy to tak długo <b>aż wszystkie wierzchołki będa miały wspólnego rodzica</b>.<br>
+        <br>
+        <i>Oto przykład poprawnego działania algorytmu.</i>
+        </div>
+        
+        
+        <img src="../textimg/UnionFindKruskal/kurskal.gif"></img><br>
+        <div>
+        <i>Kolejny przykład to wystąpienie cyklu podczas tworzenia drzewa rozpinającego. Zwróć uwagę przede wszystkim na tablicę rodziców.</i>
+        </div>
+        <img src="../textimg/UnionFindKruskal/cykl.gif"></img>
+    </div>
+</body>
+
+</html>

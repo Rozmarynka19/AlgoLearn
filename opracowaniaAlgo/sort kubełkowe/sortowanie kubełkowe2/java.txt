@@ -1,0 +1,90 @@
+import java.util.Scanner;
+ 
+public class Main {
+	
+	
+	private static void printArray(int[] tab) {
+		System.out.println();
+		for(int i = 0; i < tab.length; i++)
+		{
+			System.out.print(tab[i] + " | ");
+		}
+		System.out.println();
+	}
+	private static int[] getMinMax(int[] arr) {
+		int[] result = new int[2];
+		result[0] = arr[0]; // pierwszy element bedzie najmniejszym elementem
+		result[1] = arr[0]; // drugi element bedzie najwiekszym elementem
+		for(int i : arr) {
+			if(result[0] > i) { //dokonujemy podmiany najwiekszego/najmniejszego elementu w przypadku gdy iterowana wartosc bedzie wieksza/mniejsza od przechowanej
+				result[0] = i;
+			}
+			else if (result[1] < i) {
+				result[1] = i;
+			}
+		}
+		return result;
+	}
+	private static void bucketSort(int[] tab) {
+		int[] results = getMinMax(tab);
+		int yMax = results[1];
+		int yMin = results[0];
+		int[] buckets = new int[yMax - yMin + 1];
+	 
+		//Wstawiamy pocz¹tkowe wartoœci liczników
+		for (int x = 0; x < (yMax - yMin + 1); x++)
+		{
+			buckets[x] = 0;
+		}
+	 
+		System.out.println("Stworzono kubelki: ");
+		for (int x = 0; x < (yMax - yMin + 1); x++) {
+			System.out.print("B" + (x+yMin) + " | ");
+		}
+		System.out.println();
+	 
+		for (int x = 0; x < tab.length; x++)
+		{
+			//Zliczamy iloœæ wyst¹pieñ poszczególnych elementów
+			buckets[tab[x] - yMin]++;
+		}
+	 
+		System.out.println("Zliczono elementy: ");
+ 
+		for (int x = 0; x < (yMax - yMin + 1); x++) {
+			System.out.print("B" + (x + yMin) + "=" + buckets[x] +" | ");
+		}
+		System.out.println();
+	 
+		//Zapisujemy elementy w iloœci podyktowanej przez kube³ki
+		//w tablicy
+		int lastIndex = 0;
+		for (int x = 0; x < (yMax - yMin + 1); x++)
+		{
+			int y;
+			for (y = lastIndex; y < buckets[x] + lastIndex; y++)
+			{
+				tab[y] = x + yMin;
+			}
+			lastIndex = y;
+		}
+	}
+	public static void main(String[] args){ 
+		Scanner sc = new Scanner(System.in); //inicjalizujemy Scanner - obiekt pozwalajacy na wczytywanie zmiennych od uzytkownika
+		System.out.println("Wprowadz liczbe elementow tablicy: ");
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		for(int i = 0; i < n; i++) {
+			System.out.println("Podaj element nr." + i + ": ");
+			arr[i]= sc.nextInt(); //wczytujemy kolejne elementy tablicy
+		}
+		System.out.println("Oto wprowadzona tablica:");
+		printArray(arr);
+		System.out.println();
+		bucketSort(arr);
+		System.out.println();
+		System.out.println("Oto wprowadzona tablica po przesortowaniu:");
+		printArray(arr);
+		sc.close(); //zwalniamy zasoby
+	}
+}
