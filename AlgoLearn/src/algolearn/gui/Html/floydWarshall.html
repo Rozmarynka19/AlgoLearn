@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+ function intro()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+ <style>
+  body
+     {
+         font-size:18px;
+     }
+     #header
+     {
+         font-size: 19px;
+        
+     }
+     h3
+     {
+        text-align: center;
+     }
+     img
+     {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width:50%;
+        height:50%;
+     }
+    </style>
+ <meta charset="UTF-8">
+
+</head>
+
+<body>
+    <h3>Algorytm Floyda-Warshalla</h3>
+    <div class=intro>
+        <p>
+            <br><h3>Wstęp</h3>
+            <br>Algorytm Floyda-Warshalla służy do wyliczenie najkrótszej ścieżki w grafie.
+            <br>Przy czym poszczególne wagi krawędzi mogą być ujemne, jednak suma wag(ścieżka) nie może być ujemna.
+            <br>Oblicza rekurencyjnie sumę wszystkich ścieżek.
+            <br>Często przedstawia się to w formie tablicy.
+            <br>Gdzie indeksy tablicy oznaczają poszczególne połączenia między elementami.
+        </p>
+        <br>
+            <img src="../textimg/FloydWarshall/tablicaDzialanie.gif">
+        <p>
+            <br><h3>Opis tablicy</h3>
+            <br>Jak widzimy graf który stworzymy będzie miał połączenie objektu 4 z 3.
+            <br>W tym konkretnym grafie(nieskierowanym) połączenie będzie dwustronne co oznacza że 3 i 4 są połączone jak i 4 z 3.
+            <br>W skierowanym graf należy dać strzałki z obu stron, aby był on dwustronny.
+            <br>Dodatkwo widzimy również jaka jest waga połączenia, czyli 4.
+            <br>Poniżej zaprezentowano przykład już całego grafu. Czy już wiesz jak czytać taką tabelę?
+        </p>
+            <img src="../textimg/FloydWarshall/graf2.png">
+        <br>Pseudokod algorytmu Floyda-Warshalla
+        <pre>
+         n = no of vertices
+        A = matrix of dimension n*n
+        for k = 1 to n
+            for i = 1 to n
+                for j = 1 to n
+                    Ak[i, j] = min (Ak-1[i, j], Ak-1[i, k] + Ak-1[k, j])
+        return A
+        </pre>
+        <br>Zobaczmy zatem, w jaki sposób będzie on działał dla danego grafu dla przypadku path(1,5)
+            <img src="../textimg/FloydWarshall/dzialanie.gif">
+        <br>https://www.programiz.com/dsa/floyd-warshall-algorithm
+    </div>
+</body>
+
+</html>

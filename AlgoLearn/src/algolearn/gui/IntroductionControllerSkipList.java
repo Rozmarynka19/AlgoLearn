@@ -31,7 +31,6 @@ public class IntroductionControllerSkipList extends FXMLDocumentController imple
 
     @FXML
     public void BackToMainStage(ActionEvent event) {
-        engine.executeScript("pause_vid()");
         loadMenu();
         // do what you have to do
     }
@@ -77,9 +76,6 @@ public class IntroductionControllerSkipList extends FXMLDocumentController imple
                         }
                         String hello2 = (String) engine.executeScript("renev()");
                         String hello = (String) engine.executeScript(script);
-                        String hello3;
-                        if(!script.equals("test4()"))
-                             hello3 = (String) engine.executeScript("pause_vid()");
                     }
                 }
         );

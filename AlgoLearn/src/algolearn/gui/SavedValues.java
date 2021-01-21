@@ -13,18 +13,18 @@ public class SavedValues {
     //3.Niczym się nie przejmuj
     //Uwaga, z pewnych powodów nazwy tak długie jak linked_list_description_fxml.fxml powodują błąd więc sugeruję krótsze
     public List<List<String>> paths = addToList(
-            asList("introduction_fxml.fxml","description_fxml.fxml","bin_heap_visualisation.fxml"), // kopiec binarny
+            asList("binaryHeap_introduction.fxml","binaryHeap_description.fxml","bin_heap_visualisation.fxml"), // kopiec binarny
             asList("linked_list_introduction.fxml","linked_list_description.fxml","linked_list_visualisation.fxml"), //lista jednokierunkowa
-            asList("linked_list2_introduction.fxml","description_fxml.fxml","linked_list2_visualisation.fxml"), // lista dwukierunkowa
-            asList("introduction_fxml.fxml","description_fxml.fxml","03_bucket_sort_visualisation.fxml"), // sortowanie kubełkowe
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Sortowanie przez zliczanie
-            asList("introduction_fxml.fxml","description_fxml.fxml","heap_sort_visualisation.fxml"), // Sortowanie przez kopcowanie
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // fft
+            asList("linked_list2_introduction.fxml","linked_list2_description.fxml","linked_list2_visualisation.fxml"), // lista dwukierunkowa
+            asList("bucketSort_introduction.fxml","bucketSort_description.fxml","03_bucket_sort_visualisation.fxml"), // sortowanie kubełkowe
+            asList("countingSort_introduction.fxml","countingSort_description.fxml","visualisation_fxml.fxml"), // Sortowanie przez zliczanie
+            asList("heapSort_introduction.fxml","heapSort_description.fxml","heap_sort_visualisation.fxml"), // Sortowanie przez kopcowanie
+            asList("FFT_introduction.fxml","FFT_description.fxml","visualisation_fxml.fxml"), // fft
             asList("skip_list_introduction.fxml","description_fxml.fxml","skip_list_visualisation.fxml"), // lista z przeskokami
-            asList("BST_introduction.fxml","description_fxml.fxml","bst_visualisation.fxml"), // bst
-            asList("introduction_fxml.fxml","description_fxml.fxml","hash_table_visualisation.fxml"), // tablica mieszająca
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // floyd warshall
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // Union Find
+            asList("BST_introduction.fxml","BST_description.fxml","bst_visualisation.fxml"), // bst
+            asList("hashTable_introduction.fxml","hashTable_description.fxml","hash_table_visualisation.fxml"), // tablica mieszająca
+            asList("FloydWarshall_introduction.fxml","FloydWarshall_description.fxml","visualisation_fxml.fxml"), // floyd warshall
+            asList("UFKruskal_introduction.fxml","UFKruskal_description.fxml","visualisation_fxml.fxml"), // Union Find
             asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // algorytm grahama
             asList("RBT_introduction.fxml","RBT_description.fxml","RBT_visualisation.fxml") //  red-black tree
     );
