@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script language="javascript">
+ function renev()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro" || p.className == "mechanism"){
+			p.hidden = true;
+        }
+    }
+   alert('test');
+
+ }
+ function intro()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "intro"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+  function mechanism()
+ {
+   var p_list = document.getElementsByTagName("div");
+    for(var i=p_list.length-1; i>=0; i--){
+        var p = p_list[i];
+        if(p.className == "mechanism"){
+			p.hidden = false;
+        }
+    }
+   alert('test');
+
+ }
+ </script>
+ <style>
+ body
+{
+    margin:0;
+    padding:0;
+    /* background-color: black; */
+}
+
+.red
+{
+    color:red;
+}
+
+h1,h4,h3
+{
+    text-align: center;
+    line-height: 0;
+}
+
+.longH4
+{
+	
+    text-align: center;
+	font-weight: bold;
+}
+
+h1
+{
+    padding: 10px  0px  5px  0px
+} 
+
+.intro,.mechanism
+{
+    padding: 20px 50px;
+}
+
+img
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:70%;
+    height:70%; 
+}
+
+section
+{
+    padding: 10px;
+}
+
+/* sub
+{
+    vertical-align: sub;
+    font-size: smaller;
+} */
+</style>
+ <meta charset="UTF-8">
+
+</head>
+
+<body id="up">
+    <h1>Algorytm Grahama i powłoka wypukła</h1>
+    <h4>(ang. Graham Scan)</h4>
+    
+    <div class="intro">
+        <h3><u>Wprowadzenie</u></h3>
+        <p>
+            Mamy pewien zbiór punktów na płaszczyźnie. Celem algorytmu Grahama jest znalezienie powłoki wypukłej - czyli takiego minimalnego
+            zbioru punktów, który okala wszystkie inne punkty znajdujące się w danym zbiorze.
+            <br/>
+            <br/>
+            Pomysłodawcą samego algorytmu jest Ronald Graham.
+            <br/>
+            <br/>
+            Podaje się, że złożoność obliczenia tego algorytmu wynosi O(nlogn), gdzie n - liczba punktów w zbiorze.
+            <br/>
+            <br/>
+            Przykład wyniku działania algorytmu jest widoczny na poniższym obrazku.
+            <br/>
+            <img src="../textimg/GrahamScan/example.png" />
+            <br/>
+            <br/>
+            <i class="red">
+                Uwaga!
+                <br/>
+                Sam algorytm Grahama nie ma wariantów dla przestrzeni o wyższych wymiarach. Jednakże, są inne algorytmy, np. algorytm Jarvisa,
+                który już takie warianty ma. Algorytm Jarvisa nie jest poruszony w tej aplikacji.
+            </i>
+        </p>
+    </div>
+        
+    <div class="mechanism">	
+        <h3><u>Mechanizm działania</u></h3>
+        <p>
+            W tym rozdziale wytłumaczymy dokładnie, krok po kroku, jak ten algorytm działa.
+            <br/>
+            <br/>
+            Spis treści (kliknij, by nie scrollować ;]):
+            <ul>
+                <li><a href="#assumptions">Założenia początkowe</a></li>
+                <li><a href="#listOfSteps">Lista kroków algorytmu</a></li>
+                <li><a href="#analysis">Analiza działania na przykładzie</a></li>
+            </ul>
+            <br/>
+        </p>
+
+        <section id="assumptions">
+            <h4>Założenia początkowe</h4>
+            <p>
+                <ul>
+                    <li>Każdy punkt jest reprezentowany przez wspołrzędne (x,y)</li>
+                    <li>Startujemy od punktu, który leży najniżej (jeśli jest więcej takich punktów, to bierzemy lewy skrajny)</li>
+                    <li>Idziemy od punktu startowego w kierunku przeciwnym do ruchu wskazówek zegara</li>
+                    <li>
+                        Do określenia czy punkt P1 leży na prawo (w sensie kątowym) od punktu P2 stosujemy <i>iloczyn wektorowy</i>.
+                        Punkty P1,P2 traktujemy jako wektory, których początek jest zaczepiony w początku układu współrzędnych.
+                        Następnie korzystamy z poniższego wyrażenia:
+                        <br/>
+                        <h4><i>y<sub>1</sub>x<sub>2</sub>-y<sub>2</sub>x<sub>1</sub></i></h4>
+                        <br/>
+                        i sprawdzamy znak. 
+                        <br/>
+                        Jeśli >0, to P1 leży na lewo (w sensie kątowym/przeciwnie do ruchu wskazówek zegara) od P2.
+                        <i>Inaczej: kąt od P1 do P2 jest "dodatni"</i>
+                        <br/>
+                        Jeśli &lt;0, to P1 leży na prawo (w sensie kątowym/zgodnie do ruchu wskazówek zegara) od P2.
+                        <i>Inaczej: kąt od P1 do P2 jest "ujemny"</i>
+                        <br/>
+                        <br/>
+                        Przykład:
+                        <br/>
+                        <img src="../textimg/GrahamScan/assumptionsP1left.png"/>
+                        <br/>
+                        Korzystając ze wzoru otrzymujemy:
+                        <br/>
+                        5*5-2*2 = 25-4 = 21 >0 czyli P1 leży na lewo od P2
+                        <br/>
+                        <br/>
+                        <img src="../textimg/GrahamScan/assumptionsP1right.png"/>
+                        <br/>
+                        Korzystając ze wzoru otrzymujemy:
+                        <br/>
+                        2*2-5*5 = 4-25 = -21 &lt;0 czyli P1 leży na prawo od P2
+                    </li>
+                    <li>
+                        Sam algorytm powinien zwrócić indeksy punktów, które tworzą powłokę wypukłą
+                        (od punktu startowego, w kolejnosci przeciwnej do ruchu wskazówek zegara).
+                    </li>
+                </ul>
+            </p>
+        </section>
+
+        <section id="listOfSteps">
+            <h4>Lista kroków w algorytmie</h4>
+            <p>
+                <ol>
+                    <li>Znajdź punkt startowy (skrajny lewy z najniższych punktów). Potraktuj go jako nowy środek układu współrzędnych</li>
+                    <li>Posortuj pozostałe punkty rosnąco według ich kąta względem wektora (1,0).</li>
+                    <li>
+                        Do powłoki wypukłej dodaj indeks punktu początkowego (nowy środek układu współrzędnych) oraz
+                        pierwszego punktu z posortowanego porządku.
+                    </li>
+                    <li>
+                        Przebiegaj pozostałe punkty w posortowanym porzadku (poczynając od drugiego):
+                        <ol>
+                            <li>Dodaj indeks aktualnego punktu do powłoki wypukłej.</li>
+                            <li>
+                                Dopóki dwa wektory wyznaczone przez trzy ostatnie punkty leżące na aktualnej powłoce wy-
+                                pukłej tworzą „zakręt w prawo” (tzn. wektor ostatni „skręca w prawo” względem wektora
+                                przedostatniego):
+                                <ol>
+                                    <li>Usuń indeks przedostatniego punktu z aktualnej powłoki wypukłej.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>Zwróć powłokę wypukłą.</li>
+                </ol>
+            </p>
+        </section>
+
+        <section id="analysis">
+            <h4>Analiza działania na przykładzie</h4>
+            <p>
+                <h5>Krok 1. Znajdź punkt startowy (skrajny lewy z najniższych punktów). Potraktuj go jako nowy środek układu współrzędnych</h5>
+                <br/>
+                <img src="../textimg/GrahamScan/analysisStep1.gif"/>
+                <br/>
+                <br/>
+                <h5>Krok 2. Posortuj pozostałe punkty rosnąco według ich kąta względem wektora (1,0).</h5>
+                <br/>
+                <img src="../textimg/GrahamScan/analysisStep2.gif"/>
+                <br/>
+                <br/>
+                <h5>Krok 3. Do powłoki wypukłej dodaj indeks punktu początkowego (nowy środek układu współrzędnych) oraz
+                    pierwszego punktu z posortowanego porządku.</h5>
+                <br/>
+                <img src="../textimg/GrahamScan/analysisStep3.gif"/>
+                <br/>
+                <br/>
+                <h5>
+                    Krok 4. Przebiegaj pozostałe punkty w posortowanym porzadku (poczynając od drugiego):
+                    <ol>
+                        <li>Dodaj indeks aktualnego punktu do powłoki wypukłej.</li>
+                        <li>
+                            Dopóki dwa wektory wyznaczone przez trzy ostatnie punkty leżące na aktualnej powłoce wypukłej 
+                            tworzą „zakręt w prawo” (tzn. wektor ostatni „skręca w prawo” względem wektora przedostatniego):
+                            <ol>
+                                <li>Usuń indeks przedostatniego punktu z aktualnej powłoki wypukłej.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                </h5>
+                <br/>
+                <img src="../textimg/GrahamScan/analysisStep4.gif"/>
+                <br/>
+                <br/>
+                <h5>Krok 5. Zwróć powłokę wypukłą.</h5>
+                Zwracamy indeksy początkowe punktów, które wchodzą w skład powłoki.
+            </p>
+        </section>
+
+        <a href="#up">Powrót do góry</a>
+        <br/>
+        <br/>
+        <i>Na podstawie konspektu autorstwa profesora Klęska.</i>
+    </div>
+
+</body>
+
+</html>
