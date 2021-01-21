@@ -22,7 +22,6 @@ import javafx.stage.StageStyle;
  */
 
 public class main_window extends Application {
-	
 	private int [] scene_base = {300, 515};
 	public static double window_x_offset = 0;
 	public static double window_y_offset = 0;

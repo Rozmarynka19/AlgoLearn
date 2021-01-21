@@ -3,10 +3,15 @@ package algolearn.gui;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 public class SavedValues {
     private static SavedValues instance;
     public int savedRealId = 0;
-    boolean resizeFlag = false;
+    boolean resizeFlag = true;
     //instrukcja podpięcia własnych plików:
     //1.Nadaj plikom nazwy unikalne dla algorytmu (struktury danych czy co tam to jest)
     //2.dodaj same nazwy plików do poniższych list w wiersz zgodny z oznaczeniem
@@ -50,5 +55,18 @@ public class SavedValues {
         }
         return instance;
     }
+    
+    @FXML private Button clickedBTN = null;
+    public void SetClickedBTN(Button btn) {this.clickedBTN = btn;}
+    public Button GetClickedBTN() { return this.clickedBTN;}
+    
+    public String getID() {
+    	if(clickedBTN == null)
+    		return "NULL";
+    	else
+    		return clickedBTN.getId();
+    }
+    
+    
 
 }

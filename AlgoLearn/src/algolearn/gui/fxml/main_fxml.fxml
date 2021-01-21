@@ -20,7 +20,7 @@
                <children>
                   <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
                      <children>
-                        <Text fill="WHITE" layoutX="7.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algorytmy" textAlignment="CENTER" wrappingWidth="265.931640625">
+                        <Text fill="WHITE" layoutX="7.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algolearn" textAlignment="CENTER" wrappingWidth="265.931640625">
                            <font>
                               <Font name="Cambria" size="40.0" />
                            </font>
@@ -66,7 +66,7 @@
                      <children>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="673.0" styleClass="titlePlane">
                            <children>
-                              <Text fx:id="txtMainTitle" fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algolearn - Menu główne" textAlignment="CENTER" wrappingWidth="674.931640625">
+                              <Text fx:id="txtMainTitle" fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Menu główne" textAlignment="CENTER" wrappingWidth="674.931640625">
                                  <font>
                                     <Font name="Cambria" size="40.0" />
                                  </font>
