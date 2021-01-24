@@ -214,4 +214,53 @@ public class errors {
 		public String nodeInTheHullInserted = "Wstawiono nowy węzeł do powłoki - klucz: ";
 		
 	}
+	
+	public static class UFKruskalMsg
+	{
+		public UFKruskalMsg() {
+			// TODO Auto-generated constructor stub
+		}
+		public String setupInformation(String info) {
+			return (infoDef+info);
+		}
+		//---------------- general -------------------------
+		public String infoDef = "Informacja: ";
+		public String msgTypeError = "error";
+		
+		//--------------------- headers ------------------
+		public String msgErrorHeader = "Błąd!";
+		
+		//--------------- buttons -----------------------------
+		public String generateDone = "Wygenerowano nowy przykład.";
+		public String restartDone = "Zrestartowano wizualizację.";
+		
+		//--------------- generate -----------------------------
+		public String delInProgress = "Zaczekaj, aż usuwanie zakończy działanie!";
+		public String pathTNotDone = "Musisz zaczekać na wykonanie się animacji!";
+		
+		//--------------- deletion -----------------------------
+		public String nodeDeletedPart1 = "Węzeł ";
+		public String nodeDeletedPart2 = " został usunięty!";
+		public String noSuchNode = "Nie ma węzła o kluczu ";
+		
+		//--------------- insertion -----------------------------
+		public String nodeAlredyExistsPart1 = "Węzeł o kluczu ";
+		public String nodeAlredyExistsPart2 = " już istnieje!";
+		public String nodeInserted = "Wstawiono węzeł o kluczu ";
+		public String valueNotGiven = "Nie podano wartości węzła!";
+		public String acceptableValues = "Dozwolone wartości węzła: liczby całkowite z przedziału <1,99>";
+		public String tooManyNodes = "Za dużo węzłów w grafie!";
+		
+		
+		//--------------- algorithm -----------------------------
+		public String emptyGraph = "Graf jest pusty!";
+		public String ufInitialized = "Struktura UnionFind została zainicjowana!";
+		public String edgesSorted = "Krawędzie zostały posortowane ze względu na koszt!";
+		public String edgeInsertedPart1 = "Krawędź z węzła ";
+		public String edgeInsertedPart2 = " do ";
+		public String edgeInsertedPart3 = " (koszt ";
+		public String edgeInsertedPart4 = ") została dodana do min. drzewa rozpin.!";
+		public String finished = "Algorytm zakończył pracę!";
+		public String nothingHappened = "W tym cyklu nic się nie stało!";
+	}
 }

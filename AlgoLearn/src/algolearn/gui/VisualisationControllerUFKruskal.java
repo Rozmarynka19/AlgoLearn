@@ -96,7 +96,7 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 	private boolean generateDone = true;
 	private boolean deleteInProgress = false;
 	private boolean pathTransitionDone = true;
-	private errors.grahamScanMsg msg = new errors.grahamScanMsg();
+	private errors.UFKruskalMsg msg = new errors.UFKruskalMsg();
 	
     private final int minInputRange = 1;
     private final int maxInputRange = 99;
@@ -218,17 +218,25 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 			Button targetNode = nodes.get(edge.targetNodeIndex);
 			Line line = new Line(startNode.getLayoutX()+horizontalBias, startNode.getLayoutY()+verticalBias, 
 					targetNode.getLayoutX()+horizontalBias,targetNode.getLayoutY()+verticalBias);
+			Text label = new Text(String.valueOf(edge.cost));
 			if(edge.status.equals(EdgeStatus.INCLUDED_IN_MST))
 			{
 				line.setStroke(Color.GREEN);
 				line.setStrokeWidth(2.);
+				label.setStroke(Color.GREEN);
 //				System.out.println("display: current strokeWidth="+String.valueOf(line.getStrokeWidth()));
 			}
+			else
+				line.setStroke(Color.GRAY);
 				
-			//TODO: add label with edge cost
-			Text label = new Text(String.valueOf(edge.cost));
-			label.setLayoutX((startNode.getLayoutX()+targetNode.getLayoutX())/2+horizontalBias+5);
-			label.setLayoutY((startNode.getLayoutY()+targetNode.getLayoutY())/2+verticalBias-5);
+			label.setStyle("-fx-font-size: 15px;");
+//			label.setLayoutX((startNode.getLayoutX()+targetNode.getLayoutX())/2+horizontalBias+5);
+//			label.setLayoutY((startNode.getLayoutY()+targetNode.getLayoutY())/2+verticalBias-5);
+			double xDist = targetNode.getLayoutX()-startNode.getLayoutX();
+			double yDist = targetNode.getLayoutY()-startNode.getLayoutY();
+			//goodOne
+			label.setLayoutX(startNode.getLayoutX()+xDist/4+horizontalBias);
+			label.setLayoutY(startNode.getLayoutY()+yDist/4+verticalBias);
 			visAnchorPane.getChildren().addAll(line,label);
 		}
 	}
@@ -240,7 +248,27 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 			if(Integer.valueOf(node.getText()) == key)
 			{
 				if (remove==true)
+				{
+					int row=-1,col=-1;
+					for(int i=0;i<(int)maxRandomNodes/3;i++)
+					{
+						if(node.getLayoutX()==widthArray[i])
+							row=i;
+						if(node.getLayoutY()==heightArray[i])
+							col=i;
+					}
+					try
+					{
+						occupiedPlaces[row][col]=false;
+					}
+					catch(Exception e)
+					{
+						System.out.println("isSuchNode [delete mode]: Something went wrong - getLayoutX/Y != widthArray/heightArray values");
+					}
+					
 					nodes.remove(node);
+				}
+					
 				return true;
 			}
 				
@@ -378,6 +406,9 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     	for(int i=0;i<maxRandomNodes/3;i++)
     		for(int j=0;j<maxRandomNodes/3;j++)
     			occupiedPlaces[i][j]=false;
+    	nextButtonClickedIterator=0;
+    	uf=null;
+    	edgeIterator=0;
     	this.display();
     	bindEdgesButton.setDisable(true);
     	startAlgoButton.setDisable(true);
@@ -482,6 +513,7 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     	boolean hasEdge = false;
     	for(int i=0;i<nodes.size();i++)
     	{
+    		hasEdge=false;
     		for(Edge edge: edges)
     		{
     			if(edge.startNodeIndex==i || edge.targetNodeIndex==i)
@@ -557,7 +589,7 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     		System.out.println("kruskal: step1");
     		uf = new UnionFind(nodes.size());
     		    		
-    		//TODO: message - uf structure initialized
+    		info.setText(msg.setupInformation(msg.ufInitialized));
     		display();
     		return;
     	case 2:
@@ -566,7 +598,7 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     		
     		Collections.sort(edges,costCOMPARE);
     		printEdges();
-    		//TODO: message - edges sorted
+    		info.setText(msg.setupInformation(msg.edgesSorted));
     		display();
     		return;
     	default:
@@ -583,20 +615,31 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     		if (firstParent != secondParent)
     		{
     			edges.get(edgeIterator).status = EdgeStatus.INCLUDED_IN_MST;
+        		info.setText(msg.setupInformation(msg.edgeInsertedPart1+
+        				nodes.get(currentEdge.startNodeIndex).getText()+
+        				msg.edgeInsertedPart2+
+        				nodes.get(currentEdge.targetNodeIndex).getText()+
+        				msg.edgeInsertedPart3+
+        				String.valueOf(currentEdge.cost)+
+        				msg.edgeInsertedPart4
+        				));
     			
     			//Casual union
     			uf.Union(firstParent, secondParent);    			
     		}
+    		else
+    		{
+    			info.setText(msg.setupInformation(msg.nothingHappened));
+    		}
     		edgeIterator++;
     		
-    		//TODO: message - edge added to MST
     		display();
     		return;
     	}
     	
     	//step 4. return MST
     	System.out.println("kruskal: Algorithm has finished!");
-    	//TODO: message - algorithm has finished
+		info.setText(msg.setupInformation(msg.finished));
     	nextButton.setDisable(true);
     	display();
 	}
