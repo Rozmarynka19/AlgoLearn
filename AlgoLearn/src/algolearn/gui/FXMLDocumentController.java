@@ -382,8 +382,20 @@ public class FXMLDocumentController implements Initializable{
     	
     }
 	
-	@FXML public void quiz(ActionEvent event) {
-    	System.out.println("Jestem przyciskiem w menu głównym który nie robi aktualnie nic! Miło że to czytasz!");
+	@FXML public void quiz(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/tests.fxml"));
+    	AnchorPane anchorPane = loader.load();
+        testsController controller = (testsController)loader.getController();
+    	setScreen(anchorPane);
+    	
+    	savedValues.TestController = controller;
+    	
+    	Text title = (Text)anchorPane.lookup("#testTitle");
+		Button clicked_btn = savedValues.GetClickedBTN();
+    	if(title != null)
+    		title.setText(clicked_btn.getText() + " - Test wiedzy");
+    	
+    	
     }
 
     @Override

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
+
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.testsController">
+   <children>
+      <HBox prefHeight="514.0" prefWidth="245.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <HBox prefHeight="71.0" prefWidth="824.0">
+                     <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="824.0" styleClass="titlePlane">
+                           <children>
+                              <Text fx:id="testTitle" fill="WHITE" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Test sprawdzający wiedzę" textAlignment="CENTER" wrappingWidth="825.0">
+                                 <font>
+                                    <Font name="Cambria" size="40.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="445.0" prefWidth="824.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <VBox prefHeight="449.0" prefWidth="824.0">
+                           <children>
+                              <WebView fx:id="descriptionText" prefHeight="430.0" prefWidth="824.0" />
+                              <Pane prefHeight="15.0" prefWidth="824.0" styleClass="titlePlane" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="20.0">
+               <children>
+                  <Pane prefHeight="517.0" prefWidth="74.0" styleClass="titlePlane" />
+               </children></VBox>
+            <VBox prefHeight="560.0" prefWidth="461.0">
+               <children>
+                  <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
+                     <children>
+                        <Pane layoutX="-2.0" layoutY="-2.0" prefHeight="78.0" prefWidth="75.0" styleClass="backBTN" />
+                        <Button id=".empty" fx:id="btn11" layoutX="137.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="143.0" styleClass="algHard" text="X" />
+                        <Button id=".empty" fx:id="btn1" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="143.0" styleClass="minimalizeWindow" text="-" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane">
+                     <children>
+                        <Text fill="WHITE" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Wybierz odpowiedź" textAlignment="CENTER" wrappingWidth="279.0">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneA" onMouseClicked="#selectAnswer" prefHeight="40.0" prefWidth="280.0" styleClass="algEasy">
+                     <children>
+                        <Text fx:id="textA" fill="WHITE" layoutX="8.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Odpowiedź A" wrappingWidth="157.59829711914062">
+                           <font>
+                              <Font name="Cambria" size="30.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="checkBoxA" layoutX="246.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneB" onMouseClicked="#selectAnswer" prefHeight="40.0" prefWidth="280.0" styleClass="algEasy">
+                     <children>
+                        <Text fx:id="textB" fill="WHITE" layoutX="8.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Odpowiedź B" wrappingWidth="157.59829711914062">
+                           <font>
+                              <Font name="Cambria" size="30.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="checkBoxB" layoutX="246.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneC" onMouseClicked="#selectAnswer" prefHeight="40.0" prefWidth="280.0" styleClass="algEasy">
+                     <children>
+                        <Text fx:id="textC" fill="WHITE" layoutX="8.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Odpowiedź C" wrappingWidth="157.59829711914062">
+                           <font>
+                              <Font name="Cambria" size="30.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="checkBoxC" layoutX="246.0" layoutY="4.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneD" onMouseClicked="#selectAnswer" prefHeight="40.0" prefWidth="280.0" styleClass="algEasy">
+                     <children>
+                        <Text fx:id="textD" fill="WHITE" layoutX="8.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textNormal" text="Odpowiedź D" wrappingWidth="157.59829711914062">
+                           <font>
+                              <Font name="Cambria" size="30.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="checkBoxD" layoutX="246.0" layoutY="5.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="20.0" />
+                     </children>
+                  </Pane>
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="47.0" prefWidth="280.0" styleClass="algHard" text="Następne pytanie" />
+                  <Pane prefHeight="52.0" prefWidth="280.0" styleClass="titlePlane">
+                     <children>
+                        <Text fill="WHITE" layoutX="1.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Pozostałe operacje" textAlignment="CENTER" wrappingWidth="279.0">
+                           <font>
+                              <Font name="Cambria" size="40.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
+                  <Button id=".empty" fx:id="startExam" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#beginExam" prefHeight="48.0" prefWidth="280.0" styleClass="algEasy" text="Rozpocznij test" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#finishTest" prefHeight="43.0" prefWidth="280.0" styleClass="algMedium" text="Zakończ test" />
+                  <Button id=".empty" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="43.0" prefWidth="280.0" styleClass="algHard" text="Powrót do menu" />
+                  <Pane prefHeight="13.0" prefWidth="280.0" styleClass="titlePlane" />
+               </children>
+            </VBox>
+
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

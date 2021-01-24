@@ -67,6 +67,7 @@ public class SavedValues {
     		return clickedBTN.getId();
     }
     
+    protected testsController TestController = null;
     
 
 }
