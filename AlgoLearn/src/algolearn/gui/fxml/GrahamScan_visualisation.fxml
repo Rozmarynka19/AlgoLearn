@@ -49,7 +49,9 @@
                         <Button fx:id="deleteButton" layoutX="223.0" layoutY="-1.0" mnemonicParsing="false" onAction="#delete" prefHeight="50.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
                      </children>
                   </Pane>
-                        <Pane prefHeight="187.0" prefWidth="280.0" styleClass="titlePlane" />
+                  <Button id="3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" />
+                  <Button id="1" fx:id="startAlgoButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startAlgorithm" prefHeight="49.0" prefWidth="279.0" styleClass="algEasy" text="Rozpocznij algorytm" />
+                        <Pane prefHeight="90.0" prefWidth="280.0" styleClass="titlePlane" />
                         <HBox prefHeight="48.0" prefWidth="279.0">
                             <children>
                                 <Button id="5" fx:id="hiddenValues" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" />
@@ -109,12 +111,12 @@
                               <Button id="1" fx:id="restartButton" layoutX="14.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#restartVis" prefHeight="70.0" prefWidth="150.0" styleClass="algHard" text="Restartuj" />
                               <Button id=".empty" fx:id="backButton" layoutX="715.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
                               <ProgressBar fx:id="generateBar" layoutX="164.0" layoutY="1.0" onMouseClicked="#pressRandomBar" prefHeight="70.0" prefWidth="150.0" progress="1.0" styleClass="generate-bar" />
-                              <Text fill="WHITE" layoutX="196.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Generuj" textAlignment="CENTER" wrappingWidth="85.931640625">
+                              <Text disable="true" fill="WHITE" layoutX="196.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Generuj" textAlignment="CENTER" wrappingWidth="85.931640625">
                                  <font>
                                     <Font name="Cambria" size="40.0" />
                                  </font>
                               </Text>
-                              <Button id="1" layoutX="314.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="150.0" styleClass="algEasy" text="Dalej" />
+                              <Button id="1" fx:id="nextButton" layoutX="445.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#next" prefHeight="70.0" prefWidth="150.0" styleClass="algEasy" text="Dalej" />
                                     </children></Pane>
                             </children>
                         </HBox>
