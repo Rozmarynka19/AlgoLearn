@@ -493,7 +493,10 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		    if(angle < 0){
     		        angle += 360;
     		    }
-    			node.getValue().angle=angle;
+    		    if(node.getValue().x<=0.0 && node.getValue().y<=0.0)
+    		    	node.getValue().angle=-100.;
+    		    else
+    		    	node.getValue().angle=angle;
     		}
     		
     		Collections.sort(algoNodes,angleCOMPARE);   		
@@ -528,6 +531,8 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 			
 			do
 			{
+				if(indexesOfHullNodes.size()<=2)
+					break;
 				int LastIndx = indexesOfHullNodes.get(indexesOfHullNodes.size()-1);
 				int SecondToLastIndx = indexesOfHullNodes.get(indexesOfHullNodes.size()-2);
 				int ThirdToLastIndx = indexesOfHullNodes.get(indexesOfHullNodes.size()-3);
