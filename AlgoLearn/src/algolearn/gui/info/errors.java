@@ -165,4 +165,53 @@ public class errors {
 		public String knownNodeSelected = "Zaznaczono węzeł z o kluczu ";
 		
 	}
+	
+	public static class grahamScanMsg
+	{
+		public grahamScanMsg() {
+			// TODO Auto-generated constructor stub
+		}
+		public String setupInformation(String info) {
+			return (infoDef+info);
+		}
+		//---------------- general -------------------------
+		public String infoDef = "Informacja: ";
+		public String msgTypeError = "error";
+		
+		//--------------------- headers ------------------
+		public String msgErrorHeader = "Błąd!";
+		
+		//--------------- buttons -----------------------------
+		public String generateDone = "Wygenerowano nowy przykład.";
+		public String restartDone = "Zrestartowano wizualizację.";
+		
+		//--------------- generate -----------------------------
+		public String delInProgress = "Zaczekaj, aż usuwanie zakończy działanie!";
+		public String pathTNotDone = "Musisz zaczekać na wykonanie się animacji!";
+		
+		//--------------- deletion -----------------------------
+		public String nodeDeletedPart1 = "Węzeł ";
+		public String nodeDeletedPart2 = " został usunięty!";
+		public String noSuchNode = "Nie ma węzła o kluczu ";
+		
+		//--------------- insertion -----------------------------
+		public String nodeAlredyExistsPart1 = "Węzeł o kluczu ";
+		public String nodeAlredyExistsPart2 = " już istnieje!";
+		public String nodeInserted = "Wstawiono węzeł o kluczu ";
+		public String valueNotGiven = "Nie podano wartości węzła!";
+		public String acceptableValues = "Dozwolone wartości węzła: liczby całkowite z przedziału <1,99>";
+		public String tooManyNodes = "Za dużo węzłów w grafie!";
+		
+		
+		//--------------- algorithm -----------------------------
+		public String emptyGraph = "Graf jest pusty!";
+		public String startNodeFound = "Znaleziono węzeł początkowy! Przestawiono układ współrzędnych!";
+		public String nodesSorted = "Posortowano węzły według kąta!";
+		public String firstNodesAdded = "Wstawiono punkt początkowy i pierwszy z listy do powłoki!";
+		public String turnLeft = "Zakręt w lewo - ok!";
+		public String turnRight = "Zakręt w prawo - usuwamy przedostatni węzeł";
+		public String finished = "Algorytm zakończył pracę!";
+		public String nodeInTheHullInserted = "Wstawiono nowy węzeł do powłoki - klucz: ";
+		
+	}
 }

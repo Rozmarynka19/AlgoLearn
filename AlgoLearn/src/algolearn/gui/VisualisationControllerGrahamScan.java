@@ -61,7 +61,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 	private boolean generateDone = true;
 	private boolean deleteInProgress = false;
 	private boolean pathTransitionDone = true;
-	private errors.rbtMsg msg = new errors.rbtMsg();
+	private errors.grahamScanMsg msg = new errors.grahamScanMsg();
 	
     private final int minInputRange = 1;
     private final int maxInputRange = 99;
@@ -117,7 +117,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 			if (isSuchNode(key,false))
 			{
 				System.out.println("insert: juz jest węzeł w grafie o kluczu "+String.valueOf(key));
-				//TODO: messagebox - juz jest wezel w grafie o takim kluczu
+				info.setText(msg.setupInformation(msg.nodeAlredyExistsPart1+String.valueOf(key)+msg.nodeAlredyExistsPart2));
 				return;
 			}
 				
@@ -127,7 +127,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 				newNode.setText(String.valueOf(key));
 				nodes.add(newNode);
 				System.out.println("insert: udalo sie dodac wezel o kluczu "+String.valueOf(key));
-				//TODO: messagebox - udalo sie dodac wezel
+				info.setText(msg.setupInformation(msg.nodeInserted+String.valueOf(key)));
 			}
 			
 			if(startAlgoButton.isDisabled() && nodes.size()>=4)
@@ -225,8 +225,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 		if(safetyIterator>=maxSafetyIterations)
 		{
 			System.out.println("insert: za duzo wezlow w grafie!");
-			//TODO: messagebox - too many nodes
-			createMessageBox(msg.msgErrorHeader, msg.acceptableValues, msg.msgTypeError);
+			createMessageBox(msg.msgErrorHeader, msg.tooManyNodes, msg.msgTypeError);
 			return false;
 		}
 		
@@ -238,7 +237,14 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 	@FXML
 	public void delete(ActionEvent event)
 	{
+
 		int key = validateInput(deleteTextField);
+		
+		if (nodes.size()==0)
+		{
+			info.setText(msg.setupInformation(msg.emptyGraph));
+			return;
+		}
 		
 		if(key<0)
 			return;
@@ -247,12 +253,12 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 			if (!isSuchNode(key,true))
 			{
 				System.out.println("delete: nie ma w grafie wezla o kluczu "+String.valueOf(key));
-				//TODO: messagebox - nie ma w grafie wezla o kluczu x
+				info.setText(msg.setupInformation(msg.noSuchNode+String.valueOf(key)));
 				return;
 			}
 			
 			System.out.println("delete: udalo sie usunac wezel o kluczu "+String.valueOf(key));
-			//TODO: messagebox - udalo sie usunac wezel
+			info.setText(msg.setupInformation(msg.nodeDeletedPart1+String.valueOf(key)+msg.nodeDeletedPart2));
 			display();            
         }
 		
@@ -393,11 +399,11 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
             	controller.txtMainTitle.getStyleClass().add("errorHeader");
             	controller.msgTextArea.getStyleClass().add("errorText");
             }
-            else if(msgBoxStyle==msg.msgTypeCongrats)
-            {
-            	controller.txtMainTitle.getStyleClass().add("congratsHeader");
-            	controller.msgTextArea.getStyleClass().add("congratsText");
-            }
+//            else if(msgBoxStyle==msg.msgTypeCongrats)
+//            {
+//            	controller.txtMainTitle.getStyleClass().add("congratsHeader");
+//            	controller.msgTextArea.getStyleClass().add("congratsText");
+//            }
             
         }
         catch (IOException e) {
@@ -417,7 +423,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     {
     	if(nodes.size()==0)
     	{
-    		//TODO: messagebox - graf jest pusty
+    		info.setText(msg.setupInformation(msg.emptyGraph));
     		System.out.println("startAlgorithm: graf jest pusty!");
     		return;
     	}
@@ -479,6 +485,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     			node.getValue().y -= lowestY;
     		}
     		
+    		info.setText(msg.setupInformation(msg.startNodeFound));
     		displayGrahamScan();
     		return;
     	case 2:
@@ -502,6 +509,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		Collections.sort(algoNodes,angleCOMPARE);   		
     		printAngles();
     		
+    		info.setText(msg.setupInformation(msg.nodesSorted));
     		displayGrahamScan();
     		return;
     	case 3:
@@ -510,6 +518,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		algoNodes.get(1).getValue().status=NodeStatus.HULL;
     		indexesOfHullNodes.add(0);
     		indexesOfHullNodes.add(1);
+    		info.setText(msg.setupInformation(msg.firstNodesAdded));
     		displayGrahamScan();
     		return;
 		default:
@@ -556,6 +565,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		    if(LastAngle>SecondToLastAngle)
     		    {
     		    	turnRight=false;
+//    		    	info.setText(msg.setupInformation(msg.turnLeft));
     		    }
     		    else
     		    {
@@ -578,6 +588,7 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		    				", value="+algoNodes.get(indexesOfHullNodes.get(i)).getKey().getText()
     		    				);
     		    	}
+//    		    	info.setText(msg.setupInformation(msg.turnRight));
     		    	displayGrahamScan();
     		    }
 			}
@@ -587,12 +598,15 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 			if(last.status.equals(NodeStatus.VISITED) || last.status.equals(NodeStatus.HULL))
 				break;	
 			
+			int indx = indexesOfHullNodes.get(indexesOfHullNodes.size()-1);
+			info.setText(msg.setupInformation(msg.nodeInTheHullInserted+algoNodes.get(indx).getKey().getText()));	
 			displayGrahamScan();
 			return;
     	}
     	
     	//step 5. return indexes of points which are included in the hull
     	System.out.println("grahamScan: Algorithm has finished!");
+    	info.setText(msg.setupInformation(msg.finished));
     	indexesOfHullNodes.add(0);
     	nextButton.setDisable(true);
     	displayGrahamScan();
