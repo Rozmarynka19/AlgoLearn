@@ -184,6 +184,10 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 			visAnchorPane.getChildren().add(new Line(startNode.getLayoutX()+horizontalBias, startNode.getLayoutY()+verticalBias, 
 					targetNode.getLayoutX()+horizontalBias,targetNode.getLayoutY()+verticalBias));
 			//TODO: add label with edge cost
+			Text label = new Text(String.valueOf(edge.cost));
+			label.setLayoutX((startNode.getLayoutX()+targetNode.getLayoutX())/2+horizontalBias+5);
+			label.setLayoutY((startNode.getLayoutY()+targetNode.getLayoutY())/2+verticalBias-5);
+			visAnchorPane.getChildren().add(label);
 		}
 	}
 	
@@ -444,7 +448,8 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     		
     		for(Edge edge: edges)
     		{
-    			if(edge.startNodeIndex==startNodeIndex && edge.targetNodeIndex==targetNodeIndex)
+    			if( (edge.startNodeIndex==startNodeIndex && edge.targetNodeIndex==targetNodeIndex) || 
+    					(edge.startNodeIndex==targetNodeIndex && edge.targetNodeIndex==startNodeIndex) )
     			{
     				i--;
     				continue binding;
