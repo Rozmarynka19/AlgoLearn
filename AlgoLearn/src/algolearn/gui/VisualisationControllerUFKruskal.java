@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import algolearn.gui.VisualisationControllerGrahamScan.AlgoNode;
+import algolearn.gui.VisualisationControllerGrahamScan.NodeStatus;
 import algolearn.gui.info.errors;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -24,6 +26,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -61,6 +64,35 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 		INCLUDED_IN_MST,EXCLUDED_IN_MST;		
 	}
 	
+	public class UnionFind
+	{
+		public int[] parentArray;
+		int unionCounter;
+		long findCounter;
+
+		public UnionFind(int numberOfNodes)
+		{
+			unionCounter = 0; 
+			findCounter = 0;
+			parentArray = new int[numberOfNodes];
+
+			for (int i = 0; i < numberOfNodes; i++)
+				parentArray[i]=i;
+		}
+		public void Union(int index1, int index2)
+		{
+			parentArray[index1] = index2;
+			unionCounter++;
+		}
+		public int Find(int index)
+		{
+			findCounter++;
+			if (index == parentArray[index]) 
+				return index;
+			return Find(parentArray[index]);
+		}
+	};
+	
 	private boolean generateDone = true;
 	private boolean deleteInProgress = false;
 	private boolean pathTransitionDone = true;
@@ -74,6 +106,9 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     private final int horizontalBias = 20;
     private ArrayList<Button> nodes = new ArrayList<Button>();
     private ArrayList<Edge> edges = new ArrayList<Edge>();
+    private int nextButtonClickedIterator=0;
+    private UnionFind uf;
+    private int edgeIterator=0;
 
 	@FXML AnchorPane visAnchorPane;
 	@FXML Button addButton;
@@ -181,13 +216,20 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 		{
 			Button startNode = nodes.get(edge.startNodeIndex);
 			Button targetNode = nodes.get(edge.targetNodeIndex);
-			visAnchorPane.getChildren().add(new Line(startNode.getLayoutX()+horizontalBias, startNode.getLayoutY()+verticalBias, 
-					targetNode.getLayoutX()+horizontalBias,targetNode.getLayoutY()+verticalBias));
+			Line line = new Line(startNode.getLayoutX()+horizontalBias, startNode.getLayoutY()+verticalBias, 
+					targetNode.getLayoutX()+horizontalBias,targetNode.getLayoutY()+verticalBias);
+			if(edge.status.equals(EdgeStatus.INCLUDED_IN_MST))
+			{
+				line.setStroke(Color.GREEN);
+				line.setStrokeWidth(2.);
+//				System.out.println("display: current strokeWidth="+String.valueOf(line.getStrokeWidth()));
+			}
+				
 			//TODO: add label with edge cost
 			Text label = new Text(String.valueOf(edge.cost));
 			label.setLayoutX((startNode.getLayoutX()+targetNode.getLayoutX())/2+horizontalBias+5);
 			label.setLayoutY((startNode.getLayoutY()+targetNode.getLayoutY())/2+verticalBias-5);
-			visAnchorPane.getChildren().add(label);
+			visAnchorPane.getChildren().addAll(line,label);
 		}
 	}
 	
@@ -405,29 +447,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     }
     
     @FXML
-    private void next()
-    {
-
-    }
-    
-    @FXML
-    public void startAlgorithm()
-    {
-    	if(nodes.size()==0)
-    	{
-    		info.setText(msg.setupInformation(msg.emptyGraph));
-    		System.out.println("startAlgorithm: graf jest pusty!");
-    		return;
-    	}
-    		
-    	addButton.setDisable(true);
-    	deleteButton.setDisable(true);
-    	startAlgoButton.setDisable(true);
-    	nextButton.setDisable(false);
-
-    }
-    
-    @FXML
     public void bindEdges()
     {
     	//binding edges;
@@ -501,5 +520,92 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     				", cost="+String.valueOf(edges.get(i).cost));
     	}
     }
+    
+    @FXML
+    private void next()
+    {
+    	nextButtonClickedIterator++;
+    	kruskal();
+    }
+    
+    @FXML
+    public void startAlgorithm()
+    {
+    	if(nodes.size()==0)
+    	{
+    		info.setText(msg.setupInformation(msg.emptyGraph));
+    		System.out.println("startAlgorithm: graf jest pusty!");
+    		return;
+    	}
+    		
+    	addButton.setDisable(true);
+    	deleteButton.setDisable(true);
+    	bindEdgesButton.setDisable(true);
+    	startAlgoButton.setDisable(true);
+    	nextButton.setDisable(false);
+    	
+    	nextButtonClickedIterator=1;
+    	kruskal();
+    }
+    
+    private void kruskal()
+    {
+    	switch(nextButtonClickedIterator)
+    	{
+    	case 1:
+        	//step 1. init UF structure
+    		System.out.println("kruskal: step1");
+    		uf = new UnionFind(nodes.size());
+    		    		
+    		//TODO: message - uf structure initialized
+    		display();
+    		return;
+    	case 2:
+        	//step 2. sort (ascending) edges by cost
+    		System.out.println("kruskal: step2");
+    		
+    		Collections.sort(edges,costCOMPARE);
+    		printEdges();
+    		//TODO: message - edges sorted
+    		display();
+    		return;
+    	default:
+        	//step 3. for every edge ...
+    		System.out.println("kruskal: default step");
+    		
+    		if(uf.unionCounter>=nodes.size()-1)
+    			break;
+    		
+    		Edge currentEdge = edges.get(edgeIterator);    		
+    		int firstParent = uf.Find(currentEdge.startNodeIndex); 
+    		int secondParent = uf.Find(currentEdge.targetNodeIndex);
+    		
+    		if (firstParent != secondParent)
+    		{
+    			edges.get(edgeIterator).status = EdgeStatus.INCLUDED_IN_MST;
+    			
+    			//Casual union
+    			uf.Union(firstParent, secondParent);    			
+    		}
+    		edgeIterator++;
+    		
+    		//TODO: message - edge added to MST
+    		display();
+    		return;
+    	}
+    	
+    	//step 4. return MST
+    	System.out.println("kruskal: Algorithm has finished!");
+    	//TODO: message - algorithm has finished
+    	nextButton.setDisable(true);
+    	display();
+	}
+    
+    public static Comparator<Edge> costCOMPARE = new Comparator<Edge>() {
+		@Override
+		public int compare(Edge o1, Edge o2) {
+			return o1.cost-o2.cost;
+		}
+    };
 	
 }
