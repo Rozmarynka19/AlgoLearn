@@ -24,7 +24,7 @@ public class SavedValues {
             asList("BST_introduction.fxml","BST_description.fxml","bst_visualisation.fxml"), // bst
             asList("hashTable_introduction.fxml","hashTable_description.fxml","hash_table_visualisation.fxml"), // tablica mieszająca
             asList("FloydWarshall_introduction.fxml","FloydWarshall_description.fxml","visualisation_fxml.fxml"), // floyd warshall
-            asList("UFKruskal_introduction.fxml","UFKruskal_description.fxml","visualisation_fxml.fxml"), // Union Find
+            asList("UFKruskal_introduction.fxml","UFKruskal_description.fxml","UFKruskal_visualisation.fxml"), // Union Find
             asList("GrahamScan_introduction.fxml","GrahamScan_description.fxml","GrahamScan_visualisation.fxml"), // algorytm grahama
             asList("RBT_introduction.fxml","RBT_description.fxml","RBT_visualisation.fxml") //  red-black tree
     );
