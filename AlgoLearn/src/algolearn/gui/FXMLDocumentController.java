@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -45,12 +46,12 @@ public class FXMLDocumentController implements Initializable{
 	public double [] scene_max = {300, 1123};
 	private boolean resize_locker = false;
     @FXML
-    private Stage stage, secStage;
+    private Stage stage = null, secStage;
     @FXML
     private Button btn, wpr, opi, wiz;
     @FXML
     private TextArea infoTextField;
-    private String btn_id = "NULL";
+    private String btn_id = savedValues.getID();
     /* Dane dotyczace progressu - tymczasowo false - wymaga implemntacji zapisu i wczytywania danych z pliku*/
     private boolean[][] category_data =  {
     		{false, false, false},
@@ -69,18 +70,15 @@ public class FXMLDocumentController implements Initializable{
             {false, false, false},
     };
     private int algo_id = 0;
-    @FXML
-    private Text txtMainTitle;
+    @FXML private Text txtMainTitle;
     //private String txtMainTitleString = "Algolearn - ";
     private String txtMainTitleString = "";
-    private String txtProgressString = "/100";
     
     @FXML
     WebView introText;
     private WebEngine engine;
 
     private int realId = savedValues.savedRealId;
-
     /**
      * 
      * @param event : Button handler.
@@ -93,31 +91,34 @@ public class FXMLDocumentController implements Initializable{
         Button tmp = (Button)event.getSource(); // dwie liniee zamienne
         Stage stage = (Stage) tmp.getScene().getWindow();
         //Stage stage = (Stage) btn.getScene().getWindow(); Dla Olafa - wywaliłem to stwierdzając że lepiej będzie się uniezależnić od konkretnego
-                                                            // fx:id gdy z tej funkcji korzysta ok 13-16 przycisków
-        this.stage = stage;
+        
+        if(this.stage == null)                                                    
+        	this.stage = stage;
+        
         Button clicked_btn = (Button)event.getSource();
-        String btn_val = clicked_btn.getId();
         realId=Integer.parseInt(clicked_btn.getId());
         savedValues.savedRealId=realId;
-        System.out.println(realId);
-        this.algo_id = Integer.parseInt(btn_val);
-        if(this.btn_id == "NULL") this.btn_id = btn_val;
+        
+        this.algo_id = Integer.parseInt(clicked_btn.getId());
+        
         if(stage.getWidth() < scene_max[1] && this.resize_locker == false) {
         	resize(stage, scene_max[1], (double)15, 1, 3);
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         	categorySetBackground();
         	savedValues.resizeFlag=true;
         }
-        else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId() == btn_id)  {
-            if(!savedValues.resizeFlag)
-        	resize(stage, scene_base[1], (double)-15, 1, 3);
-            else
-                realId=savedValues.savedRealId;
-        }else if(clicked_btn.getId() != btn_id) {
+        else if (stage.getWidth() >= scene_max[1] && this.resize_locker == false && clicked_btn.getId().equals(btn_id))  {
+            if(savedValues.resizeFlag)
+            	resize(stage, scene_base[1], (double)-15, 1, 3);
+            
+            realId=savedValues.savedRealId;
+        }else if(!clicked_btn.getId().equals(btn_id)) {
         	txtMainTitle.setText(txtMainTitleString + clicked_btn.getText());
         	categorySetBackground();
         }
+
         this.btn_id = clicked_btn.getId();
+        savedValues.SetClickedBTN(clicked_btn);
     }
     
     /**
@@ -199,9 +200,8 @@ public class FXMLDocumentController implements Initializable{
     private void Requirements(ActionEvent event){
     	infoTextField.setText(
     			"Wymagania systemowe: \n"
-    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
-    			+ "Wymagania systemowe (minimalne): \n"
-    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
+				+ "* Windows 8/10 x64\n"
+    			+ "* Java 15"
     	);
     }
     
@@ -329,6 +329,13 @@ public class FXMLDocumentController implements Initializable{
 			e.printStackTrace();
 		}
 		setScreen(anchorPane);
+		
+		Button clicked_btn = savedValues.GetClickedBTN();
+		Text txt = (Text) anchorPane.lookup("#txtMainTitle");
+		if(txt != null)
+			txt.setText(clicked_btn.getText());
+
+        this.stage = (Stage)anchorPane.getScene().getWindow();
     }
     
     /**
@@ -370,10 +377,23 @@ public class FXMLDocumentController implements Initializable{
 	@FXML
     public void BackToMainStage(ActionEvent event) {
     	loadMenu();
+    	
     }
 	
-	@FXML public void quiz(ActionEvent event) {
-    	System.out.println("Jestem przyciskiem w menu głównym który nie robi aktualnie nic! Miło że to czytasz!");
+	@FXML public void quiz(ActionEvent event) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/tests.fxml"));
+    	AnchorPane anchorPane = loader.load();
+        testsController controller = (testsController)loader.getController();
+    	setScreen(anchorPane);
+    	
+    	savedValues.TestController = controller;
+    	
+    	Text title = (Text)anchorPane.lookup("#testTitle");
+		Button clicked_btn = savedValues.GetClickedBTN();
+    	if(title != null)
+    		title.setText(clicked_btn.getText() + " - Test wiedzy");
+    	
+    	
     }
 
     @Override

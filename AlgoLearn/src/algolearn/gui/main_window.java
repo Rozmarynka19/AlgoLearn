@@ -13,13 +13,13 @@ import javafx.stage.Stage;
  */
 
 public class main_window extends Application {
-
-    private int[] scene_base = {300, 515};
-    public static double window_x_offset = 0;
-    public static double window_y_offset = 0;
-
-    public static void main(String[] args) { Application.launch(args); }
-
+	private int [] scene_base = {300, 515};
+	public static double window_x_offset = 0;
+	public static double window_y_offset = 0;
+    public static void main(String[] args) {
+        Application.launch(args);
+        System.exit(0);
+    }
     @Override
     public void start(Stage stage) throws Exception {
         FXMLDocumentController fxmlDocumentController = new FXMLDocumentController();

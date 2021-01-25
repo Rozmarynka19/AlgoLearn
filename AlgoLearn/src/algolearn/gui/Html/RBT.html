@@ -107,6 +107,13 @@ h1,h4,h3
     line-height: 0;
 }
 
+.longH4
+{
+	
+    text-align: center;
+	font-weight: bold;
+}
+
 h1
 {
     padding: 10px  0px  5px  0px
@@ -154,8 +161,36 @@ h1
     height:50%;
 }
 
+.imgInsertDouble
+{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:75%;
+    height:75%;
+}
 
-.imgRotations, .imgInsert
+.imgInsertSingle
+{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    height:50%;
+	padding:20px 60px;
+}
+
+.imgInsertSingleRoot
+{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:10%;
+    height:10%;
+	padding:20px 60px;
+}
+
+.imgRotations
 {
     padding:20px 60px;
 }
@@ -269,7 +304,7 @@ section
                 <br/>
 
                 <img style="display: block;
-                width: 80%;" class="imgInsert" src="../textimg/RBTimg/insert/insert_relationship1.png"/>
+                width: 80%;" class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_relationship1.png"/>
 				</div>
                 <br/>
                 Chcemy określić "who is who" dla węzła o kluczu "23" (ten zaznaczony z żółtą obręczą ;]).
@@ -281,7 +316,7 @@ section
                 Tak jak w rodzinie :). Nothing fancy. Możemy przejść do scenariuszy wstawiania - 
                 czyli na jakie sytuację możemy się natknąć po wstawieniu węzła.
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_relationship2.png"/>
+                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_relationship2.png"/>
             </p>
         </section>
 
@@ -295,7 +330,7 @@ section
                 We wprowadzeniu do tematu zaznaczyliśmy, że będziemy wstawiali węzeł i go kolorowali na czerwono.
                 Pamiętasz, jakiego koloru powinien być korzeń w RBT? Czarnego! To co musimy zrobić? Przekolorować wstawiony węzeł na czarny! Koniec.
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario1.gif"/>
+                <img class="imgInsertSingleRoot" src="../textimg/RBTimg/insert/insert_scenario1.gif"/>
             </p>
         </section>
 
@@ -305,29 +340,29 @@ section
                 <br/>
                 Załóżmy, że mamy takie <b>poddrzewo</b> (ważne, że jest to poddrzewo; dlaczego, wyjaśnimy później).
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario2_1.png"/>
+                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_1.png"/>
                 <br/>
                 Wstawiamy nowy węzeł, np. o kluczu "3".
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario2_2.png"/>
+                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_2.png"/>
                 <br/>
                 I co się stało? Czy węzeł czerwony ma jakieś obostrzenia dotyczące koloru jego dzieci? Muszą być czarne, prawda?
                 Ale zamiast przekolorywać wstawiony węzeł na czarno robimy inaczej. Zerknijmy, jakiego koloru jest wujek wstawionego węzła.
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario2_3.png"/>
+                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_3.png"/>
                 <br/>
                 Jest czerwony. Zatem zmieniamy kolory rodzica, dziadka i wujka węzła o kluczu "3" na przeciwne.
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario2_4.png"/>
+                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_4.png"/>
                 <br/>
                 I koniec. Nasze poddrzewko jest naprawione. <b>Poddrzewko</b>, bo gdyby to było pełne drzewo, 
                 to jeszcze musielibyśmy zmienić kolor korzenia na czarny, jak poniżej.
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario2_5.png"/>
+                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_5.png"/>
                 <br/>
                 Podsumowując - wstawiamy węzeł, wujek czerwony, zmieniamy kolory.
                 <br/>
-                <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario2.gif"/>
+                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2.gif"/>
                 <br/>
             </p>
         </section>
@@ -343,10 +378,10 @@ section
                 Mamy takie podrzewo. Załóżmy, że przed chwilą wstawiliśmy węzeł o kluczu "15"
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3L_0.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_0.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3R_0.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_0.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -355,10 +390,10 @@ section
                 Sprawdźmy, jakiego koloru jest wujek :).
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3L_1.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_1.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3R_1.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_1.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -367,10 +402,10 @@ section
                 Odpowiednio, w prawej formacji trójkątnej rotujemy rodzica nowo wstawionego węzła o kluczu "15" w prawą stronę. 
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3L_2.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_2.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3R_2.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_2.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -379,10 +414,10 @@ section
                 rodzica wstawianego węzła o kluczu "15".
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3L_4.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_4.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3R_4.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_4.png"/>
                 </div>
                 <div class="below"></div>
             </p>
@@ -403,10 +438,10 @@ section
                 Podobnie, możemy mieć lewą i prawą formację liniową (wstawiony węzeł, rodzic i dziadek tworzą odpowiednio lewy lub prawy skos).
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4L_1.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_1.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4R_1.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_1.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -415,46 +450,46 @@ section
                 gdyby tam był węzeł dowolnego koloru (czerwony lub czarny).
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4L_2.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_2.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4R_2.png"/>
-                </div>
-                <div class="below"></div>
-                <br/>
-                <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4L_4.png"/>
-                </div>
-                <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4R_4.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_2.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4L_5.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_4.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4R_5.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_4.png"/>
+                </div>
+                <div class="below"></div>
+                <br/>
+                <div class="parallel">
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_5.png"/>
+                </div>
+                <div class="parallel">
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_5.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
                 Ostatni krok, to przekolorowanie na przeciwny kolor rodzica i dziadka dodanego węzła.
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4L_6.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_6.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario4R_6.png"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_6.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
                 Poniższe animacje pokazują krok po kroku operacje wykonane w scenariuszu 3 i 4.
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3&4L.gif"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3&4L.gif"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsert" src="../textimg/RBTimg/insert/insert_scenario3&4R.gif"/>
+                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3&4R.gif"/>
                 </div>
                 <div class="below"></div>
             </p>
@@ -488,7 +523,7 @@ section
             <ul>
                 <li><a href="#Lrotation">Rotacja w lewo</a></li>
                 <li><a href="#Rrotation">Rotacja w prawo</a></li>
-                <li><a href="#resume">Podsumowanie</a></li>
+                <li><a href="#resume2">Podsumowanie</a></li>
             </ul>
             <br/>
         </p>
@@ -571,7 +606,7 @@ section
             </p>
         </section>
 
-        <section id="resume">
+        <section id="resume2">
             <p>
                 <h4>Podsumowanie</h4>
                 Widzisz podobieństwa? Jakieś analogie? Podpowiemy Ci:
@@ -851,7 +886,7 @@ section
 
         <section id="BSTlike3">
             <p>
-                <h4>Usuwanie w stylu BST - przypadek 3 - usuwany węzeł posiada dwóch potomków i prawy jest jego następnikiem</h4>
+                <div class="longH4">Usuwanie w stylu BST - przypadek 3 - usuwany węzeł posiada dwóch potomków i prawy jest jego następnikiem</div>
                 <br/>
                 W tym przypadku miejsce usuwanego węzła zajmuje jego następnik. Po usunięciu węzła następuje przekolorowanie. Sam następnik
                 otrzymuje kolor węzła usuwanego. Sprawdźmy to na przykładzie.
@@ -876,7 +911,7 @@ section
 
         <section id="BSTlike4">
             <p>
-                <h4>Usuwanie w stylu BST - przypadek 4 - usuwany węzeł posiada dwóch potomków, ale prawy nie jest jego następnikiem</h4>
+                <div class="longH4">Usuwanie w stylu BST - przypadek 4 - usuwany węzeł posiada dwóch potomków, ale prawy nie jest jego następnikiem</div>
                 <br/>
                 Mamy mniej więcej taką sytuację
                 <br/>
@@ -946,7 +981,7 @@ section
 
         <section id="repair3">
             <p>
-                <h4>Naprawa RBT - przypadek 3 - brat węzła zastępującego jest czarny, lewy syn brata czerwony i prawy czarny</h4>
+                <div class="longH4">Naprawa RBT - przypadek 3 - brat węzła zastępującego jest czarny, lewy syn brata czerwony i prawy czarny</div>
                 <br/>
                 <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair3_0.png" />
                 <br/>
@@ -964,7 +999,7 @@ section
 
         <section id="repair4">
             <p>
-                <h4>Naprawa RBT - przypadek 4 - brat węzła zastępującego jest czarny i jego prawy syn czerwony</h4>
+                <div class="longH4">Naprawa RBT - przypadek 4 - brat węzła zastępującego jest czarny i jego prawy syn czerwony</div>
                 <br/>
                 <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair4_0.png" />
                 <br/>

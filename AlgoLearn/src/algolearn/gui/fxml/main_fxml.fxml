@@ -20,7 +20,7 @@
                <children>
                   <Pane prefHeight="71.0" prefWidth="279.0" styleClass="titlePlane">
                      <children>
-                        <Text fill="WHITE" layoutX="7.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algorytmy" textAlignment="CENTER" wrappingWidth="265.931640625">
+                        <Text fill="WHITE" layoutX="7.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algolearn" textAlignment="CENTER" wrappingWidth="265.931640625">
                            <font>
                               <Font name="Cambria" size="40.0" />
                            </font>
@@ -36,14 +36,14 @@
                               <Button id="1" fx:id="btn" layoutX="1.0" layoutY="47.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algEasy" text="Lista Jednokierunkowa" />
                               <Button id="2" fx:id="btn" layoutX="1.0" layoutY="94.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algEasy" text="Lista Dwukierunkowa" />
                               <Button id="3" fx:id="btn" layoutX="1.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algEasy" text="Sortowanie Kubełkowe" />
-                              <Button id="4" fx:id="btn" layoutX="1.0" layoutY="188.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algEasy" text="Sortowanie Przez Zliczanie" />
-                              <Button id="5" fx:id="btn" layoutX="1.0" layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algMedium" text="Sortowanie Przez Kopcowanie" />
+                              <Button id="4" fx:id="btn" layoutX="1.0" layoutY="188.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algEasy" text="Sort. Przez Zliczanie" />
+                              <Button id="5" fx:id="btn" layoutX="1.0" layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algMedium" text="Sort. P. Kopcowanie" />
                               <Button id="6" fx:id="btn" layoutX="1.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algMedium" text="FFT" />
                               <Button id="7" fx:id="btn" layoutY="327.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algMedium" text="Lista z przeskokami" />
                               <Button id="8" fx:id="btn" layoutY="374.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algMedium" text="BST" />
                               <Button id="9" fx:id="btn" layoutY="421.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algMedium" text="Tablica Mieszająca" />
-                              <Button id="10" fx:id="btn" layoutY="468.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algHard" text="Algorytm Floyda-Warshalla" />
-                              <Button id="11" fx:id="btn" layoutY="515.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algHard" text="Union Find" />
+                              <Button id="10" fx:id="btn" layoutY="468.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algHard" text="Alg. Floyda-Warshalla" />
+                              <Button id="11" fx:id="btn" layoutY="515.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algHard" text="UF i Alg. Kruskala" />
                               <Button id="12" fx:id="btn" layoutY="562.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algHard" text="Algorytm Grahama" />
                               <Button id="13" fx:id="btn" layoutY="609.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="47.0" prefWidth="255.0" styleClass="algHard" text="Red-Black Tree" />
                            </children>
@@ -66,7 +66,7 @@
                      <children>
                         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="673.0" styleClass="titlePlane">
                            <children>
-                              <Text fx:id="txtMainTitle" fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Algolearn - Menu główne" textAlignment="CENTER" wrappingWidth="674.931640625">
+                              <Text fx:id="txtMainTitle" fill="WHITE" layoutX="10.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Menu główne" textAlignment="CENTER" wrappingWidth="674.931640625">
                                  <font>
                                     <Font name="Cambria" size="40.0" />
                                  </font>

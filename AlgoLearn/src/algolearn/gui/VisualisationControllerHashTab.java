@@ -36,21 +36,6 @@ public class VisualisationControllerHashTab extends FXMLDocumentController imple
     //necessary for switching between windows
     private AnchorPane anchorPaneRoot;
 
-
-    /**
-     * Swaping into menu window from main_fxml.fxml by remove and add anchorPane
-     */
-    public void loadMenu() {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml/main_fxml.fxml"));
-        AnchorPane anchorPane = null;
-        try {
-            anchorPane = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setScreen(anchorPane);
-    }
-
     /**
      * @param anchorPane - AnchorPane to add into root anchorPane
      *                   <p>
