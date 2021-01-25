@@ -68,26 +68,15 @@
                         <Button id="3" fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" onAction="#generateButtonHandlerBS" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
                      </children>
                   </Pane>
-                        <Button id="6" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="47.0" prefWidth="279.0" styleClass="titlePlane" text="Niewiadoma wartość?" textFill="WHITE" />
                   <Pane prefHeight="48.0" prefWidth="200.0">
                      <children>
-                              <TextField fx:id="" prefHeight="45.0" prefWidth="223.0" promptText="Wprowadź wartość:" styleClass="inputFiled">
-                                  <font>
-                                      <Font size="18.0" />
-                                  </font>
-                              </TextField>
-                        <Button fx:id="" layoutX="223.0" layoutY="-3.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="56.0" styleClass="algEasy" text="-&gt;" />
+                              <HBox prefHeight="113.0" prefWidth="279.0">
+                           <children>
+                              <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sortBS" prefHeight="161.0" prefWidth="279.0" styleClass="algEasy" text="Sortuj" />
+                           </children>
+                        </HBox>
                      </children>
                   </Pane>
-                        <Pane prefHeight="50.0" prefWidth="279.0" styleClass="titlePlane">
-                     <children>
-                        <Button id="1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sortBS" prefHeight="47.0" prefWidth="279.0" styleClass="algEasy" text="Sortuj" />
-                     </children></Pane>
-                        <HBox prefHeight="48.0" prefWidth="279.0">
-                            <children>
-                                <Button id="5" fx:id="hiddenValues" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="68.0" prefWidth="279.0" styleClass="titlePlane" text="Ukryte liczby: [ ?, ? ]" />
-                            </children>
-                        </HBox>
                     </children></VBox>
                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="20.0">
                     <children>
@@ -191,15 +180,10 @@
                             <children>
                                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="825.0" styleClass="titlePlane">
                                     <children>
-                              <Button id="1" fx:id="restartBTN" layoutX="-1.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#restartWindowBS" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Restartuj" />
-                              <Button id="1" layoutX="273.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addToBucket" prefHeight="68.0" prefWidth="212.0" styleClass="algEasy" text="Dodaj do kubełka" />
-                              <Button id=".empty" fx:id="backBTN" layoutX="715.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
-                              <ProgressBar fx:id="generateBar" layoutX="141.0" layoutY="2.0" prefHeight="68.0" prefWidth="133.0" progress="1.0" styleClass="generate-bar" />
-                              <Text fill="WHITE" layoutX="164.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="pseudocode" text="Generuj" textAlignment="CENTER" wrappingWidth="85.931640625">
-                                 <font>
-                                    <Font name="Cambria" size="40.0" />
-                                 </font>
-                              </Text>
+                              <Button id="1" fx:id="restartBTN" layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#restartWindowBS" prefHeight="68.0" prefWidth="142.0" styleClass="algHard" text="Restartuj" />
+                              <Button id="1" layoutX="283.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addToBucket" prefHeight="68.0" prefWidth="215.0" styleClass="algEasy" text="Dodaj do kubełka" />
+                              <Button id=".empty" fx:id="backBTN" layoutX="715.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="68.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
+                              <Button layoutX="141.0" mnemonicParsing="false" onAction="#generateRandomList" prefHeight="68.0" prefWidth="142.0" styleClass="algEasy" text="Generuj" />
                                     </children></Pane>
                             </children>
                         </HBox>

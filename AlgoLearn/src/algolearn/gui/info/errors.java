@@ -103,6 +103,7 @@ public class errors {
 	public String addedValueToBucket = " dodano wartość ";
 	public String bucketsAreSorted = "Posortowano wartości w kubełkach i wypisano posortowaną listę";
 	public String addedToBucketNotExist = "Wszystkie elementy z listy zostały już umieszczone w kubełkach!";
+	public String notEveryInBucket = "Nie wszystkie wartości znajdują się w kubełkach!";
 	public String notFoundInBucket = "Podana wartość nie znajduje się w kubełku!";
 	public String isFound = "Odnaleziono wartość ";
 	public String notFoundInUnsortedList = "Podana wartość nie istnieje!";
@@ -110,6 +111,14 @@ public class errors {
 	public String isReloaded = " z nieposortowanej listy";
 	public String isReloadedAndInBucket = "oraz kubełka";
 	public String isEmptyList = "Lista jest pusta!";
+	
+	//<--------------------Counting-Sort------------------------->
+	public String exceedValueCS = "Zakres wartości od 0-10!";
+	public String exceedMaxSizeCS = "Liczba wartości przekracza 16!";
+	public String notCounted = "Wartości nie zostały jeszcze zliczone!";
+	public String isGenerated = "Lista została wygenerowana";
+	public String isCounted = "Wartości w liście zostały policzone";
+	public String isSorted = "Wartości zostały posortowane według ilości zliczeń";
 	
 	//<-------------------- RBT ------------------------->
 

@@ -28,6 +28,7 @@ public class main_window extends Application {
 	public static double window_y_offset = 0;
     public static void main(String[] args) {
         Application.launch(args);
+        System.exit(0);
     }
     
     @Override
