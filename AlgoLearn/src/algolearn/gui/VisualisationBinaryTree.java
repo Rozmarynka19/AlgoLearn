@@ -224,13 +224,13 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
 		if( len > 0 && len <= 2) {
 			for(int i = 0; i<len; i++) {
 				if(!isCharNum(in.charAt(i))) {
-					//CreateError(msg.OnlyNumeric);
+					CreateError(msg.OnlyNumeric);
 					return false;
 				}
 			}
 			return true;
 		}
-		//CreateError(msg.WrongInput);
+		CreateError(msg.WrongInput);
 		return false;
 	}
     
@@ -406,21 +406,6 @@ public class VisualisationBinaryTree extends FXMLDocumentController implements I
     	arrayLines = new ArrayList<Line[]>();
     	heap = new int[heapMaxSize+1];
     	heapSize = 0;
-    }
-    
-    /**
-     * Swaping into menu window from main_fxml.fxml by remove and add anchorPane
-     */
-    public void loadMenu()
-    {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml/main_fxml.fxml"));
-        AnchorPane anchorPane = null;
-        try {
-            anchorPane = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setScreen(anchorPane);
     }
 
     public void CreateError(String msg) {
