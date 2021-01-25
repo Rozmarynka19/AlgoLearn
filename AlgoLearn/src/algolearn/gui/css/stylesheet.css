@@ -316,7 +316,7 @@
 	-fx-opacity: 0.45;
 }
 
-.rbtNodeRed, .rbtNodeBlack
+.rbtNodeRed, .rbtNodeBlack, .GrahamScanVisitedNode
 {
 	-fx-font-family: 'Cambria Math';
 	-fx-font-size: 15px;
@@ -364,6 +364,22 @@
 .rbtNodeBlack:pressed
 {
 	-fx-background-color: linear-gradient(#333333 0%, #262626 100%);
+}
+
+.GrahamScanVisitedNode
+{
+
+	-fx-background-color: linear-gradient(#0099ff 0%, #008ae6 100%);
+}
+
+.GrahamScanVisitedNode:hover
+{
+	-fx-background-color: linear-gradient(#008ae6 0%, #007acc 100%);
+}
+
+.GrahamScanVisitedNode:pressed
+{
+	-fx-background-color: linear-gradient(#007acc 0%, #006bb3 100%);
 }
 
 .congratsHeader, .errorHeader

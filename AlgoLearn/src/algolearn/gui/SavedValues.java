@@ -25,12 +25,12 @@ public class SavedValues {
             asList("countingSort_introduction.fxml","countingSort_description.fxml","04_counting_sort_visualisation.fxml"), // Sortowanie przez zliczanie
             asList("heapSort_introduction.fxml","heapSort_description.fxml","heap_sort_visualisation.fxml"), // Sortowanie przez kopcowanie
             asList("FFT_introduction.fxml","FFT_description.fxml","visualisation_fxml.fxml"), // fft
-            asList("skip_list_introduction.fxml","description_fxml.fxml","skip_list_visualisation.fxml"), // lista z przeskokami
+            asList("skip_list_introduction.fxml","skip_list_description.fxml","skip_list_visualisation.fxml"), // lista z przeskokami
             asList("BST_introduction.fxml","BST_description.fxml","bst_visualisation.fxml"), // bst
             asList("hashTable_introduction.fxml","hashTable_description.fxml","hash_table_visualisation.fxml"), // tablica mieszająca
             asList("FloydWarshall_introduction.fxml","FloydWarshall_description.fxml","visualisation_fxml.fxml"), // floyd warshall
-            asList("UFKruskal_introduction.fxml","UFKruskal_description.fxml","visualisation_fxml.fxml"), // Union Find
-            asList("introduction_fxml.fxml","description_fxml.fxml","visualisation_fxml.fxml"), // algorytm grahama
+            asList("UFKruskal_introduction.fxml","UFKruskal_description.fxml","UFKruskal_visualisation.fxml"), // Union Find
+            asList("GrahamScan_introduction.fxml","GrahamScan_description.fxml","GrahamScan_visualisation.fxml"), // algorytm grahama
             asList("RBT_introduction.fxml","RBT_description.fxml","RBT_visualisation.fxml") //  red-black tree
     );
 
