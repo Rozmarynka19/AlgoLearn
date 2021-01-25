@@ -1,4 +1,4 @@
 *.docx
 dokumentacja/*.docx
-bin/
+AlgoLearn/bin/
 *.class
