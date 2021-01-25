@@ -64,20 +64,6 @@ public class CountingSortVisualisationController extends FXMLDocumentController 
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     /**
-     * Swaping into menu window from main_fxml.fxml by remove and add anchorPane
-     */
-    public void loadMenu()
-    {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("fxml/main_fxml.fxml"));
-        AnchorPane anchorPane = null;
-        try {
-            anchorPane = loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        setScreen(anchorPane);
-    }
-    /**
      * @param anchorPane - AnchorPane to add into root anchorPane
      *
      * Remove and add specific anchorPane to the sceen

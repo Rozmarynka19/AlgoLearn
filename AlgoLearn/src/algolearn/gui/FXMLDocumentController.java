@@ -117,7 +117,6 @@ public class FXMLDocumentController implements Initializable{
         	categorySetBackground();
         }
 
-        System.err.println("Selected btn id: " + clicked_btn.getId() + " id_var: " + btn_id);
         this.btn_id = clicked_btn.getId();
         savedValues.SetClickedBTN(clicked_btn);
     }
@@ -201,9 +200,8 @@ public class FXMLDocumentController implements Initializable{
     private void Requirements(ActionEvent event){
     	infoTextField.setText(
     			"Wymagania systemowe: \n"
-    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
-    			+ "Wymagania systemowe (minimalne): \n"
-    			+ " Zostaną wylistowane po ukończeniu aplikacji...\n\n\n"
+				+ "* Windows 8/10 x64\n"
+    			+ "* Java 15"
     	);
     }
     
