@@ -73,13 +73,11 @@ public class DescriptionControllerBucketSort extends FXMLDocumentController impl
     @FXML
     public void loadCodeExample(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/bucketSortCodes.html");
         script="bucketSort_"+selectedLangButton+"()";
         engine = descriptionText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/bucketSortCodes.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

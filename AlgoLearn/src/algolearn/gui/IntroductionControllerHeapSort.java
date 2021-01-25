@@ -39,13 +39,11 @@ public class IntroductionControllerHeapSort extends FXMLDocumentController imple
     @FXML
     public void loadText(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/heapSort.html");
         script = "intro()";
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/heapSort.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

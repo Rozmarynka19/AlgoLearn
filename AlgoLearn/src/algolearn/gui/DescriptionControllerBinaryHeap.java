@@ -73,9 +73,7 @@ public class DescriptionControllerBinaryHeap extends FXMLDocumentController impl
     @FXML
     public void loadCodeExample(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/binaryHeapCodes.html");
         if(clicked_btn.getText().equals("Kopcowanie w górę")){
             script="up_"+selectedLangButton+"()";
         }
@@ -91,7 +89,7 @@ public class DescriptionControllerBinaryHeap extends FXMLDocumentController impl
         }
         engine = descriptionText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/binaryHeapCodes.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

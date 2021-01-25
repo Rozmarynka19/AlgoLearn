@@ -1,12 +1,3 @@
-@font-face {
-    font-family: Riffic;
-    src: url('../fonts/riffic.otf');
-}
-
-@font-face {
-    font-family: HighlandGothicLightFLF;
-    src: url('../fonts/HighlandGothicLightFLF.ttf');
-}
 
 .root{
 	-fx-background-color:
@@ -418,6 +409,22 @@
 
 .infoScrollPane > .viewport {
    -fx-background-color: transparent;
+}
+.startIco{
+	-fx-background-color: transparent;
+	-fx-background-image: url("../img/opis_done.png");
+}
+.stopIco{
+	-fx-background-color: transparent;
+	-fx-background-image: url("../img/stop.png");
+}
+.fullScreenIco{
+	-fx-background-color: transparent;
+	-fx-background-image: url("../img/fullscreen.png");
+}
+.smallScreenIco{
+	-fx-background-color: transparent;
+	-fx-background-image: url("../img/smallscreen.png");
 }
 
 

@@ -39,9 +39,7 @@ public class IntroductionControllerRBT extends FXMLDocumentController implements
     @FXML
     public void loadText(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/RBT.html");
         if(clicked_btn.getText().equals("Wstawianie Węzła")){
             script="test1()";
         }
@@ -59,7 +57,7 @@ public class IntroductionControllerRBT extends FXMLDocumentController implements
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/RBT.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

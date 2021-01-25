@@ -68,9 +68,7 @@ public class IntroductionControllerL1List extends FXMLDocumentController impleme
     @FXML
     public void loadText(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/lista-jednokierunkowa.html");
         if(clicked_btn.getText().equals("Dodawanie Węzła")){
             script="test1()";
         }
@@ -85,7 +83,7 @@ public class IntroductionControllerL1List extends FXMLDocumentController impleme
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/lista-jednokierunkowa.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

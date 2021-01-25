@@ -47,13 +47,9 @@ public class IntroductionControllerSkipList extends FXMLDocumentController imple
     @FXML
     public void loadText(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        boolean flagS = false;
-        path=Paths.get("src/algolearn/gui/Html/skipList.html");
         if(clicked_btn.getText().equals("Dodawanie Węzła")){
             script="test1()";
-            flagS=true;
         }
         else if(clicked_btn.getText().equals("Usuwanie Węzła")){
             script="test2()";
@@ -66,7 +62,7 @@ public class IntroductionControllerSkipList extends FXMLDocumentController imple
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/skipList.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

@@ -73,9 +73,7 @@ public class DescriptionControllerFFT extends FXMLDocumentController implements 
     @FXML
     public void loadCodeExample(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/fftCodes.html");
         if(clicked_btn.getText().equals("Klasa liczb zespolonych")){
             script="complex_"+selectedLangButton+"()";
         }
@@ -84,7 +82,7 @@ public class DescriptionControllerFFT extends FXMLDocumentController implements 
         }
         engine = descriptionText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/fftCodes.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override
