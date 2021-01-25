@@ -1,6 +1,3 @@
-/**
- * 
- */
 package algolearn.gui;
 
 /**
@@ -45,7 +42,7 @@ public class testsData {
     
     protected static String [][] questionsHTML = {
     		{	
-    			"html/binaryHeap.html",
+    			"tests/binary_heap/zadanie1.html",
     			"html/RBT.html",
     		}
     };
