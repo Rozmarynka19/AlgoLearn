@@ -73,9 +73,7 @@ public class DescriptionControllerRBT extends FXMLDocumentController implements 
     @FXML
     public void loadCodeExample(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/RBTcodes.html");
         if(clicked_btn.getText().equals("Przykład klasy drzewa")){
             script="treeClass_"+selectedLangButton+"()";
         }
@@ -96,7 +94,7 @@ public class DescriptionControllerRBT extends FXMLDocumentController implements 
         }
         engine = descriptionText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/RBTcodes.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

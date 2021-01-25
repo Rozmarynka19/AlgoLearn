@@ -73,9 +73,7 @@ public class DescriptionControllerHashTable extends FXMLDocumentController imple
     @FXML
     public void loadCodeExample(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/hashTableCodes.html");
         if(clicked_btn.getText().equals("Wstawianie")){
             script="insert_"+selectedLangButton+"()";
         }
@@ -87,7 +85,7 @@ public class DescriptionControllerHashTable extends FXMLDocumentController imple
         }
         engine = descriptionText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/hashTableCodes.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

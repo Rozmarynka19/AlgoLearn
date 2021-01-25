@@ -69,9 +69,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     @FXML HBox lvl4;
     @FXML HBox lvl5;
     @FXML HBox lvl6;
-    List<HBox> levelsList = new ArrayList(); {{
-
-    }};
+    List<HBox> levelsList = new ArrayList();
     @FXML TextField AddNodeText;
     @FXML TextField DeleteNodeText;
     @FXML TextField FindNodeText;
@@ -82,28 +80,14 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     List<Button> childrenButtonList4 = new ArrayList<>();
     List<Button> childrenButtonList5 = new ArrayList<>();
     List<Button> childrenButtonList6 = new ArrayList<>();
-    List<List<Button>> buttonList = new ArrayList(){{
-        add(childrenButtonList1);
-        add(childrenButtonList2);
-        add(childrenButtonList3);
-        add(childrenButtonList4);
-        add(childrenButtonList5);
-        add(childrenButtonList6);
-    }};
+    List<List<Button>> buttonList = new ArrayList();
     List<Arrow> childrenArrowList1 = new ArrayList<>();
     List<Arrow> childrenArrowList2 = new ArrayList<>();
     List<Arrow> childrenArrowList3 = new ArrayList<>();
     List<Arrow> childrenArrowList4 = new ArrayList<>();
     List<Arrow> childrenArrowList5 = new ArrayList<>();
     List<Arrow> childrenArrowList6 = new ArrayList<>();
-    List<List<Arrow>> arrowList = new ArrayList(){{
-        add(childrenArrowList1);
-        add(childrenArrowList2);
-        add(childrenArrowList3);
-        add(childrenArrowList4);
-        add(childrenArrowList5);
-        add(childrenArrowList6);
-    }};
+    List<List<Arrow>> arrowList = new ArrayList();
     HashMap<Button,Integer> nodesHeights = new HashMap<>();
 
     @Override
@@ -114,6 +98,18 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         levelsList.add(lvl4);
         levelsList.add(lvl5);
         levelsList.add(lvl6);
+        buttonList.add(childrenButtonList1);
+        buttonList.add(childrenButtonList2);
+        buttonList.add(childrenButtonList3);
+        buttonList.add(childrenButtonList4);
+        buttonList.add(childrenButtonList5);
+        buttonList.add(childrenButtonList6);
+        arrowList.add(childrenArrowList1);
+        arrowList.add(childrenArrowList2);
+        arrowList.add(childrenArrowList3);
+        arrowList.add(childrenArrowList4);
+        arrowList.add(childrenArrowList5);
+        arrowList.add(childrenArrowList6);
         for(int i=0;i<6;i++){
             Arrow ar = new Arrow();
             ar.setStartX(levelsList.get(i).getLayoutX()+1);
@@ -126,28 +122,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     private Button previousButton;
 
     private void coloringButtons(){
-        if(previousSerchedChild!=null){
-            previousSerchedChild.setStyle(
-                    " -fx-background-color: " +
-                            "linear-gradient(#ff0000, #990000 100%)" +
-                            "linear-gradient(#3a3a3a, #020b02); " +
-                            "-fx-min-width: 46px; " +
-                            "-fx-min-height: 46px; " +
-                            "-fx-max-width: 46px; " +
-                            "-fx-max-height: 46px; "
-            );
-        }
-        if(previousButton!=null){
-            previousButton.setStyle(
-                    " -fx-background-color: " +
-                            "linear-gradient(#ff0000, #990000 100%)" +
-                            "linear-gradient(#3a3a3a, #020b02); " +
-                            "-fx-min-width: 46px; " +
-                            "-fx-min-height: 46px; " +
-                            "-fx-max-width: 46px; " +
-                            "-fx-max-height: 46px; "
-            );
-        }
+
     }
 
     @FXML
@@ -246,18 +221,22 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     private void deleteNode(){
         int valueToDelete=Integer.parseInt(DeleteNodeText.getText());
         boolean flag = false;
-        for(int i=0;i<buttonList.get(0).size();i++){
-            if(Integer.parseInt(buttonList.get(0).get(i).getText())==valueToDelete){
-                buttonList.get(0).remove(i);
-                arrowList.get(0).remove(i);
-                reloadVisualisationBox(levelsList.get(0));
+        for(int j=0;j<buttonList.size();j++){
+        for(int i=0;i<buttonList.get(j).size();i++){
+            if(Integer.parseInt(buttonList.get(j).get(i).getText())==valueToDelete){
+                buttonList.get(j).remove(i);
+                arrowList.get(j).remove(i);
+                reloadArrows();
+                reloadArrows2();
                 flag = true;
                 break;
             }
         }
+        }
         if(!flag){
             CreateError(errorMSG.IsNotExisting);
         }
+
     }
 
     private void findNode() {
@@ -274,7 +253,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         if(flag){
             tmp.setStyle(
                     " -fx-background-color: " +
-                            "linear-gradient(#3BFF72, #05B336 100%)" +
+                            "linear-gradient(#ff0000, #990000 100%)" +
                             "linear-gradient(#3a3a3a, #020b02); " +
                             "-fx-min-width: 46px; " +
                             "-fx-min-height: 46px; " +
@@ -297,7 +276,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         int height = randomHeight();
         btnNumber.setStyle(
                 " -fx-background-color: " +
-                        "linear-gradient(#00ff00, #009900 100%)" +
+                        "linear-gradient(#ff0000, #990000 100%)" +
                         "linear-gradient(#3a3a3a, #020b02); " +
                         "-fx-min-width: 46px; " +
                         "-fx-min-height: 46px; " +
@@ -311,11 +290,12 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         nodesHeights.put(btnNumber, height);
         ShowKeys();
         AddNodeText.setText("");
+        System.out.println("wysokość: " + height);
         for(int i=1;i<height;i++) {
             Button test = new Button();
             test.setStyle(
                     " -fx-background-color: " +
-                            "linear-gradient(#00ff00, #009900 100%)" +
+                            "linear-gradient(#ff0000, #990000 100%)" +
                             "linear-gradient(#3a3a3a, #020b02); " +
                             "-fx-min-width: 46px; " +
                             "-fx-min-height: 46px; " +
@@ -332,21 +312,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         System.out.println(m.getKey()+" "+m.getValue() + "||||");
     }   }
 
-    private int randomHeight(){
-        //rand.nextInt((max - min) + 1) + min; to find random value
-        Random rand = new Random();
-        int height = 1;
-        int i = 10;
-        while(i!=0) {
-            i = rand.nextInt((1 - 0) + 1) + 0;
-            if(i==1){
-                height++;
-                if(height==6)
-                    break;
-            }
-        }
-        return height;
-    }
+
 
     private void checklist(){ //funkcja do testowania sortowania listy
         buttonList.get(0).forEach((temp) -> System.out.println(temp.getText()));
@@ -354,33 +320,67 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     }
 
     private void reloadArrows2(){
+        int fulldistance = 0;
         for(int i=1;i<6;i++) {
             arrowList.get(i).clear();
             for (int j = 0; j < buttonList.get(i).size()+1; j++) {
                 Arrow arrow = new Arrow();
-                if(buttonList.get(i).size()!=0) {
-                    arrow.setEndX(findBaseX(buttonList.get(0).get(j).getText()) + 40); //błąd
-                    System.out.println("line: " + i + "\n returned value from line 0: " + findBaseX(buttonList.get(0).get(j).getText()) + "\n loop: " + j);
+                if(buttonList.get(i).size()!=0 && j<buttonList.get(i).size()) {
+                    arrow.setEndX(findBaseX(buttonList.get(i).get(j).getText(), j, i));
+                    fulldistance+=46;
                 }
-                else
-                    arrow.setEndX(0+40);
-                arrow.setEndY(previousButton.getLayoutY());
                 arrowList.get(i).add(arrow);
+                fulldistance+=arrow.getEndX();
             }
-            arrowList.get(i).get(arrowList.get(i).size() - 1).setEndX(levelWidth - buttonList.get(i).size() * (46 + 41));
-
+            arrowList.get(i).get(arrowList.get(i).size()-1).setEndX(levelWidth-fulldistance);
             reloadVisualisationBox(levelsList.get(i), i);
-
+            fulldistance = 0;
         }
     }
 
-    private double findBaseX(String val){
-       for(int i=0;i<buttonList.get(0).size();i++){
-           if(val.equals(buttonList.get(0).get(i).getText()))
-               return buttonList.get(0).get(i).getLayoutX();
+    private double findBaseX(String val, int pos, int height){
+        int distance = 0;
+        for(int i=1;i<buttonList.get(height).size()+1;i++){
+            if(val.equals(buttonList.get(height).get(i-1).getText())){
+               break;
+            }
+            else
+                distance = 40 * (i);
+        }
+       for(int i=1;i<buttonList.get(0).size()+1;i++){
+           if(val.equals(buttonList.get(0).get(i-1).getText())) {
+               if(i==1){
+                   return (40) * i - (distance);
+               }
+               if(pos>0) {
+                   return (40 + 46) * i - distance - findBaseX2(buttonList.get(height).get(pos - 1).getText(), pos, height);
+               }
+               else {
+                   return (40 + 46) * i - distance - 46;
+               }
+           }
        }
-        System.out.println("tego być nie powinno");
        return 0;
+    }
+
+    private double findBaseX2(String val, int pos, int height){
+        int distance = 0;
+        for(int i=1;i<buttonList.get(height).size()+1;i++){
+            if(val.equals(buttonList.get(height).get(i-1).getText())){
+                break;
+            }
+            else
+                distance = 40 * (i) - distance;
+        }
+        for(int i=1;i<buttonList.get(0).size()+1;i++){
+            if(val.equals(buttonList.get(0).get(i-1).getText())) {
+                if(i==1){
+                    return (40 + 46) * i - distance;
+                }
+                return (40+46) * i - distance;
+            }
+        }
+        return 0;
     }
 
     private void reloadArrows(){
@@ -498,6 +498,22 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
             return false;
         }
         return true;
+    }
+
+    private int randomHeight(){
+        //rand.nextInt((max - min) + 1) + min; to find random value
+        Random rand = new Random();
+        int height = 1;
+        int i = 10;
+        while(i!=0) {
+            i = rand.nextInt((1 - 0) + 1) + 0;
+            if(i==1){
+                height++;
+                if(height==6)
+                    break;
+            }
+        }
+        return height;
     }
 
 }

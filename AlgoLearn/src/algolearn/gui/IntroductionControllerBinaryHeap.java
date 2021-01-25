@@ -39,9 +39,7 @@ public class IntroductionControllerBinaryHeap extends FXMLDocumentController imp
     @FXML
     public void loadText(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/binaryHeap.html");
         if(clicked_btn.getText().equals("Dodawanie wartości")){
             script="insert()";
         }
@@ -56,7 +54,7 @@ public class IntroductionControllerBinaryHeap extends FXMLDocumentController imp
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/binaryHeap.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override

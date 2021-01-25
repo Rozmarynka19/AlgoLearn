@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPaneRoot" prefHeight="517.0" prefWidth="1028.0" styleClass="root" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="algolearn.gui.VisualisationControllerFloydWarshall">
+    <children>
+        <HBox prefHeight="517.0" prefWidth="1028.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <HBox prefHeight="71.0" prefWidth="824.0">
+                            <children>
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="973.0" styleClass="titlePlane">
+                                    <children>
+                                        <Text fill="WHITE" layoutX="117.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textPlane" text="Wizualizacja" textAlignment="CENTER" wrappingWidth="796.931640625">
+                                            <font>
+                                                <Font name="Cambria" size="40.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </Pane>
+                                <Button id=".empty" fx:id="btn1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#minimalizeWindow" prefHeight="73.0" prefWidth="76.0" styleClass="minimalizeWindow" text="-" />
+                                <Button id=".empty" fx:id="btn11" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCloseWindowAction" prefHeight="73.0" prefWidth="76.0" styleClass="algHard" text="X" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="401.0" prefWidth="800.0">
+                            <VBox.margin>
+                                <Insets left="25.0" />
+                            </VBox.margin>
+                            <children>
+                        <HBox alignment="CENTER" prefHeight="373.0" prefWidth="1115.0">
+                           <children>
+                              <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="368.0" prefWidth="1098.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="370.0" prefWidth="1014.0">
+                                       <children>
+                                          <MediaView fx:id="film" fitHeight="370.0" fitWidth="920.0" />
+                                          <Slider fx:id="SoundBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="150.0" prefWidth="25.0" scaleX="1.2" scaleY="1.2" showTickLabels="true" showTickMarks="true">
+                                             <HBox.margin>
+                                                <Insets left="60.0" />
+                                             </HBox.margin>
+                                          </Slider>
+                                          <Label prefHeight="18.0" prefWidth="56.0" style="-fx-font-size: 14;" styleClass="textPlane" text="Głośność" textFill="WHITE">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                            <children>
+                                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="71.0" prefWidth="1124.0" styleClass="titlePlane">
+                                    <children>
+                              <Label fx:id="playTime" alignment="CENTER_RIGHT" layoutX="72.0" layoutY="23.0" prefHeight="27.0" prefWidth="162.0" text="test" textAlignment="RIGHT" textFill="#f5f5f5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                                        <Button id=".empty" layoutX="1013.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#BackToMainStage" prefHeight="70.0" prefWidth="111.0" styleClass="algHard" text="Powrót" />
+                              <Slider fx:id="TimeBar" layoutX="234.0" layoutY="24.0" minWidth="50.0" prefHeight="26.0" prefWidth="598.0" />
+                              <Button fx:id="PlayBtn" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="20.0" text="&gt;" />
+                                    </children></Pane>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
