@@ -19,20 +19,34 @@ public class testsData {
     }
     
     // Ilosc pytan w testach
-    protected String questionsCount[] = {
-    		"11",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"10",
-    		"22",
+    protected static int questionsCount[] = {
+    		2,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    		10,
+    };
+    
+    protected static boolean [][][] correctAnswers = {
+    		{	
+    			{true, false, false, false},
+    			{false, false, false, true},
+    		},
+    };
+    
+    protected static String [][] questionsHTML = {
+    		{	
+    			"html/binaryHeap.html",
+    			"html/RBT.html",
+    		}
     };
 }
