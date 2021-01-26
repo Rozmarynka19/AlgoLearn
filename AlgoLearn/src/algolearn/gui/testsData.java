@@ -22,8 +22,8 @@ public class testsData {
     		5, // L2List
     		5, // Bucket Sort
     		5, // Counting sort
-    		10,
-    		10,
+    		5, // Heap Sort
+    		0, // FFT
     		10,
     		10,
     		10,
@@ -69,6 +69,20 @@ public class testsData {
     			{false, false, false, true},
     			{true, true, true, true},
     		},
+    		{	// Heap Sort
+    			{true, false, false, false},
+    			{false, false, true, false},
+    			{false, true, false, false},
+    			{false, false, false, false},
+    			{false, false, false, false},
+    		},
+    		{	// FFT
+    			{false, false, false, false},
+    			{false, false, false, false},
+    			{false, false, false, false},
+    			{false, false, false, false},
+    			{false, false, false, false},
+    		},
     };
     
     protected static String [][] questionsHTML = {
@@ -106,6 +120,20 @@ public class testsData {
     			"tests/counting_sort/question3.html",
     			"tests/counting_sort/question4.html",
     			"tests/counting_sort/question5.html",
+    		},
+    		{	// Heap Sort
+    			"tests/heap_sort/question1.html",
+    			"tests/heap_sort/question2.html",
+    			"tests/heap_sort/question3.html",
+    			"tests/heap_sort/question4.html",
+    			"tests/heap_sort/question5.html",
+    		},
+    		{	// FFT
+    			"tests/fft/question1.html",
+    			"tests/fft/question2.html",
+    			"tests/fft/question3.html",
+    			"tests/fft/question4.html",
+    			"tests/fft/question5.html",
     		},
     };
 }
