@@ -32,7 +32,7 @@ public class testsData {
     		10,
     		10,
     		10,
-    		10,
+    		6,
     		10
     };
     
@@ -88,7 +88,12 @@ public class testsData {
     		},
     		//13
     		{
-    			
+    			{false, true, true, false},
+    			{false, false, false, true},
+    			{false, true, false, false},
+    			{true, false, false, false},
+    			{true, false, false, false},
+    			{false, true, true, false}
     		},
     		//14
     		{
@@ -157,7 +162,12 @@ public class testsData {
     		},
     		//13
     		{
-    			
+    			"tests/GrahamScan/question1.html",
+    			"tests/GrahamScan/question2.html",
+    			"tests/GrahamScan/question3.html",
+    			"tests/GrahamScan/question4.html",
+    			"tests/GrahamScan/question5.html",
+    			"tests/GrahamScan/question6.html"
     		},
     		//14
     		{
