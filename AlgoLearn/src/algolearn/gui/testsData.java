@@ -29,7 +29,7 @@ public class testsData {
     		10,
     		10,
     		10,
-    		10,
+    		5,
     		5,
     		5,
     		6,
@@ -76,7 +76,11 @@ public class testsData {
     		},
     		//10
     		{
-    			
+    			{true, false, false, false},
+    			{false, false, true, false},
+    			{true, true, true, false},
+    			{false, false, false, true},
+    			{false, true, false, false},
     		},
     		//11
     		{
@@ -159,7 +163,11 @@ public class testsData {
     		},
     		//10
     		{
-    			
+    			"tests/HashTable/question1.html",
+    			"tests/HashTable/question2.html",
+    			"tests/HashTable/question3.html",
+    			"tests/HashTable/question4.html",
+    			"tests/HashTable/question5.html"
     		},
     		//11
     		{
