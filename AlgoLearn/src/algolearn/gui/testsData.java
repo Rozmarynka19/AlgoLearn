@@ -30,7 +30,7 @@ public class testsData {
     		10,
     		10,
     		10,
-    		10,
+    		5,
     		5,
     		6,
     		10
@@ -80,7 +80,11 @@ public class testsData {
     		},
     		//11
     		{
-    			
+    			{true, false, false, false},
+    			{false, true, true, false},
+    			{false, true, true, true},
+    			{true, false, false, false},
+    			{false, false, true, false},
     		},
     		//12
     		{
@@ -159,7 +163,11 @@ public class testsData {
     		},
     		//11
     		{
-    			
+    			"tests/FloydWarshall/question1.html",
+    			"tests/FloydWarshall/question2.html",
+    			"tests/FloydWarshall/question3.html",
+    			"tests/FloydWarshall/question4.html",
+    			"tests/FloydWarshall/question5.html"
     		},
     		//12
     		{
