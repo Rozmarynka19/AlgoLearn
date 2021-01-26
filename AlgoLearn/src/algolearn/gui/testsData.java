@@ -72,7 +72,16 @@ public class testsData {
     		},
     		//9
     		{
-    			
+    			{true, false, true, false},
+    			{false, true, false, false},
+    			{true, false, false, false},
+    			{false, true, true, false},
+    			{false, false, false, true},
+    			{true, false, false, false},
+    			{false, true, false, false},
+    			{false, false, true, false},
+    			{true, false, false, false},
+    			{false, true, false, false}
     		},
     		//10
     		{
@@ -159,7 +168,16 @@ public class testsData {
     		},
     		//9
     		{
-    			
+    			"tests/BST/question1.html",
+    			"tests/BST/question2.html",
+    			"tests/BST/question3.html",
+    			"tests/BST/question4.html",
+    			"tests/BST/question5.html",
+    			"tests/BST/question6.html",
+    			"tests/BST/question7.html",
+    			"tests/BST/question8.html",
+    			"tests/BST/question9.html",
+    			"tests/BST/question10.html"
     		},
     		//10
     		{
