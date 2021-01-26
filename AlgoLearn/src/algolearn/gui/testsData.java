@@ -20,7 +20,7 @@ public class testsData {
     		5, // Heap
     		5, // L1List
     		5, // L2List
-    		10,
+    		4, // Bucket Sort
     		10,
     		10,
     		10,
@@ -55,6 +55,12 @@ public class testsData {
     			{false, true, true, false},
     			{false, false, false, true},
     		},
+    		{	// Bucket sort
+    			{true, false, false, false},
+    			{true, false, true, false},
+    			{false, false, true, false},
+    			{false, false, false, true},
+    		},
     };
     
     protected static String [][] questionsHTML = {
@@ -78,6 +84,12 @@ public class testsData {
     			"tests/L2List/question3.html",
     			"tests/L2List/question4.html",
     			"tests/L2List/question5.html",
+    		},
+    		{	// Bucket Sort
+    			"tests/bucket_sort/question1.html",
+    			"tests/bucket_sort/question2.html",
+    			"tests/bucket_sort/question3.html",
+    			"tests/bucket_sort/question4.html",
     		},
     };
 }
