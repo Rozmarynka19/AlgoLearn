@@ -71,6 +71,9 @@ public class errors {
 	public String CannotBeFound = "Nie można znaleźć podanego węzła!";
 	public String IsNotExisting = "Podany węzęł nie istnieje!";
 	public String HaveDuplicate = "Nie są przyjmowane duplikaty";
+	
+	
+	public String examAnswerNotChecked = "Musisz zaznaczyć odpowiedź aby kontynuować!";
 
 	public String setupInformation(String info) {
 		return (infoDef+info);

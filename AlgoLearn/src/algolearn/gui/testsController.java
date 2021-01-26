@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import algolearn.gui.info.errors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
 public class testsController extends FXMLDocumentController implements Initializable{
 	testsData testdata = testsData.getInstance();
 	SavedValues savedValues = SavedValues.getInstance();
-	
+	private errors errorMSG = new errors();
 	private boolean examStarted = false;
 	private int correctAnwers = 0;
 	private int currentQuestion = 0;
@@ -61,8 +62,17 @@ public class testsController extends FXMLDocumentController implements Initializ
 		if(!examStarted)
 			return;
 		
-		if(checkAnswers(getPoints()))
+		boolean [] points = getPoints();
+		
+		if(!isMarked(points)) {
+			CreateError(errorMSG.examAnswerNotChecked);
+			return;	
+		}
+		
+		if(checkAnswers(points))
 			this.correctAnwers++;
+		
+		
 		
 		if(currentQuestion == qCount-1) {
 			finishTest(event);
@@ -107,6 +117,13 @@ public class testsController extends FXMLDocumentController implements Initializ
 				return false;
 		return true;
 	}
+	
+	private boolean isMarked(boolean [] arr) {
+		for(int i =0; i<4; i++)
+			if(arr[i])
+				return true;
+		return false;
+	}
 
     public void CreateScore() {
         try {
@@ -116,7 +133,7 @@ public class testsController extends FXMLDocumentController implements Initializ
             setStyle(stage);
             Text txt = (Text) root1.lookup("#scoreTXT");
             if(txt != null)
-            	txt.setText("Wynik testu: " + Integer.toString(correctAnwers) + "/" + Integer.toString(testdata.questionsCount[savedValues.savedRealId]));
+            	txt.setText("Wynik testu: " + Integer.toString(correctAnwers) + "/" + Integer.toString(testsData.questionsCount[savedValues.savedRealId]));
             setMouse(root1, stage);
             stage.centerOnScreen();
             stage.setAlwaysOnTop(true);
@@ -144,6 +161,28 @@ public class testsController extends FXMLDocumentController implements Initializ
     	WebEngine webEngine = engine.getEngine();
     	webEngine.load(""+getClass().getResource(testsData.questionsHTML[savedValues.savedRealId][currentQuestion]));
     	//System.out.println(""+getClass().getResource(testsData.questionsHTML[savedValues.savedRealId][currentQuestion]));
+    }
+    
+    public void CreateError(String msg) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/error_fxml.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            BST_controller controller = (BST_controller)fxmlLoader.getController();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1));  
+            stage.show();
+            controller.errorTextArea.setText(msg);
+            controller.errorTextArea.setStyle("-fx-text-fill: RED;-fx-font-weight:bold;");
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 	
 }
