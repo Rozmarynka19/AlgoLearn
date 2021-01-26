@@ -20,8 +20,8 @@ public class testsData {
     		5, // Heap
     		5, // L1List
     		5, // L2List
-    		4, // Bucket Sort
-    		10,
+    		5, // Bucket Sort
+    		5, // Counting sort
     		10,
     		10,
     		10,
@@ -60,6 +60,14 @@ public class testsData {
     			{true, false, true, false},
     			{false, false, true, false},
     			{false, false, false, true},
+    			{true, false, false, false},
+    		},
+    		{	// Counting sort
+    			{true, true, false, true},
+    			{true, false, true, false},
+    			{true, false, false, false},
+    			{false, false, false, true},
+    			{true, true, true, true},
     		},
     };
     
@@ -90,6 +98,14 @@ public class testsData {
     			"tests/bucket_sort/question2.html",
     			"tests/bucket_sort/question3.html",
     			"tests/bucket_sort/question4.html",
+    			"tests/bucket_sort/question5.html",
+    		},
+    		{	// Counting Sort
+    			"tests/counting_sort/question1.html",
+    			"tests/counting_sort/question2.html",
+    			"tests/counting_sort/question3.html",
+    			"tests/counting_sort/question4.html",
+    			"tests/counting_sort/question5.html",
     		},
     };
 }
