@@ -53,7 +53,7 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 	public TextArea errorTextArea;
 	@FXML private Button hiddenValues;
 
-	private boolean test = true;
+	private boolean test = false;
 	//private Map<Circle,Text> arrayCircles = new HashMap<Circle,Text>();
 
 	private ArrayList<Circle> arrayCircles = new ArrayList<Circle>();
@@ -135,6 +135,7 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 		}
 		
 		if(randomized) {
+			addBTN.setDisable(false);
         	deleteBTN.setDisable(false);
         	searchBTN.setDisable(false);
         	randomized = false;
@@ -217,8 +218,10 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 			arrayTexts.get(ids[1]).setText("  ?");
 			
 			bstTEXT.setText(errorMSG.setupInformation(errorMSG.generateTree));
+			addBTN.setDisable(true);
 	    	deleteBTN.setDisable(true);
 		}else {
+			addBTN.setDisable(false);
 	    	deleteBTN.setDisable(false);
 			int [] arr = {55, 44, 33, 22, 36, 48, 51, 46, 60, 70, 80};
 			for(int i : arr) {
@@ -764,6 +767,7 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 				}
 				
 				if(randomizedIDs[0] == "?" && randomizedIDs[1] == "?") {
+					addBTN.setDisable(false);
 		        	deleteBTN.setDisable(false);
 				}
 

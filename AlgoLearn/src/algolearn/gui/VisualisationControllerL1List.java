@@ -122,7 +122,7 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
                 CreateError(errorMSG.OnlyNumeric);
             }
             else {
-                if(Integer.parseInt(AddNodeText.getText())<=0) {
+                if(Integer.parseInt(AddNodeText.getText())<=0 || Integer.parseInt(AddNodeText.getText())>=100) {
                     CreateError(errorMSG.OnlyNumeric);
                 }
                 else{

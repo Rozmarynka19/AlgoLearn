@@ -106,7 +106,9 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     	BottomHBox.getChildren().clear();
     	childrenButtonListUnsorted.clear();
         numbersToSortString.clear();
+        numbersToSortStringBackup.clear();
         numbersSortedString.clear();
+        numbersSortedStringBackup.clear();
     	numbersToSortInt.clear();
         clearBuckets();
     }
@@ -498,7 +500,10 @@ public class BucketSortVisualisationController extends FXMLDocumentController  i
     	BottomHBox.getChildren().clear();
     	childrenButtonListUnsorted.clear();
         numbersToSortString.clear();
+        numbersToSortStringBackup.clear();
         numbersSortedString.clear();
+        numbersSortedStringBackup.clear();
+    	numbersToSortInt.clear();
         clearBuckets();
     	Random rand = new Random();
     	for(int i = rand.nextInt((10 - 0) + 1); i<16; i++){
