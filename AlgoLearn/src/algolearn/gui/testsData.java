@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package algolearn.gui;
 
 /**
@@ -22,13 +25,6 @@ public class testsData {
     			{true, false, false, true},
     			{true, false, false, false},
     			{false, false, true, false},
-    		},
-    		{	// L1List
-    			{true, false, false, false},
-    			{false, false, false, true},
-    			{false, true, false, false},
-    			{true, false, false, false},
-    			{false, true, false, false},
     		},
     		{	// L2List
     			{false, true, false, false},
@@ -65,6 +61,74 @@ public class testsData {
     			{false, true, true, false},
     			{false, false, true, false},
     		},
+			//SkipList
+    		{
+    			{false, true, false, false},
+    			{true, false, false, true},
+    			{false, false, true, false},
+    			{false, false, false, true},
+    			{false, false, false, true}
+    		},
+    		//BST
+    		{
+    			{true, false, true, false},
+    			{false, true, false, false},
+    			{true, false, false, false},
+    			{false, true, true, false},
+    			{false, false, false, true},
+    			{true, false, false, false},
+    			{false, true, false, false},
+    			{false, false, true, false},
+    			{true, false, false, false},
+    			{false, true, false, false}
+    		},
+    		//HashTable
+    		{
+    			{true, false, false, false},
+    			{false, false, true, false},
+    			{true, true, true, false},
+    			{false, false, false, true},
+    			{false, true, false, false},
+    		},
+    		//FloydWarshall
+    		{
+    			{true, false, false, false},
+    			{false, true, true, false},
+    			{false, true, true, true},
+    			{true, false, false, false},
+    			{false, false, true, false},
+    		},
+    		//UFKruskal
+    		{
+    			{true, false, false, false},
+    			{false, false, false, true},
+    			{false, true, true, false},
+    			{true, true, false, false},
+    			{true, true, true, true},
+//    			{false, false, false, false},
+    		},
+    		//GrahamScan
+    		{
+    			{false, true, true, false},
+    			{false, false, false, true},
+    			{false, true, false, false},
+    			{true, false, false, false},
+    			{true, false, false, false},
+    			{false, true, true, false}
+    		},
+    		//RBT
+    		{
+    			{true, false, true, false},
+    			{true, false, false, false},
+    			{false, false, false, true},
+    			{false, false, true, false},
+    			{false, true, false, false},
+    			{true, false, true, true},
+    			{false, true, false, true},
+    			{false, false, true, true},
+    			{true, true, true, true},
+    			{true, false, false, true}
+    		}
     };
     
     protected static String [][] questionsHTML = {
@@ -117,5 +181,72 @@ public class testsData {
     			"tests/fft/question4.html",
     			"tests/fft/question5.html",
     		},
+    		//SkipList
+    		{
+    			"tests/SkipList/question1.html",
+    			"tests/SkipList/question2.html",
+    			"tests/SkipList/question3.html",
+    			"tests/SkipList/question4.html",
+    			"tests/SkipList/question5.html"
+    		},
+    		//BST
+    		{
+    			"tests/BST/question1.html",
+    			"tests/BST/question2.html",
+    			"tests/BST/question3.html",
+    			"tests/BST/question4.html",
+    			"tests/BST/question5.html",
+    			"tests/BST/question6.html",
+    			"tests/BST/question7.html",
+    			"tests/BST/question8.html",
+    			"tests/BST/question9.html",
+    			"tests/BST/question10.html"
+    		},
+    		//HashTable
+    		{
+    			"tests/HashTable/question1.html",
+    			"tests/HashTable/question2.html",
+    			"tests/HashTable/question3.html",
+    			"tests/HashTable/question4.html",
+    			"tests/HashTable/question5.html"
+    		},
+    		//FloydWarshall
+    		{
+    			"tests/FloydWarshall/question1.html",
+    			"tests/FloydWarshall/question2.html",
+    			"tests/FloydWarshall/question3.html",
+    			"tests/FloydWarshall/question4.html",
+    			"tests/FloydWarshall/question5.html"
+    		},
+    		//UFKruskal
+    		{
+    			"tests/UFKruskal/question1.html",
+    			"tests/UFKruskal/question2.html",
+    			"tests/UFKruskal/question3.html",
+    			"tests/UFKruskal/question4.html",
+    			"tests/UFKruskal/question5.html"
+    		},
+    		//GrahamScan
+    		{
+    			"tests/GrahamScan/question1.html",
+    			"tests/GrahamScan/question2.html",
+    			"tests/GrahamScan/question3.html",
+    			"tests/GrahamScan/question4.html",
+    			"tests/GrahamScan/question5.html",
+    			"tests/GrahamScan/question6.html"
+    		},
+    		//RBT
+    		{
+    			"tests/RBT/question1.html",
+    			"tests/RBT/question2.html",
+    			"tests/RBT/question3.html",
+    			"tests/RBT/question4.html",
+    			"tests/RBT/question5.html",
+    			"tests/RBT/question6.html",
+    			"tests/RBT/question7.html",
+    			"tests/RBT/question8.html",
+    			"tests/RBT/question9.html",
+    			"tests/RBT/question10.html"
+    		}
     };
 }
