@@ -31,7 +31,7 @@ public class SavedValues {
             asList("FloydWarshall_introduction.fxml","FloydWarshall_description.fxml","FW_visualisation.fxml"), // floyd warshall
             asList("UFKruskal_introduction.fxml","UFKruskal_description.fxml","UFKruskal_visualisation.fxml"), // Union Find
             asList("GrahamScan_introduction.fxml","GrahamScan_description.fxml","GrahamScan_visualisation.fxml"), // algorytm grahama
-            asList("RBT_introduction.fxml","RBT_description.fxml","RBT_visualisation.fxml") //  red-black tree
+            asList("RBT_introduction.fxml","RBT_description.fxml","rbt_visualisation.fxml") //  red-black tree
     );
 
     private static <String> List<String> asList(String ... items) {
