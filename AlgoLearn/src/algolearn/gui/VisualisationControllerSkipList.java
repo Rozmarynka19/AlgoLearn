@@ -121,7 +121,6 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         }
     }
 
-    private Button previousSerchedChild;
     private Button previousButton;
 
 
@@ -284,7 +283,6 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         nodesHeights.put(btnNumber, height);
         ShowKeys();
         AddNodeText.setText("");
-        System.out.println("wysokość: " + height);
         for(int i=1;i<height;i++) {
             Button test = new Button();
             test.setStyle(
@@ -320,7 +318,10 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
             for (int j = 0; j < buttonList.get(i).size()+1; j++) {
                 Arrow arrow = new Arrow();
                 if(buttonList.get(i).size()!=0 && j<buttonList.get(i).size()) {
-                    arrow.setEndX(findBaseX(buttonList.get(i).get(j).getText(), j, i));
+                    if(j>0)
+                        arrow.setEndX(calcDistance(buttonList.get(i).get(j).getText(), j)-calcDifferenceBetweenNodes(buttonList.get(i).get(j-1).getText()) - 46);
+                    else
+                        arrow.setEndX(calcDistance(buttonList.get(i).get(j).getText(), j));
                     fulldistance+=46;
                 }
                 arrowList.get(i).add(arrow);
@@ -332,50 +333,38 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         }
     }
 
-    private double findBaseX(String val, int pos, int height){
-        int distance = 0;
-        for(int i=1;i<buttonList.get(height).size()+1;i++){
-            if(val.equals(buttonList.get(height).get(i-1).getText())){
-               break;
-            }
-            else
-                distance = 40 * (i);
-        }
-       for(int i=1;i<buttonList.get(0).size()+1;i++){
-           if(val.equals(buttonList.get(0).get(i-1).getText())) {
-               if(i==1){
-                   return (40) * i - (distance);
-               }
-               if(pos>0) {
-                   return (40 + 46) * i - distance - findBaseX2(buttonList.get(height).get(pos - 1).getText(), pos, height);
-               }
-               else {
-                   return (40 + 46) * i - distance - 46;
-               }
-           }
-       }
-       return 0;
-    }
-
-    private double findBaseX2(String val, int pos, int height){
-        int distance = 0;
-        for(int i=1;i<buttonList.get(height).size()+1;i++){
-            if(val.equals(buttonList.get(height).get(i-1).getText())){
+    private double calcDistance(String val, int poz2){
+        int i;
+        for(i=0;i<buttonList.get(0).size();i++){
+            if (buttonList.get(0).get(i).getText().equals(val)){
                 break;
             }
-            else
-                distance = 40 * (i) - distance;
         }
-        for(int i=1;i<buttonList.get(0).size()+1;i++){
-            if(val.equals(buttonList.get(0).get(i-1).getText())) {
-                if(i==1){
-                    return (40 + 46) * i - distance;
-                }
-                return (40+46) * i - distance;
+        if(poz2==0){
+            if(i==0){
+                return 40;
+            }
+            else return (i+1)*(40+46)-46;
+        }
+        if(i==0){
+            return 40;
+        }
+        else return (i+1)*(40+46);
+    }
+
+    private double calcDifferenceBetweenNodes(String val){
+        int i;
+        for(i=0;i<buttonList.get(0).size();i++){
+            if (buttonList.get(0).get(i).getText().equals(val)){
+                break;
             }
         }
-        return 0;
+        if(i==0){
+            return 40+46;
+        }
+        else return (i+1)*(40+46);
     }
+
 
     private void reloadArrows(){
         arrowList.get(0).clear();
@@ -385,7 +374,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
             arrow.setEndY(previousButton.getLayoutY());
             arrowList.get(0).add(arrow);
         }
-        arrowList.get(0).get(arrowList.get(0).size()-1).setEndX(levelWidth-buttonList.get(0).size()*(46+41));
+        arrowList.get(0).get(arrowList.get(0).size()-1).setEndX(levelWidth-buttonList.get(0).size()*(46+40));
         reloadVisualisationBox(levelsList.get(0));
 
     }
