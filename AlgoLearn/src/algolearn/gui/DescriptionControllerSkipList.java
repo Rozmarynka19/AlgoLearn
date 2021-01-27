@@ -72,9 +72,7 @@ public class DescriptionControllerSkipList extends FXMLDocumentController implem
     @FXML
     public void loadCodeExample(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/skipListCodes.html");
         if(clicked_btn.getText().equals("Przykład klasy listy")){
             script="listClass_"+selectedLangButton+"()";
         }
@@ -92,7 +90,7 @@ public class DescriptionControllerSkipList extends FXMLDocumentController implem
         }
         engine = descriptionText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/skipListCodes.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override
