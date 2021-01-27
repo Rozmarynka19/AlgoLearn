@@ -50,12 +50,18 @@
         width:50%;
         height:50%;
      }
+	 body.disabled { 
+		pointer-events: none; 
+		-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+		user-select: none;
+		}
+		body.disabled *:focus { outline: 0; }
     </style>
  <meta charset="UTF-8">
 
 </head>
 
-<body>
+<body class="disabled">
     <h3>Algorytm Floyda-Warshalla</h3>
     <div class=intro>
         <p>
@@ -79,13 +85,17 @@
             <img src="../textimg/FloydWarshall/graf2.png">
         <br>Pseudokod algorytmu Floyda-Warshalla
         <pre>
-         n = no of vertices
-        A = matrix of dimension n*n
-        for k = 1 to n
-            for i = 1 to n
-                for j = 1 to n
-                    Ak[i, j] = min (Ak-1[i, j], Ak-1[i, k] + Ak-1[k, j])
-        return A
+n = no of vertices
+A = matrix of dimension n*n
+for k = 1 to n
+	for i = 1 to n
+		for j = 1 to n
+			Ak[i, j] = 
+			min (
+				Ak-1[i, j], 
+				Ak-1[i, k] + Ak-1[k, j]
+			)
+return A
         </pre>
         <br>Zobaczmy zatem, w jaki sposób będzie on działał dla danego grafu dla przypadku path(1,5)
             <img src="../textimg/FloydWarshall/dzialanie.gif">

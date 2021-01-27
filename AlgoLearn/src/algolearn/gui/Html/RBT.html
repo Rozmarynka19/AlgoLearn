@@ -204,6 +204,12 @@ section
 {
     padding: 10px;
 }
+ img.disabled { 
+		pointer-events: none; 
+		-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+		user-select: none;
+		}
+		img.disabled *:focus { outline: 0; }
 </style>
  <meta charset="UTF-8">
 
@@ -247,7 +253,7 @@ section
                 <li>każda ścieżka z dowolnego węzła do liścia ma taką samą ilość czarnych węzłów</li>
             </ul>
         </div>
-        <img class="imgIntro" src="../textimg/RBTimg/intro/rbt_intro.png" />
+        <img class="imgIntro disabled" src="../textimg/RBTimg/intro/rbt_intro.png" />
         <i class="red">
             Uwaga: Nasza wizualizacja drzewa RBT, którą zobaczysz później nie pokazuje liści. Pamiętaj, że domyślnie one
             tam są!
@@ -304,7 +310,7 @@ section
                 <br/>
 
                 <img style="display: block;
-                width: 80%;" class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_relationship1.png"/>
+                width: 80%;" class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_relationship1.png"/>
 				</div>
                 <br/>
                 Chcemy określić "who is who" dla węzła o kluczu "23" (ten zaznaczony z żółtą obręczą ;]).
@@ -316,7 +322,7 @@ section
                 Tak jak w rodzinie :). Nothing fancy. Możemy przejść do scenariuszy wstawiania - 
                 czyli na jakie sytuację możemy się natknąć po wstawieniu węzła.
                 <br/>
-                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_relationship2.png"/>
+                <img class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_relationship2.png"/>
             </p>
         </section>
 
@@ -330,7 +336,7 @@ section
                 We wprowadzeniu do tematu zaznaczyliśmy, że będziemy wstawiali węzeł i go kolorowali na czerwono.
                 Pamiętasz, jakiego koloru powinien być korzeń w RBT? Czarnego! To co musimy zrobić? Przekolorować wstawiony węzeł na czarny! Koniec.
                 <br/>
-                <img class="imgInsertSingleRoot" src="../textimg/RBTimg/insert/insert_scenario1.gif"/>
+                <img class="imgInsertSingleRoot disabled" src="../textimg/RBTimg/insert/insert_scenario1.gif"/>
             </p>
         </section>
 
@@ -340,29 +346,29 @@ section
                 <br/>
                 Załóżmy, że mamy takie <b>poddrzewo</b> (ważne, że jest to poddrzewo; dlaczego, wyjaśnimy później).
                 <br/>
-                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_1.png"/>
+                <img class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_scenario2_1.png"/>
                 <br/>
                 Wstawiamy nowy węzeł, np. o kluczu "3".
                 <br/>
-                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_2.png"/>
+                <img class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_scenario2_2.png"/>
                 <br/>
                 I co się stało? Czy węzeł czerwony ma jakieś obostrzenia dotyczące koloru jego dzieci? Muszą być czarne, prawda?
                 Ale zamiast przekolorywać wstawiony węzeł na czarno robimy inaczej. Zerknijmy, jakiego koloru jest wujek wstawionego węzła.
                 <br/>
-                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_3.png"/>
+                <img class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_scenario2_3.png"/>
                 <br/>
                 Jest czerwony. Zatem zmieniamy kolory rodzica, dziadka i wujka węzła o kluczu "3" na przeciwne.
                 <br/>
-                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_4.png"/>
+                <img class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_scenario2_4.png"/>
                 <br/>
                 I koniec. Nasze poddrzewko jest naprawione. <b>Poddrzewko</b>, bo gdyby to było pełne drzewo, 
                 to jeszcze musielibyśmy zmienić kolor korzenia na czarny, jak poniżej.
                 <br/>
-                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2_5.png"/>
+                <img class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_scenario2_5.png"/>
                 <br/>
                 Podsumowując - wstawiamy węzeł, wujek czerwony, zmieniamy kolory.
                 <br/>
-                <img class="imgInsertSingle" src="../textimg/RBTimg/insert/insert_scenario2.gif"/>
+                <img class="imgInsertSingle disabled" src="../textimg/RBTimg/insert/insert_scenario2.gif"/>
                 <br/>
             </p>
         </section>
@@ -378,10 +384,10 @@ section
                 Mamy takie podrzewo. Załóżmy, że przed chwilą wstawiliśmy węzeł o kluczu "15"
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_0.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3L_0.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_0.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3R_0.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -390,10 +396,10 @@ section
                 Sprawdźmy, jakiego koloru jest wujek :).
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_1.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3L_1.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_1.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3R_1.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -402,10 +408,10 @@ section
                 Odpowiednio, w prawej formacji trójkątnej rotujemy rodzica nowo wstawionego węzła o kluczu "15" w prawą stronę. 
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_2.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3L_2.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_2.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3R_2.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -414,10 +420,10 @@ section
                 rodzica wstawianego węzła o kluczu "15".
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3L_4.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3L_4.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3R_4.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3R_4.png"/>
                 </div>
                 <div class="below"></div>
             </p>
@@ -438,10 +444,10 @@ section
                 Podobnie, możemy mieć lewą i prawą formację liniową (wstawiony węzeł, rodzic i dziadek tworzą odpowiednio lewy lub prawy skos).
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_1.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4L_1.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_1.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4R_1.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
@@ -450,46 +456,46 @@ section
                 gdyby tam był węzeł dowolnego koloru (czerwony lub czarny).
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_2.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4L_2.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_2.png"/>
-                </div>
-                <div class="below"></div>
-                <br/>
-                <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_4.png"/>
-                </div>
-                <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_4.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4R_2.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_5.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4L_4.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_5.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4R_4.png"/>
+                </div>
+                <div class="below"></div>
+                <br/>
+                <div class="parallel">
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4L_5.png"/>
+                </div>
+                <div class="parallel">
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4R_5.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
                 Ostatni krok, to przekolorowanie na przeciwny kolor rodzica i dziadka dodanego węzła.
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4L_6.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4L_6.png"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario4R_6.png"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario4R_6.png"/>
                 </div>
                 <div class="below"></div>
                 <br/>
                 Poniższe animacje pokazują krok po kroku operacje wykonane w scenariuszu 3 i 4.
                 <br/>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3&4L.gif"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3&4L.gif"/>
                 </div>
                 <div class="parallel">
-                    <img class="imgInsertDouble" src="../textimg/RBTimg/insert/insert_scenario3&4R.gif"/>
+                    <img class="imgInsertDouble disabled" src="../textimg/RBTimg/insert/insert_scenario3&4R.gif"/>
                 </div>
                 <div class="below"></div>
             </p>
@@ -534,7 +540,7 @@ section
                 <h4>Rotacja w lewo</h4>
                 Załóżmy, że mamy poniższą sytuację
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationL1.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationL1.png" />
                 <br/>
                 Specjalnie użyliśmy tutaj innego kolorwania (oczywiście, niezgodnego z konwencją RBT), aby same czynności,
                 które wykonujemy w ramach rotacji były czytelniejsze.
@@ -543,7 +549,7 @@ section
                 Dodatkowo "pociągnie" ze sobą swoje prawo podrzewo (które pójdzie do góry - zgodnie z linią drzewa),
                 zatem teraz węzeł o kluczu "30" będzie lewym dzieckiem węzła o kluczu "40".
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationL2.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationL2.png" />
                 <br/>
                 No dobrze, ale co się stanie z pozostałymi węzłami?
                 <br/>
@@ -560,16 +566,16 @@ section
                 To co powinniśmy zrobić? Odpowiedź jest dosyć prosta - dołączmy węzeł o kluczu "35" jako prawe dziecko węzła
                 o kluczu "30".
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationL3.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationL3.png" />
                 <br/>
                 Co z pozostałymi węzłami? Dołączamy je bez zmian.
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationL4.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationL4.png" />
                 <br/>
                 Sprawdź, czy zostały zachowane właściwości BST (tak, BST - do drzewa czerwono-czarnego wrócimy w operacjach
                 na tym drzewku).
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationL.gif" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationL.gif" />
             </p>
         </section>
 
@@ -584,25 +590,25 @@ section
                 rotacji w prawo -
                 czyli po operacji rotacji w prawo wrócimy do punktu wyjściowego.
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationR1.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationR1.png" />
                 <br/>
                 Chcemy dokonać rotacji w lewo na węźle o kluczu "40". Węzeł ten zejdzie do swojego byłego prawego podrzewa.
                 Dodatkowo "pociągnie" ze sobą swoje lewe podrzewo (które pójdzie do góry - zgodnie z linią drzewa),
                 zatem teraz węzeł o kluczu "40" będzie prawym dzieckiem węzła o kluczu "30".
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationR2.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationR2.png" />
                 <br/>
                 Jak już się pewnie domyślasz, węzeł o kluczu "35" będzie lewym dzieckiem węzła o kluczu "40".
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationR3.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationR3.png" />
                 <br/>
                 A resztę węzłów podpinamy bez zmian.
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationR4.png" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationR4.png" />
                 <br/>
                 Tak samo - sprawdź, czy zostały zachowane właściwości BST.
                 <br/>
-                <img class="imgRotations" src="../textimg/RBTimg/rotations/rotationR.gif" />
+                <img class="imgRotations disabled" src="../textimg/RBTimg/rotations/rotationR.gif" />
             </p>
         </section>
 
@@ -646,7 +652,7 @@ section
                 <h4>Przypadek pozytywny - węzeł istnieje</h4>
                 Mamy poniższe RBT:
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_init.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_init.png"/>
                 <br/>
                 Chcemy w nim wyszukać węzła o kluczu "11". My widzmy, że istnieje taki węzeł. Komputer musi wykonać następujący ciąg instrukcji:
                 <ul>
@@ -654,31 +660,31 @@ section
                     <li>Podejmuje decyzję, gdzie iść. 11 &lt 6? Nie. 11 &gt 6? Tak, idziemy w prawo.</li>
                 </ul>
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_ok1.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_ok1.png"/>
                 <br/>
                 <ul>
                     <li>Jesteśmy w węźle o kluczu "12". Czy jest to węzeł o kluczu "11"? Nie</li>
                     <li>Podejmuje decyzję, gdzie iść. 11 &lt 12? Tak. Tak, idziemy w lewo.</li>
                 </ul>
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_ok2.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_ok2.png"/>
                 <br/>
                 <ul>
                     <li>Jesteśmy w węźle o kluczu "10". Czy jest to węzeł o kluczu "11"? Nie</li>
                     <li>Podejmuje decyzję, gdzie iść. 11 &lt 10? Nie. 11 &gt 10? Tak, idziemy w prawo.</li>
                 </ul>
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_ok3.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_ok3.png"/>
                 <br/>
                 <ul>
                     <li>Jesteśmy w węźle o kluczu "11". Czy jest to węzeł o kluczu "11"? Tak :) Kończymy procedurę</li>
                 </ul>
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_ok4.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_ok4.png"/>
                 <br/>
                 Małe podsumowanie całości:
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_ok.gif"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_ok.gif"/>
                 <br/>
 
             </p>
@@ -695,14 +701,14 @@ section
                     <li>Podejmuje decyzję, gdzie iść. 22 &lt 6? Nie. 22 &gt 6? Tak, idziemy w prawo.</li>
                 </ul>
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_bad1.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_bad1.png"/>
                 <br/>
                 <ul>
                     <li>Jesteśmy w węźle o kluczu "12". Czy jest to węzeł o kluczu "22"? Nie</li>
                     <li>Podejmuje decyzję, gdzie iść. 22 &lt 12? Nie. 22 &gt 12? Tak, idziemy w prawo.</li>
                 </ul>
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_bad2.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_bad2.png"/>
                 <br/>
                 <ul>
                     <li>Jesteśmy w węźle o kluczu "23". Czy jest to węzeł o kluczu "22"? Nie</li>
@@ -710,11 +716,11 @@ section
                         zatem kończymy poszukiwania węzła o kluczu "23" z wynikiem negatywnym.</li>
                 </ul>
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_bad3.png"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_bad3.png"/>
                 <br/>
                 Całość przedstawia się w następujący sposób:
                 <br/>
-                <img class="imgSearch" src="../textimg/RBTimg/search/search_bad.gif"/>
+                <img class="imgSearch disabled" src="../textimg/RBTimg/search/search_bad.gif"/>
                 <br/>
             </p>
         </section>
@@ -768,7 +774,7 @@ section
                         To proste! Idziemy od węzła o kluczu "41" do lewego syna, a później maksymalnie w prawo. Ostatni węzeł niebędący liściem
                         jest poprzednikiem.
                         <br/>
-                        <img class="imgDelete" src="../textimg/RBTimg/delete/termsPred.gif" />
+                        <img class="imgDelete disabled" src="../textimg/RBTimg/delete/termsPred.gif" />
                         <br/>
 
                     </li>
@@ -778,7 +784,7 @@ section
                         To proste! Idziemy od węzła o kluczu "41" do prawego syna, a później maksymalnie w lewo. Ostatni węzeł niebędący liściem
                         jest następnikiem.
                         <br/>
-                        <img class="imgDelete" src="../textimg/RBTimg/delete/termsSuc.gif" />
+                        <img class="imgDelete disabled" src="../textimg/RBTimg/delete/termsSuc.gif" />
                         <br/>
                     </li>
                 </ul>
@@ -795,17 +801,17 @@ section
                     <li>
                         Jeśli węzeł nie ma dzieci, to możemy go zwyczajnie usunąć.
                         <br/>
-                        <img class="imgDelete" src="../textimg/RBTimg/delete/reminder1.gif" />
+                        <img class="imgDelete disabled" src="../textimg/RBTimg/delete/reminder1.gif" />
                         <br/>
                     </li>
                     <li>
                         Jeśli węzeł ma 1 potomka (lewego lub prawego), to on zastępuje usuwany węzeł.
                         <br/>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder2L.gif" />
+                            <img class="imgDelete imgDelete2inRow disabled" src="../textimg/RBTimg/delete/reminder2L.gif" />
                         </div>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder2R.gif" />
+                            <img class="imgDelete imgDelete2inRow disabled" src="../textimg/RBTimg/delete/reminder2R.gif" />
                         </div>
                         <div class="below"></div>
                     </li>
@@ -813,10 +819,10 @@ section
                         Jeśli węzeł ma obu potomków, to zastępujemy usuwany węzeł albo poprzednikiem, albo następnikiem (Twój wybór ;]).
                         <br/>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder3L.gif" />
+                            <img class="imgDelete imgDelete2inRow disabled" src="../textimg/RBTimg/delete/reminder3L.gif" />
                         </div>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder3R.gif" />
+                            <img class="imgDelete imgDelete2inRow disabled" src="../textimg/RBTimg/delete/reminder3R.gif" />
                         </div>
                         <div class="below"></div>
                     </li>
@@ -824,10 +830,10 @@ section
                         Jeśli poprzednik/następnik ma dziecko, to to dziecko zastępuje poprzednika/następnika, gdy ten zastąpi usuwany węzeł.
                         <br/>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder4L.gif" />
+                            <img class="imgDelete imgDelete2inRow disabled" src="../textimg/RBTimg/delete/reminder4L.gif" />
                         </div>
                         <div class="parallel">
-                            <img class="imgDelete imgDelete2inRow" src="../textimg/RBTimg/delete/reminder4R.gif" />
+                            <img class="imgDelete imgDelete2inRow disabled" src="../textimg/RBTimg/delete/reminder4R.gif" />
                         </div>
                         <div class="below"></div>
                     </li>
@@ -842,20 +848,20 @@ section
                 <br/>
                 Załóżmy, że mamy takie drzewko czerwono-czarne.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike1_0.png" />
                 <br />
                 Chcemy usunąć węzeł o kluczu "14". Usuwamy go jak w BST. W jego miejsce wchodzi jego lewy potomek.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_part.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike1_part.gif" />
                 <br/>
                 Jak widać, mamy konflikt - czerwony węzeł nie może mieć czewronych dzieci. Aby to naprawić dziecko usuniętego węzła przejmuje
                 również po nim kolor. Jeśli usuwany węzeł był czarny, to musimy przekolorować dziecko na czarno.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_recolor.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike1_recolor.gif" />
                 <br/>
                 Gotowe!
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike1_full.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike1_full.gif" />
                 <br/>
             </p>
         </section>
@@ -867,19 +873,19 @@ section
                 Jest to lustrzany przypadek do poprzedniego, więc w poniższym drzewku spróbuj sama/sam usunąć węzeł o kluczu "14", np. na kartce.
                 Jak skończysz - wróć do tego opracowania.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike2_0.png" />
                 <br/>
                 Usuwamy węzeł o kluczu "14" jak w BST - zastępujemy "dziurę" jego prawym potomkiem.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_part.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike2_part.gif" />
                 <br/>
                 Konflikt - zmieniamy kolor węzła-potomka, ale to już wiesz, prawda?
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_recolor.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike2_recolor.gif" />
                 <br/>
                 Miałaś/miałeś tak samo? Gratulacje!
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike2_full.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike2_full.gif" />
                 <br/>
             </p>
         </section>
@@ -891,18 +897,18 @@ section
                 W tym przypadku miejsce usuwanego węzła zajmuje jego następnik. Po usunięciu węzła następuje przekolorowanie. Sam następnik
                 otrzymuje kolor węzła usuwanego. Sprawdźmy to na przykładzie.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike3_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike3_0.png" />
                 <br/>
                 Mamy takie drzewko i chcemy usunąć węzeł o kluczu "18".
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike3_delete&recolor.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike3_delete&recolor.gif" />
                 <br/>
                 Okej, usunęliśmy i zrobiliśmy przekolorowanie. Pytanie, czy wszystkie właściwości drzewa RBT zostały zachowane?
                 Podpowiemy - nie. Jest o 1 czarny węzeł mniej, co za tym idzie już nie każda ścieżka z dowolnego węzła do liścia ma taką samą ilość
                 czarnych węzłów. Aby to naprawić, prawy potomek następnika otrzyma dodatkowy kolor - taki, jakiego był następnik
                 przed przekolorowaniem.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike3_colorBalance.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike3_colorBalance.gif" />
                 <br/>
                 Podwójny kolor czarny lub czerwono-czarność danego węzła zostanie naprawiona w przypadkach dotyczących napraw RBT.
             </p>
@@ -915,7 +921,7 @@ section
                 <br/>
                 Mamy mniej więcej taką sytuację
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike4_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike4_0.png" />
                 <br/>
                 Chcemy węzeł x usunąć z drzewka. W jego miejsce wchodzi następnik x3, a w miejsce następnika x3 wchodzi jego prawy potomek x4.
                 Reszta zostaje bez zmian. Co z kolorami? Zasady są następujące:
@@ -926,7 +932,7 @@ section
                 </ul>
                 Dwie ostatnie sytuacje są rozwiązywane w pozostałych przypadkach, które dotyczą naprawy RBT.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTlike4_full.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTlike4_full.gif" />
                 <br/>
             </p>
         </section>
@@ -945,15 +951,15 @@ section
                 <br/>
                 Mamy taki przypadek
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair1_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair1_0.png" />
                 <br/>
                 Rotujemy węzeł x1 w lewo. Następnie zamieniamy kolory węzłów x1 i x2.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair1_4.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair1_4.png" />
                 <br/>
                 Dalej sytuacja się rozstrzyga na podstawie kolorów węzłów potomnych od brata x*, czyli x3.
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair1.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair1.gif" />
                 <br/>
             </p>
         </section>
@@ -964,17 +970,17 @@ section
                 <br/>
                 Nasz punkt startowy:
                 <br>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair2_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair2_0.png" />
                 <br/>
                 Zabieramy z węzłów x* i x2 kolor czarny i przenosimy go w górę, do węzła x1. 
                 <br>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair2_2.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair2_2.png" />
                 <br/>
                 W wyniku takiej operacji, węzeł x staje się normalnym węzłem czerwonym lub czarnym (w zależności, czy był czerwono-czarny,
                 czy podwójnie czarny),a węzeł x2 staje się czerwony (jego potomkowie są czarni, więc nie naruszami struktury drzewa RBT).
                 Niestety, skoro teraz węzeł x1* posiada dodatkowy kolor, to musimy wykonać procedurę naprawy rekurencyjnie w górę drzewka.
                 <br>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair2.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair2.gif" />
                 <br/>
             </p>
         </section>
@@ -983,7 +989,7 @@ section
             <p>
                 <div class="longH4">Naprawa RBT - przypadek 3 - brat węzła zastępującego jest czarny, lewy syn brata czerwony i prawy czarny</div>
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair3_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair3_0.png" />
                 <br/>
                 Wykonujemy następujące kroki:
                 <ol>
@@ -992,7 +998,7 @@ section
                 </ol>
                 Następnie przechodzimy do przypadku 4.
                 <br>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair3.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair3.gif" />
                 <br/>
             </p>
         </section>
@@ -1001,7 +1007,7 @@ section
             <p>
                 <div class="longH4">Naprawa RBT - przypadek 4 - brat węzła zastępującego jest czarny i jego prawy syn czerwony</div>
                 <br/>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair4_0.png" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair4_0.png" />
                 <br/>
                 Wykonujemy następujące kroki:
                 <ol>
@@ -1012,12 +1018,13 @@ section
                 </ol>
                 Taka procedura w końcu kończy naprawianie drzewka czerwono-czarnego po usunięciu węzła.
                 <br>
-                <img class="imgDelete" src="../textimg/RBTimg/delete/BSTrepair4.gif" />
+                <img class="imgDelete disabled" src="../textimg/RBTimg/delete/BSTrepair4.gif" />
                 <br/>
             </p>
+			        <a href="#up">Powrót do góry</a>
         </section>
 
-        <a href="#up">Powrót do góry</a>
+
     </div>
 </div>
 </body>

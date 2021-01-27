@@ -68,9 +68,17 @@ catch(err) {
    alert('test');
  }
  </script>
+  <style>
+ body.disabled { 
+		pointer-events: none; 
+		-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+		user-select: none;
+		}
+		body.disabled *:focus { outline: 0; }
+ </style>
     <meta charset="UTF-8">
 </head>
-<body>
+<body class="disabled">
 <h1 align="center">Listy z przeskokami (skip lists)</h1>
 
 <div class="intro">

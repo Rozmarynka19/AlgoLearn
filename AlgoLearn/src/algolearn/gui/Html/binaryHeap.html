@@ -77,11 +77,17 @@
         height:50%;
     }
     div {text-align: center;}
+	body.disabled { 
+		pointer-events: none; 
+		-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+		user-select: none;
+		}
+		body.disabled *:focus { outline: 0; }
 </style>
 
 </head>
 
-<body>
+<body class="disabled">
     <h1>Sterta</h1>
 
     <div class="intro">

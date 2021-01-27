@@ -94,8 +94,10 @@ void GrahamScan(Graph* graph, Dynamic_Array &lt;Point>* PointsCopy)
 	{
 		graph->AddVertexToHull(PointsCopy->getData(i));
 		//till right turn - remove second to last vertex
-			while (Compare(graph->GetVertex(graph->GetNumberOfVertex() - 1) - graph->GetVertex(graph->GetNumberOfVertex() - 2),
-				graph->GetVertex(graph->GetNumberOfVertex() - 2) - graph->GetVertex(graph->GetNumberOfVertex() - 3)) == -1)
+		while (Compare(graph->GetVertex(graph->GetNumberOfVertex() - 1) - 
+		graph->GetVertex(graph->GetNumberOfVertex() - 2),
+		graph->GetVertex(graph->GetNumberOfVertex() - 2) - 
+		graph->GetVertex(graph->GetNumberOfVertex() - 3)) == -1)
 		{
 			graph->RemoveSecondToLastVertex();
 		}
@@ -136,8 +138,10 @@ public void GrahamScan(Graph graph, Dynamic_Array&lt;Point> PointsCopy)
 	{
 		graph.AddVertexToHull(PointsCopy.getData(i));
 		//till right turn - remove second to last vertex
-			while (Compare(graph.GetVertex(graph.GetNumberOfVertex() - 1) - graph.GetVertex(graph.GetNumberOfVertex() - 2),
-				graph.GetVertex(graph.GetNumberOfVertex() - 2) - graph.GetVertex(graph.GetNumberOfVertex() - 3)) == -1)
+		while (Compare(graph.GetVertex(graph.GetNumberOfVertex() - 1) - 
+		graph.GetVertex(graph.GetNumberOfVertex() - 2),
+		graph.GetVertex(graph.GetNumberOfVertex() - 2) - 
+		graph.GetVertex(graph.GetNumberOfVertex() - 3)) == -1)
 		{
 			graph.RemoveSecondToLastVertex();
 		}
@@ -174,8 +178,10 @@ def GrahamScan(graph, PointsCopy):
 	for i in range(PointsCopy.currentSize):
 		graph.AddVertexToHull(PointsCopy.getData(i));
 		# till right turn - remove second to last vertex
-			while (Compare(graph.GetVertex(graph.GetNumberOfVertex() - 1) - graph.GetVertex(graph.GetNumberOfVertex() - 2),
-				graph.GetVertex(graph.GetNumberOfVertex() - 2) - graph.GetVertex(graph.GetNumberOfVertex() - 3)) == -1):
+		while (Compare(graph.GetVertex(graph.GetNumberOfVertex() - 1) -
+		graph.GetVertex(graph.GetNumberOfVertex() - 2),
+		graph.GetVertex(graph.GetNumberOfVertex() - 2) -
+		graph.GetVertex(graph.GetNumberOfVertex() - 3)) == -1):
 			graph.RemoveSecondToLastVertex()
 	GrahamStop = time.time()
             </pre>

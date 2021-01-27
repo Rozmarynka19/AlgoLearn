@@ -86,13 +86,19 @@
         width:50%;
         height:50%;
      }
+	 body.disabled { 
+		pointer-events: none; 
+		-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+		user-select: none;
+		}
+		body.disabled *:focus { outline: 0; }
  </style>
  
  <meta charset="UTF-8">
 
 </head>
 
-<body>
+<body class="disabled">
     <h3 id=header>Tablica Mieszająca</h3>
         <div class=intro>
             <h3></h3>

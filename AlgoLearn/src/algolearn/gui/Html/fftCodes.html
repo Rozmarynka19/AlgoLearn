@@ -176,7 +176,10 @@ class Complex {
     }
 
     public Complex mult(Complex b) {
-        return new Complex(this.real * b.real - this.imag * b.imag, this.real * b.imag + this.imag * b.real);
+        return new Complex(
+			this.real * b.real - this.imag * b.imag, 
+			this.real * b.imag + this.imag * b.real
+		);
     }
 
     @Override

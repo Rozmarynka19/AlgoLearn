@@ -297,7 +297,7 @@ void MSTree::print()
 		for (p = A[i]; p; p = p->next) std::cout << p->v << ":" << p->weight << " ";
 		std::cout << std::endl;
 	}
-	std::cout << std::endl << std::endl << "Minimalne drzewo rozpinające waga = " << weight << std::endl << std::endl;
+	std::cout << std::endl << "Minimalne drzewo rozpinające waga = " <br><< weight << std::endl;
 }
           </pre>
        </div>
@@ -441,50 +441,52 @@ class Union{
         <div class="MST_Java">
           <pre>
 class MSTree{
-		Tnode A[];
-		int Alen;
-		float weight;
-		void addEdge(Edge e) {
-			Tnode p;
-			weight += e.weight;
-			p = new Tnode();
-			p.v = e.in2;
-			p.weight = e.weight;
-			p.next = A[e.in1];
-			A[e.in1] = p;
+	Tnode A[];
+	int Alen;
+	float weight;
+	void addEdge(Edge e) {
+		Tnode p;
+		weight += e.weight;
+		p = new Tnode();
+		p.v = e.in2;
+		p.weight = e.weight;
+		p.next = A[e.in1];
+		A[e.in1] = p;
 
-			p = new Tnode();
-			p.v = e.in1;
-			p.weight = e.weight;
-			p.next = A[e.in2];
-			A[e.in2] = p;
-		}
-		void print(){
-			int i;
-			Tnode p;
-			System.out.println();
-			for (i = 0; i <= Alen; i++) {
-				System.out.print("wierzcholek " + i + " - ");
-				for (p = A[i]; p!=null; p = p.next) System.out.println(p.v + ":" + p.weight + " ");
-				System.out.println();
-			}
-			System.out.println();
-			System.out.println();
-			System.out.println("Minimalne drzewo rozpinające waga = " + weight);
-			System.out.println();
+		p = new Tnode();
+		p.v = e.in1;
+		p.weight = e.weight;
+		p.next = A[e.in2];
+		A[e.in2] = p;
+	}
+	void print(){
+		int i;
+		Tnode p;
+		System.out.println();
+		for (i = 0; i <= Alen; i++) {
+			System.out.print("wierzcholek " + i + " - ");
+			for (p = A[i]; p!=null; p = p.next) {
+				System.out.println(p.v + ":" + p.weight + " ");
+			}			
 			System.out.println();
 		}
-		float getWeight(){
-			return weight;
-		}
-		MSTree(int n){
-			int i;
-			A = new Tnode[n];
-			for (i = 0; i < n; i++) A[i] = null;
-			Alen = n - 1;
-			weight = 0;
-		}
-	};
+		System.out.println();
+		System.out.println();
+		System.out.println("Minimalne drzewo rozpinające waga = " + weight);
+		System.out.println();
+		System.out.println();
+	}
+	float getWeight(){
+		return weight;
+	}
+	MSTree(int n){
+		int i;
+		A = new Tnode[n];
+		for (i = 0; i < n; i++) A[i] = null;
+		Alen = n - 1;
+		weight = 0;
+	}
+};
           </pre>
         </div>
 
@@ -593,47 +595,47 @@ class Union:
         <div class="MST_PY">
           <pre>
 class MSTree:
-		def __init__():
-			A = Tnod
-			Alen = 0
-			weight = 0.1
-		def addEdge(e):
-			p = Tnode
-			weight += e.weight;
-			p = Tnode();
-			p.v = e.in2;
-			p.weight = e.weight;
-			p.next = A[e.in1];
-			A[e.in1] = p;
+	def __init__():
+		A = Tnod
+		Alen = 0
+		weight = 0.1
+	def addEdge(e):
+		p = Tnode
+		weight += e.weight;
+		p = Tnode();
+		p.v = e.in2;
+		p.weight = e.weight;
+		p.next = A[e.in1];
+		A[e.in1] = p;
 
-			p = Tnode();
-			p.v = e.in1;
-			p.weight = e.weight;
-			p.next = A[e.in2];
-			A[e.in2] = p
-		def printUF():
-			i=0
-			p=Tnode
-			print("\n")
-			for i in range(Alen):
-				print("wierzcholek " + str(i) + " ")
-				p = A[i]
-				while p!=null:
-					print(p.v + ":" + p.weight + " ")
-					p = p.next
-				print("\n");
+		p = Tnode();
+		p.v = e.in1;
+		p.weight = e.weight;
+		p.next = A[e.in2];
+		A[e.in2] = p
+	def printUF():
+		i=0
+		p=Tnode
+		print("\n")
+		for i in range(Alen):
+			print("wierzcholek " + str(i) + " ")
+			p = A[i]
+			while p!=null:
+				print(p.v + ":" + p.weight + " ")
+				p = p.next
 			print("\n");
-			print("\n");
-			print("Minimalne drzewo rozpinające waga = " + str(weight))
-			print("\n");
-			print("\n");
-		def MSTree(n):
-			i = 0
-			A = Tnode[n];
-			for i in range(n):
-				A[i] = null
-			Alen = n - 1;
-			weight = 0;
+		print("\n");
+		print("\n");
+		print("Minimalne drzewo rozpinające waga = " + str(weight))
+		print("\n");
+		print("\n");
+	def MSTree(n):
+		i = 0
+		A = Tnode[n];
+		for i in range(n):
+			A[i] = null
+		Alen = n - 1;
+		weight = 0;
           </pre>
         </div>
 

@@ -222,7 +222,9 @@ struct LinkedList {
     bool SearchAndDestroyNode(int klucz);
     
 	void ReplaceData(int iterator, char znak) {
-		if (iterator<0 || iterator>size - 1) cout << "Wrong iterator - out of range." << endl;
+		if (iterator<0 || iterator>size - 1) {
+			cout << "Wrong iterator - out of range." << endl;
+		}
 		else if (iterator == size - 1) tail->dane = znak;
 		else if (iterator == 0) head->dane = znak;
 		else {
@@ -462,7 +464,9 @@ public class LinkedList{
     int SearchAndDestroyNode(int klucz){...}
     
 	void ReplaceData(int iterator, char znak){
-		if (iterator<0 || iterator>size - 1) System.out.println("Wrong iterator - out of range.");
+		if (iterator<0 || iterator>size - 1) {
+			System.out.println("Wrong iterator - out of range.");
+		}
 		else if (iterator == size - 1) tail.dane = znak;
 		else if (iterator == 0) head.dane = znak;
 		else{
@@ -659,8 +663,8 @@ int SearchAndDestroyNode(int klucz){
             <pre>
 char GetDataOfElement(int iterator){
     if (iterator<0 || iterator>size - 1) System.out.println("\nWrong iterator - out of range.");
-    else if (iterator == size - 1) return tail.dane;//return ToString(tail);//cout << tail->data << endl;
-    else if (iterator == 0) return head.dane;//return ToString(head);//cout << head->data << endl;
+    else if (iterator == size - 1) return tail.dane;
+    else if (iterator == 0) return head.dane;
     else{
         node temp = head;
         for (int i = 0; i < iterator; i++){

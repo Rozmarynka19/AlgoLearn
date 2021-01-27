@@ -125,7 +125,9 @@ private static int[] getMinMax(int[] arr) {
     result[0] = arr[0]; // pierwszy element bedzie najmniejszym elementem
     result[1] = arr[0]; // drugi element bedzie najwiekszym elementem
     for(int i : arr) {
-        if(result[0] > i) { //dokonujemy podmiany najwiekszego/najmniejszego elementu w przypadku gdy iterowana wartosc bedzie wieksza/mniejsza od przechowanej
+	/*dokonujemy podmiany najwiekszego/najmniejszego elementu w przypadku 
+	gdy iterowana wartosc bedzie wieksza/mniejsza od przechowanej */
+        if(result[0] > i) { 
             result[0] = i;
         }
         else if (result[1] < i) {
@@ -189,7 +191,8 @@ def minMax(tab): #tworzymy funkcje znajdujaca najwiekszy i najmniejszy element
     min = tab[0] #tworzymy zmienne pomocnicze
     max = tab[0]
     for el in tab:
-        if el > max: # a nastepnie sprawdzamy czy sa one wieksz, lub mniejsze od iterowanej wartosci
+	# a nastepnie sprawdzamy czy sa one wieksz, lub mniejsze od iterowanej wartosci
+        if el > max: 
             max = el
         if el < min:
             min = el
