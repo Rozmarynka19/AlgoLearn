@@ -39,9 +39,7 @@ public class IntroductionControllerGrahamScan extends FXMLDocumentController imp
     @FXML
     public void loadText(ActionEvent event) throws IOException {
         Button clicked_btn = (Button)event.getSource();
-        Path path;
         final String script;
-        path= Paths.get("src/algolearn/gui/Html/GrahamScan.html");
         if(clicked_btn.getText().equals("Mechanizm działania")){
             script="mechanism()";
         }
@@ -50,7 +48,7 @@ public class IntroductionControllerGrahamScan extends FXMLDocumentController imp
         }
         engine = introText.getEngine();
         engine.setJavaScriptEnabled(true);
-        engine.load( "file:///"+path.toAbsolutePath());
+        engine.load(""+getClass().getResource("Html/GrahamScan.html"));
         engine.getLoadWorker().stateProperty().addListener(
                 new ChangeListener() {
                     @Override
