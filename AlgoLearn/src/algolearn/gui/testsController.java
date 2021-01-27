@@ -37,7 +37,7 @@ public class testsController extends FXMLDocumentController implements Initializ
 	private boolean examStarted = false;
 	private int correctAnwers = 0;
 	private int currentQuestion = 0;
-	private int qCount = testsData.questionsCount[savedValues.savedRealId];
+	private int questionsCount = getQuestionsCount();
 	
 	@FXML private Button nextQuest;
 	@FXML private WebView engine;
@@ -74,8 +74,8 @@ public class testsController extends FXMLDocumentController implements Initializ
 		
 		
 		
-		if(currentQuestion == qCount-1) {
-			finishTest(event);
+		if(currentQuestion == questionsCount-1) {
+			CreateScore();
 			return;
 		}
 		
@@ -84,6 +84,16 @@ public class testsController extends FXMLDocumentController implements Initializ
 	}
 	
 	@FXML private void finishTest(ActionEvent event) {
+		if(!examStarted) {
+			CreateError(errorMSG.testDidntStart);
+			return;
+		}
+		
+		boolean [] points = getPoints();
+		if(isMarked(points))
+			if(checkAnswers(points))
+				this.correctAnwers++;
+		
 		CreateScore();
 	}
 	
@@ -92,6 +102,7 @@ public class testsController extends FXMLDocumentController implements Initializ
 		examStarted = true;
 		nextQuest.setDisable(false);
 		loadHTML();
+		getQuestionsCount();
 	}
 	
 	private boolean [] getPoints() {
@@ -124,6 +135,17 @@ public class testsController extends FXMLDocumentController implements Initializ
 				return true;
 		return false;
 	}
+	
+	private int getQuestionsCount() {
+		int qHTML = testsData.questionsHTML[savedValues.savedRealId].length;
+		int qAnswers = testsData.correctAnswers[savedValues.savedRealId].length;
+		
+		if(qHTML != qAnswers)
+			return (qAnswers < qHTML) ? qAnswers : qHTML;
+		
+		return qHTML;
+	}
+	
 
     public void CreateScore() {
         try {
@@ -133,7 +155,7 @@ public class testsController extends FXMLDocumentController implements Initializ
             setStyle(stage);
             Text txt = (Text) root1.lookup("#scoreTXT");
             if(txt != null)
-            	txt.setText("Wynik testu: " + Integer.toString(correctAnwers) + "/" + Integer.toString(testsData.questionsCount[savedValues.savedRealId]));
+            	txt.setText("Wynik testu: " + Integer.toString(correctAnwers) + "/" + Integer.toString(questionsCount));
             setMouse(root1, stage);
             stage.centerOnScreen();
             stage.setAlwaysOnTop(true);

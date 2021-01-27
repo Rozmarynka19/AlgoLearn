@@ -15,24 +15,6 @@ public class testsData {
         return instance;
     }
     
-    // Ilosc pytan w testach
-    protected static int questionsCount[] = {
-    		5, // Heap
-    		5, // L1List
-    		5, // L2List
-    		5, // Bucket Sort
-    		5, // Counting sort
-    		5, // Heap Sort
-    		0, // FFT
-    		10,
-    		10,
-    		10,
-    		10,
-    		10,
-    		10,
-    		10,
-    };
-    
     protected static boolean [][][] correctAnswers = {
     		{	// heap
     			{true, false, false, false},
@@ -64,7 +46,7 @@ public class testsData {
     		},
     		{	// Counting sort
     			{true, true, false, true},
-    			{true, false, true, false},
+    			{true, false, false, false},
     			{true, false, false, false},
     			{false, false, false, true},
     			{true, true, true, true},
@@ -73,15 +55,15 @@ public class testsData {
     			{true, false, false, false},
     			{false, false, true, false},
     			{false, true, false, false},
-    			{false, false, false, false},
-    			{false, false, false, false},
+    			{false, false, false, true},
+    			{true, false, false, true},
     		},
     		{	// FFT
-    			{false, false, false, false},
-    			{false, false, false, false},
-    			{false, false, false, false},
-    			{false, false, false, false},
-    			{false, false, false, false},
+    			{false, true, false, false},
+    			{false, true, true, false},
+    			{true, false, false, false},
+    			{false, true, true, false},
+    			{false, false, true, false},
     		},
     };
     

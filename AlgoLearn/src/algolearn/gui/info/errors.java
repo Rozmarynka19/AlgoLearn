@@ -63,6 +63,7 @@ public class errors {
 	public String foundSuccess = "Znaleziono wyszukiwaną wartość!";
 	public String foundFailure = "Nie znaleziono wyszukiwanego elementu!";
 	
+	
 
 	//<--------------------Linked-list------------------------->
 	public String InputIsString = "Wprowadzona wartość nie jest liczbą!";
@@ -74,6 +75,7 @@ public class errors {
 	
 	
 	public String examAnswerNotChecked = "Musisz zaznaczyć odpowiedź aby kontynuować!";
+	public String testDidntStart = "Test jeszcze się nie rozpoczął!";
 
 	public String setupInformation(String info) {
 		return (infoDef+info);
