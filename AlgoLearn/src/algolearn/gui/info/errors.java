@@ -127,6 +127,12 @@ public class errors {
 	
 	//<-------------------- RBT ------------------------->
 
+	//-------------- Hash table -----------------------------
+
+	public String valueIsTooLong = "Podany klucz, jest zbyt długi dla danej wizualizacji,\n podawaj klucze z mniejszą ilością znaków";
+	public String visualisationLimit = "Wizualizacja pozwala na dodanie maksymalnie 14 elementów ze względu na swoje ograniczenia.";
+	public String chainToHigh = "Ze względu na ograniczenia wizualizacji, elementy które prowadzą do wielkości łańcucha większego niż 5, nie będą dodane";
+
 	public static class rbtMsg
 	{
 		public rbtMsg() {

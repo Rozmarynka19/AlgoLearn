@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AlgoLearn:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/AlgoLearn_jar</output-path>
+    <root id="archive" name="AlgoLearn.jar">
+      <element id="module-output" name="AlgoLearn" />
+    </root>
+  </artifact>
+</component>
