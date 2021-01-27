@@ -75,6 +75,24 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     List<List<Arrow>> arrowList = new ArrayList();
     HashMap<Button,Integer> nodesHeights = new HashMap<>();
 
+    private String foundNodeStyle = " -fx-background-color: " +
+                            "linear-gradient(#F1F50A, #A5A706 100%)" +
+                            "linear-gradient(#3a3a3a, #020b02); " +
+                            "-fx-min-width: 46px; " +
+                            "-fx-min-height: 46px; " +
+                            "-fx-max-width: 46px; " +
+                            "-fx-max-height: 46px; ";
+
+    private String uniwersalNodeStyle = " -fx-background-color: " +
+                                "linear-gradient(#ff0000, #990000 100%)" +
+                                "linear-gradient(#3a3a3a, #020b02); " +
+                                "-fx-min-width: 46px; " +
+                                "-fx-min-height: 46px; " +
+                                "-fx-max-width: 46px; " +
+                                "-fx-max-height: 46px; ";
+
+    List<Button> ColoredButtonList = new ArrayList<>();
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         levelsList.add(lvl1);
@@ -106,17 +124,24 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
     private Button previousSerchedChild;
     private Button previousButton;
 
-    private void coloringButtons(){
 
+    private boolean colorFlag = false;
+
+    private void recolorFoundNodes(){
+        if(colorFlag==true){
+            ColoredButtonList.forEach((temp) -> temp.setStyle(uniwersalNodeStyle));
+            ColoredButtonList.clear();
+            colorFlag=false;
+        }
     }
 
     @FXML
     public void generateButtonHandler(ActionEvent event){
         //rand.nextInt((max - min) + 1) + min; to find random value
+        recolorFoundNodes();
         Random rand = new Random();
         for(int i = rand.nextInt((6 - 0) + 1); i<7; i++){
             if(buttonList.get(0).size()<6) {
-                coloringButtons();
                 int randomNum = rand.nextInt((99 - 1) + 1) + 1;
                 if(!CheckForDuplicates(randomNum)) {
                     AddNodeText.setText("" + randomNum);
@@ -128,12 +153,11 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
             else
                 break;
         }
-        coloringButtons();
     }
 
     @FXML
     public void addNodeButton(ActionEvent event){
-        coloringButtons();
+        recolorFoundNodes();
         if(!AddNodeText.getText().equals("")) {
             if(!isInt(AddNodeText.getText())){
                 CreateError(errorMSG.OnlyNumeric);
@@ -158,7 +182,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
 
     @FXML
     public void deleteNodeButton(ActionEvent event){
-        coloringButtons();
+        recolorFoundNodes();
         if(!DeleteNodeText.getText().equals("")){
             if(isInt(DeleteNodeText.getText())) {
                 if (buttonList.get(0).size() == 0) {
@@ -176,7 +200,7 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
 
     @FXML
     public void findNodeButton(ActionEvent event){
-        coloringButtons();
+        recolorFoundNodes();
         if(!FindNodeText.getText().equals("")){
             if(buttonList.get(0).size()==0) {
                 CreateError(errorMSG.IsEmpty);
@@ -226,29 +250,14 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
 
     private void findNode() {
         int searchedValue = Integer.parseInt(FindNodeText.getText());
-        boolean flag=false;
-        Button tmp = null;
-        for (Button button : buttonList.get(0)) {
-            if (Integer.parseInt(button.getText()) == searchedValue) {
-                tmp = button;
-                flag = true;
-                break;
+        for(int i=0;i<buttonList.size();i++){
+            for(int j=0;j<buttonList.get(i).size();j++){
+                if(Integer.parseInt(buttonList.get(i).get(j).getText())==searchedValue){
+                    buttonList.get(i).get(j).setStyle(foundNodeStyle);
+                    ColoredButtonList.add(buttonList.get(i).get(j));
+                    colorFlag = true;
+                }
             }
-        }
-        if(flag){
-            tmp.setStyle(
-                    " -fx-background-color: " +
-                            "linear-gradient(#ff0000, #990000 100%)" +
-                            "linear-gradient(#3a3a3a, #020b02); " +
-                            "-fx-min-width: 46px; " +
-                            "-fx-min-height: 46px; " +
-                            "-fx-max-width: 46px; " +
-                            "-fx-max-height: 46px; "
-            );
-            previousSerchedChild = tmp;
-        }
-        else{
-            CreateError(errorMSG.CannotBeFound);
         }
     }
 
