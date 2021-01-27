@@ -27,7 +27,7 @@ public class testsData {
     		10,
     		10,
     		10,
-    		10,
+    		5,
     		10,
     		5,
     		5,
@@ -68,7 +68,11 @@ public class testsData {
     		},
     		//8
     		{
-    			
+    			{false, true, false, false},
+    			{true, false, false, true},
+    			{false, false, true, false},
+    			{false, false, false, true},
+    			{false, false, false, true}
     		},
     		//9
     		{
@@ -164,7 +168,11 @@ public class testsData {
     		},
     		//8
     		{
-    			
+    			"tests/SkipList/question1.html",
+    			"tests/SkipList/question2.html",
+    			"tests/SkipList/question3.html",
+    			"tests/SkipList/question4.html",
+    			"tests/SkipList/question5.html"
     		},
     		//9
     		{
