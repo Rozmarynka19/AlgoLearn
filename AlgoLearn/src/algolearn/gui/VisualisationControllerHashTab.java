@@ -4,6 +4,7 @@ import algolearn.gui.HelpClass.Arrow;
 //import algolearn.gui.FXMLDocumentController;
 import algolearn.gui.HelpClass.HashTable;
 import algolearn.gui.info.errors;
+import algolearn.gui.info.msgController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -438,8 +439,7 @@ public class VisualisationControllerHashTab extends FXMLDocumentController imple
         btnNumber.setText(""+Key);
         btnNumber.setStyle(universalButtonStyle);
         btnNumber.setOnMouseClicked((MouseEvent event) -> {
-            Dialog d=new Alert(Alert.AlertType.INFORMATION,"Key value: " +btnNumber.getText());
-            d.show();
+            CreateMsg("Key Value: " + btnNumber.getText());
         });
         if(ButtonList.get(index).size()==5){
             hashTab.DeleteElement(Key);
@@ -489,6 +489,29 @@ public class VisualisationControllerHashTab extends FXMLDocumentController imple
             stage.show();
             controller.errorTextArea.setText(msg);
             controller.errorTextArea.setStyle("-fx-text-fill: RED;-fx-font-weight:bold;");
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML private TextArea msgTextArea;
+    public void CreateMsg(String msg) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/valueMsg_fxml.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            msgController controller = (msgController) fxmlLoader.getController();
+            Stage stage = new Stage();
+            setStyle(stage);
+            setMouse(root1, stage);
+            stage.centerOnScreen();
+            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root1));
+            stage.show();
+            controller.msgTextArea.setText(msg);
+            controller.msgTextArea.setStyle("-fx-text-fill: purple;-fx-font-weight:bold;");
 
         }
         catch (IOException e) {
