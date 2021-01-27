@@ -246,7 +246,6 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
         );
 
         addSortButtonList(btnNumber, keyValue);
-        checklist();
         Arrow arrow = new Arrow();
         arrow.setEndX(previousButton.getLayoutX() + 40);
         //arrow.setEndX(previousButton.getLayoutX() - 40); reverse
@@ -254,21 +253,6 @@ public class VisualisationControllerL1List extends FXMLDocumentController implem
         childrenArrowList.add(arrow);
         reloadVisualisationBox(); //function to add elements from list
         AddNodeText.setText("");
-        //PauseTransition pause = new PauseTransition(
-         //       Duration.seconds(1));
-       // pause.setOnFinished(event -> {
-         //   btnNumber.setStyle(
-          //          " -fx-background-color: " +
-          //                  "linear-gradient(#ff0000, #990000 100%)" +
-          //                  "linear-gradient(#3a3a3a, #020b02); " +
-          //                  "-fx-background-radius: 5em; " +
-          //                  "-fx-min-width: 30px; " +
-         //                   "-fx-min-height: 30px; " +
-         //                   "-fx-max-width: 30px; " +
-         //                   "-fx-max-height: 30px; "
-         //   );
-        //});
-       // pause.play();
     }
 
     private void checklist(){ //funkcja do testowania sortowania listy

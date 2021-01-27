@@ -249,7 +249,6 @@ public class VisualisationControllerL2List extends FXMLDocumentController implem
         );
 
         addSortButtonList(btnNumber, keyValue);
-        checklist();
         VBox box = new VBox();
         Arrow arrow = new Arrow();
         //arrow.setEndX(previousButton.getLayoutX() + 40);

@@ -67,7 +67,6 @@ public class DescriptionControllerHeapSort extends FXMLDocumentController implem
 		
 		//save in any variable which button was selected
 		selectedLangButton = clickedButton.getText();
-		System.out.println("Button selected: "+selectedLangButton);
 	}
 
     @FXML

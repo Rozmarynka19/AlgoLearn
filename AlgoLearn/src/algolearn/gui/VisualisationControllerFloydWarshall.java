@@ -118,7 +118,6 @@ public class VisualisationControllerFloydWarshall extends FXMLDocumentController
 
         mp.setOnPaused(new Runnable() {
             public void run() {
-                System.out.println("onPaused");
                 PlayBtn.setText(">");
             }
         });

@@ -95,8 +95,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	displayTree();
     	ArrayList<TreeNode<Integer>> tmp = tree.path(index);
     	TreeNode<Integer> node = tmp.get(tmp.size()-1);
-    	
-    	System.out.println("In highlightNode "+ index +" "+node.x+" "+node.y);
+
     	tree.search(index);
 
     	hintCricle = new Circle(node.x,node.y,radius+5, new Color(0, 0, 0, 0));
@@ -210,10 +209,7 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 		 }
 		 displayTree();
 		 searchTextField.clear();
-		 
-		 System.out.println("Path size: " + String.valueOf(tree.path.getElements().size()));
-		 for(int i=0;i<tree.path.getElements().size();i++)
-			 System.out.println(tree.path.getElements().get(i));
+
 		 animateSearch(isNodeFound);     
         }
     }
@@ -364,7 +360,6 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     	for(int i=0;i<maxHiddenValues;i++)
     	{
     		randomIndex = (int)(Math.random()*(nodes.size()-1));
-    		System.out.println("Index: "+randomIndex+" Value: "+nodes.get(randomIndex));
     		for(int j=0;j<indexesOfHiddenNodes.size();j++)
     			if(indexesOfHiddenNodes.get(j)==randomIndex)
     			{
@@ -415,28 +410,23 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
 	    				}
 	    			displayHiddenValues();
 	    			displayTree();
-	    			System.out.println("brawo! tu faktycznie powinna byc liczba "+input);
 	    			info.setText(msg.setupInformation(msg.goodCall + input));
 	    		}
 	    		else
 	    		{
-	    			System.out.println("tu nie powinna byc liczba "+input);
 	    			info.setText(msg.setupInformation(msg.wrongCall + input));
 	    		}
 	    	}
 	    	else
 	    	{
-	    		System.out.println("najpierw zaznacz wezel, ktore wartosc chcesz odgadnac");
 	    		createMessageBox(msg.msgErrorHeader, msg.selectNodeFirst , msg.msgTypeError);
-	    		
 	    	}
 	    	unknownTextField.clear();
 	    	
 	    	if(hiddenNodes.size()<=0)
 	    	{
 	    		switchToTheGameMode(false);
-	        	
-	        	System.out.println("brawo mistrzu za odgadniecie wartosci wszystkich wezlow!");
+
 	        	createMessageBox(msg.msgCongratsHeader, msg.finishedGuessGame , msg.msgTypeCongrats);
 	    	}
         }
@@ -445,16 +435,12 @@ public class FXMLDocumentController_RBT extends FXMLDocumentController {
     
     private void setCircle()
     {
-    	System.out.println("setCircle: selectedButton-Text: "+selectedButton.getText()+
-    						", selectedButton-AccesibleText: "+selectedButton.getAccessibleText()
-    			);
     	
     	int val=0;
     	if(selectedButton.getText()=="?")
     		val = Integer.parseInt(selectedButton.getAccessibleText());
     	else
     		val = Integer.parseInt(selectedButton.getText());
-    	System.out.println("setCircle: "+String.valueOf(val));
     	
     	tree.path.getElements().clear();
     	tree.search(val);

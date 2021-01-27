@@ -117,7 +117,6 @@ public class VisualisationControllerFFT extends FXMLDocumentController implement
 
         mp.setOnPaused(new Runnable() {
             public void run() {
-                System.out.println("onPaused");
                 PlayBtn.setText(">");
             }
         });

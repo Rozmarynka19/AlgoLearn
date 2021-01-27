@@ -67,7 +67,7 @@ public class DescriptionControllerFFT extends FXMLDocumentController implements 
 		
 		//save in any variable which button was selected
 		selectedLangButton = clickedButton.getText();
-		System.out.println("Button selected: "+selectedLangButton);
+
 	}
 
     @FXML

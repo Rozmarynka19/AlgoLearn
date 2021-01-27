@@ -310,7 +310,7 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 			
 			for(Integer p : path) {
 				cords.add(getNodePositions(rootBST, p));
-				System.out.println(p);
+
 			}
 			initSwapPath(cords, 21);
 		}
@@ -390,7 +390,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 		} catch (InterruptedException e) {
 			System.out.println("Thread.sleep error");
 		}
-		System.out.println("Swap executed!");
 		SwapCount = 0;
 		int deleteNodeValue = Integer.parseInt(delValue);
 		
@@ -440,7 +439,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 	private void Delete(BSTNode newRoot, String getValue, int deleteTime, int multiChilds, String bonus, boolean AlreadyDeleted) throws InterruptedException {
 		optMsg(errorMSG.deleteNode, getValue);
 		Thread.sleep(deleteTime);
-		System.out.println("FUNC EXEC");
 		if(newRoot.left == null && newRoot.right == null) {
 			if(rootBST.key == Integer.parseInt(getValue)  && multiChilds == 0) {
 				rootBST = null;
@@ -458,7 +456,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 				}
 				
 			}else {
-				System.out.println("REMOVE EXEC");
 				if(multiChilds == 0) {
 					int circleID = getID(getValue, true, false, false);
 					int textID = getID(getValue, false, true, false);
@@ -484,10 +481,7 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 				}else {
 					int circleID = getID(delValue, true, false, false);
 					int textID = getID(delValue, false, true, false);
-					
-					System.out.println("New keys :"+delValue+" " +newRoot.key);
-					if(newRoot.right != null)
-						System.out.println("key "+newRoot.right.key);
+
 					Visualisation_anchorPane.getChildren().remove(arrayCircles.get(circleID));
 					Visualisation_anchorPane.getChildren().remove(arrayTexts.get(textID));
 					arrayTexts.remove(textID);
@@ -509,9 +503,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 					for(double[] l : line) {
 						boolean left = ((int)l[4] == 1)? true:false;
 						drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
-						for(int i = 0; i<6; i++)
-							System.out.print("\t"+l[i]);
-						System.out.println();
 					}
 
 					Path path = new Path();
@@ -570,14 +561,9 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 				keys = new ArrayList<Integer>();
 				getKeys(rootBST, keys);
 				ArrayList<double[]> line = linesPositions(rootBST, keys);
-				System.out.println("Line size: "+line.size());
 				for(double[] l : line) {
 					boolean left = ((int)l[4] == 1)? true:false;
 					drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
-					//debug
-					for(int i = 0; i<6; i++)
-						System.out.print("\t"+l[i]);
-					System.out.println();
 				}
 	
 				if(hintCricle != null) {
@@ -642,10 +628,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 				for(double[] l : line) {
 					boolean left = ((int)l[4] == 1)? true:false;
 					drawArrow(l[0], l[1], l[2], l[3], left, Integer.toString((int)l[5]));
-					//debug
-					for(int i = 0; i<6; i++)
-						System.out.print("\t"+l[i]);
-					System.out.println();
 				}
 			}
 		}
@@ -1091,7 +1073,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 	    		optMsg(errorMSG.searchNotFound, String.valueOf(node_value));
 	    		selectedOption = 0;
 	    		deleteInProgress = false;
-	    		System.out.println(randomizedIDs[0] + " " + randomizedIDs[1]);
 	    		break;
 	    	case 14: // find node is hidden
 	    		msg(errorMSG.searchHidden);
@@ -1106,7 +1087,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 				}
 	    		break;
 	    	case 20:
-	    		System.out.println("Root remove executed!");
 	    		FindMin();
 	    		break;
     	}
@@ -1150,7 +1130,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 			}else {
 				selectedOption = 0;
 			}
-			System.out.println("EXEC HADNLE");
 		});
 		pathT.play();
 	}
@@ -1172,12 +1151,10 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 				pPath = new Path();
 				dPath = new ArrayList<double[]>();
 				pathInit = false;
-				System.out.println("OPT: " + opt + "Node: " + node_cords[0] + " " + node_cords[1]);
 				handleFinishOperation(opt);
 				// delete case
 				if(opt == 20) {
 					if(newRoot == null) {
-						System.out.println("ERROR");
 						return;
 					}
 					if((newRoot.left != null && newRoot.right == null)
@@ -1202,7 +1179,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 			}
 			StepByStepCheckBox.setDisable(false);
 			pathTransitionDone = true;
-			System.out.println("EXEC HADNLE");
 		});
 		pathT.play();
 	}
@@ -1498,15 +1474,12 @@ public class BST_controller extends FXMLDocumentController implements Initializa
 	        }
         	double x1 =400, x2 = yy - down_offset + radius/2, x3=400, x4 = yy - radius, x5=400, x6 = (double)k;
         	if(y==null) {
-        		System.out.println("y==null");
         		continue key_loop;
         	}else if(k < y.key) {
-        		System.out.println("k < y.key");
         		x1 = xx_prev - radius;
         		x3 = xx +10;
         		x5 = (double)1;
         	}else if(k > y.key) {
-        		System.out.println("k > y.key");
         		x1 = xx_prev + radius;
         		x3 = xx -10;
         		x5 = (double)0;
@@ -1514,7 +1487,6 @@ public class BST_controller extends FXMLDocumentController implements Initializa
         	
      
         	double [] arr = {x1, x2, x3, x4, x5, x6};
-        	System.out.println(arr[0] + " " + arr[1] + " " + arr[2] + " " + arr[3] + " " + arr[4] + " " + arr[5] + " KEY: " + key);
         	lines.add(arr);
     	}
         return lines;

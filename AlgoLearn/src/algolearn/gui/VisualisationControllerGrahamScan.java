@@ -116,7 +116,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
         {
 			if (isSuchNode(key,false))
 			{
-				System.out.println("insert: juz jest węzeł w grafie o kluczu "+String.valueOf(key));
 				info.setText(msg.setupInformation(msg.nodeAlredyExistsPart1+String.valueOf(key)+msg.nodeAlredyExistsPart2));
 				return;
 			}
@@ -126,7 +125,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 			{
 				newNode.setText(String.valueOf(key));
 				nodes.add(newNode);
-				System.out.println("insert: udalo sie dodac wezel o kluczu "+String.valueOf(key));
 				info.setText(msg.setupInformation(msg.nodeInserted+String.valueOf(key)));
 			}
 			
@@ -218,13 +216,11 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
 						&& y >= node.getLayoutY()-padding && y <= node.getLayoutY()+padding)
 					tooClose=true;
 			}
-//			System.out.println("safetyIterator: "+String.valueOf(safetyIterator));
 		}
 		while(tooClose && safetyIterator<=maxSafetyIterations);
 		
 		if(safetyIterator>=maxSafetyIterations)
 		{
-			System.out.println("insert: za duzo wezlow w grafie!");
 			createMessageBox(msg.msgErrorHeader, msg.tooManyNodes, msg.msgTypeError);
 			return false;
 		}
@@ -252,12 +248,10 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
         {
 			if (!isSuchNode(key,true))
 			{
-				System.out.println("delete: nie ma w grafie wezla o kluczu "+String.valueOf(key));
 				info.setText(msg.setupInformation(msg.noSuchNode+String.valueOf(key)));
 				return;
 			}
-			
-			System.out.println("delete: udalo sie usunac wezel o kluczu "+String.valueOf(key));
+
 			info.setText(msg.setupInformation(msg.nodeDeletedPart1+String.valueOf(key)+msg.nodeDeletedPart2));
 			display();            
         }
@@ -342,7 +336,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     	startAlgoButton.setDisable(true);
     	addButton.setDisable(false);
     	deleteButton.setDisable(false);
-    	System.out.println("restartVis: zrestartowano wizualizacje!");
     	info.setText(msg.setupInformation(msg.restartDone));
 	}
 	
@@ -424,7 +417,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     	if(nodes.size()==0)
     	{
     		info.setText(msg.setupInformation(msg.emptyGraph));
-    		System.out.println("startAlgorithm: graf jest pusty!");
     		return;
     	}
     		
@@ -461,7 +453,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     	case 1:
         	//step 1. find left lowest node ( 0,0 of the screen is upper-left corner)
     		//and make that node as a new starting point of coordinate system
-    		System.out.println("grahamScan: step1");
     		
     		int indexOfLowest=0;
     		for(int i=0;i<algoNodes.size();i++)
@@ -490,7 +481,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		return;
     	case 2:
         	//step 2. sort (ascending) nodes by angle from (1,0) vector (P2) y1*1-0*x1
-    		System.out.println("grahamScan: step2");
 //    		double x2=1,y2=0;
     		//calc angle
     		for(Pair<Button,AlgoNode> node : algoNodes)
@@ -514,7 +504,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		return;
     	case 3:
         	//step 3. to the hull add index of starting point and first point from sorted list of nodes
-    		System.out.println("grahamScan: step3");
     		algoNodes.get(1).getValue().status=NodeStatus.HULL;
     		indexesOfHullNodes.add(0);
     		indexesOfHullNodes.add(1);
@@ -523,7 +512,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		return;
 		default:
     		//step 4. loop
-			System.out.println("grahamScan: default step");
 			int indexOfCurrentHullNode=0;
 			for(int i=0;i<algoNodes.size();i++)
 			{
@@ -569,25 +557,9 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     		    }
     		    else
     		    {
-    		    	System.out.println("grahamScan: shows indexesOfHullNodes before removing");
-    		    	for(int i=0;i<indexesOfHullNodes.size();i++)
-    		    	{
-    		    		System.out.println("i="+String.valueOf(i)+
-    		    				", index="+String.valueOf(indexesOfHullNodes.get(i))+
-    		    				", value="+algoNodes.get(indexesOfHullNodes.get(i)).getKey().getText()
-    		    				);
-    		    	}
     		    	turnRight=true;
     		    	algoNodes.get(SecondToLastIndx).getValue().status=NodeStatus.VISITED;
     		    	indexesOfHullNodes.remove(indexesOfHullNodes.size()-2);
-    		    	System.out.println("grahamScan: shows indexesOfHullNodes after removing");
-    		    	for(int i=0;i<indexesOfHullNodes.size();i++)
-    		    	{
-    		    		System.out.println("i="+String.valueOf(i)+
-    		    				", index="+String.valueOf(indexesOfHullNodes.get(i))+
-    		    				", value="+algoNodes.get(indexesOfHullNodes.get(i)).getKey().getText()
-    		    				);
-    		    	}
 //    		    	info.setText(msg.setupInformation(msg.turnRight));
     		    	displayGrahamScan();
     		    }
@@ -605,7 +577,6 @@ public class VisualisationControllerGrahamScan extends FXMLDocumentController {
     	}
     	
     	//step 5. return indexes of points which are included in the hull
-    	System.out.println("grahamScan: Algorithm has finished!");
     	info.setText(msg.setupInformation(msg.finished));
     	indexesOfHullNodes.add(0);
     	nextButton.setDisable(true);

@@ -278,7 +278,6 @@ public class VisualisationControllerSkipList extends FXMLDocumentController impl
         );
 
         addSortButtonList(btnNumber, keyValue);
-        checklist();
         reloadArrows();
         nodesHeights.put(btnNumber, height);
         ShowKeys();

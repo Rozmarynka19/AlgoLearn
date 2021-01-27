@@ -396,11 +396,9 @@ public class VisualisationControllerHashTab extends FXMLDocumentController imple
     private void findNode() {
         String keyValue = FindNodeText.getText();
         int index = hashTab.getIndex(keyValue);
-        System.out.println("ok: " + index + " " + "key: " + keyValue);
         switch (index){
             case -1:
                 CreateError(errorMSG.CannotBeFound);
-                System.out.println("tutaj");
                 break;
             default:
                 for(int i=0;i<ButtonList.get(index).size();i++){
@@ -408,7 +406,6 @@ public class VisualisationControllerHashTab extends FXMLDocumentController imple
                         ButtonList.get(index).get(i).setStyle(findButtonStyle);
                         previousSearchedButton = ButtonList.get(index).get(i);
                         coloredFlag = true;
-                        System.out.println("found");
                         reloadVisualisationBox();
                         break;
                     }
@@ -433,7 +430,6 @@ public class VisualisationControllerHashTab extends FXMLDocumentController imple
         hashTab.Add(Key, value);
         int max = hashTab.getMaksSize();
         int index = hashTab.getIndex(Key);
-        System.out.println("{ dodawany element: " + Key + " " + value + " " + index +" }");
         //hashTab.Print();
         Button btnNumber = new Button();
         btnNumber.setText(""+Key);
@@ -452,11 +448,6 @@ public class VisualisationControllerHashTab extends FXMLDocumentController imple
             previousMax = max;
         }
         reloadVisualisationBox();
-    }
-
-    private void checklist(){ //funkcja do testowania sortowania listy
-        childrenButtonList.forEach((temp) -> System.out.println(temp.getText()));
-        System.out.println("---------------------------");
     }
 
     private void reloadVisualisationBox(){

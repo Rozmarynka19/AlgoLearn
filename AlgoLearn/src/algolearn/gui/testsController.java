@@ -180,7 +180,6 @@ public class testsController extends FXMLDocumentController implements Initializ
     private void loadHTML() {
     	WebEngine webEngine = engine.getEngine();
     	webEngine.load(""+getClass().getResource(testsData.questionsHTML[savedValues.savedRealId][currentQuestion]));
-    	//System.out.println(""+getClass().getResource(testsData.questionsHTML[savedValues.savedRealId][currentQuestion]));
     }
     
     public void CreateError(String msg) {

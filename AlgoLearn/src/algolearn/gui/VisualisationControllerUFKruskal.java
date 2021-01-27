@@ -169,7 +169,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
         {
 			if (isSuchNode(key,false))
 			{
-				System.out.println("insert: juz jest węzeł w grafie o kluczu "+String.valueOf(key));
 				info.setText(msg.setupInformation(msg.nodeAlredyExistsPart1+String.valueOf(key)+msg.nodeAlredyExistsPart2));
 				return;
 			}
@@ -179,7 +178,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 			{
 				newNode.setText(String.valueOf(key));
 				nodes.add(newNode);
-				System.out.println("insert: udalo sie dodac wezel o kluczu "+String.valueOf(key));
 				info.setText(msg.setupInformation(msg.nodeInserted+String.valueOf(key)));
 			}
 			
@@ -289,8 +287,7 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
 					
 					return true;
 				}
-		
-		System.out.println("insert: za duzo wezlow w grafie!");
+
 		createMessageBox(msg.msgErrorHeader, msg.tooManyNodes, msg.msgTypeError);
 		return false;
 	}
@@ -313,12 +310,10 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
         {
 			if (!isSuchNode(key,true))
 			{
-				System.out.println("delete: nie ma w grafie wezla o kluczu "+String.valueOf(key));
 				info.setText(msg.setupInformation(msg.noSuchNode+String.valueOf(key)));
 				return;
 			}
-			
-			System.out.println("delete: udalo sie usunac wezel o kluczu "+String.valueOf(key));
+
 			info.setText(msg.setupInformation(msg.nodeDeletedPart1+String.valueOf(key)+msg.nodeDeletedPart2));
 			display();            
         }
@@ -414,7 +409,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     	startAlgoButton.setDisable(true);
     	addButton.setDisable(false);
     	deleteButton.setDisable(false);
-    	System.out.println("restartVis: zrestartowano wizualizacje!");
     	info.setText(msg.setupInformation(msg.restartDone));
 	}
 	
@@ -525,7 +519,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     		
     		if(!hasEdge)
     		{
-    			System.out.println("bindEdges: Node without edge found! Reparing...");
     			
     			if(i!=nodes.size()-1)
     				edges.add(new Edge(i,nodes.size()-1));
@@ -566,7 +559,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     	if(nodes.size()==0)
     	{
     		info.setText(msg.setupInformation(msg.emptyGraph));
-    		System.out.println("startAlgorithm: graf jest pusty!");
     		return;
     	}
     		
@@ -586,7 +578,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     	{
     	case 1:
         	//step 1. init UF structure
-    		System.out.println("kruskal: step1");
     		uf = new UnionFind(nodes.size());
     		    		
     		info.setText(msg.setupInformation(msg.ufInitialized));
@@ -594,16 +585,14 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     		return;
     	case 2:
         	//step 2. sort (ascending) edges by cost
-    		System.out.println("kruskal: step2");
     		
     		Collections.sort(edges,costCOMPARE);
-    		printEdges();
+    		//printEdges();
     		info.setText(msg.setupInformation(msg.edgesSorted));
     		display();
     		return;
     	default:
         	//step 3. for every edge ...
-    		System.out.println("kruskal: default step");
     		
     		if(uf.unionCounter>=nodes.size()-1)
     			break;
@@ -638,7 +627,6 @@ public class VisualisationControllerUFKruskal extends FXMLDocumentController {
     	}
     	
     	//step 4. return MST
-    	System.out.println("kruskal: Algorithm has finished!");
 		info.setText(msg.setupInformation(msg.finished));
     	nextButton.setDisable(true);
     	display();
