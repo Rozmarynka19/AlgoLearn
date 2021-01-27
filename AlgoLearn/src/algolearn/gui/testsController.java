@@ -102,7 +102,6 @@ public class testsController extends FXMLDocumentController implements Initializ
 		examStarted = true;
 		nextQuest.setDisable(false);
 		loadHTML();
-		getQuestionsCount();
 	}
 	
 	private boolean [] getPoints() {
@@ -139,7 +138,6 @@ public class testsController extends FXMLDocumentController implements Initializ
 	private int getQuestionsCount() {
 		int qHTML = testsData.questionsHTML[savedValues.savedRealId].length;
 		int qAnswers = testsData.correctAnswers[savedValues.savedRealId].length;
-		
 		if(qHTML != qAnswers)
 			return (qAnswers < qHTML) ? qAnswers : qHTML;
 		

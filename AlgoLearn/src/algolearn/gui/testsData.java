@@ -26,6 +26,13 @@ public class testsData {
     			{true, false, false, false},
     			{false, false, true, false},
     		},
+    		{ // L1List
+    			{true, false, false, false},
+    			{false, false, false, true},
+    			{false, true, false, false},
+    			{true, false, false, false},
+    			{false, true, false, false},
+    		},
     		{	// L2List
     			{false, true, false, false},
     			{false, false, true, false},
@@ -67,7 +74,7 @@ public class testsData {
     			{true, false, false, true},
     			{false, false, true, false},
     			{false, false, false, true},
-    			{false, false, false, true}
+    			{false, false, false, true},
     		},
     		//BST
     		{
@@ -80,7 +87,7 @@ public class testsData {
     			{false, true, false, false},
     			{false, false, true, false},
     			{true, false, false, false},
-    			{false, true, false, false}
+    			{false, true, false, false},
     		},
     		//HashTable
     		{
@@ -114,7 +121,7 @@ public class testsData {
     			{false, true, false, false},
     			{true, false, false, false},
     			{true, false, false, false},
-    			{false, true, true, false}
+    			{false, true, true, false},
     		},
     		//RBT
     		{
@@ -127,8 +134,8 @@ public class testsData {
     			{false, true, false, true},
     			{false, false, true, true},
     			{true, true, true, true},
-    			{true, false, false, true}
-    		}
+    			{true, false, false, true},
+    		},
     };
     
     protected static String [][] questionsHTML = {
@@ -247,6 +254,6 @@ public class testsData {
     			"tests/RBT/question8.html",
     			"tests/RBT/question9.html",
     			"tests/RBT/question10.html"
-    		}
+    		},
     };
 }
